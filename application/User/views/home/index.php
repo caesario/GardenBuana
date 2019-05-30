@@ -13,7 +13,7 @@
       <div class="intro-info">
         <h2>Kami menyediakan<br><span>Solusi untuk</span><br>tanaman anda!</h2>
         <div>
-          <?php if ($_SESSION == NULL) : ?>
+          <?php if (@$session['role_id'] == 2) : ?>
             <a href="<?= site_url('vendor'); ?>" class="btn-services scrollto">Cari Vendor</a>
           <?php else : ?>
             <a href="<?= site_url('Auth/regist'); ?>" class="btn-get-started scrollto">Bergabung</a>
@@ -35,7 +35,7 @@
 
       <div class="section-header">
         <h3>Temukan Vendor</h3>
-        <?php var_dump($_SESSION) ?>
+        <?php  //echo '<pre>'; print_r($this->session->userdata("role_id"));exit;//var_dump($_SESSION) ?>
         <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque dere santome nida.</p>
       </div>
 

@@ -49,7 +49,7 @@ class Auth extends CI_Controller
             redirect('Vendor_admin');
           }
           if ($user['role_id'] == 2) {
-            redirect('User');
+            redirect('home');
           } else {
             redirect('Admin');
           }
