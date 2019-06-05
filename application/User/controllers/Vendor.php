@@ -15,8 +15,9 @@ class Vendor extends CI_Controller
         $data['title'] = 'GardenBuana | List Vendor';
         $data['vendor'] = $this->Vendor_model->getAllVendor();
         $data['kota'] = $this->Vendor_model->getAllKota();
+        $data['session'] = $this->session->all_userdata();
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/menu');
+        $this->load->view('templates/menu', $data);
         $this->load->view('vendor/list_vendor', $data);
         $this->load->view('templates/footer');
     }
@@ -25,6 +26,7 @@ class Vendor extends CI_Controller
     {
         $data['title'] = 'GardenBuana | Detail Vendor';
         $data['vendor'] = $this->Vendor_model->getVendorById($id);
+        $data['session'] = $this->session->all_userdata();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/menu');
         $this->load->view('vendor/detail_vendor', $data);
@@ -35,6 +37,7 @@ class Vendor extends CI_Controller
     {
         $data['title'] = 'GardenBuana | Detail Vendor';
         $data['vendor'] = $this->Vendor_model->getVendorById($id);
+        $data['session'] = $this->session->all_userdata();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/menu');
         $this->load->view('vendor/pesan_vendor', $data);

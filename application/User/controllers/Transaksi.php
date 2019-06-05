@@ -10,7 +10,7 @@ class Transaksi extends CI_Controller
         $this->load->model('Pesanan_model');
     }
 
-    public function index($id)
+    public function pesanan($id)
     {
         $data['title'] = 'GardenBuana | Pesanan';
         $data['trx_pesanan'] = $this->Pesanan_model->getPesananById($id);
