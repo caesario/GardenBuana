@@ -88,6 +88,25 @@ CREATE TABLE `kota` (
 
 insert  into `kota`(`id_kota`,`nama_kota`) values (1,'Jakarta Utara'),(2,'Jakarta Pusat'),(3,'Jakarta Barat'),(4,'Jakarta Timur'),(5,'Jakarta Selatan'),(6,'Pulai Seribu');
 
+/*Table structure for table `pelanggan` */
+
+DROP TABLE IF EXISTS `pelanggan`;
+
+CREATE TABLE `pelanggan` (
+  `id_pelanggan` int(11) NOT NULL,
+  `id_userfk` int(11) DEFAULT NULL,
+  `telpon` varchar(24) DEFAULT NULL,
+  `id_kota` int(11) DEFAULT NULL,
+  `alamat` varchar(255) DEFAULT NULL,
+  `create_time` time DEFAULT NULL,
+  `edit_date` date DEFAULT NULL,
+  PRIMARY KEY (`id_pelanggan`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `pelanggan` */
+
+insert  into `pelanggan`(`id_pelanggan`,`id_userfk`,`telpon`,`id_kota`,`alamat`,`create_time`,`edit_date`) values (1,10,'08211235432',2,'Jl. Ragunan Raya No. 17 RT.02/08 Ragunan','00:00:00','0000-00-00'),(2,8,'08827429871',4,'Komplek Kemanggisan Raya Kav.88 Jakarta',NULL,NULL);
+
 /*Table structure for table `riwayat_pesanan` */
 
 DROP TABLE IF EXISTS `riwayat_pesanan`;
@@ -131,6 +150,8 @@ CREATE TABLE `status_transaksi` (
 
 /*Data for the table `status_transaksi` */
 
+insert  into `status_transaksi`(`id_status`,`nama_status`) values (1,'Menunggu Konfirmasi'),(2,'Menunggu Pembayaran'),(3,'Konfirmasi Pembayaran'),(4,'Sukses'),(5,'Gagal');
+
 /*Table structure for table `trx-konfirmasi-pesanan` */
 
 DROP TABLE IF EXISTS `trx-konfirmasi-pesanan`;
@@ -152,12 +173,14 @@ CREATE TABLE `trx_bukti_bayar` (
   `id_bayar` int(7) NOT NULL,
   `id_pesanan` int(7) DEFAULT NULL COMMENT 'FK pesanan',
   `upload` varchar(255) DEFAULT NULL,
-  `keterangan` varchar(255) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
+  `keterangan_bayar` varchar(255) DEFAULT NULL,
+  `id_status` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_bayar`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `trx_bukti_bayar` */
+
+insert  into `trx_bukti_bayar`(`id_bayar`,`id_pesanan`,`upload`,`keterangan_bayar`,`id_status`) values (1,1,'(nanti berupa gambar)','Sudah dibayarkan untuk pembayaran pengerjaan tanaman hias',3);
 
 /*Table structure for table `trx_nego` */
 
@@ -200,7 +223,7 @@ CREATE TABLE `trx_pesanan` (
 
 /*Data for the table `trx_pesanan` */
 
-insert  into `trx_pesanan`(`id_pesanan`,`id_user`,`id_vendor`,`id_status`,`nama_pemesan`,`email`,`telpon`,`tanggal_pengerjaan`,`alamat`,`keterangan`,`gambar`,`harga`,`create_date`) values (1,NULL,NULL,NULL,'Lenovo ThinkPad','lenovo.thinkpad@mail.com','082112398281','2019-05-20','Jl. Kemanggisan Utara No.17 RT.02/RW.08','Saya ingin memesan dekorasi tanaman hias untuk keperluan acara wedding adik saya pada tahun depan, namun saya ingin mendekornya dari sekarang untuk kepentingan penghabisan budget tahunan ini. trima kasih',NULL,NULL,'2019-05-02 16:30:53');
+insert  into `trx_pesanan`(`id_pesanan`,`id_user`,`id_vendor`,`id_status`,`nama_pemesan`,`email`,`telpon`,`tanggal_pengerjaan`,`alamat`,`keterangan`,`gambar`,`harga`,`create_date`) values (1,1,1,3,'Bambang','lenovo.thinkpad@mail.com','082112398281','2019-05-20','Jl. Kemanggisan Utara No.17 RT.02/RW.08','Saya ingin memesan dekorasi tanaman hias untuk keperluan acara wedding adik saya pada tahun depan, namun saya ingin mendekornya dari sekarang untuk kepentingan penghabisan budget tahunan ini. trima kasih',NULL,4700000,'2019-05-02 16:30:53'),(2,NULL,2,2,'Budi','gagrsg@rglar.com','021042102102','2019-06-05','Jl. semsmekasek akeoa eo aeknfo afne oa','orkajgoar gjkroa kr oake oga oega oegj eoa',NULL,NULL,'2019-05-30 17:30:16');
 
 /*Table structure for table `trx_testimoni` */
 
@@ -209,11 +232,15 @@ DROP TABLE IF EXISTS `trx_testimoni`;
 CREATE TABLE `trx_testimoni` (
   `id_testimoni` int(7) NOT NULL,
   `id_pesanan` int(7) DEFAULT NULL,
+  `id_pelanggan` int(11) DEFAULT NULL,
+  `id_vendor` int(11) DEFAULT NULL,
   `testimoni` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_testimoni`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `trx_testimoni` */
+
+insert  into `trx_testimoni`(`id_testimoni`,`id_pesanan`,`id_pelanggan`,`id_vendor`,`testimoni`) values (1,1,1,1,'Pengerjaan taman yang dikerjaan sangat memuaskan, saya dapat bersenang senang dengan keluarga dengan taman dirumah saya. Trima kasih ');
 
 /*Table structure for table `user` */
 
@@ -290,11 +317,11 @@ CREATE TABLE `user_sub_menu` (
   `icon` varchar(128) DEFAULT NULL,
   `is_active` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user_sub_menu` */
 
-insert  into `user_sub_menu`(`id`,`menu_id`,`title`,`url`,`icon`,`is_active`) values (1,1,'Dashboard','vendor_admin','fas fa-fw fa-tachometer-alt',1),(2,2,'My Profile','user','fas fa-fw fa-user',1),(3,2,'Lihat Profile','user/edit','fas fa-fw fa-user-edit',1),(6,1,'Lihat Profile','vendor_admin/profil','fas fa-sw fa-user-edit',1),(7,4,'Pesanan',NULL,'far fa-sw fa-comment-dots',1),(8,4,'Pesanan Tertunda',NULL,'fab fa-sw fa-buffer',1),(9,4,'Riwayat Transaksi',NULL,'fas fa-sw fa-history',1),(10,3,'Dasboard',NULL,'fas fa-fw fa-tachometer-alt',1),(11,5,'Menu Management','menu','fas fa-tasks',1),(12,5,'Submenu Management','menu/submenu','fas fa-fw fa-folder-open',1),(13,6,'Verifikasi User',NULL,'fas fa-user-check',1),(14,8,'Lihat Profil',NULL,'fas fa-id-card-alt',1),(16,7,'Pesanan',NULL,'fab fa-first-order',1),(17,7,'Bukti Bayar',NULL,'fas fa-file-invoice',1),(18,8,'Wilayah',NULL,'fas fa-globe-americas',1),(20,7,'Testimoni',NULL,'fas fa-id-card-alt',1),(21,7,'Data Pelanggan',NULL,'fas fa-user-cog',1),(22,7,'Data Vendor',NULL,'fas fa-users-cog',1);
+insert  into `user_sub_menu`(`id`,`menu_id`,`title`,`url`,`icon`,`is_active`) values (1,1,'Dashboard','vendor_admin','fas fa-fw fa-tachometer-alt',1),(2,2,'My Profile','user','fas fa-fw fa-user',1),(3,2,'Lihat Profile','user/edit','fas fa-fw fa-user-edit',1),(6,1,'Lihat Profile','vendor_admin/profil','fas fa-sw fa-user-edit',1),(7,4,'Pesanan',NULL,'far fa-sw fa-comment-dots',1),(8,4,'Pesanan Tertunda',NULL,'fab fa-sw fa-buffer',1),(9,4,'Riwayat Transaksi',NULL,'fas fa-sw fa-history',1),(10,3,'Dasboard','admin','fas fa-fw fa-tachometer-alt',1),(11,5,'Menu Management','menu','fas fa-tasks',1),(12,5,'Submenu Management','menu/submenu','fas fa-fw fa-folder-open',1),(13,6,'Verifikasi User','admin/verif','fas fa-user-check',1),(14,8,'Lihat Profil','admin/profil','fas fa-id-card-alt',1),(16,7,'Pesanan','report/pesanan','fab fa-first-order',1),(17,7,'Riwayat Pesanan','report/riwayat_pesanan','fas fa-history',1),(18,7,'Bukti Bayar','report/buktibayar','fas fa-file-invoice',1),(19,8,'Wilayah','admin/wilayah','fas fa-globe-americas',1),(20,7,'Testimoni','report/testimoni','fas fa-id-card-alt',1),(25,7,'Data Pelanggan','report/data_pelanggan','fas fa-user-cog',1),(26,7,'Data Vendor','report/data_vendor','fas fa-users-cog',1);
 
 /*Table structure for table `vendor` */
 
