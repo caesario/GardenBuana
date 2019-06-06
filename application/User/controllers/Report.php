@@ -23,7 +23,7 @@ class Report extends CI_Controller
 
     public function pesanan()
     {
-        $data['title'] = 'Transaksi Pesanan';
+        $data['title'] = 'Pesanan';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['trx_pesanan'] = $this->Admin_model->getAllPesanan();
 
@@ -36,7 +36,7 @@ class Report extends CI_Controller
 
     public function buktibayar()
     {
-        $data['title'] = 'GardenBuana | Admin Pesanan';
+        $data['title'] = 'Bukti Bayar';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['buktibayar'] = $this->Admin_model->getAllBuktiBayar();
 
@@ -49,7 +49,7 @@ class Report extends CI_Controller
 
     public function testimoni()
     {
-        $data['title'] = 'GardenBuana | Admin Pesanan';
+        $data['title'] = 'Testimoni';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['testimoni'] = $this->Admin_model->getAllTestimoni();
 
@@ -83,6 +83,19 @@ class Report extends CI_Controller
         $this->load->view('templates/vendor_sidebar', $data);
         $this->load->view('templates/vendor_topbar', $data);
         $this->load->view('admin/data_vendor', $data);
+        $this->load->view('templates/vendor_footer');
+    }
+
+    public function riwayat_pesanan()
+    {
+        $data['title'] = 'Riwayat Pesanan';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['history'] = $this->Admin_model->getAllHistoryPesanan();
+
+        $this->load->view('templates/vendor_header', $data);
+        $this->load->view('templates/vendor_sidebar', $data);
+        $this->load->view('templates/vendor_topbar', $data);
+        $this->load->view('admin/history_pesanan', $data);
         $this->load->view('templates/vendor_footer');
     }
 }

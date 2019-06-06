@@ -35,7 +35,8 @@
 
       <div class="section-header">
         <h3>Temukan Vendor</h3>
-        <?php  //echo '<pre>'; print_r($this->session->userdata("role_id"));exit;//var_dump($_SESSION) ?>
+        <?php
+        ?>
         <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque dere santome nida.</p>
       </div>
 

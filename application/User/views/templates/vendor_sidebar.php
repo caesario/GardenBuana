@@ -6,7 +6,15 @@
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-code"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">Garden Vendor</div>
+            <div class="sidebar-brand-text mx-3">
+                <?php if (@$session['role_id'] == 1) : ?>
+                    Garden Profil
+                <?php elseif (@$session['role_id'] == 2) : ?>
+                    Garden Vendor
+                <?php else : ?>
+                    Garden Admin
+                <?php endif; ?>
+            </div>
         </a>
 
         <!-- Divider -->

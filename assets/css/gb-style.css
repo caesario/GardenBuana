@@ -55,3 +55,19 @@
 p.gb-font-small {
 	font-size: 14px !important;
 }
+
+a.gb-btn-width {
+	width: 35px;
+}
+
+.gb-aksi-width {
+	width: 60px;
+}
+
+.gb-aksi-width-long {
+	width: 135px;
+}
+
+.gb-no-width {
+	width: 15px;
+}

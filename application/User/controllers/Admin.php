@@ -17,7 +17,7 @@ class Admin extends CI_Controller
     // echo'<pre>';print_r($this->session->userdata("role_id"));exit;
 
     if ($this->session->userdata("role_id") == 3) {
-      $data['title'] = 'Admin Dasboard';
+      $data['title'] = 'Dasboard';
       $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
       $this->load->view('templates/vendor_header', $data);
       $this->load->view('templates/vendor_sidebar', $data);
@@ -35,6 +35,7 @@ class Admin extends CI_Controller
       $data['title'] = 'Verifikasi User';
       $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
       $data['pengguna'] = $this->Admin_model->getAllPengguna();
+
       $this->load->view('templates/vendor_header', $data);
       $this->load->view('templates/vendor_sidebar', $data);
       $this->load->view('templates/vendor_topbar', $data);
@@ -69,5 +70,31 @@ class Admin extends CI_Controller
     } else {
       redirect("home");
     }
+  }
+
+  public function wilayah()
+  {
+    $data['title'] = 'Wilayah';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    $data['wilayah'] = $this->Admin_model->getAllWilayah();
+
+    $this->load->view('templates/vendor_header', $data);
+    $this->load->view('templates/vendor_sidebar', $data);
+    $this->load->view('templates/vendor_topbar', $data);
+    $this->load->view('admin/wilayah', $data);
+    $this->load->view('templates/vendor_footer');
+  }
+
+  public function profil_admin($id)
+  {
+    $data['title'] = 'Lihat Profil';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    $data['p_admin'] = $this->Admin_model->getProfilAdminbyId($id);
+
+    $this->load->view('templates/vendor_header', $data);
+    $this->load->view('templates/vendor_sidebar', $data);
+    $this->load->view('templates/vendor_topbar', $data);
+    $this->load->view('admin/lihat_profil', $data);
+    $this->load->view('templates/vendor_footer');
   }
 }

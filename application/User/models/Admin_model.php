@@ -30,6 +30,7 @@ class Admin_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('user');
+        $this->db->join('user_role', 'user_role.role_id = user.role_id');
         $result = $this->db->get();
         return $result->result_array();
     }
@@ -105,5 +106,40 @@ class Admin_model extends CI_Model
         $this->db->join('vendor', 'vendor.id_vendor = trx_testimoni.id_vendor');
         $result = $this->db->get();
         return $result->result_array();
+    }
+
+    public function getAllHistoryPesanan()
+    {
+        $this->db->select('*');
+        $this->db->from('riwayat_pesanan');
+        $this->db->join('trx_pesanan', 'trx_pesanan.id_pesanan = riwayat_pesanan.id_pesanan');
+        $this->db->join('status_transaksi', 'status_transaksi.id_status = riwayat_pesanan.id_status');
+        $result = $this->db->get();
+        return $result->result_array();
+    }
+
+    public function getAllWilayah()
+    {
+        $this->db->select('*');
+        $this->db->from('kota');
+        $result = $this->db->get();
+        return $result->result_array();
+    }
+
+    public function getInfoWeb()
+    {
+        $this->db->select('*');
+        $this->db->from('info_garden');
+        $result = $this->db->get();
+        return $result->result_array();
+    }
+
+    public function getProfilAdminbyId($id)
+    {
+        $this->db->select('*');
+        $this->db->from('info_garden');
+        $this->db->where('id_info', $id);
+        $result = $this->db->get();
+        return $result->row_array();
     }
 }
