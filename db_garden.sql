@@ -60,6 +60,30 @@ CREATE TABLE `garden_admin` (
 
 /*Data for the table `garden_admin` */
 
+/*Table structure for table `info_garden` */
+
+DROP TABLE IF EXISTS `info_garden`;
+
+CREATE TABLE `info_garden` (
+  `id_info` int(11) NOT NULL,
+  `nama_web` varchar(128) DEFAULT NULL,
+  `telpon` varchar(128) DEFAULT NULL,
+  `about_footer` varchar(255) DEFAULT NULL,
+  `alamat` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `twitter` varchar(255) DEFAULT NULL,
+  `facebook` varchar(255) DEFAULT NULL,
+  `instagram` varchar(255) DEFAULT NULL,
+  `linkedin` varchar(255) DEFAULT NULL,
+  `about_us` text,
+  `logo` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_info`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `info_garden` */
+
+insert  into `info_garden`(`id_info`,`nama_web`,`telpon`,`about_footer`,`alamat`,`email`,`twitter`,`facebook`,`instagram`,`linkedin`,`about_us`,`logo`) values (1,'Garden Buana','082112312312','Universitas Mercu Buana adalah sebuah universitas swasta dengan Akreditasi A di Jakarta, Indonesia. Didirikan pada tanggal 22 Oktober 1985, kampus utama yang juga dinamakan Kampus A terletak di daerah Meruya, Jakarta Barat.','Jl. Meruya Selatan No.1, RT.4/RW.1, Meruya Sel., Kec. Kembangan, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11650','gardenbuana@mail.com','twitter.com/gardenbuana','facebook.com/gardenbuana','instagram.com/gardenbuana','linked.com/gardenbuana',NULL,NULL);
+
 /*Table structure for table `kelola_akun` */
 
 DROP TABLE IF EXISTS `kelola_akun`;
@@ -81,12 +105,13 @@ DROP TABLE IF EXISTS `kota`;
 CREATE TABLE `kota` (
   `id_kota` int(11) NOT NULL AUTO_INCREMENT,
   `nama_kota` varchar(128) DEFAULT NULL,
+  `keterangan` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_kota`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `kota` */
 
-insert  into `kota`(`id_kota`,`nama_kota`) values (1,'Jakarta Utara'),(2,'Jakarta Pusat'),(3,'Jakarta Barat'),(4,'Jakarta Timur'),(5,'Jakarta Selatan'),(6,'Pulai Seribu');
+insert  into `kota`(`id_kota`,`nama_kota`,`keterangan`) values (1,'Jakarta Utara',NULL),(2,'Jakarta Pusat',NULL),(3,'Jakarta Barat',NULL),(4,'Jakarta Timur',NULL),(5,'Jakarta Selatan',NULL),(6,'Pulai Seribu',NULL);
 
 /*Table structure for table `pelanggan` */
 
@@ -123,6 +148,8 @@ CREATE TABLE `riwayat_pesanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `riwayat_pesanan` */
+
+insert  into `riwayat_pesanan`(`id_riwayat`,`id_pesanan`,`id_status`,`createBy`,`createDate`,`buktiBayar`,`keterangan`) values (1,1,1,'Admin Coba','2019-06-05','(nanti berupa gambar)',NULL);
 
 /*Table structure for table `status_akun` */
 
@@ -223,7 +250,7 @@ CREATE TABLE `trx_pesanan` (
 
 /*Data for the table `trx_pesanan` */
 
-insert  into `trx_pesanan`(`id_pesanan`,`id_user`,`id_vendor`,`id_status`,`nama_pemesan`,`email`,`telpon`,`tanggal_pengerjaan`,`alamat`,`keterangan`,`gambar`,`harga`,`create_date`) values (1,1,1,3,'Bambang','lenovo.thinkpad@mail.com','082112398281','2019-05-20','Jl. Kemanggisan Utara No.17 RT.02/RW.08','Saya ingin memesan dekorasi tanaman hias untuk keperluan acara wedding adik saya pada tahun depan, namun saya ingin mendekornya dari sekarang untuk kepentingan penghabisan budget tahunan ini. trima kasih',NULL,4700000,'2019-05-02 16:30:53'),(2,NULL,2,2,'Budi','gagrsg@rglar.com','021042102102','2019-06-05','Jl. semsmekasek akeoa eo aeknfo afne oa','orkajgoar gjkroa kr oake oga oega oegj eoa',NULL,NULL,'2019-05-30 17:30:16');
+insert  into `trx_pesanan`(`id_pesanan`,`id_user`,`id_vendor`,`id_status`,`nama_pemesan`,`email`,`telpon`,`tanggal_pengerjaan`,`alamat`,`keterangan`,`gambar`,`harga`,`create_date`) values (1,1,1,3,'Bambang','lenovo.thinkpad@mail.com','082112398281','2019-05-20','Jl. Kemanggisan Utara No.17 RT.02/RW.08','Saya ingin memesan dekorasi tanaman hias untuk keperluan acara wedding adik saya pada tahun depan, namun saya ingin mendekornya dari sekarang untuk kepentingan penghabisan budget tahunan ini. trima kasih',NULL,4700000,'2019-05-02 16:30:53'),(2,NULL,2,1,'Budi','gagrsg@rglar.com','021042102102','2019-06-05','Jl. semsmekasek akeoa eo aeknfo afne oa','orkajgoar gjkroa kr oake oga oega oegj eoa',NULL,NULL,'2019-05-30 17:30:16');
 
 /*Table structure for table `trx_testimoni` */
 
@@ -254,13 +281,13 @@ CREATE TABLE `user` (
   `password` varchar(256) DEFAULT NULL,
   `role_id` int(11) DEFAULT NULL,
   `is_active` int(1) DEFAULT NULL,
-  `date_created` int(11) DEFAULT NULL,
+  `date_created` date DEFAULT NULL,
   PRIMARY KEY (`id_user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user` */
 
-insert  into `user`(`id_user`,`name`,`email`,`image`,`password`,`role_id`,`is_active`,`date_created`) values (5,'Caesario','caesar@gmail.com','default.jpg','$2y$10$wR0H77RGqS6dAtjoG4Zc3uLodHigeIFjkkaB4Sd60oFe246rLlXX2',2,1,1556123835),(6,'Admin Test','admin@admin.com','default.jpg','$2y$10$O0EloruT8Uyj8GWDDiAPpOMqHj37DNvV5R.x.T8ghvnXck8zQrFiK',3,1,1556460443),(7,'Wahyu Arisandi','why@why.com','default.jpg','$2y$10$xh.sh8LXoAZibHw00cnmHOxbKJhgQtnn2CRh4L4OLDRCtEUJ6UdOK',2,0,1556546327),(8,'Caesario','caesar@caesar.com','default.jpg','$2y$10$v22Ivr9UN6kRKxs5cVZlyOn1FW/nqUWmn9dQEfdNXXzUNfCHXSc2a',2,1,1556704771),(9,'Test Vendor','vendor@vendor.com','default.jpg','$2y$10$aTqTEti3jzcRc6NP1hyB0eD9t2o8.hqzVFUMBlVl7HePUW/nxW32O',1,1,1556908030),(10,'User Test','user@user.com','default.jpg','$2y$10$DANSgKELn7LrD4jKLhPdeu7LELDVGtAvBK6ewTG.NGtNIhT4o4dfm',2,1,1556908069);
+insert  into `user`(`id_user`,`name`,`email`,`image`,`password`,`role_id`,`is_active`,`date_created`) values (5,'Caesario','caesar@gmail.com','default.jpg','$2y$10$wR0H77RGqS6dAtjoG4Zc3uLodHigeIFjkkaB4Sd60oFe246rLlXX2',2,1,'2019-05-27'),(6,'Admin Test','admin@admin.com','default.jpg','$2y$10$O0EloruT8Uyj8GWDDiAPpOMqHj37DNvV5R.x.T8ghvnXck8zQrFiK',3,1,'2019-05-16'),(7,'Wahyu Arisandi','why@why.com','default.jpg','$2y$10$xh.sh8LXoAZibHw00cnmHOxbKJhgQtnn2CRh4L4OLDRCtEUJ6UdOK',2,0,'2019-04-08'),(8,'Caesario','caesar@caesar.com','default.jpg','$2y$10$v22Ivr9UN6kRKxs5cVZlyOn1FW/nqUWmn9dQEfdNXXzUNfCHXSc2a',2,1,'2019-05-04'),(9,'Test Vendor','vendor@vendor.com','default.jpg','$2y$10$aTqTEti3jzcRc6NP1hyB0eD9t2o8.hqzVFUMBlVl7HePUW/nxW32O',1,1,'2019-05-31'),(10,'User Test','user@user.com','default.jpg','$2y$10$DANSgKELn7LrD4jKLhPdeu7LELDVGtAvBK6ewTG.NGtNIhT4o4dfm',2,1,'2019-05-01');
 
 /*Table structure for table `user_access_menu` */
 
@@ -296,14 +323,14 @@ insert  into `user_menu`(`id`,`menu`) values (1,'Vendor'),(2,'User'),(3,'Admin')
 DROP TABLE IF EXISTS `user_role`;
 
 CREATE TABLE `user_role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role_id` varchar(128) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `role_id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_role` varchar(128) DEFAULT NULL,
+  PRIMARY KEY (`role_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user_role` */
 
-insert  into `user_role`(`id`,`role_id`) values (1,'Vendor'),(2,'Member'),(3,'Admin');
+insert  into `user_role`(`role_id`,`nama_role`) values (1,'Vendor'),(2,'Member'),(3,'Admin');
 
 /*Table structure for table `user_sub_menu` */
 
@@ -317,11 +344,11 @@ CREATE TABLE `user_sub_menu` (
   `icon` varchar(128) DEFAULT NULL,
   `is_active` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user_sub_menu` */
 
-insert  into `user_sub_menu`(`id`,`menu_id`,`title`,`url`,`icon`,`is_active`) values (1,1,'Dashboard','vendor_admin','fas fa-fw fa-tachometer-alt',1),(2,2,'My Profile','user','fas fa-fw fa-user',1),(3,2,'Lihat Profile','user/edit','fas fa-fw fa-user-edit',1),(6,1,'Lihat Profile','vendor_admin/profil','fas fa-sw fa-user-edit',1),(7,4,'Pesanan',NULL,'far fa-sw fa-comment-dots',1),(8,4,'Pesanan Tertunda',NULL,'fab fa-sw fa-buffer',1),(9,4,'Riwayat Transaksi',NULL,'fas fa-sw fa-history',1),(10,3,'Dasboard','admin','fas fa-fw fa-tachometer-alt',1),(11,5,'Menu Management','menu','fas fa-tasks',1),(12,5,'Submenu Management','menu/submenu','fas fa-fw fa-folder-open',1),(13,6,'Verifikasi User','admin/verif','fas fa-user-check',1),(14,8,'Lihat Profil','admin/profil','fas fa-id-card-alt',1),(16,7,'Pesanan','report/pesanan','fab fa-first-order',1),(17,7,'Riwayat Pesanan','report/riwayat_pesanan','fas fa-history',1),(18,7,'Bukti Bayar','report/buktibayar','fas fa-file-invoice',1),(19,8,'Wilayah','admin/wilayah','fas fa-globe-americas',1),(20,7,'Testimoni','report/testimoni','fas fa-id-card-alt',1),(25,7,'Data Pelanggan','report/data_pelanggan','fas fa-user-cog',1),(26,7,'Data Vendor','report/data_vendor','fas fa-users-cog',1);
+insert  into `user_sub_menu`(`id`,`menu_id`,`title`,`url`,`icon`,`is_active`) values (1,1,'Dashboard','vendor_admin','fas fa-fw fa-tachometer-alt',1),(2,2,'My Profile','user','fas fa-fw fa-user',1),(3,2,'Lihat Profile','user/edit','fas fa-fw fa-user-edit',1),(6,1,'Lihat Profile','vendor_admin/profil','fas fa-sw fa-user-edit',1),(7,4,'Pesanan',NULL,'far fa-sw fa-comment-dots',1),(8,4,'Pesanan Tertunda',NULL,'fab fa-sw fa-buffer',1),(9,4,'Riwayat Transaksi',NULL,'fas fa-sw fa-history',1),(10,3,'Dasboard','admin','fas fa-fw fa-tachometer-alt',1),(11,5,'Menu Management','menu','fas fa-tasks',1),(12,5,'Submenu Management','menu/submenu','fas fa-fw fa-folder-open',1),(13,6,'Verifikasi User','admin/verif','fas fa-user-check',1),(14,8,'Lihat Profil','admin/profil_admin/1','fas fa-id-card-alt',1),(16,7,'Pesanan','report/pesanan','fab fa-first-order',1),(17,7,'Riwayat Pesanan','report/riwayat_pesanan','fas fa-history',1),(18,7,'Bukti Bayar','report/buktibayar','fas fa-file-invoice',1),(19,8,'Wilayah','admin/wilayah','fas fa-globe-americas',1),(20,7,'Testimoni','report/testimoni','fas fa-id-card-alt',1),(25,7,'Data Pelanggan','report/data_pelanggan','fas fa-user-cog',1),(26,7,'Data Vendor','report/data_vendor','fas fa-users-cog',1);
 
 /*Table structure for table `vendor` */
 
