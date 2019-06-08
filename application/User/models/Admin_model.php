@@ -17,22 +17,54 @@ class Admin_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('user');
+        $this->db->join('user_role', 'user_role.role_id = user.role_id');
+        $this->db->join('status_akun', 'status_akun.id_status = user.is_active');
         $this->db->where('id_user', $id);
         $result = $this->db->get();
         return $result->row_array();
     }
 
-    public function ubahDataPengguna()
+    // public function updateProfilUser($data, $id)
+    // {
+    //     if ($data && $id) {
+    //         $this->db->where('id_user', $id);
+    //         $update = $this->db->update('user', $data);
+    //         return ($update == true) ? true : false;
+    //     }
+    // }
+
+    public function ubahDataUser()
     {
         $data = [
             "name" => $this->input->post('name', true),
             "email" => $this->input->post('email', true),
-            "password" => $this->input->post('password', true),
-            "is_active" => $this->input->post('is_active', true)
+
         ];
 
-        $this->db->where('id', $this->input->post('id'));
+        $this->db->where('id_user', $this->input->post('id'));
         $this->db->update('user', $data);
+
+        // if ($data && $id) {
+        //     $this->db->where('id_user', $id);
+        //     $update = $this->db->update('user', $data);
+        //     return ($update == true) ? true : false;
+        // }
+
+        // $data = [
+        //     "name" => $this->input->post('name', true),
+        //     "email" => $this->input->post('email', true),
+        //     "password" => $this->input->post('password', true),
+        //     "is_active" => $this->input->post('is_active', true)
+        // ];
+
+        // $this->db->where('id', $this->input->post('id'));
+        // $this->db->update('user', $data);
+    }
+
+    public function hapusDataUser($id)
+    {
+        $this->db->where('id_user', $id);
+        $this->db->delete('user');
     }
 
     public function getAllPesanan()
@@ -41,7 +73,7 @@ class Admin_model extends CI_Model
         $this->db->from('trx_pesanan');
         $this->db->join('user', 'user.id_user = trx_pesanan.id_user');
         $this->db->join('vendor', 'vendor.id_userfk = user.id_user');
-        $this->db->join('status_transaksi', 'status_transaksi.id_status = trx_pesanan.id_status');
+        $this->db->join('status_transaksi', 'status_transaksi.id_status_trans = trx_pesanan.id_status_trans');
         $result = $this->db->get();
         return $result->result_array();
     }
@@ -51,10 +83,16 @@ class Admin_model extends CI_Model
         $this->db->select('*');
         $this->db->from('trx_pesanan');
         $this->db->join('user', 'user.id_user = trx_pesanan.id_user');
-        $this->db->join('status_transaksi', 'status_transaksi.id_status = trx_pesanan.id_status');
+        $this->db->join('status_transaksi', 'status_transaksi.id_status_trans = trx_pesanan.id_status_trans');
         $this->db->where('id_pesanan', $id);
         $result = $this->db->get();
         return $result->row_array();
+    }
+
+    public function hapusDataPesanan($id)
+    {
+        $this->db->where('id_pesanan', $id);
+        $this->db->delete('trx_pesanan');
     }
 
     public function getAllVendor()
@@ -82,9 +120,20 @@ class Admin_model extends CI_Model
         $this->db->select('*');
         $this->db->from('trx_bukti_bayar');
         $this->db->join('trx_pesanan', 'trx_pesanan.id_pesanan = trx_bukti_bayar.id_pesanan');
-        $this->db->join('status_transaksi', 'status_transaksi.id_status = trx_bukti_bayar.id_status');
+        $this->db->join('status_transaksi', 'status_transaksi.id_status_trans = trx_bukti_bayar.id_status_trans');
         $result = $this->db->get();
         return $result->result_array();
+    }
+
+    public function getBuktiBayarById($id)
+    {
+        $this->db->select('*');
+        $this->db->from('trx_bukti_bayar');
+        $this->db->join('trx_pesanan', 'trx_pesanan.id_pesanan = trx_bukti_bayar.id_pesanan');
+        $this->db->join('status_transaksi', 'status_transaksi.id_status_trans = trx_bukti_bayar.id_status_trans');
+        $this->db->where('id_bayar', $id);
+        $result = $this->db->get();
+        return $result->row_array();
     }
 
     public function getAllTestimoni()

@@ -1,6 +1,19 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
+  <?php if ($this->session->flashdata('flash')) : ?>
+    <div class="row mt-3">
+      <div class="col-md">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          Data <strong>berhasil</strong> <?= $this->session->flashdata('flash'); ?>.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  <?php endif; ?>
+
   <!-- Page Heading -->
   <h4 class="h4 mb-4 text-gray-800 float-left"><?= $title; ?></h4>
 
@@ -44,7 +57,7 @@
                 </a>
               </span>
               <span>
-                <a class="btn btn-danger btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Hapus">
+                <a class="btn btn-danger btn-sm py-0 gb-btn-width" href="<?= site_url('report/pesanan_hapus/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="return confirm('Data akan dihapus?');">
                   <i class="fas fa-trash"></i>
                 </a>
               </span>

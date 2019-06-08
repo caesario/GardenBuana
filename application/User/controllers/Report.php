@@ -47,6 +47,13 @@ class Report extends CI_Controller
         $this->load->view('templates/vendor_footer');
     }
 
+    public function pesanan_hapus($id)
+    {
+        $this->Admin_model->hapusDataPesanan($id);
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect('report/pesanan');
+    }
+
     public function buktibayar()
     {
         $data['title'] = 'Bukti Bayar';
@@ -57,6 +64,19 @@ class Report extends CI_Controller
         $this->load->view('templates/vendor_sidebar', $data);
         $this->load->view('templates/vendor_topbar', $data);
         $this->load->view('admin/bukti_bayar', $data);
+        $this->load->view('templates/vendor_footer');
+    }
+
+    public function buktibayar_detail($id)
+    {
+        $data['title'] = 'Bukti Bayar';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['buktibayar'] = $this->Admin_model->getBuktiBayarById($id);
+
+        $this->load->view('templates/vendor_header', $data);
+        $this->load->view('templates/vendor_sidebar', $data);
+        $this->load->view('templates/vendor_topbar', $data);
+        $this->load->view('admin/bukti_bayar_detail', $data);
         $this->load->view('templates/vendor_footer');
     }
 
