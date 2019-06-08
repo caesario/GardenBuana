@@ -104,6 +104,14 @@ class Auth extends CI_Controller
       ];
 
       $this->db->insert('user', $data);
+      $insert_id = $this->db->insert_id();
+
+      $dataVendor = [
+        'id_userfk' => $insert_id,
+        'id_status' => 1
+      ];
+      $this->db->insert('vendor', $dataVendor);
+
       $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selamat! akun anda berhasil dibuat, Silahkan Login</div>');
       redirect('auth');
     }

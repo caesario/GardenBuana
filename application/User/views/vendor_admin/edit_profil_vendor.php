@@ -30,22 +30,22 @@
 
         <h6 class="mb-0 text-dark font-weight-bold">Email</h6>
         <div class="col-5 p-0 form-group">
-          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" type="text" value="<?= $vendor['email']; ?>" readonly>
+          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" name="email" type="text" value="<?= $vendor['email']; ?>" readonly>
         </div>
 
         <h6 class="mb-0 text-dark font-weight-bold">Nomor Telpon</h6>
         <div class="col-5 p-0 form-group">
-          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" type="text" value="<?= $vendor['telpon']; ?>">
+          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" name="noTelp" type="text" value="<?= $vendor['telpon']; ?>">
         </div>
 
         <h6 class="mb-0 text-dark font-weight-bold">Kota</h6>
         <div class="col-5 p-0 form-group">
-          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" type="text" value="<?= $vendor['nama_kota']; ?>">
+          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" name="kota" type="text" value="<?= $vendor['nama_kota']; ?>">
         </div>
 
         <h6 class="mb-0 text-dark font-weight-bold">Informasi Vendor</h6>
         <div class="col-5 p-0 form-group">
-          <textarea rows="7" class="form-control mt-1 mb-3 rounded-0" type="text" value=""><?= $vendor['info_vendor']; ?></textarea>
+          <textarea rows="7" class="form-control mt-1 mb-3 rounded-0" type="text" name="infoVendor" value=""><?= $vendor['info_vendor']; ?></textarea>
         </div>
 
         <h6 class="mb-0 text-dark font-weight-bold">Status Akun</h6>
@@ -55,7 +55,7 @@
 
         <h6 class="mb-0 text-dark font-weight-bold">Bergabung Pada</h6>
         <div class="col-5 p-0 form-group">
-          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" type="text" value="<?= $vendor['date_created']; ?>" readonly>
+          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" type="text" name="createTime" value="<?= $vendor['date_created']; ?>" readonly>
         </div>
 
         <button type="submit" name="update" class="btn btn-sm btn-primary gb-btn-order rounded-0">Update Data</button>
