@@ -28,20 +28,25 @@ class Vendor_admin extends CI_Controller
 
     public function profil()
     {
-        $data['title'] = 'GardenBuana | Vendor Profil';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $id = $_SESSION['id_user'];
-        $data['vendor'] = $this->Admin_model->getVendorProfilById($id);
-        $this->load->view('templates/vendor_header', $data);
-        $this->load->view('templates/vendor_sidebar', $data);
-        $this->load->view('templates/vendor_topbar', $data);
-        $this->load->view('vendor_admin/profil_vendor');
-        $this->load->view('templates/vendor_footer');
+        if ($this->session->userdata("role_id") == 1) {
+            $data['title'] = 'Profil';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $id = $_SESSION['id_user'];
+            $data['session'] = $this->session->all_userdata();
+            $data['vendor'] = $this->Admin_model->getVendorProfilById($id);
+            $this->load->view('templates/vendor_header', $data);
+            $this->load->view('templates/vendor_sidebar', $data);
+            $this->load->view('templates/vendor_topbar', $data);
+            $this->load->view('vendor_admin/profil_vendor');
+            $this->load->view('templates/vendor_footer');
+        } else {
+            redirect("home");
+        }
     }
 
     public function editProfil()
     {
-        $data['title'] = 'GardenBuana | Vendor Profil';
+        $data['title'] = 'Profil';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $id = $_SESSION['id_user'];
         $data['vendor'] = $this->Admin_model->getVendorProfilById($id);
@@ -54,15 +59,20 @@ class Vendor_admin extends CI_Controller
 
     public function pesanan()
     {
-        $data['title'] = 'Pesanan';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['trx_pesanan'] = $this->Admin_model->getAllPesanan();
+        if ($this->session->userdata("role_id") == 1) {
+            $data['title'] = 'Pesanan';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['trx_pesanan'] = $this->Vendor_model->getAllPesananVendor();
+            $data['session'] = $this->session->all_userdata();
 
-        $this->load->view('templates/vendor_header', $data);
-        $this->load->view('templates/vendor_sidebar', $data);
-        $this->load->view('templates/vendor_topbar', $data);
-        $this->load->view('vendor_admin/pesanan', $data);
-        $this->load->view('templates/vendor_footer');
+            $this->load->view('templates/vendor_header', $data);
+            $this->load->view('templates/vendor_sidebar', $data);
+            $this->load->view('templates/vendor_topbar', $data);
+            $this->load->view('vendor_admin/pesanan', $data);
+            $this->load->view('templates/vendor_footer');
+        } else {
+            redirect("home");
+        }
     }
 
     public function tertunda()

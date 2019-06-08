@@ -3,7 +3,7 @@
 
   <div class="row">
     <div class="col-6">
-      <h3 class="text-dark">Profil Vendor</h3>
+      <h3 class="text-dark"><?= $title; ?></h3>
     </div>
     <div class="col-6">
       <button class="btn btn-sm float-right btn-danger rounded-0">Ubah Password</button>

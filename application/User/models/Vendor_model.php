@@ -33,8 +33,8 @@ class Vendor_model extends CI_model
     public function getVendorPesanById($id)
     {
         $this->db->select('*');
-        $this->db->join('kota', 'kota.id_kota = vendor.id_kota');
         $this->db->from('vendor');
+        $this->db->join('kota', 'kota.id_kota = vendor.id_kota');
         $this->db->where('id_vendor', $id);
         $result = $this->db->get();
         return $result->row_array();
@@ -54,5 +54,15 @@ class Vendor_model extends CI_model
 
         $this->db->insert('trx_pesanan', $data);
         redirect('home');
+    }
+
+    public function getAllPesananVendor()
+    {
+        $this->db->select('*');
+        $this->db->from('trx_pesanan');
+        // $this->db->join('vendor', 'vendor.id_vendor = pesanan.id_vendor');
+        $this->db->where('id_user', $session['id_user']);
+        $result = $this->db->get();
+        return $result->result_array();
     }
 }

@@ -34,12 +34,12 @@
             <td><?= $data['create_date']; ?></td>
             <td>
               <span>
-                <a class="btn btn-success btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
+                <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('report/pesanan_detail/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
                   <i class="fas fa-eye"></i>
                 </a>
               </span>
               <span>
-                <a class="btn btn-primary btn-sm py-0 gb-btn-width" href="<?= site_url('admin/pesanan_edit/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Ubah">
+                <a class="btn btn-primary btn-sm py-0 gb-btn-width" href="<?= site_url('report/pesanan_edit/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Ubah">
                   <i class="fas fa-edit"></i>
                 </a>
               </span>

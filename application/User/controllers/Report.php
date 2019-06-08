@@ -34,6 +34,19 @@ class Report extends CI_Controller
         $this->load->view('templates/vendor_footer');
     }
 
+    public function pesanan_detail($id)
+    {
+        $data['title'] = 'Pesanan';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['detail_pesanan'] = $this->Admin_model->getPesananById($id);
+
+        $this->load->view('templates/vendor_header', $data);
+        $this->load->view('templates/vendor_sidebar', $data);
+        $this->load->view('templates/vendor_topbar', $data);
+        $this->load->view('admin/pesanan_detail', $data);
+        $this->load->view('templates/vendor_footer');
+    }
+
     public function buktibayar()
     {
         $data['title'] = 'Bukti Bayar';

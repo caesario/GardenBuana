@@ -67,6 +67,17 @@ class Admin_model extends CI_Model
         return $result->result_array();
     }
 
+    public function getPesananById($id)
+    {
+        $this->db->select('*');
+        $this->db->from('trx_pesanan');
+        $this->db->join('vendor', 'vendor.id_vendor = trx_pesanan.id_vendor');
+        $this->db->join('status_transaksi', 'status_transaksi.id_status = trx_pesanan.id_status');
+        $this->db->where('id_pesanan', $id);
+        $result = $this->db->get();
+        return $result->row_array();
+    }
+
     public function getAllVendor()
     {
         $this->db->select('*');
