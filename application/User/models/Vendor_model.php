@@ -30,6 +30,50 @@ class Vendor_model extends CI_model
         return $result->row_array();
     }
 
+    public function getVendorProfilById($id)
+    {
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->join('vendor', 'vendor.id_userfk = user.id_user');
+        $this->db->join('kota', 'kota.id_kota = vendor.id_kota');
+        $this->db->join('status_akun', 'status_akun.id_status = vendor.id_status');
+        $this->db->where('id_user', $id);
+        $result = $this->db->get();
+        return $result->row_array();
+    }
+
+
+
+    public function getUserProfilById($id)
+    {
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->join('vendor', 'vendor.id_userfk = user.id_user');
+        // $this->db->join('kota', 'kota.id_kota = user.id_kota');
+        // $this->db->join('status_akun', 'status_akun.id_status = vendor.id_status');
+        $this->db->where('id_user', $id);
+        $result = $this->db->get();
+        return $result->row_array();
+    }
+
+    public function updateProfilUser($data, $id)
+    {
+        if ($data && $id) {
+            $this->db->where('id_user', $id);
+            $update = $this->db->update('user', $data);
+            return ($update == true) ? true : false;
+        }
+    }
+
+    public function updateProfilVendor($data, $id)
+    {
+        if ($data && $id) {
+            $this->db->where('id_userfk', $id);
+            $update = $this->db->update('vendor', $data);
+            return ($update == true) ? true : false;
+        }
+    }
+
     public function getVendorPesanById($id)
     {
         $this->db->select('*');
@@ -56,12 +100,12 @@ class Vendor_model extends CI_model
         redirect('home');
     }
 
-    public function getAllPesananVendor()
+    public function getAllPesananVendor($id)
     {
         $this->db->select('*');
         $this->db->from('trx_pesanan');
         // $this->db->join('vendor', 'vendor.id_vendor = pesanan.id_vendor');
-        $this->db->where('id_user', $session['id_user']);
+        $this->db->where('id_user', $id);
         $result = $this->db->get();
         return $result->result_array();
     }

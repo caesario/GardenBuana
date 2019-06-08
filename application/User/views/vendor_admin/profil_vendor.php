@@ -11,14 +11,15 @@
     </div>
   </div>
 
-  <!-- <?php var_dump($vendor); ?> -->
+  <?php var_dump(time()); ?>
+  <!-- <?php var_dump($_SESSION); ?> -->
 
   <hr class="mt-0">
 
   <div class="row">
     <div class="col-6 col-lg-9">
       <h6 class="mb-0 text-dark font-weight-bold">Nama</h6>
-      <p class="text-dark"><?= $vendor['name']; ?></p>
+      <p class="text-dark"><?= $user['name']; ?></p>
 
       <h6 class="mb-0 text-dark font-weight-bold">Nama Vendor</h6>
       <p class="text-dark"><?= $vendor['nama_vendor']; ?></p>

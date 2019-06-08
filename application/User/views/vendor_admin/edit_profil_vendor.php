@@ -11,21 +11,21 @@
     </div>
   </div>
 
-  <!-- <?php var_dump($vendor); ?> -->
+  <?php var_dump($_SESSION); ?>
 
   <hr class="mt-0">
 
   <div class="row">
     <div class="col-6 col-lg-9">
-      <form action="">
+      <form action="<?= site_url('Vendor_admin/updateEditProfil'); ?>" method="post">
         <h6 class="mb-0 text-dark font-weight-bold">Nama</h6>
         <div class="col-5 p-0 form-group">
-          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" type="text" value="<?= $vendor['name']; ?>">
+          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" name="nama" type="text" value="<?= $user['name']; ?>">
         </div>
 
         <h6 class="mb-0 text-dark font-weight-bold">Nama Vendor</h6>
         <div class="col-5 p-0 form-group">
-          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" type="text" value="<?= $vendor['nama_vendor']; ?>">
+          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" name="namaVendor" type="text" value="<?= $vendor['nama_vendor']; ?>">
         </div>
 
         <h6 class="mb-0 text-dark font-weight-bold">Email</h6>
@@ -45,12 +45,12 @@
 
         <h6 class="mb-0 text-dark font-weight-bold">Informasi Vendor</h6>
         <div class="col-5 p-0 form-group">
-          <textarea class="form-control mt-1 mb-3 rounded-0" type="text" value="<?= $vendor['info_vendor']; ?>"></textarea>
+          <textarea rows="7" class="form-control mt-1 mb-3 rounded-0" type="text" value=""><?= $vendor['info_vendor']; ?></textarea>
         </div>
 
         <h6 class="mb-0 text-dark font-weight-bold">Status Akun</h6>
         <div class="col-5 p-0 form-group">
-          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" type="text" value="<?= $vendor['nama_status']; ?>">
+          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" type="text" value="<?= $vendor['nama_status']; ?>" readonly>
         </div>
 
         <h6 class="mb-0 text-dark font-weight-bold">Bergabung Pada</h6>

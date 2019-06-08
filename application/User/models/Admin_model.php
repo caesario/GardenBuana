@@ -2,29 +2,7 @@
 
 class Admin_model extends CI_Model
 {
-    public function getVendorProfilById($id)
-    {
-        $this->db->select('*');
-        $this->db->from('user');
-        $this->db->join('vendor', 'vendor.id_userfk = user.id_user');
-        $this->db->join('kota', 'kota.id_kota = vendor.id_kota');
-        $this->db->join('status_akun', 'status_akun.id_status = vendor.id_status');
-        $this->db->where('id_user', $id);
-        $result = $this->db->get();
-        return $result->row_array();
-    }
 
-    public function getUserProfilById($id)
-    {
-        $this->db->select('*');
-        $this->db->from('user');
-        // $this->db->join('vendor', 'vendor.id_userfk = user.id_user');
-        // $this->db->join('kota', 'kota.id_kota = user.id_kota');
-        // $this->db->join('status_akun', 'status_akun.id_status = vendor.id_status');
-        $this->db->where('id_user', $id);
-        $result = $this->db->get();
-        return $result->row_array();
-    }
 
     public function getAllPengguna()
     {
@@ -61,7 +39,8 @@ class Admin_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('trx_pesanan');
-        $this->db->join('vendor', 'vendor.id_vendor = trx_pesanan.id_vendor');
+        $this->db->join('user', 'user.id_user = trx_pesanan.id_user');
+        $this->db->join('vendor', 'vendor.id_userfk = user.id_user');
         $this->db->join('status_transaksi', 'status_transaksi.id_status = trx_pesanan.id_status');
         $result = $this->db->get();
         return $result->result_array();
@@ -71,7 +50,7 @@ class Admin_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('trx_pesanan');
-        $this->db->join('vendor', 'vendor.id_vendor = trx_pesanan.id_vendor');
+        $this->db->join('user', 'user.id_user = trx_pesanan.id_user');
         $this->db->join('status_transaksi', 'status_transaksi.id_status = trx_pesanan.id_status');
         $this->db->where('id_pesanan', $id);
         $result = $this->db->get();
