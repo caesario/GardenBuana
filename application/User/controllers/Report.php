@@ -98,4 +98,30 @@ class Report extends CI_Controller
         $this->load->view('admin/history_pesanan', $data);
         $this->load->view('templates/vendor_footer');
     }
+
+    public function penilaian()
+    {
+        $data['title'] = 'Penilaian Vendor';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        // $data['history'] = $this->Admin_model->getAllHistoryPesanan();
+
+        $this->load->view('templates/vendor_header', $data);
+        $this->load->view('templates/vendor_sidebar', $data);
+        $this->load->view('templates/vendor_topbar', $data);
+        $this->load->view('admin/penilaian_vendor', $data);
+        $this->load->view('templates/vendor_footer');
+    }
+
+    public function pendapatan()
+    {
+        $data['title'] = 'Pendapatan Vendor';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        // $data['history'] = $this->Admin_model->getAllHistoryPesanan();
+
+        $this->load->view('templates/vendor_header', $data);
+        $this->load->view('templates/vendor_sidebar', $data);
+        $this->load->view('templates/vendor_topbar', $data);
+        $this->load->view('admin/pendapatan_vendor', $data);
+        $this->load->view('templates/vendor_footer');
+    }
 }

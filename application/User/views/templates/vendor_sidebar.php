@@ -8,9 +8,9 @@
             </div>
             <div class="sidebar-brand-text mx-3">
                 <?php if (@$session['role_id'] == 1) : ?>
-                    Garden Profil
-                <?php elseif (@$session['role_id'] == 2) : ?>
                     Garden Vendor
+                <?php elseif (@$session['role_id'] == 2) : ?>
+                    Garden Profil
                 <?php else : ?>
                     Garden Admin
                 <?php endif; ?>

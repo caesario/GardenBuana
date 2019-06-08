@@ -4,30 +4,34 @@
   <!-- Page Heading -->
   <h4 class="h4 mb-4 text-gray-800 float-left"><?= $title; ?></h4>
 
-  <!-- <?php var_dump($wilayah); ?>  -->
-
+  <!-- <?php var_dump($trx_pesanan); ?> -->
   <button class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></button>
   <div class="table-responsive">
     <table id="table_id" class="display table table-bordered">
       <thead>
         <tr>
-          <th class="gb-no-width">No</th>
-          <th>Nama Kota</th>
-          <th>Jumlah Pengguna</th>
-          <th>Jumlah Vendor</th>
-          <th>Keterangan</th>
-          <th class="gb-aksi-width-long">Aksi</th>
+          <th>ID Pesanan</th>
+          <th>Nama Pemesan</th>
+          <th>Telpon</th>
+          <th>Alamat</th>
+          <th>Tanggal Pengerjaan</th>
+          <th>Harga</th>
+          <!-- <th>Status</th> -->
+          <th>Tanggal Pesanan</th>
+          <th class="gb-aksi-width">Aksi</th>
         </tr>
       </thead>
       <tbody>
-        <?php $i = 1; ?>
-        <?php foreach ($wilayah as $data) : ?>
+        <?php foreach ($trx_pesanan as $data) : ?>
           <tr>
-            <td><?= $i; ?></td>
-            <td><?= $data['nama_kota']; ?></td>
-            <td></td>
-            <td></td>
-            <td><?= $data['keterangan']; ?></td>
+            <td>TRX-0<?= $data['id_pesanan']; ?></td>
+            <td><?= $data['nama_pemesan']; ?></td>
+            <td><?= $data['telpon']; ?></td>
+            <td><?= $data['alamat']; ?></td>
+            <td><?= $data['tanggal_pengerjaan']; ?></td>
+            <td>Rp.<?= $data['harga']; ?></td>
+            <!-- <td><?= $data['nama_status']; ?></td> -->
+            <td><?= $data['create_date']; ?></td>
             <td>
               <span>
                 <a class="btn btn-success btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
@@ -35,7 +39,7 @@
                 </a>
               </span>
               <span>
-                <a class="btn btn-primary btn-sm py-0 gb-btn-width" href="<?= site_url('admin/../'); ?><?= $data['id_kota']; ?>" data-toggle="tooltip" data-placement="top" title="Ubah">
+                <a class="btn btn-primary btn-sm py-0 gb-btn-width" href="<?= site_url('admin/pesanan_edit/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Ubah">
                   <i class="fas fa-edit"></i>
                 </a>
               </span>
@@ -50,9 +54,7 @@
                 </a>
               </span>
             </td>
-            </td>
           </tr>
-          <?php $i++ ?>
         <?php endforeach; ?>
       </tbody>
     </table>

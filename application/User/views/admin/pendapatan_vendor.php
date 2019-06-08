@@ -12,9 +12,9 @@
       <thead>
         <tr>
           <th class="gb-no-width">No</th>
-          <th>Nama Kota</th>
-          <th>Jumlah Pengguna</th>
-          <th>Jumlah Vendor</th>
+          <th>Nama Vendor</th>
+          <th>Pendapatan Vendor</th>
+          <th>Biaya Dikenakan</th>
           <th>Keterangan</th>
           <th class="gb-aksi-width-long">Aksi</th>
         </tr>
