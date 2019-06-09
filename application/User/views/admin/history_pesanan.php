@@ -4,7 +4,7 @@
   <!-- Page Heading -->
   <h4 class="h4 mb-4 text-gray-800 float-left"><?= $title; ?></h4>
 
-  <!-- <?php var_dump($history); ?> -->
+  <?php var_dump($history); ?>
 
   <button class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></button>
   <div class="table-responsive">
@@ -13,10 +13,11 @@
         <tr>
           <th>No</th>
           <th>ID Pesanan</th>
-          <th>Status</th>
-          <th>Oleh</th>
-          <th>Tanggal</th>
-          <th>Bukti Bayar</th>
+          <th>Vendor</th>
+          <th>Nama Pelanggan</th>
+          <th>Status Riwayat</th>
+          <th>Tanggal Pengerjaan</th>
+          <th>Keterangan</th>
           <th class="gb-aksi-width">Aksi</th>
         </tr>
       </thead>
@@ -26,7 +27,7 @@
           <tr>
             <td><?= $i; ?></td>
             <td>TRX-0<?= $data['id_pesanan']; ?></td>
-            <td><?= $data['nama_status']; ?></td>
+            <td><?= $data['nama_riwayat']; ?></td>
             <td><?= $data['createBy']; ?></td>
             <td><?= $data['createDate']; ?></td>
             <td><?= $data['buktiBayar']; ?></td>

@@ -147,12 +147,32 @@ class Admin_model extends CI_Model
         return $result->result_array();
     }
 
+    public function getTestimoniById($id)
+    {
+        $this->db->select('*');
+        $this->db->from('trx_testimoni');
+        $this->db->join('trx_pesanan', 'trx_pesanan.id_pesanan = trx_testimoni.id_pesanan');
+        $this->db->join('pelanggan', 'pelanggan.id_pelanggan = trx_testimoni.id_pelanggan');
+        $this->db->join('vendor', 'vendor.id_vendor = trx_testimoni.id_vendor');
+        $this->db->where('id_testimoni', $id);
+        $result = $this->db->get();
+        return $result->row_array();
+    }
+
+    public function hapusDataTestimoni($id)
+    {
+        $this->db->where('id_testimoni', $id);
+        $this->db->delete('trx_testimoni');
+    }
+
     public function getAllHistoryPesanan()
     {
         $this->db->select('*');
         $this->db->from('riwayat_pesanan');
         $this->db->join('trx_pesanan', 'trx_pesanan.id_pesanan = riwayat_pesanan.id_pesanan');
-        $this->db->join('status_transaksi', 'status_transaksi.id_status = riwayat_pesanan.id_status');
+        $this->db->join('vendor', 'vendor.id_vendor = riwayat_pesanan.id_vendor');
+        $this->db->join('pelanggan', 'trx_pesanan.id_pesanan = riwayat_pesanan.id_pesanan');
+        $this->db->join('status_transaksi', 'status_transaksi.id_status_trans = riwayat_pesanan.id_status_trans');
         $result = $this->db->get();
         return $result->result_array();
     }

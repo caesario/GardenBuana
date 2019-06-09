@@ -1,6 +1,6 @@
 <!-- Begin Page Content -->
 
-<!-- <?php var_dump($buktibayar); ?> -->
+<?php var_dump($buktibayar); ?>
 <div class="container-fluid">
 
   <!-- Page Heading -->
@@ -9,7 +9,7 @@
       <h4 class="h4 mb-0 text-gray-800 float-left"><?= $title; ?></h4>
     </div>
     <div class="col">
-      <a href="<?= site_url('admin/verif'); ?>" class="btn btn-primary btn-sm mb-3 float-right"><i class="mr-2 fas fa-arrow-left"></i>Kembali</a>
+      <a href="<?= site_url('report/buktibayar'); ?>" class="btn btn-primary btn-sm mb-3 float-right"><i class="mr-2 fas fa-arrow-left"></i>Kembali</a>
     </div>
   </div>
 
@@ -21,13 +21,13 @@
       <p class="text-dark">TRX-0<?= $buktibayar['id_pesanan']; ?></p>
 
       <h6 class="mb-0 text-dark font-weight-bold">Keterangan</h6>
-      <p class="text-dark"><?= $buktibayar['email']; ?></p>
+      <p class="text-dark"><?= $buktibayar['keterangan_bayar']; ?></p>
 
       <h6 class="mb-0 text-dark font-weight-bold">Status</h6>
       <p class="text-dark"><?= $buktibayar['nama_status']; ?></p>
 
       <h6 class="mb-0 text-dark font-weight-bold">Tanggal Pembayaran</h6>
-      <p class="text-dark"><?= $buktibayar['create_date']; ?></p>
+      <p class="text-dark"><?= $buktibayar['create_date_bayar']; ?></p>
     </div>
     <div class="col-6 col-lg-3">
       <div class="float-right">

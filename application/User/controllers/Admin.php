@@ -93,13 +93,14 @@ class Admin extends CI_Controller
     {
         if ($this->session->userdata("role_id") == 3) {
 
-            // echo"<pre>";print_r($this->input->post());exit();
+            // echo "<pre>";
+            // print_r($this->input->post());
+            // exit();
 
             if ($this->input->post()) {
-
                 $data = array(
-                    'name' => $this->input->post('namaPengguna'),
-                    'email' => $this->input->post('emailPengguna'),
+                    'name' => $this->input->post('name'),
+                    'email' => $this->input->post('email'),
                     'is_active' => $this->input->post('status')
                 );
 

@@ -93,6 +93,26 @@ class Report extends CI_Controller
         $this->load->view('templates/vendor_footer');
     }
 
+    public function testimoni_detail($id)
+    {
+        $data['title'] = 'Testimoni';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['detail_testimoni'] = $this->Admin_model->getTestimoniById($id);
+
+        $this->load->view('templates/vendor_header', $data);
+        $this->load->view('templates/vendor_sidebar', $data);
+        $this->load->view('templates/vendor_topbar', $data);
+        $this->load->view('admin/testimoni_detail', $data);
+        $this->load->view('templates/vendor_footer');
+    }
+
+    public function testimoni_hapus($id)
+    {
+        $this->Admin_model->hapusDataTestimoni($id);
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect('report/testimoni');
+    }
+
     public function data_pelanggan()
     {
         $data['title'] = 'Data Pelanggan';
