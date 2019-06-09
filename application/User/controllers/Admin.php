@@ -89,41 +89,36 @@ class Admin extends CI_Controller
         }
     }
 
-    public function upd_verif($id) {
-    if($this->session->userdata("role_id") == 3) {
+    public function upd_verif($id)
+    {
+        if ($this->session->userdata("role_id") == 3) {
 
-      // echo"<pre>";print_r($this->input->post());exit();
+            // echo"<pre>";print_r($this->input->post());exit();
 
-      if($this->input->post()) {
-    
-        $data = array(
-            'name' => $this->input->post('namaPengguna'),
-            'email' => $this->input->post('emailPengguna'),
-            'is_active' => $this->input->post('status')
-        );
-        
-        $this->db->where('id_user', $id);
-        $update = $this->db->update('user', $data);
+            if ($this->input->post()) {
 
-        if($update) {
-          $this->session->set_flashdata('success', 'Data Berhasil Diubah');
-          redirect('Admin/verif');
+                $data = array(
+                    'name' => $this->input->post('namaPengguna'),
+                    'email' => $this->input->post('emailPengguna'),
+                    'is_active' => $this->input->post('status')
+                );
+
+                $this->db->where('id_user', $id);
+                $update = $this->db->update('user', $data);
+
+                if ($update) {
+                    $this->session->set_flashdata('success', 'Data Berhasil Diubah');
+                    redirect('Admin/verif');
+                } else {
+                    $this->session->set_flashdata('error', 'Data Gagal Diubah');
+                    redirect('Admin/verif');
+                }
+            } else {
+                redirect("home");
+            }
+        } else {
+            redirect("home");
         }
-
-        else {
-          $this->session->set_flashdata('error', 'Data Gagal Diubah');
-          redirect('Admin/verif');
-        }
-
-      }
-
-      else {
-        redirect("home");
-      }
-
-    }
-    else {
-      redirect("home");
     }
 
     public function hapus_user($id)
