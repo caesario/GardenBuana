@@ -5,10 +5,21 @@ class User extends CI_Controller
 {
   public function index()
   {
-    $data['judul'] = 'GardenBuana | Home';
-    $this->load->view('templates/header', $data);
-    $this->load->view('templates/menu_user');
-    $this->load->view('User/index');
-    $this->load->view('templates/footer');
+    echo 'test index';
+  }
+
+  public function profil_user()
+  {
+    if ($this->session->userdata("role_id") == 2) {
+      $data['title'] = 'Dasboard';
+      $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+      $this->load->view('templates/vendor_header', $data);
+      $this->load->view('templates/vendor_sidebar', $data);
+      $this->load->view('templates/vendor_topbar', $data);
+      $this->load->view('user/profil');
+      $this->load->view('templates/vendor_footer');
+    } else {
+      redirect("home");
+    }
   }
 }

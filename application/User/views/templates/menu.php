@@ -37,7 +37,7 @@
             <li><a href="<?= site_url('About'); ?>">Tentang Kami</a></li>
             <li class="drop-down"><a href="#">Profil</a>
               <ul>
-                <li><a href="#">Edit Profil</a></li>
+                <li><a href="<?= site_url('User/profil_user'); ?>">Edit Profil</a></li>
                 <li><a href="#">Transaksi</a></li>
                 <hr>
                 <li><a href="<?= base_url('Auth/logout'); ?>">Keluar</a></li>
