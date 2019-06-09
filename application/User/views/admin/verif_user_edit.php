@@ -7,7 +7,7 @@
 
   <!-- <?php var_dump($pengguna); ?> -->
 
-  <form class=" gb-size-form" action="" method="post">
+  <form class=" gb-size-form" action="<?= site_url('Admin/upd_verif/'.$pengguna['id_user']); ?>" method="post">
     <input type="hidden" class="form-control form-control-sm col-1" id="name" name="name" placeholder="" value="<?= $pengguna['id_user']; ?>">
     <div class="form-group row">
       <label for="namaPengguna" class="col-sm-2 col-form-label">Nama Pengguna</label>
@@ -22,17 +22,11 @@
       </div>
     </div>
     <div class="form-group row">
-      <label for="passwordPengguna" class="col-sm-2 col-form-label">Password</label>
-      <div class="col-sm-4">
-        <input type="password" class="form-control form-control-sm" id="passwordPengguna" name="passwordPengguna" placeholder="" value="<?= $pengguna['password']; ?>">
-      </div>
-    </div>
-    <div class="form-group row">
       <label for="statusPengguna" class="col-sm-2 col-form-label">Status</label>
       <div class="col-sm-4">
-        <select class="form-control form-control-sm">
-          <option>Aktif</option>
-          <option>Tidak Aktif</option>
+        <select class="form-control form-control-sm" name="status">
+          <option value="1">Aktif</option>
+          <option value="0">Tidak Aktif</option>
         </select>
         <!-- <input type="text" class="form-control form-control-sm" id="statusPengguna" name="statusPengguna" placeholder="" value="<?= $pengguna['is_active']; ?>"> -->
       </div>
