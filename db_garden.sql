@@ -165,19 +165,31 @@ CREATE TABLE `status_akun` (
 
 insert  into `status_akun`(`id_status`,`nama_status`) values (1,'Aktif'),(2,'Tidak Aktif');
 
+/*Table structure for table `status_riwayat` */
+
+DROP TABLE IF EXISTS `status_riwayat`;
+
+CREATE TABLE `status_riwayat` (
+  `id_riwayat_trans` int(11) NOT NULL,
+  `nama_riwayat` varchar(128) DEFAULT NULL,
+  PRIMARY KEY (`id_riwayat_trans`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `status_riwayat` */
+
 /*Table structure for table `status_transaksi` */
 
 DROP TABLE IF EXISTS `status_transaksi`;
 
 CREATE TABLE `status_transaksi` (
-  `id_status` int(11) NOT NULL,
+  `id_status_trans` int(11) NOT NULL,
   `nama_status` varchar(128) DEFAULT NULL,
-  PRIMARY KEY (`id_status`)
+  PRIMARY KEY (`id_status_trans`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `status_transaksi` */
 
-insert  into `status_transaksi`(`id_status`,`nama_status`) values (1,'Menunggu Konfirmasi'),(2,'Menunggu Pembayaran'),(3,'Konfirmasi Pembayaran'),(4,'Sukses'),(5,'Gagal');
+insert  into `status_transaksi`(`id_status_trans`,`nama_status`) values (1,'Menunggu Konfirmasi'),(2,'Menunggu Pembayaran'),(3,'Konfirmasi Pembayaran'),(4,'Sukses');
 
 /*Table structure for table `trx-konfirmasi-pesanan` */
 
@@ -201,13 +213,14 @@ CREATE TABLE `trx_bukti_bayar` (
   `id_pesanan` int(7) DEFAULT NULL COMMENT 'FK pesanan',
   `upload` varchar(255) DEFAULT NULL,
   `keterangan_bayar` varchar(255) DEFAULT NULL,
-  `id_status` int(11) DEFAULT NULL,
+  `id_status_trans` int(11) DEFAULT NULL,
+  `create_date` date DEFAULT NULL,
   PRIMARY KEY (`id_bayar`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `trx_bukti_bayar` */
 
-insert  into `trx_bukti_bayar`(`id_bayar`,`id_pesanan`,`upload`,`keterangan_bayar`,`id_status`) values (1,1,'(nanti berupa gambar)','Sudah dibayarkan untuk pembayaran pengerjaan tanaman hias',3);
+insert  into `trx_bukti_bayar`(`id_bayar`,`id_pesanan`,`upload`,`keterangan_bayar`,`id_status_trans`,`create_date`) values (1,1,'default.jpg','Sudah dibayarkan untuk pembayaran pengerjaan tanaman hias',3,'2019-06-08');
 
 /*Table structure for table `trx_nego` */
 
@@ -234,7 +247,7 @@ DROP TABLE IF EXISTS `trx_pesanan`;
 CREATE TABLE `trx_pesanan` (
   `id_pesanan` int(7) NOT NULL,
   `id_user` int(7) DEFAULT NULL COMMENT 'FK user',
-  `id_status` int(11) DEFAULT NULL,
+  `id_status_trans` int(11) DEFAULT NULL,
   `nama_pemesan` varchar(128) DEFAULT NULL,
   `email` varchar(128) DEFAULT NULL,
   `telpon` varchar(24) DEFAULT NULL,
@@ -249,7 +262,7 @@ CREATE TABLE `trx_pesanan` (
 
 /*Data for the table `trx_pesanan` */
 
-insert  into `trx_pesanan`(`id_pesanan`,`id_user`,`id_status`,`nama_pemesan`,`email`,`telpon`,`tanggal_pengerjaan`,`alamat`,`keterangan`,`gambar`,`harga`,`create_date`) values (1,10,3,'Bambang','lenovo.thinkpad@mail.com','082112398281','2019-05-20','Jl. Kemanggisan Utara No.17 RT.02/RW.08','Saya ingin memesan dekorasi tanaman hias untuk keperluan acara wedding adik saya pada tahun depan, namun saya ingin mendekornya dari sekarang untuk kepentingan penghabisan budget tahunan ini. trima kasih',NULL,4700000,'2019-05-02 16:30:53'),(2,11,1,'Budi','gagrsg@rglar.com','021042102102','2019-06-05','Jl. semsmekasek akeoa eo aeknfo afne oa','orkajgoar gjkroa kr oake oga oega oegj eoa',NULL,NULL,'2019-05-30 17:30:16'),(3,12,2,'Agung','roti.bakar@mai.com','032949299492','2019-06-12','Jalan jalan test test','test etstekaoe aoe aoef oa feoa foea iea',NULL,NULL,NULL);
+insert  into `trx_pesanan`(`id_pesanan`,`id_user`,`id_status_trans`,`nama_pemesan`,`email`,`telpon`,`tanggal_pengerjaan`,`alamat`,`keterangan`,`gambar`,`harga`,`create_date`) values (1,10,3,'Bambang','lenovo.thinkpad@mail.com','082112398281','2019-05-20','Jl. Kemanggisan Utara No.17 RT.02/RW.08','Saya ingin memesan dekorasi tanaman hias untuk keperluan acara wedding adik saya pada tahun depan, namun saya ingin mendekornya dari sekarang untuk kepentingan penghabisan budget tahunan ini. trima kasih',NULL,4700000,'2019-05-02 16:30:53'),(2,11,1,'Budi','gagrsg@rglar.com','021042102102','2019-06-05','Jl. semsmekasek akeoa eo aeknfo afne oa','orkajgoar gjkroa kr oake oga oega oegj eoa',NULL,NULL,'2019-05-30 17:30:16');
 
 /*Table structure for table `trx_testimoni` */
 
@@ -282,11 +295,11 @@ CREATE TABLE `user` (
   `is_active` int(1) DEFAULT NULL,
   `date_created` date DEFAULT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user` */
 
-insert  into `user`(`id_user`,`name`,`email`,`image`,`password`,`role_id`,`is_active`,`date_created`) values (1,'User Test','user@user.com','default.jpg','$2y$10$DANSgKELn7LrD4jKLhPdeu7LELDVGtAvBK6ewTG.NGtNIhT4o4dfm',2,1,'2019-06-08'),(2,'Caesario','caesar@gmail.com','default.jpg','$2y$10$wR0H77RGqS6dAtjoG4Zc3uLodHigeIFjkkaB4Sd60oFe246rLlXX2',2,1,'2019-06-08'),(3,'Wahyu','why@why.com','default.jpg','$2y$10$xh.sh8LXoAZibHw00cnmHOxbKJhgQtnn2CRh4L4OLDRCtEUJ6UdOK',2,0,'2019-06-08'),(4,'Caesario','caesar@caesar.com','default.jpg','$2y$10$v22Ivr9UN6kRKxs5cVZlyOn1FW/nqUWmn9dQEfdNXXzUNfCHXSc2a',2,1,'2019-06-08'),(10,'eafae','vendor@vendor.com','default.jpg','$2y$10$aTqTEti3jzcRc6NP1hyB0eD9t2o8.hqzVFUMBlVl7HePUW/nxW32O',1,1,'2019-06-08'),(11,'Vendor Garden 1','garden@garden.com','default.jpg','$2y$10$3JBAzkDT9.CJLeH7.Y0A4Ol2SfYO86eah3txGEIaAi8DrkCi2CaIS',1,1,'2019-06-08'),(12,'Vendor Garden 2','garden2@garden.com','default.jpg','$2y$10$zy9BuykU5ic4PWl6/f9r0urSf1vLCjGZqDq0rPzEgxQm7Dxp6xGY.',1,1,'2019-06-08'),(99,'Admin Test','admin@admin.com','default.jpg','$2y$10$O0EloruT8Uyj8GWDDiAPpOMqHj37DNvV5R.x.T8ghvnXck8zQrFiK',3,1,'2019-06-08'),(100,'Vendor Garden 3','garden3@garden.com','default.jpg','$2y$10$J1UGRhFw.FfWL1iCYn3RO.dEPd7hTJ/KsYsCk2VOdivDCSBm3ImoO',1,1,'2019-06-08'),(101,'Vendor Garden 4','garden4@garden.com','default.jpg','$2y$10$veRYfKqXwC6LcGTUhFfOTuYpQH.IxNt80FtUSoCWVm6Njvmae8ObG',1,1,'2019-06-08'),(102,'Vendor Garden 5','garden5@garden.com','default.jpg','$2y$10$dL1cjFSLC8IDXKgltnme/Ou0yoQ9czyYwacjP22Dd8PKIJOl5Q0mW',1,1,'2019-06-08'),(103,'Hello Vendor','vendor7@garden.com','default.jpg','$2y$10$O9bTK.HCBT6a7FD441DC0uvkUT9hihTW61AO71rODyutBqdXiGwyO',1,1,'2019-06-08'),(104,'Hittt','garden12@garden.com','default.jpg','$2y$10$nVC8uG4UxaJc.dyeRCUceeCSO1q0mRie4XXau5bkme5RP0/8LFVh2',1,1,'2019-06-08');
+insert  into `user`(`id_user`,`name`,`email`,`image`,`password`,`role_id`,`is_active`,`date_created`) values (1,'User Test','user@user.com','default.jpg','$2y$10$DANSgKELn7LrD4jKLhPdeu7LELDVGtAvBK6ewTG.NGtNIhT4o4dfm',2,1,'2019-06-08'),(2,'Caesario','caesar@gmail.com','default.jpg','$2y$10$wR0H77RGqS6dAtjoG4Zc3uLodHigeIFjkkaB4Sd60oFe246rLlXX2',2,1,'2019-06-08'),(3,'Wahyu','why@why.com','default.jpg','$2y$10$xh.sh8LXoAZibHw00cnmHOxbKJhgQtnn2CRh4L4OLDRCtEUJ6UdOK',2,2,'2019-06-08'),(4,'Caesario','caesar@caesar.com','default.jpg','$2y$10$v22Ivr9UN6kRKxs5cVZlyOn1FW/nqUWmn9dQEfdNXXzUNfCHXSc2a',2,1,'2019-06-08'),(10,'eafae','vendor@vendor.com','default.jpg','$2y$10$aTqTEti3jzcRc6NP1hyB0eD9t2o8.hqzVFUMBlVl7HePUW/nxW32O',1,1,'2019-06-08'),(11,'Vendor Garden 1','garden@garden.com','default.jpg','$2y$10$3JBAzkDT9.CJLeH7.Y0A4Ol2SfYO86eah3txGEIaAi8DrkCi2CaIS',1,1,'2019-06-08'),(12,'Vendor Garden 2','garden2@garden.com','default.jpg','$2y$10$zy9BuykU5ic4PWl6/f9r0urSf1vLCjGZqDq0rPzEgxQm7Dxp6xGY.',1,2,'2019-06-08'),(99,'Admin Test','admin@admin.com','default.jpg','$2y$10$O0EloruT8Uyj8GWDDiAPpOMqHj37DNvV5R.x.T8ghvnXck8zQrFiK',3,1,'2019-06-08'),(101,'Vendor Garden 4','garden4@garden.com','default.jpg','$2y$10$veRYfKqXwC6LcGTUhFfOTuYpQH.IxNt80FtUSoCWVm6Njvmae8ObG',1,2,'2019-06-08'),(102,'Vendor Garden 5','garden5@garden.com','default.jpg','$2y$10$dL1cjFSLC8IDXKgltnme/Ou0yoQ9czyYwacjP22Dd8PKIJOl5Q0mW',1,2,'2019-06-08');
 
 /*Table structure for table `user_access_menu` */
 
@@ -369,7 +382,7 @@ CREATE TABLE `vendor` (
 
 /*Data for the table `vendor` */
 
-insert  into `vendor`(`id_vendor`,`id_userfk`,`nama_vendor`,`id_kota`,`alamat`,`telpon`,`logo`,`info_vendor`,`id_status`,`createTime`) values (0,NULL,'Vendor Garden 9',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(1,10,'Garden li',2,'Jl. Meruya Selatan No.17','082112941123',NULL,'Menyediakan jasa dekor nanaman hias dan acara weding untuk keperluan mendadak sekali. Berpengalaman selama 10 Tahun dalam bidang dekor tanaman hias.',1,'2019-05-27 21:03:34'),(2,11,'Garden Vendor',4,'Jl. Karawaci Utara No. 99 RT.02/RW.10, Karawaci','082399584283',NULL,'Vendor tanaman hias daerah karawaci, melayani pengerjaan di luar kota',1,'2019-06-08 17:58:46'),(3,12,'Layson Garden',3,'Jl. Cipete Raya No.9','088771288482',NULL,'Menyediakan jasa pembuatan tanaman hias',1,'2019-05-26 21:03:36'),(4,13,'Mendari Flower',6,'Jl. Pramuka No.129','087721488212',NULL,'Hiasan bunga untuk acara wisuda dll',1,'2019-05-30 21:03:30');
+insert  into `vendor`(`id_vendor`,`id_userfk`,`nama_vendor`,`id_kota`,`alamat`,`telpon`,`logo`,`info_vendor`,`id_status`,`createTime`) values (0,106,'Garden Malam3',0,NULL,'082182881',NULL,'',1,'2019-06-08 20:29:19'),(1,10,'Garden li',2,'Jl. Meruya Selatan No.17','082112941123',NULL,'Menyediakan jasa dekor nanaman hias dan acara weding untuk keperluan mendadak sekali. Berpengalaman selama 10 Tahun dalam bidang dekor tanaman hias.',1,'2019-05-27 21:03:34'),(2,11,'Garden Vendor',4,'Jl. Karawaci Utara No. 99 RT.02/RW.10, Karawaci','082399584283',NULL,'Vendor tanaman hias daerah karawaci, melayani pengerjaan di luar kota',1,'2019-06-08 17:58:46'),(3,12,'Layson Garden',3,'Jl. Cipete Raya No.9','088771288482',NULL,'Menyediakan jasa pembuatan tanaman hias',1,'2019-05-26 21:03:36'),(4,13,'Mendari Flower',6,'Jl. Pramuka No.129','087721488212',NULL,'Hiasan bunga untuk acara wisuda dll',1,'2019-05-30 21:03:30');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

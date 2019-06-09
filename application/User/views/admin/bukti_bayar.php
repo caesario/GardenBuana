@@ -30,7 +30,7 @@
             <td><?= $data['nama_status']; ?></td>
             <td>
               <span>
-                <a class="btn btn-success btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
+                <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('report/buktibayar_detail/'); ?><?= $data['id_bayar']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
                   <i class="fas fa-eye"></i>
                 </a>
               </span>
