@@ -115,6 +115,17 @@ class Admin_model extends CI_Model
         return $result->result_array();
     }
 
+    public function getPelangganById($id)
+    {
+        $this->db->select('*');
+        $this->db->from('pelanggan');
+        $this->db->join('kota', 'pelanggan.id_kota = kota.id_kota');
+        $this->db->join('user', 'pelanggan.id_userfk = user.id_user');
+        $this->db->where('id_user', $id);
+        $result = $this->db->get();
+        return $result->row_array();
+    }
+
     public function getAllBuktiBayar()
     {
         $this->db->select('*');

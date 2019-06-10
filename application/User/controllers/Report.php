@@ -126,6 +126,45 @@ class Report extends CI_Controller
         $this->load->view('templates/vendor_footer');
     }
 
+    public function pelanggan_detail($id)
+    {
+        $data['title'] = 'Data Pelanggan';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['detail_pelanggan'] = $this->Admin_model->getPelangganById($id);
+
+        $this->load->view('templates/vendor_header', $data);
+        $this->load->view('templates/vendor_sidebar', $data);
+        $this->load->view('templates/vendor_topbar', $data);
+        $this->load->view('admin/data_pelanggan_detail', $data);
+        $this->load->view('templates/vendor_footer');
+    }
+
+    public function pelanggan_edit($id)
+    {
+        if ($this->session->userdata("role_id") == 3) {
+            $data['title'] = 'Data Pelanggan | Edit';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['detail_pelanggan'] = $this->Admin_model->getPelangganById($id);
+
+            $this->form_validation->set_rules('name', 'Name', 'required');
+            $this->form_validation->set_rules('emailPengguna', 'Nama Pengguna', 'required');
+
+            if ($this->form_validation->run() == FALSE) {
+                $this->load->view('templates/vendor_header', $data);
+                $this->load->view('templates/vendor_sidebar', $data);
+                $this->load->view('templates/vendor_topbar', $data);
+                $this->load->view('admin/pelanggan_edit', $data);
+                $this->load->view('templates/vendor_footer');
+            } else {
+                $this->Admin_model->ubahDataPelanggan($id);
+                $this->session->set_flashdata('flash', 'Diubah');
+                redirect('report/data_pelanggan');
+            }
+        } else {
+            redirect("home");
+        }
+    }
+
     public function data_vendor()
     {
         $data['title'] = 'Data Vendor';

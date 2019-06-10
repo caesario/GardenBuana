@@ -13,10 +13,9 @@
         <tr>
           <th>No</th>
           <th>Nama Pelanggan</th>
-          <th>Kota</th>
           <th>Telpon</th>
+          <th>Kota</th>
           <th>Alamat</th>
-          <th>Info Vendor</th>
           <th>Bergabung</th>
           <th class="gb-aksi-width">Aksi</th>
         </tr>
@@ -27,19 +26,18 @@
           <tr>
             <td><?= $i; ?></td>
             <td><?= $data['name']; ?></td>
-            <td><?= $data['nama_kota']; ?></td>
             <td><?= $data['telpon']; ?></td>
             <td><?= $data['nama_kota']; ?></td>
             <td><?= $data['alamat']; ?></td>
             <td><?= $data['date_created']; ?></td>
             <td>
               <span>
-                <a class="btn btn-success btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
+                <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('report/pelanggan_detail/'); ?><?= $data['id_pelanggan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
                   <i class="fas fa-eye"></i>
                 </a>
               </span>
               <span>
-                <a class="btn btn-primary btn-sm py-0 gb-btn-width" href="<?= site_url('admin/../'); ?><?= $data['id_user']; ?>" data-toggle="tooltip" data-placement="top" title="Ubah">
+                <a class="btn btn-primary btn-sm py-0 gb-btn-width" href="<?= site_url('report/pelanggan_edit/'); ?><?= $data['id_pelanggan']; ?>" data-toggle="tooltip" data-placement="top" title="Ubah">
                   <i class="fas fa-edit"></i>
                 </a>
               </span>
