@@ -19,8 +19,11 @@
               <p class="my-0 gb-font-small">TRX-X2TH<?= $trx_pesanan['id_pesanan']; ?></p>
             </div>
             <div class="col-6">
-              <button class="btn btn-sm btn-danger float-right rounded-0 ml-1">Batalkan Pesanan</button>
-              <button class="btn btn-sm btn-success float-right rounded-0" data-toggle="modal" data-target="#exampleModal">Konfirmasi Pesanan</button>
+              <?php if ($session['role_id'] = 2) : ?>
+                <button class="btn btn-sm btn-danger float-right rounded-0 ml-1">Batalkan Pesanan</button>
+              <?php else : ?>
+                <button class="btn btn-sm btn-success float-right rounded-0" data-toggle="modal" data-target="#exampleModal">Konfirmasi Pesanan</button>
+              <?php endif; ?>
             </div>
           </div>
 
@@ -51,7 +54,7 @@
           <div class="row mb-4">
             <div class="col mt-5">
               <h6 class="font-weight-bold my-0 text-center">Keterangan</h6>
-              <p class="my-0 gb-font-small px-5 text-justify"><?= $trx_pesanan['keterangan']; ?></p>
+              <p class="my-0 gb-font-small px-5 text-center"><?= $trx_pesanan['keterangan']; ?></p>
             </div>
           </div>
         </div>

@@ -50,8 +50,6 @@ class Vendor_admin extends CI_Controller
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $data['vendor'] = $this->Vendor_model->getVendorProfilById($this->session->userdata('id_user'));
 
-            
-
             $this->load->view('templates/vendor_header', $data);
             $this->load->view('templates/vendor_sidebar', $data);
             $this->load->view('templates/vendor_topbar', $data);

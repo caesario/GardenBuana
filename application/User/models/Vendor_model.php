@@ -43,8 +43,6 @@ class Vendor_model extends CI_model
         return $result->row_array();
     }
 
-
-
     public function getUserProfilById($id)
     {
         $this->db->select('*');
@@ -54,7 +52,6 @@ class Vendor_model extends CI_model
         // $this->db->join('status_akun', 'status_akun.id_status = vendor.id_status');
         $this->db->where('id_user', $id);
         $result = $this->db->get();
-
         return $result->row_array();
     }
 
