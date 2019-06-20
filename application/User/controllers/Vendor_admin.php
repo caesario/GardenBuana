@@ -8,6 +8,7 @@ class Vendor_admin extends CI_Controller
         parent::__construct();
         $this->load->model('Vendor_model');
         $this->load->model('Admin_model');
+        $this->load->model('Pesanan_model');
     }
 
     public function index()
@@ -133,8 +134,15 @@ class Vendor_admin extends CI_Controller
         if ($this->session->userdata("role_id") == 1) {
             $data['title'] = 'Pesanan';
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-            $id = $_SESSION['id_user'];
-            $data['trx_pesanan'] = $this->Vendor_model->getAllPesananVendor($id);
+            $id = $this->session->userdata("id_user");
+
+            $getVendor = $this->db->query('select * from vendor where id_userfk = '.$id)->row();
+            $getVendorId = $getVendor->id_vendor;
+
+            $data['trx_pesanan'] = $this->Vendor_model->getAllPesananVendor($getVendorId);
+
+            // echo "<pre>";print_r($data['trx_pesanan']);exit();
+
             $data['session'] = $this->session->all_userdata();
 
             $this->load->view('templates/vendor_header', $data);
@@ -171,5 +179,65 @@ class Vendor_admin extends CI_Controller
         $this->load->view('templates/vendor_topbar', $data);
         $this->load->view('vendor_admin/riwayat_transaksi', $data);
         $this->load->view('templates/vendor_footer');
+    }
+
+    public function detail_pesanan($id)
+    {
+        if ($this->session->userdata("role_id") == 1) {
+            $data['title'] = 'GardenBuana | Pesanan';
+            $data['trx_pesanan'] = $this->Pesanan_model->getPesananById($id);
+            $data['info_web'] = $this->Admin_model->getInfoWeb();
+            $data['session'] = $this->session->all_userdata();
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/menu');
+            $this->load->view('transaksi/nego_pesan', $data);
+            $this->load->view('templates/footer', $data);
+        } else {
+            redirect("home");
+        }
+    }
+
+    public function update_pesanan()
+    {
+        if ($this->session->userdata("role_id") == 1) {
+            $data = $this->input->post();
+
+            $query = $this->db->query("UPDATE trx_pesanan SET harga = ".$this->input->post('harga').", id_status_trans = 2 where id_pesanan = '".$this->input->post('id_pesanan')."' ");
+
+            if($query) {
+                $this->session->set_flashdata('success', 'Data Berhasil Diubah');
+                redirect('vendor_admin/pesanan');
+            }
+
+        } else {
+            redirect("home");
+        }
+    }
+
+    /* PESANAN KONFIRMASI */
+    public function pesanan_konfirmasi()
+    {
+        if ($this->session->userdata("role_id") == 1) {
+            $data['title'] = 'Pesanan';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $id = $this->session->userdata("id_user");
+
+            $getVendor = $this->db->query('select * from vendor where id_userfk = '.$id)->row();
+            $getVendorId = $getVendor->id_vendor;
+
+            $data['trx_pesanan'] = $this->db->query("select * from list_pesanan_vendor where id_vendor = ".$getVendorId." AND id_status_trans = 2")->result_array();
+
+            // echo "<pre>";print_r($data['trx_pesanan']);exit();
+
+            $data['session'] = $this->session->all_userdata();
+
+            $this->load->view('templates/vendor_header', $data);
+            $this->load->view('templates/vendor_sidebar', $data);
+            $this->load->view('templates/vendor_topbar', $data);
+            $this->load->view('vendor_admin/pesanan', $data);
+            $this->load->view('templates/vendor_footer');
+        } else {
+            redirect("home");
+        }
     }
 }

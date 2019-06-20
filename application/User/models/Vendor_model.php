@@ -101,12 +101,16 @@ class Vendor_model extends CI_model
 
     public function getAllPesananVendor($id)
     {
-        $this->db->select('*');
+        /*$this->db->select('*');
         $this->db->from('trx_pesanan');
         // $this->db->join('vendor', 'vendor.id_vendor = pesanan.id_vendor');
         $this->db->where('id_vendor', $id);
         $result = $this->db->get();
-        return $result->result_array();
+        return $result->result_array();*/
+
+        $query = $this->db->query("select * from list_pesanan_vendor where id_vendor = ".$id." AND id_status_trans = 1");
+        // $result = $query->result_array();
+        return $query->result_array();
     }
 }
 

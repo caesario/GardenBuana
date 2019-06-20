@@ -9,7 +9,7 @@
         <h5 class="text-center font-weight-bold">Pesanan Anda</h5>
       </div>
 
-      <?php var_dump($trx_pesanan); ?>
+      <?php var_dump($session); ?>
 
       <div class="card rounded-0">
         <div class="card-header">
@@ -19,7 +19,7 @@
               <p class="my-0 gb-font-small">TRX-X2TH<?= $trx_pesanan['id_pesanan']; ?></p>
             </div>
             <div class="col-6">
-              <?php if ($session['role_id'] = 2) : ?>
+              <?php if ($session['role_id'] == 2) : ?>
                 <button class="btn btn-sm btn-danger float-right rounded-0 ml-1">Batalkan Pesanan</button>
               <?php else : ?>
                 <button class="btn btn-sm btn-success float-right rounded-0" data-toggle="modal" data-target="#exampleModal">Konfirmasi Pesanan</button>
@@ -89,25 +89,28 @@
     </section>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
-        <div class="modal-content col-8 rounded-0">
-          <div class="modal-header">
-            <h6 class="text-center font-weight-bold">Konfirmasi Pesanan</h6>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p class="mb-0 text-dark gb-font-small">Masukan Harga</p>
-            <div class="col p-0 form-group">
-              <input class="form-control form-control-sm mt-1 mb-3 gb-font-small rounded-0" type="text" value="">
+        <form action="<?= site_url('Vendor_admin/update_pesanan'); ?>" method="post">
+          <div class="modal-content col-8 rounded-0">
+            <div class="modal-header">
+              <h6 class="text-center font-weight-bold">Konfirmasi Pesanan</h6>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-sm btn-primary rounded-0">Konfirmasi</button>
-            <button type="button" class="btn btn-sm btn-secondary rounded-0" data-dismiss="modal">Batal</button>
-          </div>
+            <div class="modal-body">
+              <p class="mb-0 text-dark gb-font-small">Masukan Harga</p>
+              <div class="col p-0 form-group">
+                <input class="form-control form-control-sm mt-1 mb-3 gb-font-small rounded-0" type="text" value="" name="harga">
+                <input class="form-control form-control-sm mt-1 mb-3 gb-font-small rounded-0" type="hidden" value="<?= $trx_pesanan['id_pesanan']; ?>" name="id_pesanan" >
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-sm btn-primary rounded-0">Konfirmasi</button>
+              <button type="button" class="btn btn-sm btn-secondary rounded-0" data-dismiss="modal">Batal</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
