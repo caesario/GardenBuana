@@ -37,6 +37,18 @@ class Vendor extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
+    public function hubungi_vendor($id)
+    {
+        $data['title'] = 'GardenBuana | Detail Vendor';
+        $data['vendor'] = $this->Vendor_model->getVendorById($id);
+        $data['session'] = $this->session->all_userdata();
+        $data['info_web'] = $this->Admin_model->getInfoWeb();
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/menu');
+        $this->load->view('vendor/hub_vendor', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
     public function pesan_vendor($id)
     {
         if ($this->session->userdata("role_id") == 2) {

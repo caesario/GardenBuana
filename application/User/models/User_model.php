@@ -20,7 +20,7 @@ class User_model extends CI_model
         $this->db->select('*');
         $this->db->from('trx_pesanan');
         // $this->db->join('vendor', 'vendor.id_vendor = pesanan.id_vendor');
-        $this->db->where('id_user', $id);
+        $this->db->where('id_pelanggan', $id);
         $result = $this->db->get();
         return $result->result_array();
     }

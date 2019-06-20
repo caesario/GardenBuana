@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <!-- <?php var_dump($pengguna); ?> -->
+  <?php var_dump($_SESSION); ?>
 
   <hr class="mt-0">
 

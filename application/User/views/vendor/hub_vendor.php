@@ -22,28 +22,24 @@
           <a href="<?= site_url('vendor/hubungi_vendor/'); ?><?= $vendor['id_vendor']; ?>" class="btn btn-sm btn-block btn-primary rounded-0">
             Hubungi Vendor
           </a>
-          <a href="<?= base_url('Vendor'); ?>" class="btn btn-sm btn-block btn-danger rounded-0">
+          <a href="<?= base_url('Vendor/detail_vendor/'); ?><?= $vendor['id_vendor']; ?>" class="btn btn-sm btn-block btn-danger rounded-0">
             Kembali
           </a>
 
         </div>
         <div class="col-9">
-          <h4 class="mb-0">Portfolio Vendor</h4>
+          <h4 class="mb-0">Hubungi Vendor</h4>
           <hr>
-          <div class="row">
-            <div class="col-4">
-              <a href="">
-                <img class="card-img-top p-3 gb-img-port mb-4 border rounded-0" src="<?= base_url('assets/img/clients/client-1.png'); ?>" alt="Card image cap">
-              </a>
-            </div>
-            <div class="col-4">
-              <img class="card-img-top p-3 gb-img-port mb-3 border" src="<?= base_url('assets/img/clients/client-4.png'); ?>" alt="Card image cap">
-            </div>
-            <div class="col-4">
-              <img class="card-img-top p-3 gb-img-port mb-3 border" src="<?= base_url('assets/img/clients/client-2.png'); ?>" alt="Card image cap">
-            </div>
-            <div class="col-4">
-              <img class="card-img-top p-3 gb-img-port mb-3 border" src="<?= base_url('assets/img/clients/client-5.png'); ?>" alt="Card image cap">
+          <div class="row ml-3">
+            <div class="col">
+              <h6 class="mb-0 text-dark font-weight-bold">Nama</h6>
+              <p class="text-dark mb-3">Bambang</p>
+
+              <h6 class="mb-0 text-dark font-weight-bold">Telpon</h6>
+              <p class="text-dark mb-3">09289189289</p>
+
+              <h6 class="mb-0 text-dark font-weight-bold">Email</h6>
+              <p class="text-dark mb-3">Bambang@mail.com</p>
             </div>
           </div>
         </div>

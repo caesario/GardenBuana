@@ -21,10 +21,10 @@
           <!-- <a href="<?= site_url('vendor/pesan_vendor/'); ?><?= $vendor['id_vendor']; ?>" class="btn btn-sm btn-block btn-primary gb-btn-order">
             Buat Pesanan
           </a> -->
-          <a href="a" class="btn btn-sm btn-block btn-primary gb-btn-order rounded-0">
+          <a href="<?= site_url('vendor/hubungi_vendor/'); ?><?= $vendor['id_vendor']; ?>" class="btn btn-sm btn-block btn-primary gb-btn-order rounded-0">
             Hubungi Vendor
           </a>
-          <a href="<?= base_url('Vendor'); ?>" class="btn btn-sm btn-block btn-danger rounded-0">
+          <a href="<?= base_url('Vendor/detail_vendor/'); ?><?= $vendor['id_vendor']; ?>" class="btn btn-sm btn-block btn-danger rounded-0">
             Kembali
           </a>
 
