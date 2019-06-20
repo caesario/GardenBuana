@@ -40,7 +40,7 @@
 
         <h6 class="mb-0 text-dark font-weight-bold">Kota</h6>
         <div class="col-5 p-0 form-group">
-          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" name="kota" type="text" value="<?= $vendor['nama_kota']; ?>">
+          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" name="kotaVendor" type="text" value="<?= $vendor['nama_kota']; ?>">
         </div>
 
         <h6 class="mb-0 text-dark font-weight-bold">Informasi Vendor</h6>

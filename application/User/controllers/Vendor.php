@@ -39,16 +39,19 @@ class Vendor extends CI_Controller
 
     public function pesan_vendor($id)
     {
-
-        $data['title'] = 'GardenBuana | Detail Vendor';
-        $data['vendor'] = $this->Vendor_model->getVendorById($id);
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        // $data['session'] = $this->session->all_userdata();
-        $data['info_web'] = $this->Admin_model->getInfoWeb();
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/menu');
-        $this->load->view('vendor/pesan_vendor', $data);
-        $this->load->view('templates/footer', $data);
+        if ($this->session->userdata("role_id") == 2) {
+            $data['title'] = 'GardenBuana | Detail Vendor';
+            $data['vendor'] = $this->Vendor_model->getVendorById($id);
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            // $data['session'] = $this->session->all_userdata();
+            $data['info_web'] = $this->Admin_model->getInfoWeb();
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/menu');
+            $this->load->view('vendor/pesan_vendor', $data);
+            $this->load->view('templates/footer', $data);
+        } else {
+            redirect("Auth");
+        }
     }
 
     public function create_pesanan()
@@ -80,8 +83,8 @@ class Vendor extends CI_Controller
                 'id_status_trans' => 1,
                 'create_date' => $dateNow
             );
-            // var_dump($data);
-            // die();
+            var_dump($data);
+            die();
             $create = $this->Transaksi_model->createPesanan($data);
             if ($create == TRUE) {
                 // step selanjutnya

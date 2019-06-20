@@ -105,7 +105,7 @@ class Vendor_admin extends CI_Controller
 
             $dataVendor = array(
                 'nama_vendor' => $this->input->post('namaVendor'),
-                'id_kota' => $this->input->post('kota'),
+                'id_kota' => $this->input->post('kotaVendor'),
                 'telpon' => $this->input->post('noTelp'),
                 'info_vendor' => $this->input->post('infoVendor'),
                 'createTime' => $dateNow
