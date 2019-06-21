@@ -25,6 +25,25 @@ class Vendor extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
+    public function cariVendor()
+    {
+        $data['title'] = 'GardenBuana | List Vendor';
+        $data['vendor'] = $this->Vendor_model->getAllVendor();
+        $kota = $this->input->post('kota');
+        $keyword = $this->input->post('keyword');
+        // var_dump($keyword);
+        // die();
+        $data['vendor'] = $this->Vendor_model->cariDataVendor($kota, $keyword);
+
+        $data['kota'] = $this->Vendor_model->getAllKota();
+        $data['session'] = $this->session->all_userdata();
+        $data['info_web'] = $this->Admin_model->getInfoWeb();
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/menu', $data);
+        $this->load->view('vendor/list_vendor', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
     public function detail_vendor($id)
     {
         $data['title'] = 'GardenBuana | Detail Vendor';
@@ -43,6 +62,7 @@ class Vendor extends CI_Controller
         $data['vendor'] = $this->Vendor_model->getVendorById($id);
         $data['session'] = $this->session->all_userdata();
         $data['info_web'] = $this->Admin_model->getInfoWeb();
+        // $data['hub_vendor'] = $this->Transaksi_model->getInfoVendor($id);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/menu');
         $this->load->view('vendor/hub_vendor', $data);

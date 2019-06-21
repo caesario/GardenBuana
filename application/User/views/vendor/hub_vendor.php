@@ -8,6 +8,8 @@
     <div class="section-header mt-5">
     </div>
 
+    <!-- <?php var_dump($vendor); ?> -->
+
     <section class="bg-white p-5 rounded-0">
       <div class="row">
         <div class="col-3">
@@ -19,9 +21,9 @@
           <a href="<?= site_url('vendor/pesan_vendor/'); ?><?= $vendor['id_vendor']; ?>" class="btn btn-sm btn-block btn-primary gb-btn-order rounded-0">
             Buat Pesanan
           </a>
-          <a href="<?= site_url('vendor/hubungi_vendor/'); ?><?= $vendor['id_vendor']; ?>" class="btn btn-sm btn-block btn-primary rounded-0">
+          <!-- <a href="<?= site_url('vendor/hubungi_vendor/'); ?><?= $vendor['id_vendor']; ?>" class="btn btn-sm btn-block btn-primary rounded-0">
             Hubungi Vendor
-          </a>
+          </a> -->
           <a href="<?= base_url('Vendor/detail_vendor/'); ?><?= $vendor['id_vendor']; ?>" class="btn btn-sm btn-block btn-danger rounded-0">
             Kembali
           </a>
@@ -33,13 +35,16 @@
           <div class="row ml-3">
             <div class="col">
               <h6 class="mb-0 text-dark font-weight-bold">Nama</h6>
-              <p class="text-dark mb-3">Bambang</p>
+              <p class="text-dark mb-3"><?= $vendor['name']; ?></p>
 
               <h6 class="mb-0 text-dark font-weight-bold">Telpon</h6>
-              <p class="text-dark mb-3">09289189289</p>
+              <p class="text-dark mb-3"><?= $vendor['telpon']; ?></p>
 
               <h6 class="mb-0 text-dark font-weight-bold">Email</h6>
-              <p class="text-dark mb-3">Bambang@mail.com</p>
+              <p class="text-dark mb-3"><?= $vendor['email']; ?></p>
+
+              <h6 class="mb-0 text-dark font-weight-bold">Email</h6>
+              <p class="text-dark mb-3"><?= $vendor['alamat']; ?></p>
             </div>
           </div>
         </div>

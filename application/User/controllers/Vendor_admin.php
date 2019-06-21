@@ -136,7 +136,7 @@ class Vendor_admin extends CI_Controller
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $id = $this->session->userdata("id_user");
 
-            $getVendor = $this->db->query('select * from vendor where id_userfk = '.$id)->row();
+            $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
             $getVendorId = $getVendor->id_vendor;
 
             $data['trx_pesanan'] = $this->Vendor_model->getAllPesananVendor($getVendorId);
@@ -202,13 +202,12 @@ class Vendor_admin extends CI_Controller
         if ($this->session->userdata("role_id") == 1) {
             $data = $this->input->post();
 
-            $query = $this->db->query("UPDATE trx_pesanan SET harga = ".$this->input->post('harga').", id_status_trans = 2 where id_pesanan = '".$this->input->post('id_pesanan')."' ");
+            $query = $this->db->query("UPDATE trx_pesanan SET harga = " . $this->input->post('harga') . ", id_status_trans = 2 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
 
-            if($query) {
+            if ($query) {
                 $this->session->set_flashdata('success', 'Data Berhasil Diubah');
                 redirect('vendor_admin/pesanan');
             }
-
         } else {
             redirect("home");
         }
@@ -218,14 +217,14 @@ class Vendor_admin extends CI_Controller
     public function pesanan_konfirmasi()
     {
         if ($this->session->userdata("role_id") == 1) {
-            $data['title'] = 'Pesanan';
+            $data['title'] = 'Pesanan Konfirmasi';
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $id = $this->session->userdata("id_user");
 
-            $getVendor = $this->db->query('select * from vendor where id_userfk = '.$id)->row();
+            $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
             $getVendorId = $getVendor->id_vendor;
 
-            $data['trx_pesanan'] = $this->db->query("select * from list_pesanan_vendor where id_vendor = ".$getVendorId." AND id_status_trans = 2")->result_array();
+            $data['trx_pesanan'] = $this->db->query("select * from list_pesanan_vendor where id_vendor = " . $getVendorId . " AND id_status_trans = 2")->result_array();
 
             // echo "<pre>";print_r($data['trx_pesanan']);exit();
 

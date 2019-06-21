@@ -31,25 +31,27 @@
         <h4 class="text-left">Temukan Vendor</h4>
       </div>
 
+      <!-- <?= var_dump($vendor); ?> -->
+
       <section class="search-sec mb-4">
         <div class="container">
-          <form action="#" method="post" novalidate="novalidate">
+          <form action="<?= site_url('vendor/cariVendor'); ?>" method="post" novalidate="novalidate">
             <div class="row">
               <div class="col-lg-12">
                 <div class="row">
                   <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                    <select class="form-control search-slt" id="exampleFormControlSelect1">
-                      <option>Pilih Kota</option>
+                    <select class="form-control search-slt" name="kota" id="exampleFormControlSelect1">
+                      <option value="">Pilih Kota</option>
                       <?php foreach ($kota as $data) : ?>
-                        <option><?= $data['nama_kota']; ?></option>
+                        <option value="<?= $data['id_kota']; ?>"><?= $data['nama_kota']; ?></option>
                       <?php endforeach; ?>
                     </select>
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-12 p-0">
-                    <input type="text" class="form-control search-slt" placeholder="Ketik Nama Vendor">
+                    <input type="text" class="form-control search-slt" placeholder="Ketik Nama Vendor" name="keyword">
                   </div>
                   <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                    <button type="button" class="btn btn-primary wrn-btn">Search</button>
+                    <button type="submit" class="btn btn-primary wrn-btn">Search</button>
                   </div>
                 </div>
               </div>

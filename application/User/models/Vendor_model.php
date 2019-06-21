@@ -20,11 +20,45 @@ class Vendor_model extends CI_model
         return $result->result_array();
     }
 
+    public function cariDataVendor($kota, $keyword)
+    {
+        if ($kota == null && $keyword == null) {
+            $this->db->select('*');
+            $this->db->join('kota', 'kota.id_kota =  vendor.id_kota');
+            $this->db->from('vendor');
+            $result = $this->db->get();
+            return $result->result_array();
+        } elseif ($kota != null && $keyword == null) {
+            $this->db->select('*');
+            $this->db->where('ven.id_kota', $kota);
+            $this->db->join('kota', 'kota.id_kota =  ven.id_kota');
+            // $this->db->or_like('kota', $keyword);
+
+            return $this->db->get('vendor as ven')->result_array();
+        } elseif ($keyword != null && $kota == null) {
+            $this->db->select('*');
+            $this->db->join('kota', 'kota.id_kota =  ven.id_kota');
+            $this->db->like('nama_vendor', $keyword);
+            // $this->db->or_like('kota', $keyword);
+
+            return $this->db->get('vendor as ven')->result_array();
+        } else {
+            $this->db->select('*');
+            $this->db->where('ven.id_kota', $kota);
+            $this->db->join('kota', 'kota.id_kota =  ven.id_kota');
+            $this->db->like('nama_vendor', $keyword);
+            // $this->db->or_like('kota', $keyword);
+
+            return $this->db->get('vendor as ven')->result_array();
+        }
+    }
+
     public function getVendorById($id)
     {
         $this->db->select('*');
-        $this->db->join('kota', 'kota.id_kota = vendor.id_kota');
         $this->db->from('vendor');
+        $this->db->join('kota', 'kota.id_kota = vendor.id_kota');
+        $this->db->join('user', 'user.id_user = vendor.id_userfk');
         $this->db->where('id_vendor', $id);
         $result = $this->db->get();
         return $result->row_array();
@@ -108,7 +142,7 @@ class Vendor_model extends CI_model
         $result = $this->db->get();
         return $result->result_array();*/
 
-        $query = $this->db->query("select * from list_pesanan_vendor where id_vendor = ".$id." AND id_status_trans = 1");
+        $query = $this->db->query("select * from list_pesanan_vendor where id_vendor = " . $id . " AND id_status_trans = 1");
         // $result = $query->result_array();
         return $query->result_array();
     }
