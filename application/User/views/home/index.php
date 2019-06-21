@@ -41,54 +41,57 @@
       </div>
 
       <div class="row no-gutters clients-wrap clearfix wow fadeInUp">
-
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <div class="client-logo">
-            <img src="<?= base_url('assets/img/clients/client-1.png'); ?>" class="img-fluid" alt="">
+        <?php foreach ($vendor as $data) : ?>
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <a href="<?= site_url('Vendor/detail_vendor/'); ?><?= $data['id_vendor']; ?>">
+              <div class="client-logo">
+                <img src="<?= base_url('assets/img/clients/client-3.png'); ?>" class="img-fluid" alt="">
+              </div>
+            </a>
           </div>
-        </div>
+        <?php endforeach; ?>
 
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <div class="client-logo">
-            <img src="<?= base_url('assets/img/clients/client-2.png'); ?>" class="img-fluid" alt="">
+        <!-- <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="<?= base_url('assets/img/clients/client-2.png'); ?>" class="img-fluid" alt="">
+            </div>
           </div>
-        </div>
 
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <div class="client-logo">
-            <img src="<?= base_url('assets/img/clients/client-3.png'); ?>" class="img-fluid" alt="">
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="<?= base_url('assets/img/clients/client-3.png'); ?>" class="img-fluid" alt="">
+            </div>
           </div>
-        </div>
 
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <div class="client-logo">
-            <img src="<?= base_url('assets/img/clients/client-4.png'); ?>" class="img-fluid" alt="">
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="<?= base_url('assets/img/clients/client-4.png'); ?>" class="img-fluid" alt="">
+            </div>
           </div>
-        </div>
 
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <div class="client-logo">
-            <img src="<?= base_url('assets/img/clients/client-5.png'); ?>" class="img-fluid" alt="">
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="<?= base_url('assets/img/clients/client-5.png'); ?>" class="img-fluid" alt="">
+            </div>
           </div>
-        </div>
 
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <div class="client-logo">
-            <img src="<?= base_url('assets/img/clients/client-6.png'); ?>" class="img-fluid" alt="">
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="<?= base_url('assets/img/clients/client-6.png'); ?>" class="img-fluid" alt="">
+            </div>
           </div>
-        </div>
 
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <div class="client-logo">
-            <img src="<?= base_url('assets/img/clients/client-7.png'); ?>" class="img-fluid" alt="">
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="<?= base_url('assets/img/clients/client-7.png'); ?>" class="img-fluid" alt="">
+            </div>
           </div>
-        </div>
 
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <div class="client-logo">
-            <img src="<?= base_url('assets/img/clients/client-8.png'); ?>" class="img-fluid" alt="">
-          </div>
-        </div>
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="<?= base_url('assets/img/clients/client-8.png'); ?>" class="img-fluid" alt="">
+            </div>
+          </div> -->
 
       </div>
 
@@ -102,8 +105,8 @@
 
 
   <!--==========================
-      About Us Section
-    ============================-->
+        About Us Section
+      ============================-->
   <section id="about">
     <div class="container">
 
@@ -184,8 +187,8 @@
 
 
   <!--==========================
-      Clients Section
-    ============================-->
+        Clients Section
+      ============================-->
   <section id="testimonials" class="section-bg">
     <div class="container">
 

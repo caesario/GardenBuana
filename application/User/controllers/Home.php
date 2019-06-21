@@ -16,6 +16,8 @@ class Home extends CI_Controller
     $data['title'] = 'GardenBuana | Home';
     $data['session'] = $this->session->all_userdata();
     $data['info_web'] = $this->Admin_model->getInfoWeb();
+    $data['vendor'] = $this->Vendor_model->getAllVendor();
+    $data['kota'] = $this->Vendor_model->getAllKota();
 
     // echo "<pre>";print_r($this->session->all_userdata())."</pre>";exit;
 
