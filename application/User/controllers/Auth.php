@@ -144,8 +144,17 @@ class Auth extends CI_Controller
         'is_active' => 1,
         'date_created' => time()
       ];
-
       $this->db->insert('user', $data);
+      $id_user = $this->db->insert_id();
+
+      $data_pelanggan = [
+        'id_userfk' => $id_user,
+        'id_status' => 1,
+        'create_date' => date('Y-m-d H:i:s')
+      ];
+
+      $this->db->insert('pelanggan', $data_pelanggan);
+
       $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selamat! akun anda berhasil dibuat, Silahkan Login</div>');
       redirect('auth');
     }
