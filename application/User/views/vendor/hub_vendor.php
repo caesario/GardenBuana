@@ -43,7 +43,7 @@
               <h6 class="mb-0 text-dark font-weight-bold">Email</h6>
               <p class="text-dark mb-3"><?= $vendor['email']; ?></p>
 
-              <h6 class="mb-0 text-dark font-weight-bold">Email</h6>
+              <h6 class="mb-0 text-dark font-weight-bold">Alamat</h6>
               <p class="text-dark mb-3"><?= $vendor['alamat']; ?></p>
             </div>
           </div>
