@@ -38,7 +38,7 @@
             <li class="drop-down"><a href="#">Profil</a>
               <ul>
                 <li><a href="<?= site_url('User'); ?>">Edit Profil</a></li>
-                <li><a href="#">Transaksi</a></li>
+                <li><a href="<?= site_url('User/pesanan'); ?>">Transaksi</a></li>
                 <hr>
                 <li><a href="<?= base_url('Auth/logout'); ?>">Keluar</a></li>
               </ul>
