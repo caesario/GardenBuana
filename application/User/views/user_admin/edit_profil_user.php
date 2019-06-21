@@ -20,12 +20,12 @@
       <form action="<?= site_url('Vendor_admin/updateEditProfil'); ?>" method="post">
         <h6 class="mb-0 text-dark font-weight-bold">Nama</h6>
         <div class="col-5 p-0 form-group">
-          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" name="nama" type="text" value="<?= $pengguna['name']; ?>">
+          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" name="nama" type="text" value="<?= $user['name']; ?>">
         </div>
 
         <h6 class="mb-0 text-dark font-weight-bold">Email</h6>
         <div class="col-5 p-0 form-group">
-          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" name="email" type="text" value="<?= $pengguna['email']; ?>" readonly>
+          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" name="email" type="text" value="<?= $user['email']; ?>" readonly>
         </div>
 
         <h6 class="mb-0 text-dark font-weight-bold">Nomor Telpon</h6>

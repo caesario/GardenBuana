@@ -104,7 +104,7 @@ class Vendor extends CI_Controller
             $dateNow = date('Y-m-d H:i:s');
             $data = array(
                 'id_pesanan' => $id,
-                'id_user' => $idUser,
+                // 'id_user' => $idUser,
                 'id_vendor' => $idvendor,
                 'nama_pemesan' => $this->input->post('namaPemesan'),
                 'email' => $this->input->post('emailPesanan'),
@@ -115,8 +115,7 @@ class Vendor extends CI_Controller
                 'id_status_trans' => 1,
                 'create_date' => $dateNow
             );
-            var_dump($data);
-            die();
+
             $create = $this->Transaksi_model->createPesanan($data);
             if ($create == TRUE) {
                 // step selanjutnya

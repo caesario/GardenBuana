@@ -16,7 +16,7 @@
           <div class="row">
             <div class="col-6">
               <h6 class="font-weight-bold my-0">ID Pesanan</h6>
-              <p class="my-0 gb-font-small">TRX-X2TH<?= $trx_pesanan['id_pesanan']; ?></p>
+              <p class="my-0 gb-font-small"><?= $trx_pesanan['id_pesanan']; ?></p>
             </div>
             <div class="col-6">
               <?php if ($session['role_id'] == 2) : ?>
@@ -103,17 +103,17 @@
               <p class="mb-0 text-dark gb-font-small">Masukan Harga</p>
               <div class="col p-0 form-group">
                 <input class="form-control form-control-sm mt-1 mb-3 gb-font-small rounded-0" type="text" value="" name="harga">
-                <input class="form-control form-control-sm mt-1 mb-3 gb-font-small rounded-0" type="hidden" value="<?= $trx_pesanan['id_pesanan']; ?>" name="id_pesanan" >
+                <input class="form-control form-control-sm mt-1 mb-3 gb-font-small rounded-0" type="hidden" value="<?= $trx_pesanan['id_pesanan']; ?>" name="id_pesanan">
               </div>
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-sm btn-primary rounded-0">Konfirmasi</button>
               <button type="button" class="btn btn-sm btn-secondary rounded-0" data-dismiss="modal">Batal</button>
             </div>
-          </form>
-        </div>
+        </form>
       </div>
     </div>
+  </div>
 
 
   </div>

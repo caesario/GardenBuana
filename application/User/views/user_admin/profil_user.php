@@ -11,17 +11,17 @@
     </div>
   </div>
 
-  <?php var_dump($_SESSION); ?>
+  <!-- <?php var_dump($user); ?> -->
 
   <hr class="mt-0">
 
   <div class="row">
     <div class="col-6 col-lg-9">
       <h6 class="mb-0 text-dark font-weight-bold">Nama</h6>
-      <p class="text-dark"><?= $pengguna['name']; ?></p>
+      <p class="text-dark"><?= $user['name']; ?></p>
 
       <h6 class="mb-0 text-dark font-weight-bold">Email</h6>
-      <p class="text-dark"><?= $pengguna['email']; ?></p>
+      <p class="text-dark"><?= $user['email']; ?></p>
 
       <h6 class="mb-0 text-dark font-weight-bold">Nomor Telpon</h6>
       <p class="text-dark"><?= $pengguna['telpon']; ?></p>
