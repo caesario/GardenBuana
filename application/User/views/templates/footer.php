@@ -74,6 +74,7 @@
 <!-- Uncomment below i you want to use a preloader -->
 <!-- <div id="preloader"></div> -->
 
+
 <!-- JavaScript Libraries -->
 <script src="<?= base_url('assets/lib/jquery/jquery.min.js'); ?>"></script>
 <script src="<?= base_url('assets/lib/jquery/jquery-migrate.min.js'); ?>"></script>
@@ -87,11 +88,13 @@
 <script src="<?= base_url('assets/lib/isotope/isotope.pkgd.min.js'); ?>"></script>
 <script src="<?= base_url('assets/lib/lightbox/js/lightbox.min.js'); ?>"></script>
 <script src="<?= base_url('assets/js/bootstrap.min.js'); ?>"></script>
+<script src="<?= base_url('assets/js/pagination.js'); ?>"></script>
 <!-- Contact Form JavaScript File -->
 <script src="contactform/contactform.js"></script>
 
 <!-- Template Main Javascript File -->
 <script src="<?= base_url('assets/js/temp-main.js'); ?>"></script>
+
 
 </body>
 

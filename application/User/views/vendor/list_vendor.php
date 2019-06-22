@@ -62,7 +62,7 @@
 
 
       <div class="clearfix wow fadeInUp">
-        <div class="row card-deck">
+        <div class="row card-deck" id="demo">
           <?php foreach ($vendor as $data) : ?>
             <div class="col-3 p-0">
               <a href="<?= site_url('Vendor/detail_vendor/'); ?><?= $data['id_vendor']; ?>">
@@ -160,5 +160,16 @@
       </div>
 
     </div>
+
+    <script>
+      $('#demo').pagination({
+        dataSource: [<?= json_encode($vendor); ?>],
+        callback: function(data, pagination) {
+          // template method of yourself
+          var html = template(data);
+          dataContainer.html(html);
+        }
+      })
+    </script>
 
   </section> <!-- #Client -->
