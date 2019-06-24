@@ -9,7 +9,7 @@
         <h5 class="text-center font-weight-bold">Pesanan Anda</h5>
       </div>
 
-      <?php var_dump($session); ?>
+      <?php var_dump($trx_pesanan); ?>
 
       <div class="card rounded-0">
         <div class="card-header">
@@ -63,6 +63,7 @@
       <div class="mt-4">
         <h6 class="font-weight-bold">Nego Disini</h6>
 
+        <?php foreach($list_nego as $val_nego) : ?>
         <div class="card mb-3">
           <div class="row no-gutters">
             <div class="col-md-1">
@@ -70,19 +71,44 @@
             </div>
             <div class="col">
               <div class="card-body p-3">
-                <h6 class="card-title font-weight-bold m-0">Jhon</h6>
-                <p class="card-text gb-font-small m-0">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <h6 class="card-title font-weight-bold m-0">
+                  <?php 
+                    if($val_nego['type'] == 'P') {
+                      echo $val_nego['nama_pemesan'];
+                    } else {
+                      echo $val_nego['nama_vendor'];
+                    }
+                  ?>
+                </h6>
+                <p class="card-text gb-font-small m-0"><?=$val_nego['pesan']?></p>
+                <p class="card-text"><small class="text-muted">Created : <?=$val_nego['created_date']?></small></p>
               </div>
             </div>
           </div>
         </div>
+        <?php endforeach; ?>
+
       </div>
 
-      <form>
+      <form action="<?= site_url('transaksi/nego_pesan'); ?>" method="post">
         <div class="form-group">
           <label for="exampleFormControlTextarea1">Tulis Pesan Disini</label>
-          <textarea class="form-control gb-font-small" id="exampleFormControlTextarea1" rows="3"></textarea>
+          <textarea class="form-control gb-font-small" id="exampleFormControlTextarea1" name="keterangan" rows="3"></textarea>
+          <input type="hidden" value="<?=$trx_pesanan['id_pesanan']?>" name="id_pesanan" />
+
+          <?php 
+              if($this->session->userdata('role_id') == 2) : 
+                $type = "P"; 
+          ?>
+              <input type="hidden" value="<?=$trx_pesanan['id_pelanggan']?>" name="id_pelanggan" />
+          <?php 
+              else : 
+                $type = "V";
+          ?>
+              <input type="hidden" value="<?=$trx_pesanan['id_vendor']?>" name="id_vendor" />
+          <?php endif; ?>
+
+          <input type="hidden" value="<?=$type?>" name="type" />
         </div>
         <button type="submit" class="btn btn-sm btn-primary rounded-0 ">Kirim Pesan</button>
       </form>
