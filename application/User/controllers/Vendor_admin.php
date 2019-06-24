@@ -241,7 +241,8 @@ class Vendor_admin extends CI_Controller
     }
 
     /* PESANAN BUKTI BAYAR */
-    public function pesanan_bukti_bayar() {
+    public function pesanan_bukti_bayar()
+    {
         if ($this->session->userdata("role_id") == 1) {
             $data['title'] = 'Pesanan Bukti Bayar';
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -263,10 +264,11 @@ class Vendor_admin extends CI_Controller
             $this->load->view('templates/vendor_footer');
         } else {
             redirect("home");
-        }   
+        }
     }
 
-    public function konfirmasi_bukti_bayar($id) {
+    public function konfirmasi_bukti_bayar($id)
+    {
         if ($this->session->userdata("role_id") == 1) {
             $data['title'] = 'GardenBuana | Pesanan';
             $data['trx_pesanan'] = $this->Pesanan_model->getPesananById($id);

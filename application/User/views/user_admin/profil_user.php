@@ -29,6 +29,9 @@
       <h6 class="mb-0 text-dark font-weight-bold">Alamat</h6>
       <p class="text-dark"><?= $pengguna['alamat']; ?></p>
 
+      <h6 class="mb-0 text-dark font-weight-bold">Kota</h6>
+      <p class="text-dark"><?= $pengguna['nama_kota']; ?></p>
+
       <h6 class="mb-0 text-dark font-weight-bold">Status Akun</h6>
       <p class="text-dark"><?= $pengguna['nama_status']; ?></p>
 

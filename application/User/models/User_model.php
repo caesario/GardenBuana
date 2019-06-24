@@ -15,6 +15,24 @@ class User_model extends CI_model
         return $result->row_array();
     }
 
+    public function updateProfilUser($data, $id)
+    {
+        if ($data && $id) {
+            $this->db->where('id_user', $id);
+            $update = $this->db->update('user', $data);
+            return ($update == true) ? true : false;
+        }
+    }
+
+    public function updateProfilPelanggan($data, $id)
+    {
+        if ($data && $id) {
+            $this->db->where('id_userfk', $id);
+            $update = $this->db->update('pelanggan', $data);
+            return ($update == true) ? true : false;
+        }
+    }
+
     public function getAllPesananVendor($id)
     {
         $this->db->select('*');
@@ -23,5 +41,13 @@ class User_model extends CI_model
         $this->db->where('id_pelanggan', $id);
         $result = $this->db->get();
         return $result->result_array();
+    }
+
+    public function cekField()
+    {
+        $this->db->select('telpon');
+        $this->db->from('pelanggan');
+        $result = $this->db->get();
+        return $result->row();
     }
 }

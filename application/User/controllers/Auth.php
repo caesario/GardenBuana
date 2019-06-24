@@ -30,7 +30,6 @@ class Auth extends CI_Controller
   {
     $email = $this->input->post('email');
     $password = $this->input->post('password');
-
     $user = $this->db->get_where('user', ['email' => $email])->row_array();
 
     //Jika user ada
@@ -48,8 +47,15 @@ class Auth extends CI_Controller
           if ($user['role_id'] == 1) {
             redirect('Vendor_admin');
           }
+          $cekTable = $this->db->get_where('pelanggan', ['id_userfk' => $user['id_user']])->row();
+          // var_dump($cekTable);
+          // die();
           if ($user['role_id'] == 2) {
-            redirect('home');
+            if (!isset($cekTable->telpon)) {
+              redirect('User/editProfil_user');
+            } else {
+              redirect('home');
+            }
           } else {
             redirect('Admin');
           }

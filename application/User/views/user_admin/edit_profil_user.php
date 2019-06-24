@@ -17,7 +17,7 @@
 
   <div class="row">
     <div class="col-6 col-lg-9">
-      <form action="<?= site_url('Vendor_admin/updateEditProfil'); ?>" method="post">
+      <form action="<?= site_url('User/updateProfilUser'); ?>" method="post">
         <h6 class="mb-0 text-dark font-weight-bold">Nama</h6>
         <div class="col-5 p-0 form-group">
           <input class="form-control form-control-sm mt-1 mb-3 rounded-0" name="nama" type="text" value="<?= $user['name']; ?>">
@@ -31,6 +31,11 @@
         <h6 class="mb-0 text-dark font-weight-bold">Nomor Telpon</h6>
         <div class="col-5 p-0 form-group">
           <input class="form-control form-control-sm mt-1 mb-3 rounded-0" name="noTelp" type="text" value="<?= $pengguna['telpon']; ?>">
+        </div>
+
+        <h6 class="mb-0 text-dark font-weight-bold">Alamat</h6>
+        <div class="col-5 p-0 form-group">
+          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" name="alamat" type="text" value="<?= $pengguna['alamat']; ?>">
         </div>
 
         <h6 class="mb-0 text-dark font-weight-bold">Kota</h6>

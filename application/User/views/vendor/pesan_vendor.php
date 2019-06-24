@@ -8,7 +8,7 @@
     <div class="section-header mt-5">
     </div>
 
-    <?php var_dump($user); ?>
+    <!-- <?php var_dump($pelanggan); ?> -->
 
     <section class="bg-white p-5">
       <div class="row">
