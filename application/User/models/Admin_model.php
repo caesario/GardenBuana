@@ -71,8 +71,9 @@ class Admin_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('trx_pesanan');
-        $this->db->join('user', 'user.id_user = trx_pesanan.id_user');
-        $this->db->join('vendor', 'vendor.id_userfk = user.id_user');
+        // $this->db->join('user', 'user.id_user = trx_pesanan.id_user');
+        $this->db->join('pelanggan', 'pelanggan.id_pelanggan = trx_pesanan.id_pelanggan');
+        $this->db->join('vendor', 'vendor.id_vendor = trx_pesanan.id_vendor');
         $this->db->join('status_transaksi', 'status_transaksi.id_status_trans = trx_pesanan.id_status_trans');
         $result = $this->db->get();
         return $result->result_array();
@@ -196,6 +197,42 @@ class Admin_model extends CI_Model
         return $result->result_array();
     }
 
+    public function getJumlahPengguna($id)
+    {
+        $this->db->select('*');
+        $this->db->from('pelanggan');
+        $this->db->where('id_kota', $id);
+        $result = $this->db->get();
+        return $result->num_rows();
+    }
+
+    public function getJumlahVendor($id)
+    {
+        $this->db->select('*');
+        $this->db->from('vendor');
+        $this->db->where('id_kota', $id);
+        $result = $this->db->get();
+        return $result->num_rows();
+    }
+
+    public function getRowJakPus()
+    {
+        $this->db->select('*');
+        $this->db->from('pelanggan');
+        $this->db->where('id_kota = 2');
+        $result = $this->db->get();
+        return $result->num_rows();
+    }
+
+    public function getRowJakTim()
+    {
+        $this->db->select('*');
+        $this->db->from('pelanggan');
+        $this->db->where('id_kota = 4');
+        $result = $this->db->get();
+        return $result->num_rows();
+    }
+
     public function getInfoWeb()
     {
         $this->db->select('*');
@@ -211,5 +248,41 @@ class Admin_model extends CI_Model
         $this->db->where('id_info', $id);
         $result = $this->db->get();
         return $result->row_array();
+    }
+
+    public function getAllPenilaian()
+    {
+        $this->db->select('*');
+        $this->db->from('penilaian');
+        $this->db->join('vendor', 'vendor.id_vendor = penilaian.id_vendor');
+        // $this->db->where('id_vendor');
+        $result = $this->db->get();
+        return $result->result_array();
+    }
+
+    public function getAllPendapatan()
+    {
+        $this->db->select('*');
+        $this->db->from('pendapatan');
+        $this->db->join('vendor', 'vendor.id_vendor = pendapatan.id_vendor');
+        // $this->db->where('id_vendor');
+        $result = $this->db->get();
+        return $result->result_array();
+    }
+
+    public function getRowPengguna()
+    {
+        $this->db->select('*');
+        $this->db->from('pelanggan');
+        $result = $this->db->get();
+        return $result->num_rows();
+    }
+
+    public function getRowPesanan()
+    {
+        $this->db->select('*');
+        $this->db->from('trx_pesanan');
+        $result = $this->db->get();
+        return $result->num_rows();
     }
 }

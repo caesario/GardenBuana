@@ -4,7 +4,7 @@
   <!-- Page Heading -->
   <h4 class="h4 mb-4 text-gray-800 float-left"><?= $title; ?></h4>
 
-  <!-- <?php var_dump($wilayah); ?>  -->
+  <?php var_dump($penilaian); ?> 
 
   <button class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></button>
   <div class="table-responsive">
@@ -21,12 +21,12 @@
       </thead>
       <tbody>
         <?php $i = 1; ?>
-        <?php foreach ($wilayah as $data) : ?>
+        <?php foreach ($penilaian as $data) : ?>
           <tr>
             <td><?= $i; ?></td>
-            <td><?= $data['nama_kota']; ?></td>
+            <td><?= $data['nama_vendor']; ?></td>
             <td></td>
-            <td></td>
+            <td><?= $data['penilaian']; ?></td>
             <td><?= $data['keterangan']; ?></td>
             <td>
               <span>

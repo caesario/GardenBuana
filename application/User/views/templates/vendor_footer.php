@@ -39,6 +39,7 @@
 </div>
 
 <!-- Bootstrap core JavaScript-->
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 <script src="<?= base_url('assets/'); ?>vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="<?= base_url('assets/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -53,6 +54,20 @@
 <!-- <script src="<?= base_url('assets/'); ?>js/datatables.js"></script> -->
 
 <script>
+    var MyprojectTable;
+
+    $(document).ready(function() {
+        MyprojectTable = $('#tablewilayah').DataTable({
+
+            'ajax': '<?= site_url() ?>Admin/dataPerwilayah',
+
+            'order': []
+
+        });
+    });
+</script>
+
+<script type="text/javascript">
     $(document).ready(function() {
         $('#table_id').DataTable();
     });
@@ -63,6 +78,7 @@
         $('[data-toggle="tooltip"]').tooltip()
     })
 </script>
+
 
 </body>
 

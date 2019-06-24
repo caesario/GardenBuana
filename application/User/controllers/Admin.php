@@ -19,6 +19,8 @@ class Admin extends CI_Controller
         if ($this->session->userdata("role_id") == 3) {
             $data['title'] = 'Dasboard';
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['t_pengguna'] = $this->Admin_model->getRowPengguna();
+            $data['t_pesanan'] = $this->Admin_model->getRowPesanan();
             $this->load->view('templates/vendor_header', $data);
             $this->load->view('templates/vendor_sidebar', $data);
             $this->load->view('templates/vendor_topbar', $data);
@@ -134,12 +136,36 @@ class Admin extends CI_Controller
         $data['title'] = 'Wilayah';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['wilayah'] = $this->Admin_model->getAllWilayah();
+        $data['jakpus'] = $this->Admin_model->getRowJakPus();
+        $data['jaktim'] = $this->Admin_model->getRowJakTim();
 
         $this->load->view('templates/vendor_header', $data);
         $this->load->view('templates/vendor_sidebar', $data);
         $this->load->view('templates/vendor_topbar', $data);
         $this->load->view('admin/wilayah', $data);
         $this->load->view('templates/vendor_footer');
+    }
+
+    public function dataPerwilayah()
+    {
+        $result = array('data' => array());
+
+        $data = $this->Admin_model->getAllWilayah();
+        $no = 1;
+        foreach ($data as $key => $value) {
+
+            $jumlahpengguna = $this->Admin_model->getJumlahPengguna($value['id_kota']);
+            $jumlahvendor = $this->Admin_model->getJumlahVendor($value['id_kota']);
+            $result['data'][$key] = array(
+                $no,
+                $value['nama_kota'],
+                $jumlahpengguna,
+                $jumlahvendor
+            );
+            $no++;
+        } // /foreach
+
+        echo json_encode($result);
     }
 
     public function profil_admin($id)

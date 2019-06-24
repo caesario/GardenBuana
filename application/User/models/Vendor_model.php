@@ -8,7 +8,16 @@ class Vendor_model extends CI_model
         $this->db->select('*');
         $this->db->from('vendor');
         $this->db->join('kota', 'kota.id_kota =  vendor.id_kota');
-        $this->db->limit(3);
+        $result = $this->db->get();
+        return $result->result_array();
+    }
+
+    public function getAllVendorLimit()
+    {
+        $this->db->select('*');
+        $this->db->from('vendor');
+        $this->db->join('kota', 'kota.id_kota =  vendor.id_kota');
+        $this->db->limit(8);
         $this->db->order_by('id_vendor', 'RANDOM');
         $result = $this->db->get();
         return $result->result_array();

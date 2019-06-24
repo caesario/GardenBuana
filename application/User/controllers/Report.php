@@ -17,7 +17,7 @@ class Report extends CI_Controller
         $this->load->view('templates/vendor_header', $data);
         $this->load->view('templates/vendor_sidebar', $data);
         $this->load->view('templates/vendor_topbar', $data);
-        $this->load->view('admin/index');
+        $this->load->view('admin/index', $data);
         $this->load->view('templates/vendor_footer');
     }
 
@@ -195,7 +195,7 @@ class Report extends CI_Controller
     {
         $data['title'] = 'Penilaian Vendor';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        // $data['history'] = $this->Admin_model->getAllHistoryPesanan();
+        $data['penilaian'] = $this->Admin_model->getAllPenilaian();
 
         $this->load->view('templates/vendor_header', $data);
         $this->load->view('templates/vendor_sidebar', $data);
@@ -209,6 +209,7 @@ class Report extends CI_Controller
         $data['title'] = 'Pendapatan Vendor';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // $data['history'] = $this->Admin_model->getAllHistoryPesanan();
+        $data['pendapatan'] = $this->Admin_model->getAllPendapatan();
 
         $this->load->view('templates/vendor_header', $data);
         $this->load->view('templates/vendor_sidebar', $data);
