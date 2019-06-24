@@ -188,6 +188,9 @@ class Vendor_admin extends CI_Controller
             $data['trx_pesanan'] = $this->Pesanan_model->getPesananById($id);
             $data['info_web'] = $this->Admin_model->getInfoWeb();
             $data['session'] = $this->session->all_userdata();
+
+            $data['list_nego'] = $this->db->query("select * from list_nego_pesanan where id_pesanan = '$id'")->result_array();
+            
             $this->load->view('templates/header', $data);
             $this->load->view('templates/menu');
             $this->load->view('transaksi/nego_pesan', $data);
