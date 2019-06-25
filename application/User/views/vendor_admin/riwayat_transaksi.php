@@ -17,14 +17,18 @@
           <th>Tanggal Pengerjaan</th>
           <th>Status</th>
           <th>Harga</th>
-          <th>Tanggal Pesanan</th>
+          <!-- <th>Tanggal Pesanan</th> -->
           <th class="gb-aksi-width">Aksi</th>
         </tr>
       </thead>
       <tbody>
         <?php foreach ($trx_pesanan as $data) : ?>
           <tr>
-            <td>TRX-0<?= $data['id_pesanan']; ?></td>
+            <td>
+              <?php if ($data['id_status_trans'] == 5) : ?>
+                <a href="<?= site_url('vendor_admin/invoice/'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
+                  <?= $data['id_pesanan']; ?></td>
+            <?php endif; ?>
             <td><?= $data['nama_pemesan']; ?></td>
             <!-- <td><?= $data['telpon']; ?></td> -->
             <td><?= $data['alamat']; ?></td>
@@ -32,7 +36,7 @@
             <td><?= $data['nama_status']; ?></td>
             <td>Rp.<?= $data['harga']; ?></td>
             <!-- <td><?= $data['nama_status']; ?></td> -->
-            <td><?= $data['create_date']; ?></td>
+            <!-- <td><?= $data['create_date']; ?></td> -->
             <td>
               <span>
                 <a class="btn btn-success btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Lihat Detail">

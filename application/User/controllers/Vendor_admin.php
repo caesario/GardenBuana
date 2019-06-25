@@ -77,7 +77,7 @@ class Vendor_admin extends CI_Controller
 
             $dataVendor = array(
                 'nama_vendor' => $this->input->post('namaVendor'),
-                'id_kota' => $this->input->post('kotaVendor'),
+                'id_kota' => $this->input->post('kota'),
                 'telpon' => $this->input->post('noTelp'),
                 'alamat' => $this->input->post('alamat'),
                 'info_vendor' => $this->input->post('infoVendor'),
@@ -202,19 +202,6 @@ class Vendor_admin extends CI_Controller
         $this->load->view('templates/vendor_footer');
     }
 
-    public function riwayat()
-    {
-        $data['title'] = 'Riwayat Transaksi';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['trx_pesanan'] = $this->Admin_model->getAllPesanan();
-
-        $this->load->view('templates/vendor_header', $data);
-        $this->load->view('templates/vendor_sidebar', $data);
-        $this->load->view('templates/vendor_topbar', $data);
-        $this->load->view('vendor_admin/riwayat_transaksi', $data);
-        $this->load->view('templates/vendor_footer');
-    }
-
     public function detail_pesanan($id)
     {
         if ($this->session->userdata("role_id") == 1) {
@@ -335,12 +322,70 @@ class Vendor_admin extends CI_Controller
         if ($this->session->userdata("role_id") == 1) {
             $data = $this->input->post();
 
-            $query = $this->db->query("UPDATE trx_pesanan SET id_status_trans = 4 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
+            $query = $this->db->query("UPDATE trx_pesanan SET id_status_trans = 5 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
 
             if ($query) {
                 $this->session->set_flashdata('success', 'Data Berhasil Diubah');
                 redirect('vendor_admin/pesanan');
             }
+        } else {
+            redirect("home");
+        }
+    }
+
+    public function detail_pembayaran($id)
+    {
+        if ($this->session->userdata("role_id") == 1) {
+            $data['title'] = 'GardenBuana | Konfirmasi Pembayaran';
+            $data['trx_pesanan'] = $this->Pesanan_model->getPesananById($id);
+            $data['info_web'] = $this->Admin_model->getInfoWeb();
+            $data['session'] = $this->session->all_userdata();
+
+            // $data['list_nego'] = $this->db->query("select * from list_nego_pesanan where id_pesanan = '$id'")->result_array();
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/menu');
+            $this->load->view('transaksi/konfirmasi_pembayaran', $data);
+            $this->load->view('templates/footer', $data);
+        } else {
+            redirect("home");
+        }
+    }
+
+    public function riwayat()
+    {
+        $data['title'] = 'Riwayat Transaksi';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        // $data['trx_pesanan'] = $this->Admin_model->getAllPesanan();
+
+        $id = $this->session->userdata("id_user");
+
+        $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
+        $getVendorId = $getVendor->id_vendor;
+
+        $data['trx_pesanan'] = $this->db->query("select * from list_pesanan_vendor where id_vendor = " . $getVendorId . " AND id_status_trans = 5")->result_array();
+
+        $this->load->view('templates/vendor_header', $data);
+        $this->load->view('templates/vendor_sidebar', $data);
+        $this->load->view('templates/vendor_topbar', $data);
+        $this->load->view('vendor_admin/riwayat_transaksi', $data);
+        $this->load->view('templates/vendor_footer');
+    }
+
+    public function invoice($id)
+    {
+        if ($this->session->userdata("role_id") == 1) {
+            $data['title'] = 'GardenBuana | Konfirmasi Pembayaran';
+            $data['trx_pesanan'] = $this->Pesanan_model->getPesananById($id);
+            $data['info_web'] = $this->Admin_model->getInfoWeb();
+            $data['session'] = $this->session->all_userdata();
+
+            // $data['list_nego'] = $this->db->query("select * from list_nego_pesanan where id_pesanan = '$id'")->result_array();
+
+            $this->load->view('templates/header', $data);
+            // $this->load->view('templates/menu');
+            $this->load->view('transaksi/invoice', $data);
+            // $this->load->view('templates/footer', $data);
         } else {
             redirect("home");
         }

@@ -30,7 +30,7 @@
                 <?php elseif ($data['id_status_trans'] == 2) : ?>
                   <a href="<?= site_url('vendor_admin/detail_pesanan/'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
                   <?php elseif ($data['id_status_trans'] == 3) : ?>
-                    <a href="<?= site_url('vendor_admin/konfirmasi_bukti_bayar/'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
+                    <a href="<?= site_url('vendor_admin/detail_pembayaran/'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
                     <?php endif; ?><?= $data['id_pesanan']; ?>
                   </a>
             </td>
