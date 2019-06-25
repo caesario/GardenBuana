@@ -8,7 +8,7 @@
     <div class="section-header mt-5">
     </div>
 
-    <!-- <?php var_dump($pelanggan); ?> -->
+    <!-- <?php var_dump($user); ?> -->
 
     <section class="bg-white p-5">
       <div class="row">
@@ -50,7 +50,7 @@
             <div class="form-group row">
               <label for="telponPesanan" class="col-sm-3 col-form-label">Telpon</label>
               <div class="col-sm-4">
-                <input type="text" class="form-control form-control-sm" id="telponPesanan" name="telponPesanan" placeholder="">
+                <input type="text" class="form-control form-control-sm" id="telponPesanan" name="telponPesanan" placeholder="" value="<?= $dataPelanggan['telpon'] ?>">
               </div>
             </div>
             <div class="form-group row">
@@ -62,7 +62,7 @@
             <div class="form-group row">
               <label for="alamatPesanan" class="col-sm-3 col-form-label">Alamat</label>
               <div class="col-sm-4">
-                <textarea rows="3" type="textarea" class="form-control form-control-sm" id="alamatPesanan" name="alamatPesanan" placeholder=""></textarea>
+                <textarea rows="3" type="textarea" class="form-control form-control-sm" id="alamatPesanan" name="alamatPesanan" placeholder=""><?= $dataPelanggan['alamat'] ?></textarea>
               </div>
             </div>
             <div class="form-group row">

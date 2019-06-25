@@ -44,8 +44,13 @@ class Auth extends CI_Controller
             'id_user' => $user['id_user']
           ];
           $this->session->set_userdata($data);
+          $cekNamaVendor = $this->db->get_where('vendor', ['id_userfk' => $user['id_user']])->row();
           if ($user['role_id'] == 1) {
-            redirect('Vendor_admin');
+            if (!isset($cekNamaVendor->nama_vendor)) {
+              redirect('Vendor_admin/editProfil');
+            } else {
+              redirect('Vendor_admin');
+            }
           }
           $cekTable = $this->db->get_where('pelanggan', ['id_userfk' => $user['id_user']])->row();
           // var_dump($cekTable);

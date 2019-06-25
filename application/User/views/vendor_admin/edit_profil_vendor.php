@@ -40,7 +40,16 @@
 
         <h6 class="mb-0 text-dark font-weight-bold">Kota</h6>
         <div class="col-5 p-0 form-group">
-          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" name="kotaVendor" type="text" value="<?= $vendor['nama_kota']; ?>">
+          <select class="form-control" id="kota" name="kota">
+            <?php foreach ($kota as $data) : ?>
+              <option value="<?= $data['id_kota']; ?>"><?= $vendor['nama_kota']; ?></option>
+            <?php endforeach; ?>
+          </select>
+        </div>
+
+        <h6 class="mb-0 text-dark font-weight-bold">Alamat</h6>
+        <div class="col-5 p-0 form-group">
+          <textarea rows="3" class="form-control mt-1 mb-3 rounded-0" type="text" name="alamat" value=""><?= $vendor['alamat']; ?></textarea>
         </div>
 
         <h6 class="mb-0 text-dark font-weight-bold">Informasi Vendor</h6>
@@ -61,10 +70,15 @@
         <button type="submit" name="update" class="btn btn-sm btn-primary gb-btn-order rounded-0">Update Data</button>
       </form>
     </div>
+
     <div class="col-6 col-lg-3">
-      <div class="float-right">
-        <img class="card-img-top p-3 gb-img-size mb-3 border rounded-0" src="<?= base_url('assets/img/clients/client-3.png'); ?>" alt="Card image cap">
-      </div>
+      <form action="<?= site_url('Vendor_admin/ubahLogo'); ?>" method="post">
+        <div class="float-right">
+          <img class="card-img-top p-3 gb-img-size mb-3 border rounded-0" src="<?= base_url('assets/img/clients/client-3.png'); ?>" alt="Card image cap">
+          <input class="form-control form-control-sm mt-1 mb-3 rounded-0 border-0 p-0" name="fotoVendor" id="fotoVendor" type="file">
+          <button type="submit" name="update" class="btn btn-sm btn-primary gb-btn-order rounded-0">Update Logo</button>
+        </div>
+      </form>
     </div>
   </div>
 

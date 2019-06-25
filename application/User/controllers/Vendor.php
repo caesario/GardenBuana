@@ -75,8 +75,9 @@ class Vendor extends CI_Controller
       $data['title'] = 'GardenBuana | Detail Vendor';
       $data['vendor'] = $this->Vendor_model->getVendorById($id);
       $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-      // $data['session'] = $this->session->all_userdata();
+      $data['session'] = $this->session->all_userdata();
       $data['info_web'] = $this->Admin_model->getInfoWeb();
+      $data['dataPelanggan'] = $this->db->get_where('pelanggan', ['id_userfk' => $this->session->userdata('id_user')])->row_array();
       // $data['pelanggan'] = $this->Transaksi_model->getIdPelanggan();
       $this->load->view('templates/header', $data);
       $this->load->view('templates/menu');

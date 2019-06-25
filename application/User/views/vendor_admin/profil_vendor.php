@@ -33,6 +33,9 @@
       <h6 class="mb-0 text-dark font-weight-bold">Kota</h6>
       <p class="text-dark"><?= $vendor['nama_kota']; ?></p>
 
+      <h6 class="mb-0 text-dark font-weight-bold">Alamat</h6>
+      <p class="text-dark"><?= $vendor['alamat']; ?></p>
+
       <h6 class="mb-0 text-dark font-weight-bold">Informasi Vendor</h6>
       <p class="text-dark"><?= $vendor['info_vendor']; ?></p>
 

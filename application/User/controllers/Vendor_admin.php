@@ -50,7 +50,7 @@ class Vendor_admin extends CI_Controller
             $data['title'] = 'Profil';
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $data['vendor'] = $this->Vendor_model->getVendorProfilById($this->session->userdata('id_user'));
-
+            $data['kota'] = $this->Vendor_model->getAllKota();
             $this->load->view('templates/vendor_header', $data);
             $this->load->view('templates/vendor_sidebar', $data);
             $this->load->view('templates/vendor_topbar', $data);
@@ -71,35 +71,6 @@ class Vendor_admin extends CI_Controller
         $idVendor = $datauser['id_userfk'];
         $idUser = $this->session->userdata('id_user');
 
-
-        // Original Code
-        /*if ($this->form_validation->run() == false) {
-            // redirect('vendor_admin/profil');
-            echo"<pre>"; print_r($this->input->post());exit();
-        } else {
-
-            $data = $this->input->post();
-            echo"<pre>"; print_r($data);exit();
-
-
-            $dataVendor = array(
-                'nama_vendor' => $this->input->post('namaVendor'),
-            );
-            $dataUser = array(
-                'name' => $this->input->post('name'),
-            );
-
-            $updateVendor = $this->Vendor_model->updateProfilVendor($dataVendor, $idVendor);
-            $updateUser = $this->Vendor_model->updateProfilUser($dataUser, $idUser);
-            if ($updateVendor == true || $updateUser == true) {
-                $this->session->set_flashdata('success', 'Data Berhasil Diubah');
-                redirect('vendor_admin/profil');
-            } else {
-                $this->session->set_flashdata('error', 'Data Gagal Diubah');
-                redirect('vendor_admin/profil');
-            }
-        }*/
-
         if ($this->input->post()) {
             $data = $this->input->post();
             $dateNow = date('Y-m-d H:i:s');
@@ -108,12 +79,14 @@ class Vendor_admin extends CI_Controller
                 'nama_vendor' => $this->input->post('namaVendor'),
                 'id_kota' => $this->input->post('kotaVendor'),
                 'telpon' => $this->input->post('noTelp'),
+                'alamat' => $this->input->post('alamat'),
                 'info_vendor' => $this->input->post('infoVendor'),
                 'createTime' => $dateNow
             );
             $dataUser = array(
                 'name' => $this->input->post('nama'),
             );
+
 
             $updateVendor = $this->Vendor_model->updateProfilVendor($dataVendor, $idVendor);
             $updateUser = $this->Vendor_model->updateProfilUser($dataUser, $idUser);
@@ -128,6 +101,67 @@ class Vendor_admin extends CI_Controller
             redirect('vendor_admin/profil');
         }
     }
+
+    function ubahLogo()
+    {
+        $fotoVendor = $this->upload();
+        if (!$fotoVendor) {
+            return false;
+        }
+
+        // Query untuk insert ke DB
+        $this->db->insert('vendor', $fotoVendor);
+    }
+
+    // Function Upload
+    public function upload()
+    {
+        $namaFile = $_FILES['fotoVendor']['name'];
+        $ukuranFile = $_FILES['fotoVendor']['size'];
+        $error = $_FILES['fotoVendor']['error'];
+        $tmpName = $_FILES['fotoVendor']['tmp_name'];
+
+        // Cek upload gambar
+        if ($error === 4) {
+            echo "<script>
+				alert('Tidak Ada Gambar Yang Dipilih!');
+			  </script>";
+            return false;
+        }
+
+        // Cek validasi gambar
+        $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+        $ekstensiGambar = explode('.', $namaFile);
+        $ekstensiGambar = strtolower(end($ekstensiGambar));
+
+        // Cek ekstensi gambar
+        if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+            echo "<script>
+				alert('File Yang Dimasukkan Bukan Gambar!');
+			  </script>";
+            return false;
+        }
+
+        // Cek size gambar
+        if ($ukuranFile > 5000000) {
+            echo "<script>
+				alert('Ukuran Gambar Melebihi 5 Mb!');
+			  </script>";
+            return false;
+        }
+
+        // Generate nama gambar
+        $namaFileBaru = uniqid();
+        $namaFileBaru .= '.';
+        $namaFileBaru .= $ekstensiGambar;
+
+        // Pindah direktori
+        move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
+        return $namaFileBaru;
+    }
+
+
+
 
     public function pesanan()
     {
@@ -190,7 +224,7 @@ class Vendor_admin extends CI_Controller
             $data['session'] = $this->session->all_userdata();
 
             $data['list_nego'] = $this->db->query("select * from list_nego_pesanan where id_pesanan = '$id'")->result_array();
-            
+
             $this->load->view('templates/header', $data);
             $this->load->view('templates/menu');
             $this->load->view('transaksi/nego_pesan', $data);

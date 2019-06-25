@@ -98,12 +98,12 @@ class User extends CI_Controller
     if ($this->session->userdata("role_id") == 2) {
       $data['title'] = 'Pesanan';
       $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-      $id = $_SESSION['id_user'];
-      $data['trx_pesanan'] = $this->User_model->getAllPesananVendor($id);
+      $id = $this->db->get_where('pelanggan', ['id_userfk' => $this->session->userdata('id_user')])->row('id_pelanggan');
+      $data['trx_pesanan'] = $this->User_model->getAllPesananPelanggan($id);
       $this->load->view('templates/vendor_header', $data);
       $this->load->view('templates/vendor_sidebar', $data);
       $this->load->view('templates/vendor_topbar', $data);
-      $this->load->view('user_admin/pesanan');
+      $this->load->view('user_admin/pesanan', $data);
       $this->load->view('templates/vendor_footer');
     } else {
       redirect("home");
