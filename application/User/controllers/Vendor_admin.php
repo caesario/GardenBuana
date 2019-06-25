@@ -304,17 +304,27 @@ class Vendor_admin extends CI_Controller
         }
     }
 
-    public function konfirmasi_bukti_bayar($id)
+    public function konfirmasi_bukti_bayar()
     {
         if ($this->session->userdata("role_id") == 1) {
-            $data['title'] = 'GardenBuana | Pesanan';
-            $data['trx_pesanan'] = $this->Pesanan_model->getPesananById($id);
-            $data['info_web'] = $this->Admin_model->getInfoWeb();
+            $data['title'] = 'Konfirmasi Pembayaran';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $id = $this->session->userdata("id_user");
+
+            $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
+            $getVendorId = $getVendor->id_vendor;
+
+            $data['trx_pesanan'] = $this->db->query("select * from list_pesanan_vendor where id_vendor = " . $getVendorId . " AND id_status_trans = 3")->result_array();
+
+            // echo "<pre>";print_r($data['trx_pesanan']);exit();
+
             $data['session'] = $this->session->all_userdata();
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/menu');
-            $this->load->view('transaksi/konfirmasi_pembayaran', $data);
-            $this->load->view('templates/footer', $data);
+
+            $this->load->view('templates/vendor_header', $data);
+            $this->load->view('templates/vendor_sidebar', $data);
+            $this->load->view('templates/vendor_topbar', $data);
+            $this->load->view('vendor_admin/pesanan', $data);
+            $this->load->view('templates/vendor_footer');
         } else {
             redirect("home");
         }

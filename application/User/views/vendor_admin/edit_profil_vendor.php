@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <?php var_dump($_SESSION); ?>
+  <!-- <?php var_dump($data); ?> -->
 
   <hr class="mt-0">
 
@@ -42,6 +42,7 @@
         <div class="col-5 p-0 form-group">
           <select class="form-control" id="kota" name="kota">
             <?php foreach ($kota as $data) : ?>
+              <?php var_dump($data); ?>
               <option value="<?= $data['id_kota']; ?>"><?= $vendor['nama_kota']; ?></option>
             <?php endforeach; ?>
           </select>

@@ -22,7 +22,11 @@
               <?php if ($session['role_id'] == 2) : ?>
                 <button class="btn btn-sm btn-danger float-right rounded-0 ml-1">Batalkan Pesanan</button>
               <?php else : ?>
-                <button class="btn btn-sm btn-success float-right rounded-0" data-toggle="modal" data-target="#exampleModal">Konfirmasi Pesanan</button>
+                <?php if ($trx_pesanan['id_status_trans'] == 1) : ?>
+                  <button class="btn btn-sm btn-success float-right rounded-0" data-toggle="modal" data-target="#exampleModal">Konfirmasi Pesanan</button>
+                <?php else : ?>
+                  <button class="btn btn-sm btn-danger float-right rounded-0" data-toggle="modal" data-target="#exampleModal">Batal Konfirmasi</button>
+                <?php endif; ?>
               <?php endif; ?>
             </div>
           </div>
@@ -63,29 +67,29 @@
       <div class="mt-4">
         <h6 class="font-weight-bold">Nego Disini</h6>
 
-        <?php foreach($list_nego as $val_nego) : ?>
-        <div class="card mb-3">
-          <div class="row no-gutters">
-            <div class="col-md-1">
-              <!-- <img src="..." class="card-img" alt="..."> -->
-            </div>
-            <div class="col">
-              <div class="card-body p-3">
-                <h6 class="card-title font-weight-bold m-0">
-                  <?php 
-                    if($val_nego['type'] == 'P') {
+        <?php foreach ($list_nego as $val_nego) : ?>
+          <div class="card mb-3">
+            <div class="row no-gutters">
+              <div class="col-md-1">
+                <!-- <img src="..." class="card-img" alt="..."> -->
+              </div>
+              <div class="col">
+                <div class="card-body p-3">
+                  <h6 class="card-title font-weight-bold m-0">
+                    <?php
+                    if ($val_nego['type'] == 'P') {
                       echo $val_nego['nama_pemesan'];
                     } else {
                       echo $val_nego['nama_vendor'];
                     }
-                  ?>
-                </h6>
-                <p class="card-text gb-font-small m-0"><?=$val_nego['pesan']?></p>
-                <p class="card-text"><small class="text-muted">Created : <?=$val_nego['created_date']?></small></p>
+                    ?>
+                  </h6>
+                  <p class="card-text gb-font-small m-0"><?= $val_nego['pesan'] ?></p>
+                  <p class="card-text"><small class="text-muted">Created : <?= $val_nego['created_date'] ?></small></p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         <?php endforeach; ?>
 
       </div>
@@ -94,21 +98,21 @@
         <div class="form-group">
           <label for="exampleFormControlTextarea1">Tulis Pesan Disini</label>
           <textarea class="form-control gb-font-small" id="exampleFormControlTextarea1" name="keterangan" rows="3"></textarea>
-          <input type="hidden" value="<?=$trx_pesanan['id_pesanan']?>" name="id_pesanan" />
+          <input type="hidden" value="<?= $trx_pesanan['id_pesanan'] ?>" name="id_pesanan" />
 
-          <?php 
-              if($this->session->userdata('role_id') == 2) : 
-                $type = "P"; 
+          <?php
+          if ($this->session->userdata('role_id') == 2) :
+            $type = "P";
+            ?>
+            <input type="hidden" value="<?= $trx_pesanan['id_pelanggan'] ?>" name="id_pelanggan" />
+          <?php
+        else :
+          $type = "V";
           ?>
-              <input type="hidden" value="<?=$trx_pesanan['id_pelanggan']?>" name="id_pelanggan" />
-          <?php 
-              else : 
-                $type = "V";
-          ?>
-              <input type="hidden" value="<?=$trx_pesanan['id_vendor']?>" name="id_vendor" />
+            <input type="hidden" value="<?= $trx_pesanan['id_vendor'] ?>" name="id_vendor" />
           <?php endif; ?>
 
-          <input type="hidden" value="<?=$type?>" name="type" />
+          <input type="hidden" value="<?= $type ?>" name="type" />
         </div>
         <button type="submit" class="btn btn-sm btn-primary rounded-0 ">Kirim Pesan</button>
       </form>

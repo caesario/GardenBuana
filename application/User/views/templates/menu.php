@@ -22,7 +22,7 @@
             <li class="drop-down"><a href="#">Profil</a>
               <ul>
                 <li><a href="<?= site_url('user'); ?>">Dasboard</a></li>
-                <li><a href="<?= site_url('user/pesanan'); ?>">Transaksi</a></li>
+                <li><a href="<?= site_url('user_admin/pesanan'); ?>">Transaksi</a></li>
                 <li><a href="<?= site_url('user/profil_user'); ?>">Edit Profil</a></li>
                 <hr>
                 <li><a href="<?= base_url('Auth/logout'); ?>">Keluar</a></li>
@@ -38,7 +38,7 @@
             <li class="active"><a href="<?= site_url(); ?>">Home</a></li>
             <li><a href="<?= base_url('vendor'); ?>">List Vendor</a></li>
             <!-- <li><a href="<?= site_url('Testimoni'); ?>">Testimoni</a></li>
-                              <li><a href="<?= site_url('About'); ?>">Tentang Kami</a></li> -->
+                                    <li><a href="<?= site_url('About'); ?>">Tentang Kami</a></li> -->
             <li class="drop-down"><a href="#">Profil</a>
               <ul>
                 <li><a href="<?= site_url('vendor_admin'); ?>">Edit Profil</a></li>
@@ -58,7 +58,7 @@
             <li><a href="<?= base_url('vendor'); ?>">List Vendor</a></li>
             <li><a href="<?= site_url('Testimoni'); ?>">Testimoni</a></li>
             <li><a href="<?= site_url('About'); ?>">Tentang Kami</a></li>
-            <li><a href="<?= base_url('Auth/logout'); ?>">Keluar</a></li>
+            <li><a href="<?= base_url('Auth'); ?>">Login</a></li>
           </ul>
         </nav><!-- .main-nav -->
 

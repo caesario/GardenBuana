@@ -35,7 +35,7 @@
 
         <h6 class="mb-0 text-dark font-weight-bold">Alamat</h6>
         <div class="col-5 p-0 form-group">
-          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" name="alamat" type="text" value="<?= $pengguna['alamat']; ?>">
+          <textarea name="alamat" id="alamat" rows="3" class="form-control form-control-sm rounded-0"><?= $pengguna['alamat']; ?></textarea>
         </div>
 
         <h6 class="mb-0 text-dark font-weight-bold">Kota</h6>
@@ -50,7 +50,7 @@
 
         <h6 class="mb-0 text-dark font-weight-bold">Bergabung Pada</h6>
         <div class="col-5 p-0 form-group">
-          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" type="text" name="createTime" value="<?= $pengguna['date_created']; ?>" readonly>
+          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" type="text" name="createTime" value="<?= $pengguna['create_date']; ?>" readonly>
         </div>
 
         <button type="submit" name="update" class="btn btn-sm btn-primary gb-btn-order rounded-0">Update Data</button>

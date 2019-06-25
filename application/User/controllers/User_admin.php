@@ -7,6 +7,7 @@ class User_admin extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Admin_model');
+        $this->load->model('User_model');
     }
 
     public function index()
@@ -44,5 +45,39 @@ class User_admin extends CI_Controller
         $this->load->view('templates/vendor_topbar', $data);
         $this->load->view('vendor_admin/edit_profil_vendor');
         $this->load->view('templates/vendor_footer');
+    }
+
+    public function pesanan()
+    {
+        if ($this->session->userdata("role_id") == 2) {
+            $data['title'] = 'Pesanan';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $id = $this->db->get_where('pelanggan', ['id_userfk' => $this->session->userdata('id_user')])->row('id_pelanggan');
+            $data['trx_pesanan'] = $this->User_model->getAllPesananPelanggan($id);
+            $this->load->view('templates/vendor_header', $data);
+            $this->load->view('templates/vendor_sidebar', $data);
+            $this->load->view('templates/vendor_topbar', $data);
+            $this->load->view('user_admin/pesanan', $data);
+            $this->load->view('templates/vendor_footer');
+        } else {
+            redirect("home");
+        }
+    }
+
+    public function riwayat_pesanan()
+    {
+        if ($this->session->userdata("role_id") == 2) {
+            $data['title'] = 'Riwayat Pesanan';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $id = $this->db->get_where('pelanggan', ['id_userfk' => $this->session->userdata('id_user')])->row('id_pelanggan');
+            $data['trx_pesanan'] = $this->User_model->getAllPesananPelanggan($id);
+            $this->load->view('templates/vendor_header', $data);
+            $this->load->view('templates/vendor_sidebar', $data);
+            $this->load->view('templates/vendor_topbar', $data);
+            $this->load->view('user_admin/riwayat_pesanan', $data);
+            $this->load->view('templates/vendor_footer');
+        } else {
+            redirect("home");
+        }
     }
 }

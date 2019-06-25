@@ -36,7 +36,7 @@
       <p class="text-dark"><?= $pengguna['nama_status']; ?></p>
 
       <h6 class="mb-0 text-dark font-weight-bold">Bergabung Pada</h6>
-      <p class="text-dark"><?= $pengguna['date_created']; ?></p>
+      <p class="text-dark"><?= $pengguna['create_date']; ?></p>
     </div>
     <div class="col-6 col-lg-3">
       <div class="float-right">
