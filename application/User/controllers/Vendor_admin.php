@@ -104,13 +104,26 @@ class Vendor_admin extends CI_Controller
 
     function ubahLogo()
     {
+
         $fotoVendor = $this->upload();
         if (!$fotoVendor) {
             return false;
+        } else {
+            $datalogo = array(
+                'logo' => $fotoVendor
+            );
+            // Query untuk insert ke DB
+            $iduser = $_SESSION['id_user'];
+            $this->db->where('id_userfk', $iduser);
+            $update = $this->db->update('vendor', $datalogo);
+            if ($update) {
+                $this->session->set_flashdata('success', 'Berhasil Diubah');
+                redirect('Vendor_admin/editProfil');
+            } else {
+                $this->session->set_flashdata('gagal', 'Data Berhasil Diubah');
+                redirect('Vendor_admin/editProfil');
+            }
         }
-
-        // Query untuk insert ke DB
-        $this->db->insert('vendor', $fotoVendor);
     }
 
     // Function Upload
@@ -133,7 +146,8 @@ class Vendor_admin extends CI_Controller
         $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
         $ekstensiGambar = explode('.', $namaFile);
         $ekstensiGambar = strtolower(end($ekstensiGambar));
-
+        // echo $namaFile;
+        // die();
         // Cek ekstensi gambar
         if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
             echo "<script>
@@ -156,7 +170,7 @@ class Vendor_admin extends CI_Controller
         $namaFileBaru .= $ekstensiGambar;
 
         // Pindah direktori
-        move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
+        move_uploaded_file($tmpName, 'assets/img/' . $namaFileBaru);
         return $namaFileBaru;
     }
 

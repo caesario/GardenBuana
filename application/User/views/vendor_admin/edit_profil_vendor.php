@@ -1,6 +1,19 @@
 <!-- Begin Page Content -->
 <div class="container-fluid bg-white px-5 pt-4">
 
+  <?php if ($this->session->flashdata('success')) : ?>
+    <div class="row mt-3">
+      <div class="col">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          Gambar <strong>Logo</strong> <?= $this->session->flashdata('success'); ?>.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  <?php endif; ?>
+
   <div class="row">
     <div class="col-6">
       <h3 class="text-dark"><?= $title; ?></h3>
@@ -73,9 +86,9 @@
     </div>
 
     <div class="col-6 col-lg-3">
-      <form action="<?= site_url('Vendor_admin/ubahLogo'); ?>" method="post">
+      <form action="<?= site_url('Vendor_admin/ubahLogo'); ?>" method="post" enctype="multipart/form-data">
         <div class="float-right">
-          <img class="card-img-top p-3 gb-img-size mb-3 border rounded-0" src="<?= base_url('assets/img/clients/client-3.png'); ?>" alt="Card image cap">
+          <img class="card-img-top p-3 gb-img-size mb-3 border rounded-0" src="<?= base_url('assets/img/'); ?><?= $vendor['logo']; ?>" alt="Card image cap">
           <input class="form-control form-control-sm mt-1 mb-3 rounded-0 border-0 p-0" name="fotoVendor" id="fotoVendor" type="file">
           <button type="submit" name="update" class="btn btn-sm btn-primary gb-btn-order rounded-0">Update Logo</button>
         </div>
