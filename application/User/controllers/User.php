@@ -8,6 +8,7 @@ class User extends CI_Controller
     parent::__construct();
     $this->load->model('User_model');
     $this->load->model('Admin_model');
+    $this->load->model('Vendor_model');
   }
 
   public function index()
@@ -47,6 +48,7 @@ class User extends CI_Controller
       $data['title'] = 'My Profil';
       $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
       $data['pengguna'] = $this->User_model->getUserProfilById($this->session->userdata('id_user'));
+      $data['kota'] = $this->Vendor_model->getAllKota();
 
       $this->load->view('templates/vendor_header', $data);
       $this->load->view('templates/vendor_sidebar', $data);

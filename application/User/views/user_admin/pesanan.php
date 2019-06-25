@@ -27,8 +27,8 @@
                 <a href="<?= site_url('transaksi/pesanan/'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
                 <?php elseif ($data['id_status_trans'] == 2) : ?>
                   <a href="<?= site_url('transaksi/konfirmasi_bukti/'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
-                  <?php elseif ($data['id_status_trans'] == 4) : ?>
-                    <a href="<?= site_url('transaksi/konfirmasi_bukti/'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
+                  <?php elseif ($data['id_status_trans'] == 5) : ?>
+                    <a href="<?= site_url('transaksi/invoice/'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
                     <?php endif; ?><?= $data['id_pesanan']; ?>
                   </a>
             </td>
@@ -47,8 +47,8 @@
                   <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('transaksi/konfirmasi_bukti/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
                     <i class="fas fa-eye"></i>
                   </a>
-                <?php elseif ($data['id_status_trans'] == 4) : ?>
-                  <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('transaksi/konfirmasi_bukti/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
+                <?php elseif ($data['id_status_trans'] == 5) : ?>
+                  <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('transaksi/invoice/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
                     <i class="fas fa-eye"></i>
                   </a>
                 <?php endif; ?>

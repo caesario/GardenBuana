@@ -40,7 +40,12 @@
 
         <h6 class="mb-0 text-dark font-weight-bold">Kota</h6>
         <div class="col-5 p-0 form-group">
-          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" name="kota" type="text" value="<?= $pengguna['nama_kota']; ?>">
+          <select class="form-control" id="kota" name="kota">
+            <?php foreach ($kota as $data) : ?>
+              <?php var_dump($data); ?>
+              <option value="<?= $data['id_kota']; ?>"><?= $data['nama_kota']; ?></option>
+            <?php endforeach; ?>
+          </select>
         </div>
 
         <h6 class="mb-0 text-dark font-weight-bold">Status Akun</h6>
