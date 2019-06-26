@@ -11,7 +11,7 @@
     <section class="bg-white p-5 rounded-0">
       <div class="row">
         <div class="col-3">
-          <img class="card-img-top p-3 gb-img-size mb-3 border rounded-0" src="<?= base_url('assets/img/clients/client-3.png'); ?>" alt="Card image cap">
+          <img class="card-img-top p-3 gb-img-size mb-3 border rounded-0" src="<?= base_url('assets/img/'); ?><?= $vendor['logo']; ?>" alt="Card image cap">
           <h5 class="mb-0"><?= $vendor['nama_vendor']; ?></h5>
           <!-- <hr class="my-1"> -->
           <p class="gb-p-detail mb-3"><?= $vendor['alamat']; ?>, <?= $vendor['nama_kota']; ?></p>

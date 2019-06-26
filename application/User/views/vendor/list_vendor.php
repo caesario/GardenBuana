@@ -67,7 +67,7 @@
             <div class="col-3 p-0">
               <a href="<?= site_url('Vendor/detail_vendor/'); ?><?= $data['id_vendor']; ?>">
                 <div class="card rounded-0 mb-4">
-                  <img class="card-img-top p-3 pb-0 gb-img-size" src="<?= base_url('assets/img/clients/client-3.png'); ?>" alt="Card image cap">
+                  <img class="card-img-top p-3 pb-0 gb-img-size" src="<?= base_url('assets/img/'); ?><?= $data['logo']; ?>" alt="Card image cap">
                   <div class="card-footer">
                     <h6 class="text-muted m-0"><?= $data['nama_vendor']; ?></h6>
                     <p class="gb-p-list"><?= $data['nama_kota']; ?></p>

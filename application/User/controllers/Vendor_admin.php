@@ -331,16 +331,77 @@ class Vendor_admin extends CI_Controller
         }
     }
 
+    public function konfirmasi_pekerjaan()
+    {
+        if ($this->session->userdata("role_id") == 1) {
+            $data['title'] = 'Konfirmasi Pekerjaan';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $id = $this->session->userdata("id_user");
+
+            $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
+            $getVendorId = $getVendor->id_vendor;
+
+            $data['trx_pesanan'] = $this->db->query("select * from list_pesanan_vendor where id_vendor = " . $getVendorId . " AND id_status_trans = 6")->result_array();
+
+            // echo "<pre>";print_r($data['trx_pesanan']);exit();
+
+            $data['session'] = $this->session->all_userdata();
+
+            $this->load->view('templates/vendor_header', $data);
+            $this->load->view('templates/vendor_sidebar', $data);
+            $this->load->view('templates/vendor_topbar', $data);
+            $this->load->view('vendor_admin/pesanan', $data);
+            $this->load->view('templates/vendor_footer');
+        } else {
+            redirect("home");
+        }
+    }
+
+    public function detail_konfirmasi_pengerjaan($id)
+    {
+        if ($this->session->userdata("role_id") == 1) {
+            $data['title'] = 'GardenBuana | Pesanan';
+            $data['trx_pesanan'] = $this->Pesanan_model->getPesananById($id);
+            $data['info_web'] = $this->Admin_model->getInfoWeb();
+            $data['session'] = $this->session->all_userdata();
+
+            $data['list_nego'] = $this->db->query("select * from list_nego_pesanan where id_pesanan = '$id'")->result_array();
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/menu');
+            $this->load->view('transaksi/detail_konfirmasi_pengerjaan', $data);
+            $this->load->view('templates/footer', $data);
+        } else {
+            redirect("home");
+        }
+    }
+
+    public function upd_konfirmasi_pengerjaan()
+    {
+        if ($this->session->userdata("role_id") == 1) {
+            $data = $this->input->post();
+
+            $query = $this->db->query("UPDATE trx_pesanan SET id_status_trans = 7 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
+
+            if ($query) {
+                $this->session->set_flashdata('success', 'Data Berhasil Diubah');
+                redirect('vendor_admin/riwayat');
+            }
+        } else {
+            redirect("vendor_admin/konfirmasi_pekerjaan");
+        }
+    }
+
     public function upd_konfirmasi_pembayaran()
     {
         if ($this->session->userdata("role_id") == 1) {
             $data = $this->input->post();
 
-            $query = $this->db->query("UPDATE trx_pesanan SET id_status_trans = 5 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
+            $query = $this->db->query("UPDATE trx_pesanan SET id_status_trans = 6 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
 
             if ($query) {
                 $this->session->set_flashdata('success', 'Data Berhasil Diubah');
-                redirect('vendor_admin/pesanan');
+                redirect('vendor_admin/konfirmasi_bukti_bayar');
             }
         } else {
             redirect("home");
@@ -377,7 +438,7 @@ class Vendor_admin extends CI_Controller
         $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
         $getVendorId = $getVendor->id_vendor;
 
-        $data['trx_pesanan'] = $this->db->query("select * from list_pesanan_vendor where id_vendor = " . $getVendorId . " AND id_status_trans = 5")->result_array();
+        $data['trx_pesanan'] = $this->db->query("select * from list_pesanan_vendor where id_vendor = " . $getVendorId . " AND id_status_trans = 7")->result_array();
 
         $this->load->view('templates/vendor_header', $data);
         $this->load->view('templates/vendor_sidebar', $data);

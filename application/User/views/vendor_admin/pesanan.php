@@ -31,8 +31,10 @@
                   <a href="<?= site_url('vendor_admin/detail_pesanan/'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
                   <?php elseif ($data['id_status_trans'] == 3) : ?>
                     <a href="<?= site_url('vendor_admin/detail_pembayaran/'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
-                    <?php endif; ?><?= $data['id_pesanan']; ?>
-                  </a>
+                    <?php elseif ($data['id_status_trans'] == 6) : ?>
+                      <a href="<?= site_url('vendor_admin/detail_konfirmasi_pengerjaan/'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
+                      <?php endif; ?><?= $data['id_pesanan']; ?>
+                    </a>
             </td>
             <td><?= $data['nama_pemesan']; ?></td>
             <!-- <td><?= $data['telpon']; ?></td> -->
