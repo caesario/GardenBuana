@@ -3,7 +3,7 @@
     ============================-->
 <section id="clients" class="section-bg">
 
-  <?php var_dump($portfolio); ?>
+  <!-- <?php var_dump($portfolio); ?> -->
 
   <div class="container wow fadeInUp">
 
@@ -34,13 +34,13 @@
           <hr>
           <div class="row">
             <?php foreach ($portfolio as $data) : ?>
-              <div class="col-4">
-                <a href="">
-                  <img class="card-img-top p-3 gb-img-port mb-4 border rounded-0" src="<?= base_url('assets/img/'); ?><?= $data['gambar']; ?>">
-                </a>
+              <div class="col-4 bg-container">
+                <img class="card-img-top gb-img-port mb-4 border rounded-0 " src="<?= base_url('assets/img/'); ?><?= $data['gambar']; ?>">
+                <div class="bg-overlay-2">
+                  <div class="bg-text-2"><?= $data['keterangan']; ?></div>
+                </div>
               </div>
             <?php endforeach; ?>
-
           </div>
         </div>
       </div>

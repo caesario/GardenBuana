@@ -4,6 +4,8 @@
   <!-- Page Heading -->
   <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
 
+  <!-- <?php var_dump($id_vendor); ?> -->
+
   <div class="row">
 
     <!-- Earnings (Monthly) Card Example -->

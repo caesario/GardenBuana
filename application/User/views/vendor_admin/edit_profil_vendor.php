@@ -88,7 +88,7 @@
     <div class="col-6 col-lg-3">
       <form action="<?= site_url('Vendor_admin/ubahLogo'); ?>" method="post" enctype="multipart/form-data">
         <div class="float-right">
-          <img class="card-img-top p-3 gb-img-size mb-3 border rounded-0" src="<?= base_url('assets/img/'); ?><?= $vendor['logo']; ?>" alt="Card image cap">
+          <img class="card-img-top p-3 mb-3 border rounded-0" src="<?= base_url('assets/img/'); ?><?= $vendor['logo']; ?>" alt="Card image cap">
           <input class="form-control form-control-sm mt-1 mb-3 rounded-0 border-0 p-0" name="fotoVendor" id="fotoVendor" type="file">
           <button type="submit" name="update" class="btn btn-sm btn-primary gb-btn-order rounded-0">Update Logo</button>
         </div>

@@ -21,7 +21,7 @@ class Vendor_admin extends CI_Controller
             $this->load->view('templates/vendor_header', $data);
             $this->load->view('templates/vendor_sidebar', $data);
             $this->load->view('templates/vendor_topbar', $data);
-            $this->load->view('vendor_admin/index');
+            $this->load->view('vendor_admin/index', $data);
             $this->load->view('templates/vendor_footer');
         } else {
             redirect("home");

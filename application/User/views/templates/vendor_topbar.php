@@ -62,6 +62,10 @@
               <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
               Home
             </a>
+            <a class="dropdown-item" href="<?= site_url('vendor'); ?>">
+              <i class="fas fa-building fa-sm fa-fw mr-2 text-gray-400"></i>
+              Lihat Portfolio
+            </a>
             <!-- <a class="dropdown-item" href="#">
                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                   Settings

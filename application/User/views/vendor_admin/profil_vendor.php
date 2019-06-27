@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <?php var_dump(time()); ?>
+  <!-- <?php var_dump(time()); ?> -->
   <!-- <?php var_dump($_SESSION); ?> -->
 
   <hr class="mt-0">
@@ -47,7 +47,7 @@
     </div>
     <div class="col-6 col-lg-3">
       <div class="float-right">
-        <img class="card-img-top p-3 gb-img-size mb-3 border rounded-0" src="<?= base_url('assets/img/'); ?><?= $vendor['logo']; ?>" alt="Card image cap">
+        <img class="card-img-top p-3 gb-img-size-profil mb-3 border rounded-0" src="<?= base_url('assets/img/'); ?><?= $vendor['logo']; ?>" alt="Card image cap">
       </div>
     </div>
   </div>
