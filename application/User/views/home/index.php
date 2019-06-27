@@ -44,8 +44,11 @@
         <?php foreach ($vendor as $data) : ?>
           <div class="col-lg-3 col-md-4 col-xs-6">
             <a href="<?= site_url('Vendor/detail_vendor/'); ?><?= $data['id_vendor']; ?>">
-              <div class="client-logo">
-                <img src="<?= base_url('assets/img/clients/client-3.png'); ?>" class="img-fluid" alt="">
+              <div class="client-logo bg-container">
+                <img src="<?= base_url('assets/img/'); ?><?= $data['logo']; ?>" class="img-fluid bg-image" alt="">
+                <div class="bg-overlay">
+                  <div class="bg-text font-weight-bold"><?= $data['nama_vendor']; ?></div>
+                </div>
               </div>
             </a>
           </div>

@@ -71,3 +71,44 @@ a.gb-btn-width {
 .gb-no-width {
 	width: 15px;
 }
+
+.bg-container {
+	position: relative;
+	width: 100%;
+}
+
+.bg-image {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.bg-overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	transition: 0.1s ease;
+	background-color: #007bff;
+}
+
+.bg-container:hover .bg-overlay {
+	opacity: 0.9;
+}
+
+.bg-text {
+	color: white;
+	font-size: 20px;
+	position: absolute;
+	font-family: "Montserrat", sans-serif;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
