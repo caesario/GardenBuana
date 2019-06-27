@@ -11,7 +11,7 @@
   </div>
 
   <!-- <?php var_dump(time()); ?> -->
-  <!-- <?php var_dump($portfolio); ?> -->
+  <!-- <?php var_dump($getVendorId); ?> -->
 
   <hr class="mt-0">
 

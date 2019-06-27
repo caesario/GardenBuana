@@ -175,13 +175,53 @@ class Vendor_admin extends CI_Controller
         return $namaFileBaru;
     }
 
+    public function verifikasi_vendor()
+    {
+        if ($this->session->userdata("role_id") == 1) {
+            $data['title'] = 'Verifikasi Data';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['session'] = $this->session->all_userdata();
+            $id = $this->session->userdata("id_user");
+            $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
+            $getVendorId = $getVendor->id_vendor;
+            $data['verif'] = $this->Vendor_model->getVerifVendorById($getVendorId);
+            $this->load->view('templates/vendor_header', $data);
+            $this->load->view('templates/vendor_sidebar', $data);
+            $this->load->view('templates/vendor_topbar', $data);
+            $this->load->view('vendor_admin/verifikasi');
+            $this->load->view('templates/vendor_footer');
+        } else {
+            redirect("home");
+        }
+    }
+
+    public function edit_verifikasi()
+    {
+        if ($this->session->userdata("role_id") == 1) {
+            $data['title'] = 'Verifikasi Data';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+            $this->load->view('templates/vendor_header', $data);
+            $this->load->view('templates/vendor_sidebar', $data);
+            $this->load->view('templates/vendor_topbar', $data);
+            $this->load->view('vendor_admin/edit_verifikasi');
+            $this->load->view('templates/vendor_footer');
+        } else {
+            redirect("home");
+        }
+    }
+
     public function portfolio()
     {
         if ($this->session->userdata("role_id") == 1) {
             $data['title'] = 'Portfolio';
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $data['session'] = $this->session->all_userdata();
-            $data['portfolio'] = $this->Vendor_model->getPortfolioById($this->session->userdata('id_user'));
+            $id = $this->session->userdata("id_user");
+            $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
+            $getVendorId = $getVendor->id_vendor;
+            $data['portfolio'] = $this->Vendor_model->getPortfolioById($getVendorId);
+
             $this->load->view('templates/vendor_header', $data);
             $this->load->view('templates/vendor_sidebar', $data);
             $this->load->view('templates/vendor_topbar', $data);

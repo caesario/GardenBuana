@@ -158,14 +158,22 @@ class Vendor_model extends CI_model
         return $query->result_array();
     }
 
-    public function getPortfolioById($id)
+    public function getPortfolioById($getVendorId)
     {
         $this->db->select('*');
         $this->db->from('portfolio');
-        // $this->db->where('id_vendor', $id);
+        $this->db->where('id_vendor', $getVendorId);
         $result = $this->db->get();
         return $result->result_array();
     }
-}
 
-//test
+    public function getVerifVendorById($getVendorId)
+    {
+        $this->db->select('*');
+        $this->db->from('data_verif');
+        $this->db->join('status_verif', 'status_verif.id_status_verif = data_verif.id_status_verif');
+        $this->db->where('id_vendor', $getVendorId);
+        $result = $this->db->get();
+        return $result->row_array();
+    }
+}
