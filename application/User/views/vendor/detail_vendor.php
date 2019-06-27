@@ -3,6 +3,8 @@
     ============================-->
 <section id="clients" class="section-bg">
 
+  <?php var_dump($portfolio); ?>
+
   <div class="container wow fadeInUp">
 
     <div class="section-header mt-5">
@@ -31,20 +33,14 @@
           <h4 class="mb-0">Portfolio Vendor</h4>
           <hr>
           <div class="row">
-            <div class="col-4">
-              <a href="">
-                <img class="card-img-top p-3 gb-img-port mb-4 border rounded-0" src="<?= base_url('assets/img/clients/client-1.png'); ?>" alt="Card image cap">
-              </a>
-            </div>
-            <div class="col-4">
-              <img class="card-img-top p-3 gb-img-port mb-3 border" src="<?= base_url('assets/img/clients/client-4.png'); ?>" alt="Card image cap">
-            </div>
-            <div class="col-4">
-              <img class="card-img-top p-3 gb-img-port mb-3 border" src="<?= base_url('assets/img/clients/client-2.png'); ?>" alt="Card image cap">
-            </div>
-            <div class="col-4">
-              <img class="card-img-top p-3 gb-img-port mb-3 border" src="<?= base_url('assets/img/clients/client-5.png'); ?>" alt="Card image cap">
-            </div>
+            <?php foreach ($portfolio as $data) : ?>
+              <div class="col-4">
+                <a href="">
+                  <img class="card-img-top p-3 gb-img-port mb-4 border rounded-0" src="<?= base_url('assets/img/'); ?><?= $data['gambar']; ?>">
+                </a>
+              </div>
+            <?php endforeach; ?>
+
           </div>
         </div>
       </div>

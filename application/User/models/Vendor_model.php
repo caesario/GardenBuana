@@ -157,6 +157,15 @@ class Vendor_model extends CI_model
         // $result = $query->result_array();
         return $query->result_array();
     }
+
+    public function getPortfolioById($id)
+    {
+        $this->db->select('*');
+        $this->db->from('portfolio');
+        // $this->db->where('id_vendor', $id);
+        $result = $this->db->get();
+        return $result->result_array();
+    }
 }
 
 //test

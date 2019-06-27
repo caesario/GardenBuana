@@ -9,6 +9,7 @@ class Vendor_admin extends CI_Controller
         $this->load->model('Vendor_model');
         $this->load->model('Admin_model');
         $this->load->model('Pesanan_model');
+        $this->load->helper(array('form', 'url'));
     }
 
     public function index()
@@ -174,7 +175,102 @@ class Vendor_admin extends CI_Controller
         return $namaFileBaru;
     }
 
+    public function portfolio()
+    {
+        if ($this->session->userdata("role_id") == 1) {
+            $data['title'] = 'Portfolio';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['session'] = $this->session->all_userdata();
+            $data['portfolio'] = $this->Vendor_model->getPortfolioById($this->session->userdata('id_user'));
+            $this->load->view('templates/vendor_header', $data);
+            $this->load->view('templates/vendor_sidebar', $data);
+            $this->load->view('templates/vendor_topbar', $data);
+            $this->load->view('vendor_admin/portfolio', $data);
+            $this->load->view('templates/vendor_footer');
+        } else {
+            redirect("home");
+        }
+    }
 
+    public function tambahGambar()
+    {
+        $datauser = $this->Vendor_model->getUserProfilById($this->session->userdata('id_user'));
+        $idVendor = $datauser['id_userfk'];
+        $dateNow = date('Y-m-d H:i:s');
+
+        $berkas = $this->upload_portfolio();
+        if (!$berkas) {
+            return false;
+        } else {
+            $dataUpload = array(
+                'gambar' => $berkas,
+                'id_vendor' => $datauser['id_vendor'],
+                'keterangan' => $this->input->post('keterangan'),
+                'create_date' => $dateNow
+            );
+            // Query untuk insert ke DB
+
+            // $this->db->where('id_vendor', $idVendor);
+            $insertGambar = $this->db->insert('portfolio', $dataUpload);
+            // var_dump($idVendor);
+            // die();
+            if ($insertGambar) {
+                $this->session->set_flashdata('success', 'Berhasil Diubah');
+                redirect('Vendor_admin/portfolio');
+            } else {
+                $this->session->set_flashdata('gagal', 'Data Berhasil Diubah');
+                redirect('Vendor_admin/portfolio');
+            }
+        }
+    }
+
+    // Function Upload
+    public function upload_portfolio()
+    {
+        $namaFile = $_FILES['berkas']['name'];
+        $ukuranFile = $_FILES['berkas']['size'];
+        $error = $_FILES['berkas']['error'];
+        $tmpName = $_FILES['berkas']['tmp_name'];
+
+        // Cek upload gambar
+        if ($error === 4) {
+            echo "<script>
+            alert('Tidak Ada Gambar Yang Dipilih!');
+          </script>";
+            return false;
+        }
+
+        // Cek validasi gambar
+        $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+        $ekstensiGambar = explode('.', $namaFile);
+        $ekstensiGambar = strtolower(end($ekstensiGambar));
+        // echo $namaFile;
+        // die();
+        // Cek ekstensi gambar
+        if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+            echo "<script>
+            alert('File Yang Dimasukkan Bukan Gambar!');
+          </script>";
+            return false;
+        }
+
+        // Cek size gambar
+        if ($ukuranFile > 5000000) {
+            echo "<script>
+            alert('Ukuran Gambar Melebihi 5 Mb!');
+          </script>";
+            return false;
+        }
+
+        // Generate nama gambar
+        $namaFileBaru = uniqid();
+        $namaFileBaru .= '.';
+        $namaFileBaru .= $ekstensiGambar;
+
+        // Pindah direktori
+        move_uploaded_file($tmpName, 'assets/img/' . $namaFileBaru);
+        return $namaFileBaru;
+    }
 
 
     public function pesanan()

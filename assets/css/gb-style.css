@@ -35,10 +35,6 @@
 	font-size: 13px;
 }
 
-.gb-img-size {
-	height: 175px;
-}
-
 .gb-btn-order {
 	background-color: #2655C0;
 	border-color: #2655C0;
@@ -111,4 +107,8 @@ a.gb-btn-width {
 	-ms-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 	text-align: center;
+}
+
+.gb-line {
+	line-height: 15px;
 }
