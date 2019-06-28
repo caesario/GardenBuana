@@ -45,18 +45,25 @@ class Auth extends CI_Controller
           ];
           $this->session->set_userdata($data);
           $cekNamaVendor = $this->db->get_where('vendor', ['id_userfk' => $user['id_user']])->row();
+
+          $id = $this->session->userdata("id_user");
+          $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
+          $getVendorId = $getVendor->id_vendor;
+          $cekVerif = $this->db->get_where('data_verif', ['id_vendor' => $getVendorId])->row();
           if ($user['role_id'] == 1) {
-            if (!isset($cekNamaVendor->nama_vendor)) {
+            if (!isset($cekNamaVendor->nama_vendor) && !isset($cekNamaVendor->telpon)) {
               redirect('Vendor_admin/editProfil');
+            } elseif (!isset($cekVerif->ktp)) {
+              redirect('vendor_admin/edit_verifikasi');
             } else {
-              redirect('Vendor_admin');
+              redirect('vendor_admin');
             }
           }
           $cekTable = $this->db->get_where('pelanggan', ['id_userfk' => $user['id_user']])->row();
           // var_dump($cekTable);
           // die();
           if ($user['role_id'] == 2) {
-            if (!isset($cekTable->telpon)) {
+            if (!isset($cekTable->telpon) && !isset($cekTable->alamat)) {
               redirect('User/editProfil_user');
             } else {
               redirect('home');
@@ -115,13 +122,22 @@ class Auth extends CI_Controller
       ];
 
       $this->db->insert('user', $data);
+
       $insert_id = $this->db->insert_id();
 
       $dataVendor = [
         'id_userfk' => $insert_id,
-        'id_status' => 1
+        'id_status' => 1,
+        'logo' => 'default-logo.jpg'
       ];
       $this->db->insert('vendor', $dataVendor);
+
+      $insert_vendor = $this->db->insert_id();
+
+      $dataVerif = [
+        'id_vendor' => $insert_vendor
+      ];
+      $this->db->insert('data_verif', $dataVerif);
 
       $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selamat! akun anda berhasil dibuat, Silahkan Login</div>');
       redirect('auth');

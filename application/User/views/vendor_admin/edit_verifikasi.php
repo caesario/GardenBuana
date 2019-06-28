@@ -30,7 +30,7 @@
 
   <div class="row">
     <div class="col-6 col-lg-9">
-      <form action="<?= site_url('Vendor_admin/updateEditProfil'); ?>" method="post">
+      <form action="<?= site_url('Vendor_admin/ubahVerif'); ?>" method="post" enctype="multipart/form-data">
         <h6 class="mb-0 text-dark font-weight-bold">No. KTP</h6>
         <div class="col-5 p-0 form-group">
           <input class="form-control form-control-sm mt-1 mb-3 rounded-0" name="noKTP" type="text" value="">
@@ -43,10 +43,10 @@
           <input class="form-control form-control-sm mt-1 mb-3 rounded-0 border-0 p-0" name="fotoNPWP" id="fotoNPWP" type="file">
         </div>
 
-        <h6 class="mb-0 text-dark font-weight-bold">Keterangan</h6>
+        <!-- <h6 class="mb-0 text-dark font-weight-bold">Keterangan</h6>
         <div class="col-5 p-0 form-group">
           <input class="form-control form-control-sm mt-1 mb-3 rounded-0" name="keterangan" type="text" value="" readonly>
-        </div>
+        </div> -->
         <button type="submit" name="update" class="btn btn-sm btn-primary gb-btn-order rounded-0 mb-5">Kirim Data</button>
       </form>
     </div>

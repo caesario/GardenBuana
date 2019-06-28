@@ -93,7 +93,13 @@ class Vendor_admin extends CI_Controller
             $updateUser = $this->Vendor_model->updateProfilUser($dataUser, $idUser);
             if ($updateVendor == true || $updateUser == true) {
                 $this->session->set_flashdata('success', 'Data Berhasil Diubah');
-                redirect('vendor_admin/profil');
+
+                $cekVerif = $this->db->get_where('vendor', ['id_userfk' => $_SESSION['id_user']])->row();
+                if (!isset($cekVerif->ktp)) {
+                    redirect('vendor_admin/edit_verifikasi');
+                } else {
+                    redirect('vendor_admin/profil');
+                };
             } else {
                 $this->session->set_flashdata('error', 'Data Gagal Diubah');
                 redirect('vendor_admin/profil');
@@ -209,6 +215,132 @@ class Vendor_admin extends CI_Controller
         } else {
             redirect("home");
         }
+    }
+
+    function ubahVerif()
+    {
+
+        $fotoKTP = $this->uploadKTP();
+        $fotoNPWP = $this->uploadNPWP();
+        $dateNow = date('Y-m-d H:i:s');
+        if (!$fotoKTP) {
+            return false;
+        } else {
+            $dataVerif = array(
+                'ktp' => $this->input->post('noKTP'),
+                'gambar_ktp' => $fotoKTP,
+                'npwp' => $this->input->post('noNPWP'),
+                'gambar_npwp' => $fotoNPWP,
+                'id_status_verif' => 1,
+                'edit_date' => $dateNow = date('Y-m-d H:i:s')
+            );
+
+            // Query untuk insert ke DB
+            $id = $this->session->userdata("id_user");
+            $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
+            $getVendorId = $getVendor->id_vendor;
+            $this->db->where('id_vendor', $getVendorId);
+            $update = $this->db->update('data_verif', $dataVerif);
+            if ($update) {
+                $this->session->set_flashdata('success', 'Berhasil Diubah');
+                redirect('Vendor_admin/verifikasi_vendor');
+            } else {
+                $this->session->set_flashdata('gagal', 'Data Berhasil Diubah');
+                redirect('Vendor_admin/editProfil');
+            }
+        }
+    }
+
+    public function uploadKTP()
+    {
+        $namaFile = $_FILES['fotoKTP']['name'];
+        $ukuranFile = $_FILES['fotoKTP']['size'];
+        $error = $_FILES['fotoKTP']['error'];
+        $tmpName = $_FILES['fotoKTP']['tmp_name'];
+        // Cek upload gambar
+        if ($error === 4) {
+            echo "<script>
+				alert('Tidak Ada Gambar Yang Dipilih!');
+			  </script>";
+            return false;
+        }
+
+        // Cek validasi gambar
+        $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+        $ekstensiGambar = explode('.', $namaFile);
+        $ekstensiGambar = strtolower(end($ekstensiGambar));
+
+        // Cek ekstensi gambar
+        if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+            echo "<script>
+				alert('File Yang Dimasukkan Bukan Gambar!');
+			  </script>";
+            return false;
+        }
+
+        // Cek size gambar
+        if ($ukuranFile > 5000000) {
+            echo "<script>
+				alert('Ukuran Gambar Melebihi 5 Mb!');
+			  </script>";
+            return false;
+        }
+
+        // Generate nama gambar
+        $namaFileBaru = uniqid();
+        $namaFileBaru .= '.';
+        $namaFileBaru .= $ekstensiGambar;
+
+        // Pindah direktori
+        move_uploaded_file($tmpName, 'assets/img/' . $namaFileBaru);
+        return $namaFileBaru;
+    }
+
+    public function uploadNPWP()
+    {
+        $namaFile = $_FILES['fotoNPWP']['name'];
+        $ukuranFile = $_FILES['fotoNPWP']['size'];
+        $error = $_FILES['fotoNPWP']['error'];
+        $tmpName = $_FILES['fotoNPWP']['tmp_name'];
+        // echo $namaFile;
+        // die();
+        // Cek upload gambar
+        if ($error === 4) {
+            echo "<script>
+				alert('Tidak Ada Gambar Yang Dipilih!');
+			  </script>";
+            return false;
+        }
+
+        // Cek validasi gambar
+        $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+        $ekstensiGambar = explode('.', $namaFile);
+        $ekstensiGambar = strtolower(end($ekstensiGambar));
+
+        // Cek ekstensi gambar
+        if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+            echo "<script>
+				alert('File Yang Dimasukkan Bukan Gambar!');
+			  </script>";
+            return false;
+        }
+
+        // Cek size gambar
+        if ($ukuranFile > 5000000) {
+            echo "<script>
+				alert('Ukuran Gambar Melebihi 5 Mb!');
+			  </script>";
+            return false;
+        }
+
+        // Generate nama gambar
+        $namaFileBaru = uniqid();
+        $namaFileBaru .= '.';
+        $namaFileBaru .= $ekstensiGambar;
+
+        // Pindah direktori
+        move_uploaded_file($tmpName, 'assets/img/' . $namaFileBaru);
+        return $namaFileBaru;
     }
 
     public function portfolio()

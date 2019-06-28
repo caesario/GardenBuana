@@ -11,7 +11,7 @@
   </div>
 
   <!-- <?php var_dump(time()); ?> -->
-  <?php var_dump($verif); ?>
+  <!-- <?php var_dump($verif); ?> -->
 
   <hr class="mt-0">
 
@@ -26,14 +26,14 @@
       <h6 class="mb-0 text-dark font-weight-bold">Status</h6>
       <p class="text-dark"><?= $verif['nama_status_verif']; ?></p>
 
-      <h6 class="mb-0 text-dark font-weight-bold">Keterangan</h6>
-      <p class="text-dark"><?= $verif['keterangan']; ?></p>
+      <!-- <h6 class="mb-0 text-dark font-weight-bold">Keterangan</h6>
+      <p class="text-dark"><?= $verif['keterangan']; ?></p> -->
 
       <!-- <h6 class="mb-0 text-dark font-weight-bold">Diupload Pada</h6>
-      <p class="text-dark"><?= $verif['create_date']; ?></p>
+      <p class="text-dark"><?= $verif['create_date']; ?></p> -->
 
       <h6 class="mb-0 text-dark font-weight-bold">Diubah Pada</h6>
-      <p class="text-dark"><?= $verif['edit_date']; ?></p> -->
+      <p class="text-dark"><?= $verif['edit_date']; ?></p>
     </div>
   </div>
 
