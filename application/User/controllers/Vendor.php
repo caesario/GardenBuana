@@ -15,7 +15,7 @@ class Vendor extends CI_Controller
   public function index()
   {
     $data['title'] = 'GardenBuana | List Vendor';
-    $data['vendor'] = $this->Vendor_model->getAllVendor();
+    $data['vendor'] = $this->Vendor_model->getAllVendorVerif();
     $data['kota'] = $this->Vendor_model->getAllKota();
     $data['session'] = $this->session->all_userdata();
     $data['info_web'] = $this->Admin_model->getInfoWeb();

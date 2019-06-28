@@ -31,7 +31,7 @@
         <h4 class="text-left">Temukan Vendor</h4>
       </div>
 
-      <!-- <?= var_dump($vendor); ?> -->
+      <?= var_dump($vendor); ?>
 
       <section class="search-sec mb-4">
         <div class="container">
