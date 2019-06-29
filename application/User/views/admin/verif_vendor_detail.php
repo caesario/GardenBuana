@@ -6,7 +6,7 @@
       <h3 class="text-dark"><?= $title; ?></h3>
     </div>
     <div class="col-6">
-      <button class="btn btn-sm btn-primary gb-btn-order float-right rounded-0 ml-1" data-toggle="modal" data-target="#exampleModal">Konfirmasi Pekerjaan</button>
+      <button class="btn btn-sm btn-primary gb-btn-order float-right rounded-0 ml-1" data-toggle="modal" data-target="#exampleModal">Konfirmasi Vendor</button>
     </div>
   </div>
 
