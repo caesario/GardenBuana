@@ -207,4 +207,32 @@ class Transaksi extends CI_Controller
         $this->load->view('transaksi/konfirmasi_pekerjaan', $data);
         $this->load->view('templates/footer', $data);
     }
+
+    public function update_konfirmasi_pekerjaan()
+    {
+        $dateNow = date('Y-m-d H:i:s');
+        $data_testioni = array(
+            'id_pesanan' => $this->input->post('id_pesanan'),
+            'id_pelanggan' => $this->input->post('id_pelanggan'),
+            'id_vendor' => $this->input->post('id_vendor'),
+            'penilaian' => $this->input->post('keterangan'),
+            'create_date' => $dateNow
+        );
+
+        $data_penilaian = array(
+            'id_pesanan' => $this->input->post('id_pesanan'),
+            'id_pelanggan' => $this->input->post('id_pelanggan'),
+            'id_vendor' => $this->input->post('id_vendor'),
+            'testimoni' => $this->input->post('keterangan'),
+            'create_date' => $dateNow
+        );
+
+        if ($query) {
+            $this->session->set_flashdata('success', 'Success');
+            redirect('user_admin/pesanan');
+        } else {
+            $this->session->set_flashdata('error', 'Failed');
+            redirect('home');
+        }
+    }
 }
