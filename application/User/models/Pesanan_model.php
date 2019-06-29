@@ -20,6 +20,15 @@ class Pesanan_model extends CI_Model
     $result = $this->db->get();
     return $result->row_array();
   }
+
+  public function getBuktiById($id)
+  {
+    $this->db->select('*');
+    $this->db->from('trx_bukti_bayar');
+    $this->db->where('id_pesanan', $id);
+    $result = $this->db->get();
+    return $result->row_array();
+  }
 }
 
 

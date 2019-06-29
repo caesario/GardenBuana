@@ -75,6 +75,105 @@ class Transaksi extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
+    public function update_bukti_bayar()
+    {
+
+        $data = $this->input->post();
+        $buktiBayar = $this->uploadGambar();
+        // echo "<pre>";print_r($data);exit();
+
+        $queryInsert = $this->db->query("INSERT INTO trx_bukti_bayar (id_pesanan,upload,keterangan_bayar,id_status_trans, create_date_bayar) values 
+            ('" . $this->input->post('id_pesanan') . "', '" . $buktiBayar . "', '" . $this->input->post('keterangan') . "',
+            '3', '" . date('Y-m-d H:i:s') . "')
+            ");
+        // var_dump($query);
+        // die();
+        if ($queryInsert) {
+            $query = $this->db->query("UPDATE trx_pesanan SET id_status_trans = 3 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
+
+            if ($query) {
+                $this->session->set_flashdata('success', 'Success');
+                redirect('user_admin/pesanan');
+            }
+        } else {
+            $this->session->set_flashdata('error', 'Failed');
+            redirect('home');
+        }
+    }
+
+    function uploadBuktiBayar()
+    {
+
+        $buktiBayar = $this->uploadGambar();
+        if (!$buktiBayar) {
+            return false;
+        } else {
+            $datalogo = array(
+                'id_pesanan' => $this->input->post('id_pesanan'),
+                'upload' => $buktiBayar,
+                'keternagan_bayar' => $this->input->post('keterangan')
+            );
+            // Query untuk insert ke DB
+            $iduser = $_SESSION['id_user'];
+            $this->db->where('id_userfk', $iduser);
+            $update = $this->db->update('vendor', $datalogo);
+            if ($update) {
+                $this->session->set_flashdata('success', 'Berhasil Diubah');
+                redirect('Vendor_admin/editProfil');
+            } else {
+                $this->session->set_flashdata('gagal', 'Data Berhasil Diubah');
+                redirect('Vendor_admin/editProfil');
+            }
+        }
+    }
+
+    public function uploadGambar()
+    {
+        $namaFile = $_FILES['buktiBayar']['name'];
+        $ukuranFile = $_FILES['buktiBayar']['size'];
+        $error = $_FILES['buktiBayar']['error'];
+        $tmpName = $_FILES['buktiBayar']['tmp_name'];
+
+        // Cek upload gambar
+        if ($error === 4) {
+            echo "<script>
+				alert('Tidak Ada Gambar Yang Dipilih!');
+			  </script>";
+            return false;
+        }
+
+        // Cek validasi gambar
+        $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+        $ekstensiGambar = explode('.', $namaFile);
+        $ekstensiGambar = strtolower(end($ekstensiGambar));
+        // echo $namaFile;
+        // die();
+        // Cek ekstensi gambar
+        if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+            echo "<script>
+				alert('File Yang Dimasukkan Bukan Gambar!');
+			  </script>";
+            return false;
+        }
+
+        // Cek size gambar
+        if ($ukuranFile > 5000000) {
+            echo "<script>
+				alert('Ukuran Gambar Melebihi 5 Mb!');
+			  </script>";
+            return false;
+        }
+
+        // Generate nama gambar
+        $namaFileBaru = uniqid();
+        $namaFileBaru .= '.';
+        $namaFileBaru .= $ekstensiGambar;
+
+        // Pindah direktori
+        move_uploaded_file($tmpName, 'assets/img/' . $namaFileBaru);
+        return $namaFileBaru;
+    }
+
     public function konfirmasi_pembayaran()
     {
         $data['title'] = 'GardenBuana | Konfirmasi Pembayaran';
@@ -95,28 +194,7 @@ class Transaksi extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
-    public function update_bukti_bayar()
-    {
-        $data = $this->input->post();
-        // echo "<pre>";print_r($data);exit();
 
-        $queryInsert = $this->db->query("INSERT INTO trx_bukti_bayar (id_pesanan,upload,keterangan_bayar,id_status_trans, create_date_bayar) values 
-            ('" . $this->input->post('id_pesanan') . "', '" . $this->input->post('gambar') . "', '" . $this->input->post('keterangan') . "',
-            '3', '" . date('Y-m-d H:i:s') . "')
-            ");
-
-        if ($queryInsert) {
-            $query = $this->db->query("UPDATE trx_pesanan SET id_status_trans = 3 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
-
-            if ($query) {
-                $this->session->set_flashdata('success', 'Success');
-                redirect('user_admin/pesanan');
-            }
-        } else {
-            $this->session->set_flashdata('error', 'Failed');
-            redirect('home');
-        }
-    }
 
     public function konfirmasi_pekerjaan($id)
     {

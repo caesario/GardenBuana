@@ -231,7 +231,7 @@ class Vendor_admin extends CI_Controller
                 'gambar_ktp' => $fotoKTP,
                 'npwp' => $this->input->post('noNPWP'),
                 'gambar_npwp' => $fotoNPWP,
-                'id_status_verif' => 1,
+                'id_status_verif' => 2,
                 'edit_date' => $dateNow = date('Y-m-d H:i:s')
             );
 
@@ -660,40 +660,40 @@ class Vendor_admin extends CI_Controller
         }
     }
 
-    public function upd_konfirmasi_pembayaran()
-    {
-        if ($this->session->userdata("role_id") == 1) {
-            $data = $this->input->post();
+    // public function upd_konfirmasi_pembayaran()
+    // {
+    //     if ($this->session->userdata("role_id") == 1) {
+    //         $data = $this->input->post();
 
-            $query = $this->db->query("UPDATE trx_pesanan SET id_status_trans = 6 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
+    //         $query = $this->db->query("UPDATE trx_pesanan SET id_status_trans = 6 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
 
-            if ($query) {
-                $this->session->set_flashdata('success', 'Data Berhasil Diubah');
-                redirect('vendor_admin/konfirmasi_bukti_bayar');
-            }
-        } else {
-            redirect("home");
-        }
-    }
+    //         if ($query) {
+    //             $this->session->set_flashdata('success', 'Data Berhasil Diubah');
+    //             redirect('vendor_admin/konfirmasi_bukti_bayar');
+    //         }
+    //     } else {
+    //         redirect("home");
+    //     }
+    // }
 
-    public function detail_pembayaran($id)
-    {
-        if ($this->session->userdata("role_id") == 1) {
-            $data['title'] = 'GardenBuana | Konfirmasi Pembayaran';
-            $data['trx_pesanan'] = $this->Pesanan_model->getPesananById($id);
-            $data['info_web'] = $this->Admin_model->getInfoWeb();
-            $data['session'] = $this->session->all_userdata();
+    // public function detail_pembayaran($id)
+    // {
+    //     if ($this->session->userdata("role_id") == 1) {
+    //         $data['title'] = 'GardenBuana | Konfirmasi Pembayaran';
+    //         $data['trx_pesanan'] = $this->Pesanan_model->getPesananById($id);
+    //         $data['info_web'] = $this->Admin_model->getInfoWeb();
+    //         $data['session'] = $this->session->all_userdata();
 
-            // $data['list_nego'] = $this->db->query("select * from list_nego_pesanan where id_pesanan = '$id'")->result_array();
+    //         // $data['list_nego'] = $this->db->query("select * from list_nego_pesanan where id_pesanan = '$id'")->result_array();
 
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/menu');
-            $this->load->view('transaksi/konfirmasi_pembayaran', $data);
-            $this->load->view('templates/footer', $data);
-        } else {
-            redirect("home");
-        }
-    }
+    //         $this->load->view('templates/header', $data);
+    //         $this->load->view('templates/menu');
+    //         $this->load->view('transaksi/konfirmasi_pembayaran', $data);
+    //         $this->load->view('templates/footer', $data);
+    //     } else {
+    //         redirect("home");
+    //     }
+    // }
 
     public function riwayat()
     {

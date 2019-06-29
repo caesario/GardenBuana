@@ -30,11 +30,11 @@
       <h6 class="mb-0 text-dark font-weight-bold">Bergabung Tanggal</h6>
       <p class="text-dark"><?= $pengguna['date_created']; ?></p>
     </div>
-    <div class="col-6 col-lg-3">
+    <!-- <div class="col-6 col-lg-3">
       <div class="float-right">
         <img class="card-img-top p-3 gb-img-size mb-3 border rounded-0" src="<?= base_url('assets/img/clients/client-3.png'); ?>" alt="Card image cap">
       </div>
-    </div>
+    </div> -->
   </div>
 
 </div>

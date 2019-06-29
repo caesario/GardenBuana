@@ -135,7 +135,8 @@ class Auth extends CI_Controller
       $insert_vendor = $this->db->insert_id();
 
       $dataVerif = [
-        'id_vendor' => $insert_vendor
+        'id_vendor' => $insert_vendor,
+        'id_status_verif' => 1
       ];
       $this->db->insert('data_verif', $dataVerif);
 

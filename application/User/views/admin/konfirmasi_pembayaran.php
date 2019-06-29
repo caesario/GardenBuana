@@ -1,11 +1,14 @@
 <!--==========================
       Clients Section
     ============================-->
+
 <section id="clients" class="section-bg">
+
   <div class="container wow fadeInUp mt-5">
     <section class="bg-white px-5 py-4 rounded-0">
       <div class="section-header">
         <h5 class="text-center font-weight-bold">Konfirmasi Bukti Bayar</h5>
+        <!-- <?php var_dump($bukti_bayar); ?> -->
       </div>
 
       <div class="card rounded-0">
@@ -16,7 +19,7 @@
               <p class="my-0 gb-font-small"><?= $trx_pesanan['id_pesanan']; ?></p>
             </div>
             <div class="col-6">
-              <button class="btn btn-sm btn-primary gb-btn-order float-right rounded-0 ml-1">Rp <?= number_format($trx_pesanan['harga'], 0, ".", ".") ?></button>
+              <a href="<?= site_url('admin/konfirmasi_bukti_bayar'); ?>" class="btn btn-sm btn-primary gb-btn-order float-right rounded-0 ml-1">Kembali</a>
             </div>
           </div>
 
@@ -53,29 +56,16 @@
         </div>
       </div>
 
-      <form action="<?= site_url('transaksi/update_bukti_bayar'); ?>" method="post" enctype="multipart/form-data">
-        <div class="mt-4 mb-5">
-          <h6 class="font-weight-bold mb-2">Tagihan Anda Sebesar</h6>
-          <h3 class="display-6 mb-3">Rp. <?= number_format($trx_pesanan['harga'], 0, ".", ".") ?>,-</h3>
-          <p class="gb-font-small col-6 p-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam mollitia, dolores aspernatur laboriosam provident quam libero at est totam autem a perferendis magnam. Totam beatae ipsum ipsa iusto earum eligendi.</p>
-        </div>
-
-
-        <div class="mt-4 pt-1">
+      <form action="<?= site_url('admin/upd_konfirmasi_pembayaran'); ?>" method="post">
+        <div class="mt-4">
           <h6 class="font-weight-bold mb-2">Bukti Pembayaran</h6>
-          <input type="file" class="form-control-file btn-sm gb-font-small mb-3" id="buktiBayar" name="buktiBayar" value="HARDCODE">
+          <img class="card-img-top col-3 p-3 gb-img-size mb-3 border rounded-0" src="<?= base_url('assets/img/'); ?><?= $bukti_bayar['upload']; ?>" alt="Card image cap">
+          <p class="gb-font-small col-6 p-0 mb-3"><?= $bukti_bayar['keterangan_bayar']; ?></p>
           <input type="hidden" name="id_pesanan" value="<?= $trx_pesanan['id_pesanan']; ?>">
-          <input type="hidden" name="gambar" value="GAMBAR">
-          <p class="gb-font-small mb-2">Keterangan</p>
-          <textarea name="keterangan" id="" cols="40" rows="3" class="gb-font-small mb-1"></textarea>
-          <br>
-          <button class="btn btn-sm btn-primary gb-btn-order rounded-0">Kirim Bukti</button>
+          <button class="btn btn-sm btn-primary gb-btn-order rounded-0" type="submit">Konfirmasi Pembayaran</button>
         </div>
       </form>
 
-
-
   </div>
-
 
 </section>

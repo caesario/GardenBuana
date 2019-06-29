@@ -96,6 +96,35 @@ class Admin_model extends CI_Model
         $this->db->delete('trx_pesanan');
     }
 
+    public function getAllVendorVerif()
+    {
+        $this->db->select('*');
+        $this->db->from('data_verif');
+        $this->db->join('vendor', 'vendor.id_vendor = data_verif.id_vendor');
+        $this->db->join('kota', 'vendor.id_kota = kota.id_kota');
+        $this->db->join('status_verif', 'status_verif.id_status_verif = data_verif.id_status_verif');
+        $result = $this->db->get();
+        return $result->result_array();
+    }
+
+    public function getVendorVerifById($id)
+    {
+        $this->db->select('*');
+        $this->db->from('data_verif');
+        $this->db->join('status_verif', 'status_verif.id_status_verif = data_verif.id_status_verif');
+        $this->db->where('id_vendor', $id);
+        $result = $this->db->get();
+        return $result->row_array();
+    }
+
+    public function getAllStatus()
+    {
+        $this->db->select('*');
+        $this->db->from('status_verif');
+        $result = $this->db->get();
+        return $result->result_array();
+    }
+
     public function getAllVendor()
     {
         $this->db->select('*');
