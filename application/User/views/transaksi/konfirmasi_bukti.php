@@ -57,7 +57,9 @@
         <div class="mt-4 mb-5">
           <h6 class="font-weight-bold mb-2">Tagihan Anda Sebesar</h6>
           <h3 class="display-6 mb-3">Rp. <?= number_format($trx_pesanan['harga'], 0, ".", ".") ?>,-</h3>
-          <p class="gb-font-small col-6 p-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam mollitia, dolores aspernatur laboriosam provident quam libero at est totam autem a perferendis magnam. Totam beatae ipsum ipsa iusto earum eligendi.</p>
+          <p class="gb-font-small col-6 p-0 mb-2">Harap melakukan pembayaran hanya ke rekening dibawah ini :</p>
+          <p class="gb-font-small col-6 p-0 mb-1">BCA a/n Garden Buana 788278178</p>
+          <p class="gb-font-small col-6 p-0">Mandiri a/n Garden Buana 988281992849</p>
         </div>
 
 

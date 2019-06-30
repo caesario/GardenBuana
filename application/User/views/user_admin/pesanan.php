@@ -29,8 +29,10 @@
                   <a href="<?= site_url('transaksi/konfirmasi_bukti/'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
                   <?php elseif ($data['id_status_trans'] == 5) : ?>
                     <a href="<?= site_url('transaksi/invoice/'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
-                    <?php endif; ?><?= $data['id_pesanan']; ?>
-                  </a>
+                    <?php elseif ($data['id_status_trans'] == 7) : ?>
+                      <a href="<?= site_url('transaksi/konfirmasi_pekerjaan/'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
+                      <?php endif; ?><?= $data['id_pesanan']; ?>
+                    </a>
             </td>
             <td><?= $data['nama_vendor']; ?></td>
             <td><?= $data['tanggal_pengerjaan']; ?></td>

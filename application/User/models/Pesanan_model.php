@@ -29,6 +29,15 @@ class Pesanan_model extends CI_Model
     $result = $this->db->get();
     return $result->row_array();
   }
+
+  public function getPengerjaanById($id)
+  {
+    $this->db->select('*');
+    $this->db->from('trx_pengerjaan');
+    $this->db->where('id_pesanan', $id);
+    $result = $this->db->get();
+    return $result->row_array();
+  }
 }
 
 

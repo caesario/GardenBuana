@@ -71,7 +71,7 @@ class User_admin extends CI_Controller
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $id = $this->db->get_where('pelanggan', ['id_userfk' => $this->session->userdata('id_user')])->row('id_pelanggan');
 
-            $data['trx_pesanan'] = $this->User_model->getAllPesananPelanggan($id);
+            $data['trx_pesanan'] = $this->User_model->getAllPesananRiwayat($id);
             // $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
             // $getVendorId = $getVendor->id_pelanggan;
 

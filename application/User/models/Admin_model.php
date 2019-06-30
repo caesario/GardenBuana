@@ -162,6 +162,7 @@ class Admin_model extends CI_Model
         $this->db->from('trx_bukti_bayar');
         $this->db->join('trx_pesanan', 'trx_pesanan.id_pesanan = trx_bukti_bayar.id_pesanan');
         $this->db->join('status_transaksi', 'status_transaksi.id_status_trans = trx_bukti_bayar.id_status_trans');
+        $this->db->join('vendor', 'vendor.id_vendor = trx_pesanan.id_vendor');
         $result = $this->db->get();
         return $result->result_array();
     }

@@ -609,7 +609,7 @@ class Vendor_admin extends CI_Controller
             $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
             $getVendorId = $getVendor->id_vendor;
 
-            $data['trx_pesanan'] = $this->db->query("select * from list_pesanan_vendor where id_vendor = " . $getVendorId . " AND id_status_trans = 6")->result_array();
+            $data['trx_pesanan'] = $this->db->query("select * from list_pesanan_vendor where id_vendor = " . $getVendorId . " AND id_status_trans = 6 OR id_status_trans = 7")->result_array();
 
             // echo "<pre>";print_r($data['trx_pesanan']);exit();
 
@@ -648,16 +648,77 @@ class Vendor_admin extends CI_Controller
     {
         if ($this->session->userdata("role_id") == 1) {
             $data = $this->input->post();
+            $pengerjaan = $this->uploadPengerjaan();
+            $dateNow = date('Y-m-d H:i:s');
 
+            $dataUpload = array(
+                'id_pesanan' => $this->input->post('id_pesanan'),
+                'gambar_pengerjaan' => $pengerjaan,
+                'tanggal_pengerjaan' => $this->input->post('tanggal'),
+                'keterangan' => $this->input->post('keterangan'),
+                'created_date' => $dateNow
+            );
+
+            // var_dump($dataUpload);
+            // die();
+
+            $insertPengerjaan = $this->db->insert('trx_pengerjaan', $dataUpload);
             $query = $this->db->query("UPDATE trx_pesanan SET id_status_trans = 7 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
 
-            if ($query) {
+            if ($query || $insertPengerjaan) {
                 $this->session->set_flashdata('success', 'Data Berhasil Diubah');
-                redirect('vendor_admin/riwayat');
+                redirect('vendor_admin/konfirmasi_pekerjaan');
             }
         } else {
             redirect("vendor_admin/konfirmasi_pekerjaan");
         }
+    }
+
+    public function uploadPengerjaan()
+    {
+        $namaFile = $_FILES['gambarPengerjaan']['name'];
+        $ukuranFile = $_FILES['gambarPengerjaan']['size'];
+        $error = $_FILES['gambarPengerjaan']['error'];
+        $tmpName = $_FILES['gambarPengerjaan']['tmp_name'];
+
+        // Cek upload gambar
+        if ($error === 4) {
+            echo "<script>
+				alert('Tidak Ada Gambar Yang Dipilih!');
+			  </script>";
+            return false;
+        }
+
+        // Cek validasi gambar
+        $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+        $ekstensiGambar = explode('.', $namaFile);
+        $ekstensiGambar = strtolower(end($ekstensiGambar));
+        // echo $namaFile;
+        // die();
+        // Cek ekstensi gambar
+        if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+            echo "<script>
+				alert('File Yang Dimasukkan Bukan Gambar!');
+			  </script>";
+            return false;
+        }
+
+        // Cek size gambar
+        if ($ukuranFile > 5000000) {
+            echo "<script>
+				alert('Ukuran Gambar Melebihi 5 Mb!');
+			  </script>";
+            return false;
+        }
+
+        // Generate nama gambar
+        $namaFileBaru = uniqid();
+        $namaFileBaru .= '.';
+        $namaFileBaru .= $ekstensiGambar;
+
+        // Pindah direktori
+        move_uploaded_file($tmpName, 'assets/img/' . $namaFileBaru);
+        return $namaFileBaru;
     }
 
     // public function upd_konfirmasi_pembayaran()
@@ -706,7 +767,7 @@ class Vendor_admin extends CI_Controller
         $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
         $getVendorId = $getVendor->id_vendor;
 
-        $data['trx_pesanan'] = $this->db->query("select * from list_pesanan_vendor where id_vendor = " . $getVendorId . " AND id_status_trans = 7")->result_array();
+        $data['trx_pesanan'] = $this->db->query("select * from list_pesanan_vendor where id_vendor = " . $getVendorId . " AND id_status_trans = 8")->result_array();
 
         $this->load->view('templates/vendor_header', $data);
         $this->load->view('templates/vendor_sidebar', $data);

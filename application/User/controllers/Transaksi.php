@@ -195,11 +195,11 @@ class Transaksi extends CI_Controller
     }
 
 
-
     public function konfirmasi_pekerjaan($id)
     {
         $data['title'] = 'GardenBuana | Pesanan';
         $data['trx_pesanan'] = $this->Pesanan_model->getKonfirmasiById($id);
+        $data['data_pengerjaan'] = $this->Pesanan_model->getPengerjaanById($id);
         $data['info_web'] = $this->Admin_model->getInfoWeb();
         $data['session'] = $this->session->all_userdata();
         $this->load->view('templates/header', $data);
@@ -211,11 +211,11 @@ class Transaksi extends CI_Controller
     public function update_konfirmasi_pekerjaan()
     {
         $dateNow = date('Y-m-d H:i:s');
-        $data_testioni = array(
+        $data_testimoni = array(
             'id_pesanan' => $this->input->post('id_pesanan'),
             'id_pelanggan' => $this->input->post('id_pelanggan'),
             'id_vendor' => $this->input->post('id_vendor'),
-            'penilaian' => $this->input->post('keterangan'),
+            'testimoni' => $this->input->post('testimoni'),
             'create_date' => $dateNow
         );
 
@@ -223,16 +223,24 @@ class Transaksi extends CI_Controller
             'id_pesanan' => $this->input->post('id_pesanan'),
             'id_pelanggan' => $this->input->post('id_pelanggan'),
             'id_vendor' => $this->input->post('id_vendor'),
-            'testimoni' => $this->input->post('keterangan'),
+            'penilaian' => $this->input->post('penilaian'),
             'create_date' => $dateNow
         );
 
-        if ($query) {
+        // var_dump($data_penilaian);
+        // var_dump($data_testimoni);
+        // die();
+
+        $queryTestimoni = $this->db->insert('trx_testimoni', $data_testimoni);
+        $queryPenilaian = $this->db->insert('penilaian', $data_penilaian);
+        $query = $this->db->query("UPDATE trx_pesanan SET id_status_trans = 8 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
+
+        if ($queryTestimoni && $queryPenilaian == TRUE) {
             $this->session->set_flashdata('success', 'Success');
             redirect('user_admin/pesanan');
         } else {
             $this->session->set_flashdata('error', 'Failed');
-            redirect('home');
+            redirect('user_admin/pesanan');
         }
     }
 }

@@ -9,7 +9,7 @@
         <h5 class="text-center font-weight-bold">Pesanan Anda</h5>
       </div>
 
-      <?php var_dump($trx_pesanan); ?>
+      <!-- <?php var_dump($trx_pesanan); ?> -->
 
       <div class="card rounded-0">
         <div class="card-header">

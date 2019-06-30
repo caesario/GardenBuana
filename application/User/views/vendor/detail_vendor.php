@@ -29,7 +29,7 @@
           </a>
 
         </div>
-        <div class="col-9">
+        <div class="col-9 pl-5">
           <h4 class="mb-0">Portfolio Vendor</h4>
           <hr>
           <div class="row">

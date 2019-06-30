@@ -25,7 +25,7 @@
         <?php foreach ($trx_pesanan as $data) : ?>
           <tr>
             <td>
-              <?php if ($data['id_status_trans'] == 7) : ?>
+              <?php if ($data['id_status_trans'] == 8) : ?>
                 <a href="<?= site_url('vendor_admin/invoice/'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
                   <?= $data['id_pesanan']; ?></td>
             <?php endif; ?>

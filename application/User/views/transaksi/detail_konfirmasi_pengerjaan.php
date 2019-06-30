@@ -61,14 +61,15 @@
         <!-- <h3 class="display-6 mb-3">Rp. <?= number_format($trx_pesanan['harga'], 0, ".", ".") ?>,-</h3> -->
       </div>
 
-      <form action="<?= site_url('vendor_admin/upd_konfirmasi_pengerjaan'); ?>" method="post">
+      <form action="<?= site_url('vendor_admin/upd_konfirmasi_pengerjaan'); ?>" method="post" enctype="multipart/form-data">
 
         <div class="mt-4 pt-1">
           <h6 class="font-weight-bold mb-2">Upload Hasil Pekerjaan</h6>
-          <input type="file" class="form-control-file btn-sm gb-font-small mb-3" id="gambarPesanan" name="gambarPesanan" value="HARDCODE">
+          <input type="file" class="form-control-file btn-sm gb-font-small mb-3" id="gambarPengerjaan" name="gambarPengerjaan" value="HARDCODE">
           <input type="hidden" name="id_pesanan" value="<?= $trx_pesanan['id_pesanan']; ?>">
-          <input type="hidden" name="gambar" value="GAMBAR">
-          <p class="gb-font-small mb-2">Keterangan Pekerjaan</p>
+          <p class="gb-font-small mb-2">Tanggal Pekerjaan</p>
+          <input type="date" name="tanggal" value="">
+          <p class="gb-font-small mb-2 mt-3">Keterangan Pekerjaan</p>
           <textarea name="keterangan" id="" cols="40" rows="3" class="gb-font-small mb-3"></textarea>
           <br>
           <button class="btn btn-sm btn-primary gb-btn-order rounded-0">Konfirmasi Selesai</button>

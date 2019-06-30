@@ -8,7 +8,7 @@
         <h5 class="text-center font-weight-bold">Konfirmasi Pekerjaan</h5>
       </div>
 
-      <!-- <?php var_dump($trx_pesanan); ?> -->
+      <!-- <?php var_dump($data_pengerjaan); ?> -->
 
       <div class="card rounded-0">
         <div class="card-header">
@@ -67,10 +67,10 @@
           <p class="text-dark font-weight-bold mb-3"><?= $trx_pesanan['nama_vendor']; ?></p>
 
           <h6 class="mb-0 text-dark">Tanggal Pengerjaan</h6>
-          <p class="text-dark font-weight-bold mb-3"><?= $trx_pesanan['tanggal_pengerjaan']; ?></p>
+          <p class="text-dark font-weight-bold mb-3"><?= $data_pengerjaan['tanggal_pengerjaan']; ?></p>
 
           <h6 class="mb-0 text-dark">Keterangan Vendor</h6>
-          <p class="text-dark"><?= $trx_pesanan['keterangan']; ?></p>
+          <p class="text-dark"><?= $data_pengerjaan['keterangan']; ?></p>
         </div>
 
         <div class="col-12">
@@ -79,10 +79,10 @@
             <div class="row">
               <div class="col-3">
                 <a href="">
-                  <img class="card-img-top p-3 gb-img-port mb-4 border rounded-0" src="<?= base_url('assets/img/clients/client-1.png'); ?>" alt="Card image cap">
+                  <img class="card-img-top p-3 gb-img-port mb-4 border rounded-0" src="<?= base_url('assets/img/'); ?><?= $data_pengerjaan['gambar_pengerjaan']; ?>" alt="Card image cap">
                 </a>
               </div>
-              <div class="col-3">
+              <!-- <div class="col-3">
                 <img class="card-img-top p-3 gb-img-port mb-3 border" src="<?= base_url('assets/img/clients/client-4.png'); ?>" alt="Card image cap">
               </div>
               <div class="col-3">
@@ -90,7 +90,7 @@
               </div>
               <div class="col-3">
                 <img class="card-img-top p-3 gb-img-port mb-3 border" src="<?= base_url('assets/img/clients/client-5.png'); ?>" alt="Card image cap">
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -111,7 +111,9 @@
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-          <form action="<?= site_url('Vendor_admin/update_pesanan'); ?>" method="post">
+          <form action="<?= site_url('transaksi/update_konfirmasi_pekerjaan'); ?>" method="post">
+            <input type="text" name="id_pelanggan" value="<?= $trx_pesanan['id_pelanggan']; ?>">
+            <input type="text" name="id_vendor" value="<?= $trx_pesanan['id_vendor']; ?>">
             <div class="modal-content col-8 rounded-0">
               <div class="modal-header">
                 <h6 class="text-center font-weight-bold">Konfirmasi Pekerjaan</h6>
@@ -121,17 +123,18 @@
               </div>
               <div class="modal-body">
                 <p class="mb-0 text-dark gb-font-small">Testimoni Vendor</p>
+                <input type="hidden" name="id_pesanan" value="<?= $trx_pesanan['id_pesanan']; ?>">
                 <div class="col p-0 form-group">
                   <textarea class="form-control form-control-sm mt-1 mb-3 gb-font-small rounded-0" type="text" value="" name="testimoni"></textarea>
                 </div>
                 <p class="mb-0 text-dark gb-font-small">Penilaian Vendor</p>
                 <div class="col p-0 form-group">
                   <select class="form-control" id="penilaian" name="penilaian">
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                    <option value="">4</option>
-                    <option value="">5</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                   </select>
                 </div>
                 <p class="mb-0 text-dark gb-font-small font-italic mb-2">*Masukan penilaian dan testimoni</p>
