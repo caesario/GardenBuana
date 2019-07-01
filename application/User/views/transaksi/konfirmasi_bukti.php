@@ -67,7 +67,8 @@
           <h6 class="font-weight-bold mb-2">Bukti Pembayaran</h6>
           <input type="file" class="form-control-file btn-sm gb-font-small mb-3" id="buktiBayar" name="buktiBayar" value="HARDCODE">
           <input type="hidden" name="id_pesanan" value="<?= $trx_pesanan['id_pesanan']; ?>">
-          <input type="hidden" name="gambar" value="GAMBAR">
+          <input type="hidden" name="id_pelanggan" value="<?= $trx_pesanan['id_pelanggan']; ?>">
+          <input type="hidden" name="id_vendor" value="<?= $trx_pesanan['id_vendor']; ?>">
           <p class="gb-font-small mb-2">Keterangan</p>
           <textarea name="keterangan" id="" cols="40" rows="3" class="gb-font-small mb-1"></textarea>
           <br>

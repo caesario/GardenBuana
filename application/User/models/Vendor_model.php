@@ -189,4 +189,15 @@ class Vendor_model extends CI_model
         $result = $this->db->get();
         return $result->row_array();
     }
+
+    public function getTarikDanaVendor($getVendorId)
+    {
+        $this->db->select('*');
+        $this->db->from('trx_pesanan');
+        $this->db->join('status_tarik', 'status_tarik.id_status_tarik = trx_pesanan.id_status_tarik');
+        $this->db->where('id_vendor', $getVendorId);
+        $this->db->where('id_status_trans = 8');
+        $result = $this->db->get();
+        return $result->result_array();
+    }
 }

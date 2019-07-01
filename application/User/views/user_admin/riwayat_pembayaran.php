@@ -2,46 +2,49 @@
 <div class="container-fluid">
 
   <!-- Page Heading -->
+  <!-- <?php var_dump($trx_pesanan); ?><br><br> -->
   <h4 class="h4 mb-4 text-gray-800 float-left"><?= $title; ?></h4>
 
-  <!-- <?php var_dump($trx_pesanan); ?> -->
   <button class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></button>
   <div class="table-responsive">
     <table id="table_id" class="display table table-bordered">
       <thead>
         <tr>
           <th>ID Pesanan</th>
-          <th>Nama Pemesan</th>
-          <!-- <th>Telpon</th> -->
-          <th>Alamat</th>
+          <th>Nama Vendor</th>
           <th>Tanggal Pengerjaan</th>
-          <th>Status</th>
           <th>Harga</th>
-          <!-- <th>Tanggal Pesanan</th> -->
+          <th>Tanggal Pesanan</th>
           <th class="gb-aksi-width">Aksi</th>
         </tr>
-      </thead>
+      </thead><a href=""></a>
       <tbody>
-        <?php foreach ($trx_pesanan as $data) : ?>
+        <?php foreach ($trx_bukti as $data) : ?>
           <tr>
             <td>
-              <?php if ($data['id_status_trans'] == 8) : ?>
-                <a href="<?= site_url('transaksi/detail_riwayat'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
-                  <?= $data['id_pesanan']; ?></td>
-            <?php endif; ?>
-            <td><?= $data['nama_pemesan']; ?></td>
-            <!-- <td><?= $data['telpon']; ?></td> -->
-            <td><?= $data['alamat']; ?></td>
+              <a href="<?= site_url('transaksi/detail_riwayat/'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
+                <?= $data['id_pesanan']; ?>
+              </a>
+            </td>
+            <td><?= $data['nama_vendor']; ?></td>
             <td><?= $data['tanggal_pengerjaan']; ?></td>
-            <td><?= $data['nama_status']; ?></td>
             <td>Rp.<?= $data['harga']; ?></td>
-            <!-- <td><?= $data['nama_status']; ?></td> -->
-            <!-- <td><?= $data['create_date']; ?></td> -->
+            <td><?= $data['create_date']; ?></td>
             <td>
               <span>
-                <a class="btn btn-success btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
-                  <i class="fas fa-eye"></i>
-                </a>
+                <?php if ($data['id_status_trans'] == 1) : ?>
+                  <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('transaksi/pesanan/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
+                    <i class="fas fa-eye"></i>
+                  </a>
+                <?php elseif ($data['id_status_trans'] == 2) : ?>
+                  <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('transaksi/konfirmasi_bukti/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
+                    <i class="fas fa-eye"></i>
+                  </a>
+                <?php elseif ($data['id_status_trans'] == 4) : ?>
+                  <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('transaksi/konfirmasi_bukti/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
+                    <i class="fas fa-eye"></i>
+                  </a>
+                <?php endif; ?>
               </span>
               <span>
                 <a class="btn btn-primary btn-sm py-0 gb-btn-width" href="<?= site_url('admin/pesanan_edit/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Ubah">

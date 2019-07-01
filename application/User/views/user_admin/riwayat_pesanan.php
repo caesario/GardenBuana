@@ -23,16 +23,9 @@
         <?php foreach ($trx_pesanan as $data) : ?>
           <tr>
             <td>
-              <?php if ($data['id_status_trans'] == 1) : ?>
-                <a href="<?= site_url('transaksi/pesanan/'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
-                <?php elseif ($data['id_status_trans'] == 2) : ?>
-                  <a href="<?= site_url('transaksi/konfirmasi_bukti/'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
-                  <?php elseif ($data['id_status_trans'] == 4) : ?>
-                    <a href="<?= site_url('transaksi/konfirmasi_bukti/'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
-                    <?php elseif ($data['id_status_trans'] == 8) : ?>
-                      <a href="<?= site_url('transaksi/konfirmasi_pekerjaan/'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
-                      <?php endif; ?><?= $data['id_pesanan']; ?>
-                    </a>
+              <a href="<?= site_url('transaksi/detail_riwayat/'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
+                <?= $data['id_pesanan']; ?>
+              </a>
             </td>
             <td><?= $data['nama_vendor']; ?></td>
             <td><?= $data['tanggal_pengerjaan']; ?></td>

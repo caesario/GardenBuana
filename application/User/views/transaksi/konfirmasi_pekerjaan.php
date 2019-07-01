@@ -112,8 +112,8 @@
       <div class="modal fade" id="exampleModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <form action="<?= site_url('transaksi/update_konfirmasi_pekerjaan'); ?>" method="post">
-            <input type="text" name="id_pelanggan" value="<?= $trx_pesanan['id_pelanggan']; ?>">
-            <input type="text" name="id_vendor" value="<?= $trx_pesanan['id_vendor']; ?>">
+            <input type="hidden" name="id_pelanggan" value="<?= $trx_pesanan['id_pelanggan']; ?>">
+            <input type="hidden" name="id_vendor" value="<?= $trx_pesanan['id_vendor']; ?>">
             <div class="modal-content col-8 rounded-0">
               <div class="modal-header">
                 <h6 class="text-center font-weight-bold">Konfirmasi Pekerjaan</h6>

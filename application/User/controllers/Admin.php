@@ -87,6 +87,7 @@ class Admin extends CI_Controller
 
             $query = $this->db->query("UPDATE trx_pesanan SET id_status_trans = 6 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
             $query = $this->db->query("UPDATE trx_bukti_bayar SET id_status_trans = 6 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
+            $query = $this->db->query("UPDATE trx_pesanan SET id_status_tarik = 1 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
 
             if ($query) {
                 $this->session->set_flashdata('success', 'Data Berhasil Diubah');

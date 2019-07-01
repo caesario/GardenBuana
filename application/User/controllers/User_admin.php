@@ -86,4 +86,27 @@ class User_admin extends CI_Controller
             redirect("home");
         }
     }
+
+    public function riwayat_pembayaran()
+    {
+        if ($this->session->userdata("role_id") == 2) {
+            $data['title'] = 'Riwayat Pembayaran';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $id = $this->db->get_where('pelanggan', ['id_userfk' => $this->session->userdata('id_user')])->row('id_pelanggan');
+
+            $data['trx_bukti'] = $this->User_model->getBuktiBayarById($id);
+            // $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
+            // $getVendorId = $getVendor->id_pelanggan;
+
+            // $data['trx_pesanan'] = $this->db->query("select * from list_pesanan_vendor where id_pelanggan = " . $getVendorId . " AND id_status_trans = 5")->result_array();
+
+            $this->load->view('templates/vendor_header', $data);
+            $this->load->view('templates/vendor_sidebar', $data);
+            $this->load->view('templates/vendor_topbar', $data);
+            $this->load->view('user_admin/riwayat_pembayaran', $data);
+            $this->load->view('templates/vendor_footer');
+        } else {
+            redirect("home");
+        }
+    }
 }

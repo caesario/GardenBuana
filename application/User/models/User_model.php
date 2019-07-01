@@ -57,6 +57,18 @@ class User_model extends CI_model
         return $result->result_array();
     }
 
+    public function getBuktiBayarById($id)
+    {
+        $this->db->select('*');
+        $this->db->from('trx_bukti_bayar');
+        $this->db->join('trx_pesanan', 'trx_pesanan.id_pesanan = trx_bukti_bayar.id_pesanan');
+        $this->db->join('vendor', 'vendor.id_vendor = trx_bukti_bayar.id_vendor');
+        $this->db->where('trx_bukti_bayar.id_pelanggan', $id);
+        $this->db->where('trx_bukti_bayar.id_status_trans >= 3');
+        $result = $this->db->get();
+        return $result->result_array();
+    }
+
     public function cekField()
     {
         $this->db->select('telpon');

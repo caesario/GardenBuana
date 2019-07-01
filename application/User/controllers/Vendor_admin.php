@@ -794,4 +794,45 @@ class Vendor_admin extends CI_Controller
             redirect("home");
         }
     }
+
+    public function tarik_dana()
+    {
+        $data['title'] = 'Tarik Dana';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $id = $this->session->userdata("id_user");
+        $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
+        $getVendorId = $getVendor->id_vendor;
+
+        $data['tarik_dana'] = $this->Vendor_model->getTarikDanaVendor($getVendorId);
+        // $data['trx_pesanan'] = $this->db->query("select * from list_pesanan_vendor where id_vendor = " . $getVendorId . " AND id_status_trans = 8")->result_array();
+
+        $this->load->view('templates/vendor_header', $data);
+        $this->load->view('templates/vendor_sidebar', $data);
+        $this->load->view('templates/vendor_topbar', $data);
+        $this->load->view('vendor_admin/tarik_dana', $data);
+        $this->load->view('templates/vendor_footer');
+    }
+
+    public function update_tarik_dana()
+    {
+        $dateNow = date('Y-m-d H:i:s');
+        $dataTarik = [
+            'id_pesanan' => $this->insert->post('id_pesanan'),
+            'id_vendor' => $this->insert->post('id_vendor'),
+            'rekening' => $this->insert->post('rekening'),
+            'bank' => $this->insert->post('bank'),
+            'pemilik' => $this->insert->post('pemilik'),
+            'create_date' => $dateNow
+        ];
+
+        $queryTarik = $this->db->insert('rekening_tarik', $dataTarik);
+        if ($queryTarik) {
+            $this->session->set_flashdata('success', 'Berhasil Diubah');
+            redirect('Vendor_admin/tarik_dana');
+        } else {
+            $this->session->set_flashdata('gagal', 'Data Berhasil Diubah');
+            redirect('Vendor_admin/tarik_dana');
+        }
+    }
 }
