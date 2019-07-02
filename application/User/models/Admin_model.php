@@ -315,4 +315,15 @@ class Admin_model extends CI_Model
         $result = $this->db->get();
         return $result->num_rows();
     }
+
+    public function getAllTarikDana()
+    {
+        $this->db->select('*');
+        $this->db->from('rekening_tarik');
+        $this->db->join('trx_pesanan', 'trx_pesanan.id_pesanan = rekening_tarik.id_pesanan');
+        $this->db->join('vendor', 'vendor.id_vendor = trx_pesanan.id_vendor');
+        $this->db->where('trx_pesanan.id_status_tarik = 2');
+        $result = $this->db->get();
+        return $result->result_array();
+    }
 }

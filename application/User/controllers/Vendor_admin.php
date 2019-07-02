@@ -805,6 +805,7 @@ class Vendor_admin extends CI_Controller
         $getVendorId = $getVendor->id_vendor;
 
         $data['tarik_dana'] = $this->Vendor_model->getTarikDanaVendor($getVendorId);
+        $data['tarik_dana_id'] = $this->Vendor_model->getTarikDanaById($getVendorId);
         // $data['trx_pesanan'] = $this->db->query("select * from list_pesanan_vendor where id_vendor = " . $getVendorId . " AND id_status_trans = 8")->result_array();
 
         $this->load->view('templates/vendor_header', $data);
@@ -818,14 +819,15 @@ class Vendor_admin extends CI_Controller
     {
         $dateNow = date('Y-m-d H:i:s');
         $dataTarik = [
-            'id_pesanan' => $this->insert->post('id_pesanan'),
-            'id_vendor' => $this->insert->post('id_vendor'),
-            'rekening' => $this->insert->post('rekening'),
-            'bank' => $this->insert->post('bank'),
-            'pemilik' => $this->insert->post('pemilik'),
+            'id_pesanan' => $this->input->post('id_pesanan'),
+            'id_vendor' => $this->input->post('id_vendor'),
+            'rekening' => $this->input->post('rekening'),
+            'bank' => $this->input->post('bank'),
+            'pemilik' => $this->input->post('pemilik'),
             'create_date' => $dateNow
         ];
 
+        $query = $this->db->query("UPDATE trx_pesanan SET id_status_tarik = 2 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
         $queryTarik = $this->db->insert('rekening_tarik', $dataTarik);
         if ($queryTarik) {
             $this->session->set_flashdata('success', 'Berhasil Diubah');

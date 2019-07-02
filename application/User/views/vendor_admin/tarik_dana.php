@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
   <!-- Page Heading -->
-  <!-- <?php var_dump($tarik_dana); ?><br><br> -->
+  <!-- <?php var_dump($tarik_dana_id); ?><br><br> -->
   <h4 class="h4 mb-4 text-gray-800 float-left"><?= $title; ?></h4>
 
   <button class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></button>
@@ -67,7 +67,9 @@
 
   <div class="modal fade" id="exampleModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <form action="<?= site_url('.....'); ?>" method="post">
+      <form action="<?= site_url('vendor_admin/update_tarik_dana'); ?>" method="post">
+        <input class="" type="hidden" name="id_pesanan" value="<?= $tarik_dana_id['id_pesanan']; ?>">
+        <input class="" type="hidden" name="id_vendor" value="<?= $tarik_dana_id['id_vendor']; ?>">
         <div class="modal-content col-8 rounded-0">
           <div class="modal-header">
             <h6 class="text-center font-weight-bold">Konfirmasi Pekerjaan</h6>
