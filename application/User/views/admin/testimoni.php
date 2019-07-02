@@ -52,11 +52,6 @@
                   <i class="fas fa-print"></i>
                 </a>
               </span>
-              <span>
-                <a class="btn btn-danger btn-sm py-0 gb-btn-width" href="<?= site_url('report/testimoni_hapus/'); ?><?= $data['id_testimoni']; ?>" data-toggle="tooltip" data-placement="top" title="Hapus">
-                  <i class="fas fa-trash"></i>
-                </a>
-              </span>
             </td>
           </tr>
           <?php $i++ ?>

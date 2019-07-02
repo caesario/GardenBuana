@@ -53,17 +53,19 @@
                   <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('transaksi/invoice/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
                     <i class="fas fa-eye"></i>
                   </a>
+                <?php elseif ($data['id_status_trans'] == 7) : ?>
+                  <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('transaksi/konfirmasi_pekerjaan/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
+                    <i class="fas fa-eye"></i>
+                  </a>
                 <?php endif; ?>
               </span>
               <span>
-                <a class="btn btn-primary btn-sm py-0 gb-btn-width" href="<?= site_url('admin/pesanan_edit/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Ubah">
-                  <i class="fas fa-edit"></i>
-                </a>
-              </span>
-              <span>
-                <a class="btn btn-danger btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Hapus">
-                  <i class="fas fa-trash"></i>
-                </a>
+                <?php if ($data['id_status_trans'] <= 6) : ?>
+                  <a class="btn btn-danger btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Hapus">
+                    <i class="fas fa-trash"></i>
+                  </a>
+                <?php else : ?>
+                <?php endif; ?>
               </span>
               <span>
                 <a class="btn btn-warning btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Cetak">

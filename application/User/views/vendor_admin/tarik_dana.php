@@ -18,16 +18,20 @@
           <!-- <th>Harga</th> -->
           <th>Status</th>
           <th>Tanggal Pesanan</th>
-          <th class="gb-aksi-width">Aksi</th>
+          <!-- <th class="gb-aksi-width">Aksi</th> -->
         </tr>
       </thead>
       <tbody>
         <?php foreach ($tarik_dana as $data) : ?>
           <tr>
             <td>
-              <a href="" data-toggle="modal" data-target="#exampleModal" class="text-decoration-none">
+              <?php if ($data['id_status_tarik'] == 3) : ?>
                 <?= $data['id_pesanan']; ?>
-              </a>
+              <?php else : ?>
+                <a href="" data-toggle="modal" data-target="#exampleModal" class="text-decoration-none">
+                  <?= $data['id_pesanan']; ?>
+                </a>
+              <?php endif; ?>
             </td>
             <td><?= $data['nama_pemesan']; ?></td>
             <!-- <td><?= $data['telpon']; ?></td> -->
@@ -36,28 +40,6 @@
             <!-- <td>Rp.<?= $data['harga']; ?></td> -->
             <td><?= $data['nama_status']; ?></td>
             <td><?= $data['create_date']; ?></td>
-            <td>
-              <span>
-                <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('vendor_admin/detail_pesanan/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
-                  <i class="fas fa-eye"></i>
-                </a>
-              </span>
-              <span>
-                <a class="btn btn-primary btn-sm py-0 gb-btn-width" href="<?= site_url('admin/pesanan_edit/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Ubah">
-                  <i class="fas fa-edit"></i>
-                </a>
-              </span>
-              <span>
-                <a class="btn btn-danger btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Hapus">
-                  <i class="fas fa-trash"></i>
-                </a>
-              </span>
-              <span>
-                <a class="btn btn-warning btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Cetak">
-                  <i class="fas fa-print"></i>
-                </a>
-              </span>
-            </td>
           </tr>
         <?php endforeach; ?>
       </tbody>

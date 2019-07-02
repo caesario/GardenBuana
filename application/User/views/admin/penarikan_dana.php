@@ -29,7 +29,7 @@
           <th>Nama Rekening</th>
           <th>Bank</th>
           <th>Nominal</th>
-          <th class="gb-aksi-width">Aksi</th>
+          <!-- <th class="gb-aksi-width">Aksi</th> -->
         </tr>
       </thead>
       <tbody>
@@ -45,24 +45,18 @@
             <td><?= $data['pemilik']; ?></td>
             <td><?= $data['bank']; ?></td>
             <td><?= $data['harga']; ?></td>
-            <td>
-              <span>
-                <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('report/pesanan_detail/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
-                  <i class="fas fa-eye"></i>
-                </a>
-              </span>
-              <span>
-                <a class="btn btn-warning btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Cetak">
-                  <i class="fas fa-print"></i>
-                </a>
-              </span>
-              <span>
-                <a class="btn btn-danger btn-sm py-0 gb-btn-width" href="<?= site_url('report/pesanan_hapus/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="return confirm('Data akan dihapus?');">
-                  <i class="fas fa-trash"></i>
-                </a>
-              </span>
-
-            </td>
+            <!-- <td>
+                <span>
+                  <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('report/pesanan_detail/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
+                    <i class="fas fa-eye"></i>
+                  </a>
+                </span>
+                <span>
+                  <a class="btn btn-warning btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Cetak">
+                    <i class="fas fa-print"></i>
+                  </a>
+                </span>
+              </td> -->
           </tr>
         <?php endforeach; ?>
       </tbody>

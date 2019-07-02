@@ -26,7 +26,7 @@
         <?php foreach ($buktibayar as $data) : ?>
           <tr>
             <td><?= $i; ?></td>
-            <td>TRX-0<?= $data['id_pesanan']; ?></td>
+            <td><?= $data['id_pesanan']; ?></td>
             <td><?= $data['nama_pemesan']; ?></td>
             <td><?= $data['nama_vendor']; ?></td>
             <td><?= $data['upload']; ?></td>

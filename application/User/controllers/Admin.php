@@ -22,6 +22,7 @@ class Admin extends CI_Controller
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $data['t_pengguna'] = $this->Admin_model->getRowPengguna();
             $data['t_pesanan'] = $this->Admin_model->getRowPesanan();
+            $data['t_harga'] = $this->Admin_model->getRowHarga();
             $this->load->view('templates/vendor_header', $data);
             $this->load->view('templates/vendor_sidebar', $data);
             $this->load->view('templates/vendor_topbar', $data);
