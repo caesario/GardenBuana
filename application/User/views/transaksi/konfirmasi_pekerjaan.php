@@ -82,15 +82,6 @@
                   <img class="card-img-top p-3 gb-img-port mb-4 border rounded-0" src="<?= base_url('assets/img/'); ?><?= $data_pengerjaan['gambar_pengerjaan']; ?>" alt="Card image cap">
                 </a>
               </div>
-              <!-- <div class="col-3">
-                <img class="card-img-top p-3 gb-img-port mb-3 border" src="<?= base_url('assets/img/clients/client-4.png'); ?>" alt="Card image cap">
-              </div>
-              <div class="col-3">
-                <img class="card-img-top p-3 gb-img-port mb-3 border" src="<?= base_url('assets/img/clients/client-2.png'); ?>" alt="Card image cap">
-              </div>
-              <div class="col-3">
-                <img class="card-img-top p-3 gb-img-port mb-3 border" src="<?= base_url('assets/img/clients/client-5.png'); ?>" alt="Card image cap">
-              </div> -->
             </div>
           </div>
         </div>

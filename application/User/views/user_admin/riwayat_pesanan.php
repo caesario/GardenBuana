@@ -23,7 +23,7 @@
         <?php foreach ($trx_pesanan as $data) : ?>
           <tr>
             <td>
-              <a href="<?= site_url('transaksi/detail_riwayat/'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
+              <a href="<?= site_url('user_admin/detail_riwayat_pesanan/'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
                 <?= $data['id_pesanan']; ?>
               </a>
             </td>
@@ -34,30 +34,10 @@
             <td><?= $data['create_date']; ?></td>
             <td>
               <span>
-                <?php if ($data['id_status_trans'] == 1) : ?>
-                  <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('transaksi/pesanan/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
-                    <i class="fas fa-eye"></i>
-                  </a>
-                <?php elseif ($data['id_status_trans'] == 2) : ?>
-                  <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('transaksi/konfirmasi_bukti/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
-                    <i class="fas fa-eye"></i>
-                  </a>
-                <?php elseif ($data['id_status_trans'] == 4) : ?>
-                  <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('transaksi/konfirmasi_bukti/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
-                    <i class="fas fa-eye"></i>
-                  </a>
-                <?php endif; ?>
-              </span>
-              <span>
-                <a class="btn btn-primary btn-sm py-0 gb-btn-width" href="<?= site_url('admin/pesanan_edit/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Ubah">
-                  <i class="fas fa-edit"></i>
+                <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('user_admin/detail_riwayat_pesanan/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
+                  <i class="fas fa-eye"></i>
                 </a>
               </span>
-              <!-- <span>
-                  <a class="btn btn-danger btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Hapus">
-                    <i class="fas fa-trash"></i>
-                  </a>
-                </span> -->
               <span>
                 <a class="btn btn-warning btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Cetak">
                   <i class="fas fa-print"></i>

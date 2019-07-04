@@ -87,6 +87,30 @@ class User_admin extends CI_Controller
         }
     }
 
+    public function detail_riwayat_pesanan($id)
+    {
+        if ($this->session->userdata("role_id") == 2) {
+            $data['title'] = 'Riwayat Pesanan';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            // $id = $this->db->get_where('pelanggan', ['id_userfk' => $this->session->userdata('id_user')])->row('id_pelanggan');
+
+            $data['riwayat'] = $this->User_model->getRiwayatById($id);
+            $data['data_pengerjaan'] = $this->User_model->getPengerjaanById($id);
+            // $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
+            // $getVendorId = $getVendor->id_pelanggan;
+
+            // $data['trx_pesanan'] = $this->db->query("select * from list_pesanan_vendor where id_pelanggan = " . $getVendorId . " AND id_status_trans = 5")->result_array();
+
+            $this->load->view('templates/vendor_header', $data);
+            $this->load->view('templates/vendor_sidebar', $data);
+            $this->load->view('templates/vendor_topbar', $data);
+            $this->load->view('user_admin/detail_riwayat_pesanan', $data);
+            $this->load->view('templates/vendor_footer');
+        } else {
+            redirect("home");
+        }
+    }
+
     public function riwayat_pembayaran()
     {
         if ($this->session->userdata("role_id") == 2) {
@@ -105,6 +129,20 @@ class User_admin extends CI_Controller
             $this->load->view('templates/vendor_topbar', $data);
             $this->load->view('user_admin/riwayat_pembayaran', $data);
             $this->load->view('templates/vendor_footer');
+        } else {
+            redirect("home");
+        }
+    }
+
+    public function invoice($id)
+    {
+        if ($this->session->userdata("role_id") == 2) {
+            $data['title'] = 'GardenBuana | Konfirmasi Pembayaran';
+            // $data['trx_pesanan'] = $this->Pesanan_model->getPesananById();
+            $data['invoice'] = $this->User_model->getDataInvoiceById($id);
+            $data['session'] = $this->session->all_userdata();
+
+            $this->load->view('user_admin/invoice', $data);
         } else {
             redirect("home");
         }

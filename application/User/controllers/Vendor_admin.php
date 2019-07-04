@@ -776,6 +776,30 @@ class Vendor_admin extends CI_Controller
         $this->load->view('templates/vendor_footer');
     }
 
+    public function detail_riwayat_pesanan($id)
+    {
+        if ($this->session->userdata("role_id") == 1) {
+            $data['title'] = 'Riwayat Transaksi';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            // $id = $this->db->get_where('pelanggan', ['id_userfk' => $this->session->userdata('id_user')])->row('id_pelanggan');
+
+            $data['riwayat'] = $this->Vendor_model->getRiwayatById($id);
+            $data['data_pengerjaan'] = $this->Vendor_model->getPengerjaanById($id);
+            // $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
+            // $getVendorId = $getVendor->id_pelanggan;
+
+            // $data['trx_pesanan'] = $this->db->query("select * from list_pesanan_vendor where id_pelanggan = " . $getVendorId . " AND id_status_trans = 5")->result_array();
+
+            $this->load->view('templates/vendor_header', $data);
+            $this->load->view('templates/vendor_sidebar', $data);
+            $this->load->view('templates/vendor_topbar', $data);
+            $this->load->view('vendor_admin/detail_riwayat_pesanan', $data);
+            $this->load->view('templates/vendor_footer');
+        } else {
+            redirect("home");
+        }
+    }
+
     public function invoice($id)
     {
         if ($this->session->userdata("role_id") == 1) {
@@ -784,12 +808,7 @@ class Vendor_admin extends CI_Controller
             $data['info_web'] = $this->Admin_model->getInfoWeb();
             $data['session'] = $this->session->all_userdata();
 
-            // $data['list_nego'] = $this->db->query("select * from list_nego_pesanan where id_pesanan = '$id'")->result_array();
-
-            $this->load->view('templates/header', $data);
-            // $this->load->view('templates/menu');
-            $this->load->view('transaksi/invoice', $data);
-            // $this->load->view('templates/footer', $data);
+            $this->load->view('user_admin/invoice');
         } else {
             redirect("home");
         }

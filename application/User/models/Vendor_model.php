@@ -180,6 +180,26 @@ class Vendor_model extends CI_model
         return $result->result_array();
     }
 
+    public function getRiwayatById($id)
+    {
+        $this->db->select('*');
+        $this->db->from('trx_pesanan');
+        $this->db->join('status_transaksi', 'status_transaksi.id_status_trans = trx_pesanan.id_status_trans');
+        $this->db->join('vendor', 'vendor.id_vendor = trx_pesanan.id_vendor');
+        $this->db->where('id_pesanan', $id);
+        $result = $this->db->get();
+        return $result->row_array();
+    }
+
+    public function getPengerjaanById($id)
+    {
+        $this->db->select('*');
+        $this->db->from('trx_pengerjaan');
+        $this->db->where('id_pesanan', $id);
+        $result = $this->db->get();
+        return $result->row_array();
+    }
+
     public function getVerifVendorById($getVendorId)
     {
         $this->db->select('*');
