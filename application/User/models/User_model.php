@@ -103,7 +103,7 @@ class User_model extends CI_model
         $this->db->from('trx_pesanan');
         $this->db->join('trx_bukti_bayar', 'trx_bukti_bayar.id_pesanan = trx_pesanan.id_pesanan');
         $this->db->join('vendor', 'vendor.id_vendor = trx_pesanan.id_vendor');
-        $this->db->join('vendor', 'vendor.id_vendor = trx_pesanan.id_vendor');
+        // $this->db->join('vendor', 'vendor.id_vendor = trx_pesanan.id_vendor');
         $this->db->where('trx_pesanan.id_pesanan', $id);
         $result = $this->db->get();
         return $result->row_array();
