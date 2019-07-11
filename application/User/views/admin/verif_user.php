@@ -65,11 +65,6 @@
                   <i class="fas fa-trash"></i>
                 </a>
               </span>
-              <span>
-                <a class="btn btn-warning btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Cetak">
-                  <i class="fas fa-print"></i>
-                </a>
-              </span>
             </td>
           </tr>
           <?php $i++; ?>

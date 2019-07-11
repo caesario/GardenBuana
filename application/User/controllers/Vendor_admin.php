@@ -803,7 +803,6 @@ class Vendor_admin extends CI_Controller
     public function invoice($id)
     {
         if ($this->session->userdata("role_id") == 1) {
-            $data['title'] = 'GardenBuana | Konfirmasi Pembayaran';
             $data['trx_pesanan'] = $this->Pesanan_model->getPesananById($id);
             $data['info_web'] = $this->Admin_model->getInfoWeb();
             $data['session'] = $this->session->all_userdata();

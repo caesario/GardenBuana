@@ -34,12 +34,12 @@
             <td><?= $data['nama_status']; ?></td>
             <td>
               <span>
-                <a class="btn btn-success btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
+                <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('report/riwayat_pesanan_detail/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
                   <i class="fas fa-eye"></i>
                 </a>
               </span>
               <span>
-                <a class="btn btn-warning btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Cetak">
+                <a class="btn btn-warning btn-sm py-0 gb-btn-width" href="<?= site_url('report/cetak_riwayat/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Cetak">
                   <i class="fas fa-print"></i>
                 </a>
               </span>

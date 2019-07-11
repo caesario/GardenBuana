@@ -137,7 +137,7 @@ class User_admin extends CI_Controller
     public function invoice($id)
     {
         if ($this->session->userdata("role_id") == 2) {
-            $data['title'] = 'GardenBuana | Konfirmasi Pembayaran';
+            $data['title'] = 'GardenBuana | Invoice';
             // $data['trx_pesanan'] = $this->Pesanan_model->getPesananById();
             $data['invoice'] = $this->User_model->getDataInvoiceById($id);
             $data['session'] = $this->session->all_userdata();

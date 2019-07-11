@@ -37,12 +37,12 @@
       <tbody>
         <?php foreach ($trx_pesanan as $data) : ?>
           <tr>
-            <td>TRX-0<?= $data['id_pesanan']; ?></td>
+            <td><?= $data['id_pesanan']; ?></td>
             <td><?= $data['nama_pemesan']; ?></td>
             <td><?= $data['nama_vendor']; ?></td>
             <!-- <td><?= $data['telpon']; ?></td> -->
             <td><?= $data['tanggal_pengerjaan']; ?></td>
-            <td>Rp.<?= $data['harga']; ?></td>
+            <td><?= number_format($data['harga'], 0, ".", ".") ?>,-</td>
             <td><?= $data['nama_status']; ?></td>
             <td><?= $data['create_date']; ?></td>
             <td>
@@ -51,22 +51,11 @@
                   <i class="fas fa-eye"></i>
                 </a>
               </span>
-              <!-- <span>
-                    <a class="btn btn-primary btn-sm py-0 gb-btn-width" href="<?= site_url('report/pesanan_edit/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Ubah">
-                      <i class="fas fa-edit"></i>
-                    </a>
-                  </span> -->
               <span>
-                <a class="btn btn-warning btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Cetak">
+                <a class="btn btn-warning btn-sm py-0 gb-btn-width" href="<?= site_url('report/cetak_pesanan_detail/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Cetak">
                   <i class="fas fa-print"></i>
                 </a>
               </span>
-              <span>
-                <a class="btn btn-danger btn-sm py-0 gb-btn-width" href="<?= site_url('report/pesanan_hapus/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="return confirm('Data akan dihapus?');">
-                  <i class="fas fa-trash"></i>
-                </a>
-              </span>
-
             </td>
           </tr>
         <?php endforeach; ?>

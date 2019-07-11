@@ -4,18 +4,6 @@
   <!-- Page Heading -->
   <!-- <h4 class="h4 mb-4 text-gray-800 float-left"><?= $title; ?></h4> -->
 
-  <!-- <?php var_dump($detail_pesanan); ?> -->
-
-  <div class="row container pr-0">
-    <div class="col">
-      <a href="<?= site_url('report/pesanan'); ?>" class="btn btn-primary btn-sm rounded-0"><i class="mr-2 fas fa-arrow-left"></i>Kembali</a>
-    </div>
-    <div class="col">
-      <a href="<?= site_url('report/cetak_pesanan_detail/'); ?><?= $detail_pesanan['id_pesanan']; ?>" class="btn btn-primary btn-sm float-right ml-1 rounded-0">Cetak Pesanan<i class="ml-2 fas fa-print"></i></a>
-    </div>
-
-  </div>
-
   <!--==========================
       Clients Section
     ============================-->

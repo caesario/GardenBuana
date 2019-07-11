@@ -47,6 +47,13 @@ class Report extends CI_Controller
         $this->load->view('templates/vendor_footer');
     }
 
+    public function cetak_pesanan_detail($id)
+    {
+        $data['detail_pesanan'] = $this->Admin_model->getPesananById($id);
+        $this->load->view('templates/vendor_header', $data);
+        $this->load->view('admin/cetak_pesanan_detail', $data);
+    }
+
     public function pesanan_hapus($id)
     {
         $this->Admin_model->hapusDataPesanan($id);
@@ -191,6 +198,26 @@ class Report extends CI_Controller
         $this->load->view('templates/vendor_footer');
     }
 
+    public function riwayat_pesanan_detail($id)
+    {
+        $data['title'] = 'Riwayat Pesanan';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['history'] = $this->Admin_model->getAllHistoryPesananById($id);
+
+        $this->load->view('templates/vendor_header', $data);
+        $this->load->view('templates/vendor_sidebar', $data);
+        $this->load->view('templates/vendor_topbar', $data);
+        $this->load->view('admin/riwayat_pesanan_detail', $data);
+        $this->load->view('templates/vendor_footer');
+    }
+
+    public function cetak_riwayat($id)
+    {
+        $data['history'] = $this->Admin_model->getAllHistoryPesananById($id);
+        $this->load->view('templates/vendor_header', $data);
+        $this->load->view('admin/cetak_riwayat', $data);
+    }
+
     public function penilaian()
     {
         $data['title'] = 'Penilaian Vendor';
@@ -216,5 +243,12 @@ class Report extends CI_Controller
         $this->load->view('templates/vendor_topbar', $data);
         $this->load->view('admin/pendapatan_vendor', $data);
         $this->load->view('templates/vendor_footer');
+    }
+
+    public function invoice($id)
+    {
+        $data['inv_pesanan'] = $this->Admin_model->getInvoiceById($id);
+
+        $this->load->view('admin/invoice', $data);
     }
 }

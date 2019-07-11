@@ -31,8 +31,7 @@ class Vendor extends CI_Controller
     $data['vendor'] = $this->Vendor_model->getAllVendor();
     $kota = $this->input->post('kota');
     $keyword = $this->input->post('keyword');
-    // var_dump($keyword);
-    // die();
+
     $data['vendor'] = $this->Vendor_model->cariDataVendor($kota, $keyword);
 
     $data['kota'] = $this->Vendor_model->getAllKota();

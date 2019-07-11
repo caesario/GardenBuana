@@ -22,7 +22,9 @@ class Admin extends CI_Controller
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $data['t_pengguna'] = $this->Admin_model->getRowPengguna();
             $data['t_pesanan'] = $this->Admin_model->getRowPesanan();
-            $data['t_harga'] = $this->Admin_model->getRowHarga();
+            $data['t_pesanan_aktif'] = $this->Admin_model->getRowPesananAktif();
+            // $data['t_harga'] = $this->Admin_model->getRowHarga();
+            $data['t_pendapatan'] = $this->Admin_model->getTotalPendapatan();
             $this->load->view('templates/vendor_header', $data);
             $this->load->view('templates/vendor_sidebar', $data);
             $this->load->view('templates/vendor_topbar', $data);
@@ -62,7 +64,7 @@ class Admin extends CI_Controller
     public function detail_pembayaran($id)
     {
         if ($this->session->userdata("role_id") == 3) {
-            $data['title'] = 'GardenBuana | Konfirmasi Pembayaran';
+            $data['title'] = 'Konfirmasi Pembayaran';
             $data['trx_pesanan'] = $this->Pesanan_model->getPesananById($id);
             $data['bukti_bayar'] = $this->Pesanan_model->getBuktiById($id);
             $data['info_web'] = $this->Admin_model->getInfoWeb();
@@ -136,7 +138,7 @@ class Admin extends CI_Controller
     public function verif_edit($id)
     {
         if ($this->session->userdata("role_id") == 3) {
-            $data['title'] = 'Verifikasi User | Edit';
+            $data['title'] = 'Verifikasi User';
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $data['pengguna'] = $this->Admin_model->getPenggunaById($id);
 
@@ -197,6 +199,13 @@ class Admin extends CI_Controller
         $this->Admin_model->hapusDataUser($id);
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('admin/verif');
+    }
+
+    public function hapus_verif($id)
+    {
+        $this->Admin_model->hapusDataVerif($id);
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect('admin/verif_vendor');
     }
 
     public function wilayah()

@@ -6,7 +6,11 @@
       <h3 class="text-dark"><?= $title; ?></h3>
     </div>
     <div class="col-6">
-      <button class="btn btn-sm btn-primary gb-btn-order float-right rounded-0 ml-1" data-toggle="modal" data-target="#exampleModal">Konfirmasi Vendor</button>
+      <?php if ($vendor_verif['id_status_verif'] == 2) : ?>
+        <button class="btn btn-sm btn-primary gb-btn-order float-right rounded-0 ml-1" data-toggle="modal" data-target="#exampleModal">Konfirmasi Vendor</button>
+      <?php else : ?>
+        <button class="btn btn-sm btn-primary gb-btn-order float-right rounded-0 ml-1" data-toggle="modal" data-target="#exampleModal">Batalkan Konfirmasi</button>
+      <?php endif; ?>
     </div>
   </div>
 
