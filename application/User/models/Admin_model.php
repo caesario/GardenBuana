@@ -61,10 +61,29 @@ class Admin_model extends CI_Model
         // $this->db->update('user', $data);
     }
 
+    public function ubahDataVendor()
+    {
+        $data = [
+            "telpon" => $this->input->post('telpon', true),
+            "kota" => $this->input->post('id_kota', true),
+            "alamat" => $this->input->post('alamat', true),
+            "info_vendor" => $this->input->post('infoVendor', true)
+        ];
+
+        $this->db->where('id_vendor', $this->input->post('id'));
+        $this->db->update('vendor', $data);
+    }
+
     public function hapusDataUser($id)
     {
         $this->db->where('id_user', $id);
         $this->db->delete('user');
+    }
+
+    public function hapusDataVendor($id)
+    {
+        $this->db->where('id_userfk', $id);
+        $this->db->delete('vendor');
     }
 
     public function hapusDataVerif($id)
@@ -142,6 +161,16 @@ class Admin_model extends CI_Model
         return $result->result_array();
     }
 
+    public function getVendorById($id)
+    {
+        $this->db->select('*');
+        $this->db->from('vendor');
+        $this->db->join('kota', 'vendor.id_kota = kota.id_kota');
+        $this->db->where('id_vendor', $id);
+        $result = $this->db->get();
+        return $result->row_array();
+    }
+
     public function getAllPelanggan()
     {
         $this->db->select('*');
@@ -159,7 +188,7 @@ class Admin_model extends CI_Model
         $this->db->from('pelanggan');
         $this->db->join('kota', 'pelanggan.id_kota = kota.id_kota');
         $this->db->join('user', 'pelanggan.id_userfk = user.id_user');
-        $this->db->where('id_user', $id);
+        $this->db->where('id_pelanggan', $id);
         $result = $this->db->get();
         return $result->row_array();
     }

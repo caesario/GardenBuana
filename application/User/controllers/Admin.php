@@ -197,6 +197,7 @@ class Admin extends CI_Controller
     public function hapus_user($id)
     {
         $this->Admin_model->hapusDataUser($id);
+        $this->Admin_model->hapusDataVendor($id);
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('admin/verif');
     }

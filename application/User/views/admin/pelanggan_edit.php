@@ -5,7 +5,7 @@
   <h4 class="h4"><?= $title; ?></h4>
   <hr>
 
-  <?php var_dump($detail_pelanggan); ?>
+  <!-- <?php var_dump($detail_pelanggan); ?> -->
 
   <form class=" gb-size-form" action="<?= site_url('Admin/upd_verif/' . $detail_pelanggan['id_pelanggan']); ?>" method="post">
     <input type="hidden" class="form-control form-control-sm col-1" id="name" name="name" placeholder="" value="<?= $detail_pelanggan['id_user']; ?>">

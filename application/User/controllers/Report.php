@@ -149,7 +149,7 @@ class Report extends CI_Controller
     public function pelanggan_edit($id)
     {
         if ($this->session->userdata("role_id") == 3) {
-            $data['title'] = 'Data Pelanggan | Edit';
+            $data['title'] = 'Data Pelanggan';
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $data['detail_pelanggan'] = $this->Admin_model->getPelangganById($id);
 
@@ -183,6 +183,47 @@ class Report extends CI_Controller
         $this->load->view('templates/vendor_topbar', $data);
         $this->load->view('admin/data_vendor', $data);
         $this->load->view('templates/vendor_footer');
+    }
+
+    public function data_vendor_detail($id)
+    {
+        $data['title'] = 'Data Vendor';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['vendor'] = $this->Admin_model->getVendorById($id);
+
+        $this->load->view('templates/vendor_header', $data);
+        $this->load->view('templates/vendor_sidebar', $data);
+        $this->load->view('templates/vendor_topbar', $data);
+        $this->load->view('admin/data_vendor_detail', $data);
+        $this->load->view('templates/vendor_footer');
+    }
+
+    public function vendor_edit($id)
+    {
+        if ($this->session->userdata("role_id") == 3) {
+            $data['title'] = 'Data Vendor';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['detail_vendor'] = $this->Admin_model->getVendorById($id);
+
+            $this->form_validation->set_rules('telpon', 'Telpon', 'required');
+            $this->form_validation->set_rules('kota', 'Kota', 'required');
+            $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+            $this->form_validation->set_rules('invoVendor', 'Info Vendor', 'required');
+
+            if ($this->form_validation->run() == FALSE) {
+                $this->load->view('templates/vendor_header', $data);
+                $this->load->view('templates/vendor_sidebar', $data);
+                $this->load->view('templates/vendor_topbar', $data);
+                $this->load->view('admin/vendor_edit', $data);
+                $this->load->view('templates/vendor_footer');
+            } else {
+                $this->Admin_model->ubahDataVendor($id);
+                $this->session->set_flashdata('flash', 'Diubah');
+                redirect('report/data_pelanggan');
+            }
+        } else {
+            redirect("home");
+        }
     }
 
     public function riwayat_pesanan()
