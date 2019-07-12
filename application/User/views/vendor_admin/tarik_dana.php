@@ -25,7 +25,7 @@
         <?php foreach ($tarik_dana as $data) : ?>
           <tr>
             <td>
-              <?php if ($data['id_status_tarik'] == 3) : ?>
+              <?php if ($data['id_status_tarik'] >= 2) : ?>
                 <?= $data['id_pesanan']; ?>
               <?php else : ?>
                 <a href="" data-toggle="modal" data-target="#exampleModal" class="text-decoration-none">

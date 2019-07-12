@@ -58,7 +58,7 @@
             </div><br>
 
             <div class="row">
-                <div class="col-6 col-lg-9 mb-2">
+                <div class="col-6 col-lg-6 mb-2">
                     <h6 class="mb-0 text-dark">Nama Vendor</h6>
                     <p class="text-dark font-weight-bold mb-3"><?= $riwayat['nama_vendor']; ?></p>
 
@@ -72,11 +72,11 @@
                     <p class="text-dark font-italic"><?= $data_pengerjaan['keterangan']; ?></p>
                 </div>
 
-                <div class="col-12">
+                <div class="col-6">
                     <h6 class="mb-3 text-dark font-weight-bold">Dokumentasi Pekerjaan</h6>
                     <div class="row card-deck" id="demo">
                         <div class="row">
-                            <div class="col-3">
+                            <div class="col-6">
                                 <img class="card-img-top p-3 gb-img-port mb-4 border rounded-0" src="<?= base_url('assets/img/'); ?><?= $data_pengerjaan['gambar_pengerjaan']; ?>" alt="Card image cap">
                             </div>
                         </div>

@@ -828,6 +828,15 @@ class Vendor_admin extends CI_Controller
         }
     }
 
+    public function cetak_riwayat_pesanan($id)
+    {
+        $data['title'] = 'Riwayat Transaksi';
+        $data['riwayat'] = $this->Vendor_model->getRiwayatById($id);
+        $data['data_pengerjaan'] = $this->Vendor_model->getPengerjaanById($id);
+        $this->load->view('templates/vendor_header', $data);
+        $this->load->view('vendor_admin/cetak_riwayat_pesanan', $data);
+    }
+
     public function invoice($id)
     {
         if ($this->session->userdata("role_id") == 1) {

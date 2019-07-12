@@ -346,6 +346,23 @@ class Admin extends CI_Controller
         }
     }
 
+    public function detail_penarikan_dana($id)
+    {
+        if ($this->session->userdata("role_id") == 3) {
+            $data['title'] = 'Penarikan Dana';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['tarik_dana'] = $this->Admin_model->getTarikDanaById($id);
+
+            $this->load->view('templates/vendor_header', $data);
+            $this->load->view('templates/vendor_sidebar', $data);
+            $this->load->view('templates/vendor_topbar', $data);
+            $this->load->view('admin/detail_penarikan_dana', $data);
+            $this->load->view('templates/vendor_footer');
+        } else {
+            redirect("home");
+        }
+    }
+
     public function update_penarikan_dana()
     {
         if ($this->session->userdata("role_id") == 3) {
@@ -353,7 +370,7 @@ class Admin extends CI_Controller
                 'id_status_tarik' => $this->input->post('konfirmasi')
             ];
 
-            // var_dump($data);
+            // var_dump($dataKonfirmasi);
             // die();
             $queryUpdate = $this->db->update('trx_pesanan', $dataKonfirmasi);
             if ($queryUpdate) {

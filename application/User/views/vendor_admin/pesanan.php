@@ -47,8 +47,12 @@
                   <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('vendor_admin/detail_pesanan/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
                     <i class="fas fa-eye"></i>
                   </a>
-                <?php elseif ($data['id_status_trans'] >= 3) : ?>
+                <?php elseif ($data['id_status_trans'] == 3) : ?>
                   <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('vendor_admin/pesanan_detail/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
+                    <i class="fas fa-eye"></i>
+                  </a>
+                <?php elseif ($data['id_status_trans'] == 6) : ?>
+                  <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('vendor_admin/detail_konfirmasi_pengerjaan/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
                     <i class="fas fa-eye"></i>
                   </a>
                 <?php endif; ?>
