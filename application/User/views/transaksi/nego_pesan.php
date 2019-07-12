@@ -28,9 +28,11 @@
                 <?php if ($trx_pesanan['id_status_trans'] == 1) : ?>
                   <button class="btn btn-sm btn-success float-right rounded-0" data-toggle="modal" data-target="#exampleModal">Konfirmasi Pesanan</button>
                 <?php else : ?>
-                  <button class="btn btn-sm btn-danger float-right rounded-0" data-toggle="modal" data-target="#exampleModal">Batal Konfirmasi</button>
+                  <form action="<?= site_url('transaksi/batal_pesanan_vendor'); ?>" method="post">
+                    <input type="hidden" value="<?= $trx_pesanan['id_pesanan'] ?>" name="id_pesanan" />
+                    <button class="btn btn-sm btn-danger float-right rounded-0">Batal Konfirmasi</button>
+                  <?php endif; ?>
                 <?php endif; ?>
-              <?php endif; ?>
             </div>
           </div>
 
@@ -135,7 +137,7 @@
             <div class="modal-body">
               <p class="mb-0 text-dark gb-font-small">Masukan Harga</p>
               <div class="col p-0 form-group">
-                <input class="form-control form-control-sm mt-1 mb-3 gb-font-small rounded-0" type="text" value="" name="harga">
+                <input class="form-control form-control-sm mt-1 mb-3 gb-font-small rounded-0" type="text" value="" id="rupiah" name="harga">
                 <input class="form-control form-control-sm mt-1 mb-3 gb-font-small rounded-0" type="hidden" value="<?= $trx_pesanan['id_pesanan']; ?>" name="id_pesanan">
               </div>
             </div>
@@ -147,6 +149,29 @@
       </div>
     </div>
   </div>
+
+  <!-- <script type="text/javascript">
+    var rupiah = document.getElementById('rupiah');
+    rupiah.addEventListener('keyup', function(e) {
+      rupiah.value = formatRupiah(this.value);
+    });
+
+    function formatRupiah(angka, prefix) {
+      var number_string = angka.replace(/[^,\d]/g, '').toString(),
+        split = number_string.split(','),
+        sisa = split[0].length % 3,
+        rupiah = split[0].substr(0, sisa),
+        ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+      if (ribuan) {
+        separator = sisa ? '.' : '';
+        rupiah += separator + ribuan.join('.');
+      }
+
+      rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+      return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+    }
+  </script> -->
 
 
   </div>

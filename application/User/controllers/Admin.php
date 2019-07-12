@@ -65,7 +65,7 @@ class Admin extends CI_Controller
     {
         if ($this->session->userdata("role_id") == 3) {
             $data['title'] = 'Konfirmasi Pembayaran';
-            $data['trx_pesanan'] = $this->Pesanan_model->getPesananById($id);
+            $data['trx_pesanan'] = $this->Pesanan_model->getPesananCetakById($id);
             $data['bukti_bayar'] = $this->Pesanan_model->getBuktiById($id);
             $data['info_web'] = $this->Admin_model->getInfoWeb();
             $data['session'] = $this->session->all_userdata();
@@ -77,10 +77,18 @@ class Admin extends CI_Controller
             $this->load->view('templates/vendor_sidebar', $data);
             $this->load->view('templates/vendor_topbar', $data);
             $this->load->view('admin/konfirmasi_pembayaran', $data);
-            // $this->load->view('templates/footer', $data);
+            $this->load->view('templates/vendor_footer');
         } else {
             redirect("home");
         }
+    }
+
+    public function cetak_detail_pembayaran($id)
+    {
+        $data['trx_pesanan'] = $this->Pesanan_model->getPesananCetakById($id);
+        $data['bukti_bayar'] = $this->Pesanan_model->getBuktiById($id);
+        $this->load->view('templates/vendor_header', $data);
+        $this->load->view('admin/cetak_detail_pembayaran', $data);
     }
 
     public function upd_konfirmasi_pembayaran()
@@ -345,8 +353,8 @@ class Admin extends CI_Controller
                 'id_status_tarik' => $this->input->post('konfirmasi')
             ];
 
-            var_dump($data);
-            die();
+            // var_dump($data);
+            // die();
             $queryUpdate = $this->db->update('trx_pesanan', $dataKonfirmasi);
             if ($queryUpdate) {
                 $this->session->set_flashdata('success', 'Success');

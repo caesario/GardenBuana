@@ -2,9 +2,18 @@
       Clients Section
     ============================-->
 
+<div class="row container pr-0">
+  <div class="col">
+    <a href="<?= site_url('admin/konfirmasi_bukti_bayar'); ?>" class="btn btn-primary btn-sm rounded-0"><i class="mr-2 fas fa-arrow-left"></i>Kembali</a>
+  </div>
+  <div class="col">
+    <a href="<?= site_url('admin/cetak_detail_pembayaran/'); ?><?= $trx_pesanan['id_pesanan']; ?>" class="btn btn-primary btn-sm float-right ml-1 rounded-0">Cetak Pesanan<i class="ml-2 fas fa-print"></i></a>
+  </div>
+</div>
+
 <section id="clients" class="section-bg">
 
-  <div class="container wow fadeInUp mt-5">
+  <div class="container wow fadeInUp mt-5 mb-5">
     <section class="bg-white px-5 py-4 rounded-0">
       <div class="section-header">
         <h5 class="text-center font-weight-bold">Konfirmasi Bukti Bayar</h5>
@@ -19,7 +28,8 @@
               <p class="my-0 gb-font-small"><?= $trx_pesanan['id_pesanan']; ?></p>
             </div>
             <div class="col-6">
-              <a href="<?= site_url('admin/konfirmasi_bukti_bayar'); ?>" class="btn btn-sm btn-primary gb-btn-order float-right rounded-0 ml-1">Kembali</a>
+              <h6 class="font-weight-bold my-0 text-right">Nama Vendor</h6>
+              <p class="my-0 gb-font-small text-right"><?= $trx_pesanan['nama_vendor']; ?></p>
             </div>
           </div>
 
@@ -31,7 +41,7 @@
               <p class="my-0 gb-font-small"><?= $trx_pesanan['nama_pemesan']; ?></p>
             </div>
             <div class="col-4 mt-5">
-              <h6 class="font-weight-bold my-0">Tanggal Pesanan</h6>
+              <h6 class="font-weight-bold my-0">Tanggal Pengerjaan</h6>
               <p class="my-0 gb-font-small"><?= $trx_pesanan['tanggal_pengerjaan']; ?></p>
             </div>
             <div class="col-4 mt-5">
@@ -46,11 +56,23 @@
               <h6 class="font-weight-bold my-0">Alamat</h6>
               <p class="my-0 gb-font-small"><?= $trx_pesanan['alamat']; ?></p>
             </div>
+            <div class="col-4 mt-5">
+              <h6 class="font-weight-bold my-0">Harga</h6>
+              <p class="my-0 gb-font-small">Rp. <?= number_format($trx_pesanan['harga'], 0, ".", ".") ?>,-</p>
+            </div>
           </div>
           <div class="row mb-4">
             <div class="col mt-5">
+              <h6 class="font-weight-bold my-0 text-center">Status</h6>
+              <p class="my-0 gb-font-small px-5 text-center"><?= $trx_pesanan['nama_status']; ?></p>
+            </div>
+            <div class="col mt-5">
               <h6 class="font-weight-bold my-0 text-center">Keterangan</h6>
-              <p class="my-0 gb-font-small px-5 text-center"><?= $trx_pesanan['keterangan']; ?></p>
+              <p class="my-0 gb-font-small px-0 text-center"><?= $trx_pesanan['keterangan']; ?></p>
+            </div>
+            <div class="col mt-5">
+              <h6 class="font-weight-bold my-0 text-center">Tanggal Pesanan</h6>
+              <p class="my-0 gb-font-small px-5 text-center"><?= $trx_pesanan['createTime']; ?></p>
             </div>
           </div>
         </div>

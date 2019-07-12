@@ -40,7 +40,7 @@ class User_model extends CI_model
         $this->db->join('status_transaksi', 'status_transaksi.id_status_trans = trx_pesanan.id_status_trans');
         $this->db->join('vendor', 'vendor.id_vendor = trx_pesanan.id_vendor');
         $this->db->where('id_pelanggan', $id);
-        $this->db->where('trx_pesanan.id_status_trans !=', '8');
+        $this->db->where('trx_pesanan.id_status_trans <=', '7');
         $result = $this->db->get();
         return $result->result_array();
     }
@@ -58,7 +58,7 @@ class User_model extends CI_model
         $this->db->join('status_transaksi', 'status_transaksi.id_status_trans = trx_p.id_status_trans');
         $this->db->join('vendor', 'vendor.id_vendor = trx_p.id_vendor');
         $this->db->where('id_pelanggan', $id);
-        $this->db->where('trx_p.id_status_trans', 8);
+        $this->db->where('trx_p.id_status_trans >= 8');
         $result = $this->db->get();
         return $result->result_array();
     }

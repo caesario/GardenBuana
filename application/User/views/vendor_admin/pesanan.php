@@ -43,17 +43,18 @@
             <td><?= $data['create_date']; ?></td>
             <td>
               <span>
-                <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('vendor_admin/detail_pesanan/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
-                  <i class="fas fa-eye"></i>
-                </a>
-              </span>
-              <!-- <span>
-                  <a class="btn btn-primary btn-sm py-0 gb-btn-width" href="<?= site_url('admin/pesanan_edit/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Ubah">
-                    <i class="fas fa-edit"></i>
+                <?php if ($data['id_status_trans'] <= 2) : ?>
+                  <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('vendor_admin/detail_pesanan/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
+                    <i class="fas fa-eye"></i>
                   </a>
-                </span> -->
+                <?php elseif ($data['id_status_trans'] >= 3) : ?>
+                  <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('vendor_admin/pesanan_detail/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
+                    <i class="fas fa-eye"></i>
+                  </a>
+                <?php endif; ?>
+              </span>
               <span>
-                <a class="btn btn-warning btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Cetak">
+                <a class="btn btn-warning btn-sm py-0 gb-btn-width" href="<?= site_url('vendor_admin/cetak_pesanan/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Cetak">
                   <i class="fas fa-print"></i>
                 </a>
               </span>

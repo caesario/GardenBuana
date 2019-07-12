@@ -34,7 +34,7 @@
             <td><?= $data['alamat']; ?></td>
             <td><?= $data['tanggal_pengerjaan']; ?></td>
             <td><?= $data['nama_status']; ?></td>
-            <td>Rp.<?= $data['harga']; ?></td>
+            <td>Rp.<?= number_format($data['harga'], 0, ".", ".") ?>,-</td>
             <!-- <td><?= $data['nama_status']; ?></td> -->
             <!-- <td><?= $data['create_date']; ?></td> -->
             <td>

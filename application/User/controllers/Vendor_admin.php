@@ -471,6 +471,34 @@ class Vendor_admin extends CI_Controller
         }
     }
 
+    public function pesanan_detail($id)
+    {
+        $data['title'] = 'Konfirmasi Pembayaran';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['detail_pesanan'] = $this->Pesanan_model->getPesananCetakById($id);
+
+        $this->load->view('templates/vendor_header', $data);
+        $this->load->view('templates/vendor_sidebar', $data);
+        $this->load->view('templates/vendor_topbar', $data);
+        $this->load->view('vendor_admin/pesanan_detail', $data);
+        $this->load->view('templates/vendor_footer');
+    }
+
+    public function cetak_pesanan($id)
+    {
+        if ($this->session->userdata("role_id") == 1) {
+            $data['title'] = 'GardenBuana | Pesanan';
+            $data['trx_pesanan'] = $this->Pesanan_model->getPesananCetakById($id);
+            $data['info_web'] = $this->Admin_model->getInfoWeb();
+            $data['session'] = $this->session->all_userdata();
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('user_admin/cetak_pesanan', $data);
+        } else {
+            redirect("home");
+        }
+    }
+
     public function tertunda()
     {
         $data['title'] = 'Pesanan Tertunda';
