@@ -20,7 +20,10 @@
             </div>
             <div class="col-6">
               <?php if ($session['role_id'] == 2) : ?>
-                <button class="btn btn-sm btn-danger float-right rounded-0 ml-1">Batalkan Pesanan</button>
+                <form action="<?= site_url('transaksi/batal_pesanan'); ?>" method="post">
+                  <input type="hidden" value="<?= $trx_pesanan['id_pesanan'] ?>" name="id_pesanan" />
+                  <button class="btn btn-sm btn-danger float-right rounded-0 ml-1" type="submit">Batalkan Pesanan</button>
+                </form>
               <?php else : ?>
                 <?php if ($trx_pesanan['id_status_trans'] == 1) : ?>
                   <button class="btn btn-sm btn-success float-right rounded-0" data-toggle="modal" data-target="#exampleModal">Konfirmasi Pesanan</button>
@@ -106,9 +109,9 @@
             ?>
             <input type="hidden" value="<?= $trx_pesanan['id_pelanggan'] ?>" name="id_pelanggan" />
           <?php
-        else :
-          $type = "V";
-          ?>
+          else :
+            $type = "V";
+            ?>
             <input type="hidden" value="<?= $trx_pesanan['id_vendor'] ?>" name="id_vendor" />
           <?php endif; ?>
 

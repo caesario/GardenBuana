@@ -60,15 +60,15 @@
                 <?php endif; ?>
               </span>
               <span>
-                <?php if ($data['id_status_trans'] <= 6) : ?>
-                  <a class="btn btn-danger btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Hapus">
+                <?php if ($data['id_status_trans'] < 3 || $data['id_status_trans'] >= 11) : ?>
+                  <a class="btn btn-danger btn-sm py-0 gb-btn-width" href="<?= site_url('user_admin/hapus_pesanan/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Hapus">
                     <i class="fas fa-trash"></i>
                   </a>
                 <?php else : ?>
                 <?php endif; ?>
               </span>
               <span>
-                <a class="btn btn-warning btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Cetak">
+                <a class="btn btn-warning btn-sm py-0 gb-btn-width" href="<?= site_url('user_admin/cetak_pesanan/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Cetak">
                   <i class="fas fa-print"></i>
                 </a>
               </span>

@@ -1,11 +1,10 @@
 <!--==========================
       Clients Section
     ============================-->
-<section id="clients" class="section-bg">
+<section id="clients" class="">
 
-    <div class="container wow fadeInUp mt-5">
-        <section class="bg-white px-5 py-4 rounded-0">
-            <a href="<?= base_url('user_admin/riwayat_pesanan'); ?>" class="btn btn-sm btn-danger rounded-0"><i class="fas fa-arrow-left mr-2"></i>Kembali</a>
+    <div class="container wow fadeInUp">
+        <section class="bg-white px-5 rounded-0">
             <div class="section-header">
                 <h5 class="text-center font-weight-bold">Riwayat Pesanan Anda</h5>
             </div>
@@ -20,7 +19,7 @@
                             <p class="my-0 gb-font-small"><?= $riwayat['id_pesanan']; ?></p>
                         </div>
                         <div class="col-6">
-                            <button class="btn btn-sm btn-primary float-right rounded-0 ml-1"><?= $riwayat['nama_status']; ?></button>
+                            <p class="btn btn-sm btn-outline-secondary float-right rounded-0 ml-1"><?= $riwayat['nama_status']; ?></p>
                         </div>
                     </div>
 

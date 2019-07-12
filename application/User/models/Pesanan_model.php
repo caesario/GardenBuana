@@ -11,6 +11,17 @@ class Pesanan_model extends CI_Model
     return $result->row_array();
   }
 
+  public function getPesananCetakById($id)
+  {
+    $this->db->select('*');
+    $this->db->from('trx_pesanan');
+    $this->db->join('vendor', 'vendor.id_vendor = trx_pesanan.id_vendor');
+    $this->db->join('status_transaksi', 'status_transaksi.id_status_trans = trx_pesanan.id_status_trans');
+    $this->db->where('id_pesanan', $id);
+    $result = $this->db->get();
+    return $result->row_array();
+  }
+
   public function getKonfirmasiById($id)
   {
     $this->db->select('*');

@@ -8,6 +8,7 @@ class User_admin extends CI_Controller
         parent::__construct();
         $this->load->model('Admin_model');
         $this->load->model('User_model');
+        $this->load->model('Pesanan_model');
     }
 
     public function index()
@@ -64,6 +65,32 @@ class User_admin extends CI_Controller
         }
     }
 
+    public function hapus_pesanan($id)
+    {
+        $this->User_model->hapusDataPesanan($id);
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect('user_admin/pesanan');
+    }
+
+    public function cetak_pesanan($id)
+    {
+        if ($this->session->userdata("role_id") == 2) {
+            $data['title'] = 'GardenBuana | Pesanan';
+            $data['trx_pesanan'] = $this->Pesanan_model->getPesananCetakById($id);
+            $data['info_web'] = $this->Admin_model->getInfoWeb();
+            $data['session'] = $this->session->all_userdata();
+
+            $data['list_nego'] = $this->db->query("select * from list_nego_pesanan where id_pesanan = '$id'")->result_array();
+
+            // echo"<pre>"; print_r($data['list_nego']); exit();
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('user_admin/cetak_pesanan', $data);
+        } else {
+            redirect("home");
+        }
+    }
+
     public function riwayat_pesanan()
     {
         if ($this->session->userdata("role_id") == 2) {
@@ -106,6 +133,22 @@ class User_admin extends CI_Controller
             $this->load->view('templates/vendor_topbar', $data);
             $this->load->view('user_admin/detail_riwayat_pesanan', $data);
             $this->load->view('templates/vendor_footer');
+        } else {
+            redirect("home");
+        }
+    }
+
+    public function cetak_riwayat_pesanan($id)
+    {
+        if ($this->session->userdata("role_id") == 2) {
+            $data['title'] = 'GardenBuana | Pesanan';
+            $data['riwayat'] = $this->User_model->getRiwayatById($id);
+            $data['data_pengerjaan'] = $this->User_model->getPengerjaanById($id);
+            $data['info_web'] = $this->Admin_model->getInfoWeb();
+            $data['session'] = $this->session->all_userdata();
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('user_admin/cetak_riwayat_pesanan', $data);
         } else {
             redirect("home");
         }

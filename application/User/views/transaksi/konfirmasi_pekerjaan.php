@@ -78,9 +78,7 @@
           <div class="row card-deck" id="demo">
             <div class="row">
               <div class="col-3">
-                <a href="">
-                  <img class="card-img-top p-3 gb-img-port mb-4 border rounded-0" src="<?= base_url('assets/img/'); ?><?= $data_pengerjaan['gambar_pengerjaan']; ?>" alt="Card image cap">
-                </a>
+                <img class="card-img-top p-3 gb-img-port mb-4 border rounded-0" data-toggle="modal" data-target="#exampleModal2" src="<?= base_url('assets/img/'); ?><?= $data_pengerjaan['gambar_pengerjaan']; ?>" alt="Card image cap">
               </div>
             </div>
           </div>
@@ -88,16 +86,23 @@
       </div>
 
 
-      <!-- <div class="mt-4 pt-1">
-          <h6 class="font-weight-bold mb-2">Konfirmasi Pekerjaan</h6>
-          <input type="file" class="form-control-file btn-sm gb-font-small mb-3" id="gambarPesanan" name="gambarPesanan" value="HARDCODE">
-          <input type="hidden" name="id_pesanan" value="<?= $trx_pesanan['id_pesanan']; ?>">
-          <input type="hidden" name="gambar" value="GAMBAR">
-          <p class="gb-font-small mb-2">Keterangan</p>
-          <textarea name="keterangan" id="" cols="40" rows="3" class="gb-font-small mb-1"></textarea>
-          <br>
-          <button class="btn btn-sm btn-primary gb-btn-order rounded-0">Kirim Bukti</button>
-        </div> -->
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal2" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content col-12 rounded-0">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="col p-0 form-group">
+                <img class="card-img-top p-3 mb-4 border rounded-0" src="<?= base_url('assets/img/'); ?><?= $data_pengerjaan['gambar_pengerjaan']; ?>" alt="Card image cap">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

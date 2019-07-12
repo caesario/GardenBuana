@@ -36,7 +36,7 @@
         <?php foreach ($tarik_dana as $data) : ?>
           <tr>
             <td>
-              <a href="" data-toggle="modal" data-target="#exampleModal" class="text-decoration-none">
+              <a href="" data-toggle="modal" data-id="<?= $data['id_pesanan']; ?>" data-target="#exampleModal" class="text-decoration-none">
                 <?= $data['id_pesanan']; ?>
               </a>
             </td>
@@ -45,18 +45,6 @@
             <td><?= $data['pemilik']; ?></td>
             <td><?= $data['bank']; ?></td>
             <td><?= $data['harga']; ?></td>
-            <!-- <td>
-                <span>
-                  <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('report/pesanan_detail/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
-                    <i class="fas fa-eye"></i>
-                  </a>
-                </span>
-                <span>
-                  <a class="btn btn-warning btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Cetak">
-                    <i class="fas fa-print"></i>
-                  </a>
-                </span>
-              </td> -->
           </tr>
         <?php endforeach; ?>
       </tbody>
@@ -65,7 +53,7 @@
 
   <div class="modal fade" id="exampleModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <form action="<?= site_url('admin/update_penarikan_dana'); ?>" method="post">
+      <form action="<?= site_url('admin/update_penarikan_dana/'); ?>" method="post">
         <!-- <input class="" type="text" name="id_pesanan" value="<?= $tarik_dana_id['id_pesanan']; ?>">
         <input class="" type="text" name="id_vendor" value="<?= $tarik_dana_id['id_vendor']; ?>"> -->
         <div class="modal-content col-8 rounded-0">

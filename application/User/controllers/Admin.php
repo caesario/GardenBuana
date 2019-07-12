@@ -345,8 +345,8 @@ class Admin extends CI_Controller
                 'id_status_tarik' => $this->input->post('konfirmasi')
             ];
 
-            // var_dump($data);
-            // die();
+            var_dump($data);
+            die();
             $queryUpdate = $this->db->update('trx_pesanan', $dataKonfirmasi);
             if ($queryUpdate) {
                 $this->session->set_flashdata('success', 'Success');

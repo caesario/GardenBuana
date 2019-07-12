@@ -45,6 +45,12 @@ class User_model extends CI_model
         return $result->result_array();
     }
 
+    public function hapusDataPesanan($id)
+    {
+        $this->db->where('id_pesanan', $id);
+        $this->db->delete('trx_pesanan');
+    }
+
     public function getAllPesananRiwayat($id)
     {
         $this->db->select('*');

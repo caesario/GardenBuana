@@ -767,7 +767,7 @@ class Vendor_admin extends CI_Controller
         $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
         $getVendorId = $getVendor->id_vendor;
 
-        $data['trx_pesanan'] = $this->db->query("select * from list_pesanan_vendor where id_vendor = " . $getVendorId . " AND id_status_trans = 8")->result_array();
+        $data['trx_pesanan'] = $this->db->query("select * from list_pesanan_vendor where id_vendor = " . $getVendorId . " AND id_status_trans >= 8")->result_array();
 
         $this->load->view('templates/vendor_header', $data);
         $this->load->view('templates/vendor_sidebar', $data);
@@ -853,6 +853,22 @@ class Vendor_admin extends CI_Controller
         } else {
             $this->session->set_flashdata('gagal', 'Data Berhasil Diubah');
             redirect('Vendor_admin/tarik_dana');
+        }
+    }
+
+    public function update_testimoni()
+    {
+        if ($this->session->userdata("role_id") == 1) {
+            $data = $this->input->post();
+
+            $query = $this->db->query("UPDATE trx_testimoni SET status_tampil = 2 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
+
+            if ($query) {
+                $this->session->set_flashdata('success', 'Data Berhasil Diubah');
+                redirect('vendor_admin/pesanan');
+            }
+        } else {
+            redirect("home");
         }
     }
 }

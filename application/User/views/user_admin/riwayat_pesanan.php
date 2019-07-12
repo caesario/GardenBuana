@@ -39,7 +39,7 @@
                 </a>
               </span>
               <span>
-                <a class="btn btn-warning btn-sm py-0 gb-btn-width" href="" data-toggle="tooltip" data-placement="top" title="Cetak">
+                <a class="btn btn-warning btn-sm py-0 gb-btn-width" href="<?= site_url('user_admin/cetak_riwayat_pesanan/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Cetak">
                   <i class="fas fa-print"></i>
                 </a>
               </span>

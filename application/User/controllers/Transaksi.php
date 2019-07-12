@@ -32,6 +32,27 @@ class Transaksi extends CI_Controller
     }
   }
 
+  public function batal_pesanan()
+  {
+    // $data = array(
+    //   'id_pesanan' => $this->input->post('id_pesanan'),
+    //   'id_status_trans' => $this->input->post('batal'),
+    //   'created_date' => date('Y-m-d H:i:s')
+    // );
+
+    // var_dump($data);
+    // die();
+
+    $query = $this->db->query("UPDATE trx_pesanan SET id_status_trans = 11 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
+
+    if ($query) {
+      $this->session->set_flashdata('success', 'Data Berhasil Diubah');
+      redirect('user_admin/pesanan');
+    } else {
+      redirect('transaksi/pesanan');
+    }
+  }
+
   public function nego_pesan()
   {
     $data = $this->input->post();
