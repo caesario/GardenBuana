@@ -311,13 +311,45 @@ class Report extends CI_Controller
         $data['title'] = 'Pendapatan Vendor';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // $data['history'] = $this->Admin_model->getAllHistoryPesanan();
-        $data['pendapatan'] = $this->Admin_model->getAllPendapatan();
+        $data['pendapatan'] = $this->Admin_model->getLoopVendor();
+        $vendorPendapatan = $this->loop_pendapatan();
+        $data['vendorPendapatan'] = $vendorPendapatan;
+        $vendorTransaksi = $this->loop_transaksi_pesanan();
+        $data['vendorTransaksi'] = $vendorTransaksi;
 
         $this->load->view('templates/vendor_header', $data);
         $this->load->view('templates/vendor_sidebar', $data);
         $this->load->view('templates/vendor_topbar', $data);
         $this->load->view('admin/pendapatan_vendor', $data);
         $this->load->view('templates/vendor_footer');
+    }
+
+    private function loop_pendapatan()
+    {
+        $data = array();
+        $dataVendor = $this->Admin_model->getLoopVendor();
+        $panjangRow = $this->Admin_model->getRowVendor();
+        // var_dump($dataVendor);
+        // die();
+        for ($i = 0; $i < $panjangRow; $i++) {
+            $pendapatan = $this->Admin_model->getAllPendapatanById($dataVendor[$i]['id_vendor']);
+            array_push($data, $pendapatan);
+        }
+        return $data;
+    }
+
+    private function loop_transaksi_pesanan()
+    {
+        $data = array();
+        $dataVendor = $this->Admin_model->getLoopVendor();
+        $panjangRow = $this->Admin_model->getRowVendor();
+        // var_dump($dataVendor);
+        // die();
+        for ($i = 0; $i < $panjangRow; $i++) {
+            $pendapatan = $this->Admin_model->getRowVendorPesananTrx($dataVendor[$i]['id_vendor']);
+            array_push($data, $pendapatan);
+        }
+        return $data;
     }
 
     public function invoice($id)

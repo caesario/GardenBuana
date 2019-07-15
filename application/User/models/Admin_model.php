@@ -377,12 +377,33 @@ class Admin_model extends CI_Model
         return $result->num_rows();
     }
 
+    public function getRowVendorPesananTrx($id)
+    {
+        $this->db->select('*');
+        $this->db->from('trx_pesanan');
+        $this->db->where('id_vendor', $id);
+        $result = $this->db->get();
+        return $result->num_rows();
+    }
+
     public function getAllPendapatan()
     {
         $this->db->select('*');
-        $this->db->from('pendapatan');
-        $this->db->join('vendor', 'vendor.id_vendor = pendapatan.id_vendor');
+        $this->db->from('trx_pesanan');
+        $this->db->join('vendor', 'vendor.id_vendor = trx_pesanan.id_vendor');
         // $this->db->where('id_vendor');
+        $result = $this->db->get();
+        return $result->result_array();
+    }
+
+    public function getAllPendapatanById($id)
+    {
+        $this->db->select_sum('harga');
+        // $this->db->select('*');
+        $this->db->from('trx_pesanan');
+        $this->db->join('vendor', 'vendor.id_vendor = trx_pesanan.id_vendor');
+        $this->db->where('trx_pesanan.id_vendor', $id);
+        $this->db->where('trx_pesanan.id_status_tarik = 3');
         $result = $this->db->get();
         return $result->result_array();
     }
