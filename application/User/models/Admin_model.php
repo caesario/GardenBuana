@@ -337,9 +337,44 @@ class Admin_model extends CI_Model
         $this->db->select('*');
         $this->db->from('penilaian');
         $this->db->join('vendor', 'vendor.id_vendor = penilaian.id_vendor');
-        // $this->db->where('id_vendor');
         $result = $this->db->get();
         return $result->result_array();
+    }
+
+    public function getAllPenilaianById($id)
+    {
+        $this->db->select_sum('penilaian');
+        // $this->db->select('*');
+        $this->db->from('penilaian');
+        $this->db->join('vendor', 'vendor.id_vendor = penilaian.id_vendor');
+        $this->db->where('penilaian.id_vendor', $id);
+        $result = $this->db->get();
+        return $result->result_array();
+    }
+
+    public function getLoopVendor()
+    {
+        $this->db->select('*');
+        $this->db->from('vendor');
+        $result = $this->db->get();
+        return $result->result_array();
+    }
+
+    public function getRowVendor()
+    {
+        $this->db->select('*');
+        $this->db->from('vendor');
+        $result = $this->db->get();
+        return $result->num_rows();
+    }
+
+    public function getRowVendorPesanan($id)
+    {
+        $this->db->select('*');
+        $this->db->from('penilaian');
+        $this->db->where('id_vendor', $id);
+        $result = $this->db->get();
+        return $result->num_rows();
     }
 
     public function getAllPendapatan()
