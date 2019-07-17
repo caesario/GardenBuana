@@ -19,7 +19,8 @@
 
   <!-- <?php var_dump($pengguna); ?> -->
 
-  <button class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></button>
+  <a href="<?= site_url('cetakreport/verifikasi_user'); ?>" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
+
   <div class="table-responsive">
     <table id="table_id" class="display table table-bordered">
       <thead>

@@ -1,12 +1,12 @@
 <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container-fluid mt-5">
 
   <!-- Page Heading -->
   <h4 class="h4 mb-4 text-gray-800 float-left"><?= $title; ?></h4>
 
-  <!-- <?php var_dump($history); ?> -->
+  <!-- <?php var_dump($riwayat); ?> -->
 
-  <a href="<?= site_url('cetakreport/riwayat_pesanan'); ?>" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
+  <a href="javascript:window.print()" class="btn btn-primary text-white btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
 
   <div class="table-responsive">
     <table id="table_id" class="display table table-bordered">
@@ -19,12 +19,11 @@
           <th>Tanggal Pengerjaan</th>
           <th>Harga</th>
           <th>Status</th>
-          <th class="gb-aksi-width">Aksi</th>
         </tr>
       </thead>
       <tbody>
         <?php $i = 1; ?>
-        <?php foreach ($history as $data) : ?>
+        <?php foreach ($riwayat as $data) : ?>
           <tr>
             <td><?= $i; ?></td>
             <td><?= $data['id_pesanan']; ?></td>
@@ -33,18 +32,6 @@
             <td><?= $data['tanggal_pengerjaan']; ?></td>
             <td><?= $data['harga']; ?></td>
             <td><?= $data['nama_status']; ?></td>
-            <td>
-              <span>
-                <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('report/riwayat_pesanan_detail/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
-                  <i class="fas fa-eye"></i>
-                </a>
-              </span>
-              <span>
-                <a class="btn btn-warning btn-sm py-0 gb-btn-width" href="<?= site_url('report/cetak_riwayat/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Cetak">
-                  <i class="fas fa-print"></i>
-                </a>
-              </span>
-            </td>
           </tr>
           <?php $i++ ?>
         <?php endforeach; ?>

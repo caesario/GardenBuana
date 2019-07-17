@@ -472,4 +472,13 @@ class Admin_model extends CI_Model
         $result = $this->db->get();
         return $result->row_array();
     }
+
+    public function getAllKonfirmsiPembayaran()
+    {
+        $this->db->select('*');
+        $this->db->from('list_pesanan_vendor');
+        $this->db->where('id_status_trans = 3');
+        $result = $this->db->get();
+        return $result->result_array();
+    }
 }

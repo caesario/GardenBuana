@@ -18,7 +18,7 @@
   <h4 class="h4 mb-4 text-gray-800 float-left"><?= $title; ?></h4>
 
   <!-- <?php var_dump($trx_pesanan); ?> -->
-  <button class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></button>
+  <a href="<?= site_url('cetakreport/pesanan'); ?>" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
   <div class="table-responsive">
     <table id="table_id" class="display table table-bordered">
       <thead>

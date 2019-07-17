@@ -1,5 +1,5 @@
 <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container-fluid mt-5">
 
   <?php if ($this->session->flashdata('flash')) : ?>
     <div class="row mt-3">
@@ -13,11 +13,13 @@
       </div>
     </div>
   <?php endif; ?>
+
   <!-- Page Heading -->
   <h4 class="h4 mb-4 text-gray-800 float-left"><?= $title; ?></h4>
 
   <!-- <?php var_dump($tarik_dana); ?> -->
-  <a href="<?= site_url('cetakreport/penarikan_dana'); ?>" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
+  <a href="javascript:window.print()" class="btn btn-primary text-white btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
+
   <div class="table-responsive">
     <table id="table_id" class="display table table-bordered">
       <thead>
