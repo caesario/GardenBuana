@@ -59,6 +59,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content col rounded-0">
         <div class="modal-header">
+          <button type="button" class="btn btn-sm btn-danger rounded-0" data-dismiss="modal">Hapus</button>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

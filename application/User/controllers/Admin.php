@@ -372,6 +372,7 @@ class Admin extends CI_Controller
 
             // var_dump($dataKonfirmasi);
             // die();
+            $queryUpdate = $this->db->where('trx_pesanan.id_pesanan', $this->input->post('id_pesanan'));
             $queryUpdate = $this->db->update('trx_pesanan', $dataKonfirmasi);
             if ($queryUpdate) {
                 $this->session->set_flashdata('success', 'Success');

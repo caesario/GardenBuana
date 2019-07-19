@@ -48,20 +48,26 @@ class Vendor_model extends CI_model
     {
         if ($kota == null && $keyword == null) {
             $this->db->select('*');
-            $this->db->join('kota', 'kota.id_kota =  vendor.id_kota');
             $this->db->from('vendor');
+            $this->db->join('kota', 'kota.id_kota =  vendor.id_kota');
+            $this->db->join('data_verif', 'data_verif.id_vendor = vendor.id_vendor');
+            $this->db->where('id_status_verif = 3');
             $result = $this->db->get();
             return $result->result_array();
         } elseif ($kota != null && $keyword == null) {
             $this->db->select('*');
-            $this->db->where('ven.id_kota', $kota);
             $this->db->join('kota', 'kota.id_kota =  ven.id_kota');
+            $this->db->join('data_verif', 'data_verif.id_vendor = ven.id_vendor');
+            $this->db->where('ven.id_kota', $kota);
+            $this->db->where('id_status_verif = 3');
             // $this->db->or_like('kota', $keyword);
 
             return $this->db->get('vendor as ven')->result_array();
         } elseif ($keyword != null && $kota == null) {
             $this->db->select('*');
             $this->db->join('kota', 'kota.id_kota =  ven.id_kota');
+            $this->db->join('data_verif', 'data_verif.id_vendor = ven.id_vendor');
+            $this->db->where('id_status_verif = 3');
             $this->db->like('nama_vendor', $keyword);
             // $this->db->or_like('kota', $keyword);
 
@@ -70,6 +76,8 @@ class Vendor_model extends CI_model
             $this->db->select('*');
             $this->db->where('ven.id_kota', $kota);
             $this->db->join('kota', 'kota.id_kota =  ven.id_kota');
+            $this->db->join('data_verif', 'data_verif.id_vendor = ven.id_vendor');
+            $this->db->where('ven.id_status_verif = 3');
             $this->db->like('nama_vendor', $keyword);
             // $this->db->or_like('kota', $keyword);
 

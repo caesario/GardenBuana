@@ -35,10 +35,7 @@
           <div class="row">
             <?php foreach ($portfolio as $data) : ?>
               <div class="col-4 bg-container">
-                <img class="card-img-top gb-img-port mb-4 border rounded-0" data-toggle="modal" data-target="#exampleModal2" src="<?= base_url('assets/img/'); ?><?= $data['gambar']; ?>">
-                <!-- <div class="bg-overlay-2">
-                        <div class="bg-text-2"><?= $data['keterangan']; ?></div>
-                      </div> -->
+                <img class="card-img-top gb-img-port mb-4 border rounded-0" data-toggle="modal" data-target="#exampleModal-<?= $data['id_portfolio']; ?>" src="<?= base_url('assets/img/'); ?><?= $data['gambar']; ?>">
               </div>
             <?php endforeach; ?>
           </div>
@@ -48,21 +45,23 @@
 </section>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal2" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content col rounded-0">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+<?php foreach ($portfolio as $data) : ?>
+  <div class="modal fade" id="exampleModal-<?= $data['id_portfolio']; ?>" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content col rounded-0">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img src="<?= base_url('assets/img/'); ?><?= $data['gambar']; ?>" style="width: 440px;" alt="">
+        </div>
+        <p class="ml-3"><?= $data['keterangan']; ?></p>
       </div>
-      <div class="modal-body">
-        <img src="<?= base_url('assets/img/'); ?><?= $data['gambar']; ?>" style="width: 440px;" alt="">
-      </div>
-      <p class="ml-3"><?= $data['keterangan']; ?></p>
     </div>
   </div>
-</div>
+<?php endforeach; ?>
 
 
 </div>
