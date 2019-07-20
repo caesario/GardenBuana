@@ -2,10 +2,23 @@
 <div class="container-fluid">
 
   <!-- Page Heading -->
-  <?php var_dump($trx_pesanan); ?><br><br>
+  <!-- <?php var_dump($trx_pesanan[0]['nama_pemesan']); ?><br><br> -->
+
   <h4 class="h4 mb-4 text-gray-800 float-left"><?= $title; ?></h4>
 
-  <button class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></button>
+
+
+  <?php if (@$trx_pesanan[0]['id_status_trans'] == 1) : ?>
+    <a href="<?= site_url('CetakReport/pesanan_vendor'); ?>" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
+  <?php elseif (@$trx_pesanan[0]['id_status_trans'] == 3) : ?>
+    <a href="<?= site_url('CetakReport/konfirmasi_pembayaran_vendor'); ?>" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
+  <?php elseif (@$trx_pesanan[0]['id_status_trans'] == 6) : ?>
+    <a href="<?= site_url('CetakReport/konfirmasi_pekerjaan_vendor'); ?>" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
+  <?php else : ?>
+    <a href="" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
+  <?php endif; ?>
+
+
   <div class="table-responsive">
     <table id="table_id" class="display table table-bordered">
       <thead>

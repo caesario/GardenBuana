@@ -79,10 +79,7 @@ class User_admin extends CI_Controller
             $data['trx_pesanan'] = $this->Pesanan_model->getPesananCetakById($id);
             $data['info_web'] = $this->Admin_model->getInfoWeb();
             $data['session'] = $this->session->all_userdata();
-
             $data['list_nego'] = $this->db->query("select * from list_nego_pesanan where id_pesanan = '$id'")->result_array();
-
-            // echo"<pre>"; print_r($data['list_nego']); exit();
 
             $this->load->view('templates/header', $data);
             $this->load->view('user_admin/cetak_pesanan', $data);

@@ -19,7 +19,7 @@
 
   <!-- <?php var_dump($vendor); ?> -->
 
-  <a href="<?= site_url('cetakreport/verifikasi_vendor'); ?>" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
+  <a href="<?= site_url('CetakReport/verifikasi_vendor'); ?>" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
 
   <div class="table-responsive">
     <table id="table_id" class="display table table-bordered">
@@ -51,10 +51,10 @@
                 </a>
               </span>
               <!-- <span>
-                          <a class="btn btn-primary btn-sm py-0 gb-btn-width" href="<?= site_url('admin/verif_edit/'); ?><?= $data['id_vendor']; ?>" data-toggle="tooltip" data-placement="top" title="Ubah">
-                            <i class="fas fa-edit"></i>
-                          </a>
-                        </span> -->
+                            <a class="btn btn-primary btn-sm py-0 gb-btn-width" href="<?= site_url('admin/verif_edit/'); ?><?= $data['id_vendor']; ?>" data-toggle="tooltip" data-placement="top" title="Ubah">
+                              <i class="fas fa-edit"></i>
+                            </a>
+                          </span> -->
               <span>
                 <a class="btn btn-danger btn-sm py-0 gb-btn-width" href="<?= site_url('admin/hapus_verif/'); ?><?= $data['id_vendor']; ?>" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="return confirm('Data akan dihapus?');">
                   <i class="fas fa-trash"></i>

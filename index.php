@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CodeIgniter
  *
@@ -110,7 +111,7 @@ $system_path = 'system';
  *
  * NO TRAILING SLASH!
  */
-$application_folder = 'application/user';
+$application_folder = 'application/User';
 
 /*
  *---------------------------------------------------------------

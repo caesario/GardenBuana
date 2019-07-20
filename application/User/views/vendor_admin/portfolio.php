@@ -10,9 +10,6 @@
     </div>
   </div>
 
-  <!-- <?php var_dump(time()); ?> -->
-  <!-- <?php var_dump($getVendorId); ?> -->
-
   <hr class="mt-0">
 
   <div class="row">
@@ -22,6 +19,7 @@
       </div>
     <?php endforeach; ?>
   </div>
+
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -51,6 +49,7 @@
           </div>
         </form>
       </div>
+
     </div>
   </div>
 
@@ -75,5 +74,6 @@
 </div>
 <!-- /.container-fluid -->
 
-</div>
+
+
 <!-- End of Main Content -->

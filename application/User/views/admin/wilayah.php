@@ -6,7 +6,7 @@
 
   <!-- <?php var_dump($jakpus); ?> -->
 
-  <a href="<?= site_url('cetakreport/wilayah'); ?>" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
+  <a href="<?= site_url('CetakReport/wilayah'); ?>" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
 
   <div class="table-responsive">
     <table id="tablewilayah" class="display table table-bordered">

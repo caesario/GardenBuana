@@ -5,7 +5,8 @@
   <!-- <?php var_dump($trx_pesanan); ?><br><br> -->
   <h4 class="h4 mb-4 text-gray-800 float-left"><?= $title; ?></h4>
 
-  <button class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></button>
+  <a href="<?= site_url('CetakReport/pesanan_pelanggan'); ?>" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
+
   <div class="table-responsive">
     <table id="table_id" class="display table table-bordered">
       <thead>
@@ -36,7 +37,7 @@
             </td>
             <td><?= $data['nama_vendor']; ?></td>
             <td><?= $data['tanggal_pengerjaan']; ?></td>
-            <td>Rp.<?= $data['harga']; ?></td>
+            <td>Rp.<?= number_format($data['harga'], 0, ".", ".") ?>,-</td>
             <td><?= $data['nama_status']; ?></td>
             <td><?= $data['create_date']; ?></td>
             <td>

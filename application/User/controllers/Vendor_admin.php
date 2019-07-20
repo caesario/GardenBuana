@@ -450,14 +450,11 @@ class Vendor_admin extends CI_Controller
         if ($this->session->userdata("role_id") == 1) {
             $data['title'] = 'Pesanan';
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-            $id = $this->session->userdata("id_user");
 
+            $id = $this->session->userdata("id_user");
             $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
             $getVendorId = $getVendor->id_vendor;
-
             $data['trx_pesanan'] = $this->Vendor_model->getAllPesananVendor($getVendorId);
-
-            // echo "<pre>";print_r($data['trx_pesanan']);exit();
 
             $data['session'] = $this->session->all_userdata();
 
@@ -606,15 +603,11 @@ class Vendor_admin extends CI_Controller
         if ($this->session->userdata("role_id") == 1) {
             $data['title'] = 'Konfirmasi Pembayaran';
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-            $id = $this->session->userdata("id_user");
 
+            $id = $this->session->userdata("id_user");
             $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
             $getVendorId = $getVendor->id_vendor;
-
             $data['trx_pesanan'] = $this->db->query("select * from list_pesanan_vendor where id_vendor = " . $getVendorId . " AND id_status_trans = 3")->result_array();
-
-            // echo "<pre>";print_r($data['trx_pesanan']);exit();
-
             $data['session'] = $this->session->all_userdata();
 
             $this->load->view('templates/vendor_header', $data);

@@ -17,7 +17,7 @@
   <h4 class="h4 mb-4 text-gray-800 float-left"><?= $title; ?></h4>
 
   <!-- <?php var_dump($tarik_dana); ?> -->
-  <a href="<?= site_url('cetakreport/penarikan_dana'); ?>" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
+  <a href="<?= site_url('CetakReport/penarikan_dana'); ?>" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
   <div class="table-responsive">
     <table id="table_id" class="display table table-bordered">
       <thead>
@@ -57,7 +57,7 @@
         <form action="<?= site_url('admin/update_penarikan_dana/'); ?>" method="post">
           <input class="" type="text" name="id_pesanan" value="<?= $data['id_pesanan']; ?>">
           <!-- <input class="" type="text" name="id_pesanan" value="<?= $tarik_dana_id['id_pesanan']; ?>">
-                <input class="" type="text" name="id_vendor" value="<?= $tarik_dana_id['id_vendor']; ?>"> -->
+                      <input class="" type="text" name="id_vendor" value="<?= $tarik_dana_id['id_vendor']; ?>"> -->
           <div class="modal-content col-8 rounded-0">
             <div class="modal-header">
               <h6 class="text-center font-weight-bold">Konfirmasi Pencairan Dana</h6>

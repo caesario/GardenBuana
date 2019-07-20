@@ -7,7 +7,7 @@
   <!-- <?php var_dump($vendorPenilaian[0][0]['penilaian']); ?> -->
   <!-- <?php var_dump($vendorTransaksi); ?> -->
 
-  <a href="<?= site_url('cetakreport/penilaian_vendor'); ?>" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
+  <a href="<?= site_url('CetakReport/penilaian_vendor'); ?>" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
 
   <div class="table-responsive">
     <table id="table_id" class="display table table-bordered">

@@ -19,7 +19,7 @@
 
   <!-- <?php var_dump($testimoni); ?> -->
 
-  <a href="<?= site_url('cetakreport/testimoni'); ?>" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
+  <a href="<?= site_url('CetakReport/testimoni'); ?>" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
 
   <div class="table-responsive">
     <table id="table_id" class="display table table-bordered">
