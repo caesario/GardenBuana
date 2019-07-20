@@ -37,15 +37,19 @@ class User_admin extends CI_Controller
 
     public function editProfil()
     {
-        $data['title'] = 'GardenBuana | Vendor Profil';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $id = $_SESSION['id_user'];
-        $data['vendor'] = $this->Admin_model->getVendorProfilById($id);
-        $this->load->view('templates/vendor_header', $data);
-        $this->load->view('templates/vendor_sidebar', $data);
-        $this->load->view('templates/vendor_topbar', $data);
-        $this->load->view('vendor_admin/edit_profil_vendor');
-        $this->load->view('templates/vendor_footer');
+        if ($this->session->userdata("role_id") == 2) {
+            $data['title'] = 'GardenBuana | Vendor Profil';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $id = $_SESSION['id_user'];
+            $data['vendor'] = $this->Admin_model->getVendorProfilById($id);
+            $this->load->view('templates/vendor_header', $data);
+            $this->load->view('templates/vendor_sidebar', $data);
+            $this->load->view('templates/vendor_topbar', $data);
+            $this->load->view('vendor_admin/edit_profil_vendor');
+            $this->load->view('templates/vendor_footer');
+        } else {
+            redirect("home");
+        }
     }
 
     public function pesanan()

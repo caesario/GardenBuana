@@ -18,6 +18,12 @@ class Vendor_admin extends CI_Controller
             $data['title'] = 'Dashboard';
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $data['session'] = $this->session->all_userdata();
+            $datauser = $this->Vendor_model->getUserProfilById($this->session->userdata('id_user'));
+            $idVendor = $datauser['id_vendor'];
+            $data['pendapatan'] = $this->Vendor_model->getPendapatanByVendorId($idVendor);
+            $data['pesanan'] = $this->Vendor_model->getPesananByVendorId($idVendor);
+            $data['aktif'] = $this->Vendor_model->getPesananAktifByVendorId($idVendor);
+
             $this->load->view('templates/vendor_header', $data);
             $this->load->view('templates/vendor_sidebar', $data);
             $this->load->view('templates/vendor_topbar', $data);
@@ -179,6 +185,24 @@ class Vendor_admin extends CI_Controller
         // Pindah direktori
         move_uploaded_file($tmpName, 'assets/img/' . $namaFileBaru);
         return $namaFileBaru;
+    }
+
+    public function edit_password()
+    {
+        if ($this->session->userdata("role_id") == 1) {
+            $data['title'] = 'Profil';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            // $data['vendor'] = $this->Vendor_model->getVendorProfilById($this->session->userdata('id_user'));
+
+
+            $this->load->view('templates/vendor_header', $data);
+            $this->load->view('templates/vendor_sidebar', $data);
+            $this->load->view('templates/vendor_topbar', $data);
+            $this->load->view('vendor_admin/edit_password');
+            $this->load->view('templates/vendor_footer');
+        } else {
+            redirect("home");
+        }
     }
 
     public function verifikasi_vendor()

@@ -85,6 +85,34 @@ class Vendor_model extends CI_model
         }
     }
 
+    public function getPendapatanByVendorId($idVendor)
+    {
+        $this->db->select('SUM(harga) as total');
+        $this->db->from('trx_pesanan');
+        $this->db->where('id_vendor', $idVendor);
+        $result = $this->db->get();
+        return $result->row()->total;
+    }
+
+    public function getPesananByVendorId($idVendor)
+    {
+        $this->db->select('*');
+        $this->db->from('trx_pesanan');
+        $this->db->where('id_vendor', $idVendor);
+        $result = $this->db->get();
+        return $result->num_rows();
+    }
+
+    public function getPesananAktifByVendorId($idVendor)
+    {
+        $this->db->select('*');
+        $this->db->from('trx_pesanan');
+        $this->db->where('id_vendor', $idVendor);
+        $this->db->where('id_status_trans <= 7');
+        $result = $this->db->get();
+        return $result->num_rows();
+    }
+
     public function getVendorById($id)
     {
         $this->db->select('*');

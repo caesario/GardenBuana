@@ -114,4 +114,23 @@ class User_model extends CI_model
         $result = $this->db->get();
         return $result->row_array();
     }
+
+    public function getPesananByUserId($idPelanggan)
+    {
+        $this->db->select('*');
+        $this->db->from('trx_pesanan');
+        $this->db->where('id_pelanggan', $idPelanggan);
+        $result = $this->db->get();
+        return $result->num_rows();
+    }
+
+    public function getPesananAktifByUserId($idPelanggan)
+    {
+        $this->db->select('*');
+        $this->db->from('trx_pesanan');
+        $this->db->where('id_pelanggan', $idPelanggan);
+        $this->db->where('id_status_trans <= 7');
+        $result = $this->db->get();
+        return $result->num_rows();
+    }
 }

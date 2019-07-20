@@ -16,10 +16,16 @@ class User extends CI_Controller
     if ($this->session->userdata("role_id") == 2) {
       $data['title'] = 'Dasboard';
       $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+      $datauser = $this->User_model->getUserProfilById($this->session->userdata('id_user'));
+      $idPelanggan = $datauser['id_pelanggan'];
+      // var_dump($idPelanggan);
+      // die();
+      $data['pesanan'] = $this->User_model->getPesananByUserId($idPelanggan);
+      $data['aktif'] = $this->User_model->getPesananAktifByUserId($idPelanggan);
       $this->load->view('templates/vendor_header', $data);
       $this->load->view('templates/vendor_sidebar', $data);
       $this->load->view('templates/vendor_topbar', $data);
-      $this->load->view('user/profil');
+      $this->load->view('user/dasboard');
       $this->load->view('templates/vendor_footer');
     } else {
       redirect("home");
@@ -45,7 +51,7 @@ class User extends CI_Controller
   public function editProfil_user()
   {
     if ($this->session->userdata("role_id") == 2) {
-      $data['title'] = 'My Profil';
+      $data['title'] = 'My Profile';
       $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
       $data['pengguna'] = $this->User_model->getUserProfilById($this->session->userdata('id_user'));
       $data['kota'] = $this->Vendor_model->getAllKota();
@@ -91,6 +97,22 @@ class User extends CI_Controller
       }
     } else {
       redirect('user/profil_user');
+    }
+  }
+
+  public function edit_password()
+  {
+    if ($this->session->userdata("role_id") == 2) {
+      $data['title'] = 'My Profile';
+      $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+      $this->load->view('templates/vendor_header', $data);
+      $this->load->view('templates/vendor_sidebar', $data);
+      $this->load->view('templates/vendor_topbar', $data);
+      $this->load->view('user_admin/edit_password');
+      $this->load->view('templates/vendor_footer');
+    } else {
+      redirect("home");
     }
   }
 }

@@ -6,7 +6,7 @@
       <h3 class="text-dark">Profil Pengguna</h3>
     </div>
     <div class="col-6">
-      <button class="btn btn-sm float-right btn-danger rounded-0">Ubah Password</button>
+      <a href="<?= base_url('User/edit_password'); ?>" class="btn btn-sm float-right btn-danger rounded-0">Ubah Password</a>
       <a href="<?= base_url('User/editProfil_user'); ?>" class="btn btn-sm float-right btn-primary gb-btn-order rounded-0 mr-2">Edit Profil</a>
     </div>
   </div>
