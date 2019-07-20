@@ -54,7 +54,7 @@ class Admin extends CI_Controller
             $this->load->view('templates/vendor_header', $data);
             $this->load->view('templates/vendor_sidebar', $data);
             $this->load->view('templates/vendor_topbar', $data);
-            $this->load->view('admin/pesanan_verif', $data);
+            $this->load->view('admin/konfirmasi_pembayaran_admin', $data);
             $this->load->view('templates/vendor_footer');
         } else {
             redirect("home");

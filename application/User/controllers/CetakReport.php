@@ -276,7 +276,7 @@ class CetakReport extends CI_Controller
   public function konfirmasi_pembayaran_vendor()
   {
     if ($this->session->userdata("role_id") == 1) {
-      $data['title'] = 'Report Pesanan';
+      $data['title'] = 'Report Konfirmasi Pembayaran';
       $id = $this->session->userdata("id_user");
       $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
       $getVendorId = $getVendor->id_vendor;
@@ -284,6 +284,58 @@ class CetakReport extends CI_Controller
 
       $this->load->view('templates/vendor_header', $data);
       $this->load->view('cetak_report_vendor/pesanan', $data);
+    } else {
+      redirect("home");
+    }
+  }
+
+  public function konfirmasi_pekerjaan_vendor()
+  {
+    if ($this->session->userdata("role_id") == 1) {
+      $data['title'] = 'Report Konfirmasi Pekerjaan';
+      $id = $this->session->userdata("id_user");
+      $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
+      $getVendorId = $getVendor->id_vendor;
+      $data['trx_pesanan'] = $this->db->query("select * from list_pesanan_vendor where id_vendor = " . $getVendorId . " AND id_status_trans = 6 OR id_status_trans = 7")->result_array();
+
+
+      $this->load->view('templates/vendor_header', $data);
+      $this->load->view('cetak_report_vendor/pesanan', $data);
+    } else {
+      redirect("home");
+    }
+  }
+
+  public function riwayat_transaksi_vendor()
+  {
+    if ($this->session->userdata("role_id") == 1) {
+      $data['title'] = 'Report Riwayat Transaksi';
+      $id = $this->session->userdata("id_user");
+      $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
+      $getVendorId = $getVendor->id_vendor;
+      $data['trx_pesanan'] = $this->db->query("select * from list_pesanan_vendor where id_vendor = " . $getVendorId . " AND id_status_trans >= 8")->result_array();
+
+
+      $this->load->view('templates/vendor_header', $data);
+      $this->load->view('cetak_report_vendor/riwayat_transaksi', $data);
+    } else {
+      redirect("home");
+    }
+  }
+
+  public function tarik_dana_vendor()
+  {
+    if ($this->session->userdata("role_id") == 1) {
+      $data['title'] = 'Report Riwayat Transaksi';
+      $id = $this->session->userdata("id_user");
+      $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
+      $getVendorId = $getVendor->id_vendor;
+
+      $data['tarik_dana'] = $this->Vendor_model->getTarikDanaVendor($getVendorId);
+      $data['tarik_dana_id'] = $this->Vendor_model->getTarikDanaById($getVendorId);
+
+      $this->load->view('templates/vendor_header', $data);
+      $this->load->view('cetak_report_vendor/tarik_dana', $data);
     } else {
       redirect("home");
     }
@@ -314,6 +366,20 @@ class CetakReport extends CI_Controller
 
       $this->load->view('templates/vendor_header', $data);
       $this->load->view('cetak_report_pelanggan/riwayat_pembayaran', $data);
+    } else {
+      redirect("home");
+    }
+  }
+
+  public function riwayat_pesanan_pelanggan()
+  {
+    if ($this->session->userdata("role_id") == 2) {
+      $data['title'] = 'Report Pesanan';
+      $id = $this->db->get_where('pelanggan', ['id_userfk' => $this->session->userdata('id_user')])->row('id_pelanggan');
+      $data['trx_pesanan'] = $this->User_model->getAllPesananRiwayat($id);
+
+      $this->load->view('templates/vendor_header', $data);
+      $this->load->view('cetak_report_pelanggan/riwayat_pesanan', $data);
     } else {
       redirect("home");
     }

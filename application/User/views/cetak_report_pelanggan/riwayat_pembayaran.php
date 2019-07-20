@@ -28,7 +28,7 @@
             </td>
             <td><?= $data['nama_vendor']; ?></td>
             <td><?= $data['tanggal_pengerjaan']; ?></td>
-            <td>Rp.<?= $data['harga']; ?></td>
+            <td>Rp.<?= number_format($data['harga'], 0, ".", ".") ?>,-</td>
             <td><?= $data['create_date']; ?></td>
           </tr>
         <?php endforeach; ?>

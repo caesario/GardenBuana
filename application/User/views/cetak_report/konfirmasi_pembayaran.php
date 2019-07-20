@@ -39,7 +39,7 @@
             <td><?= $data['nama_pemesan']; ?></td>
             <!-- <td><?= $data['telpon']; ?></td> -->
             <td><?= $data['nama_vendor']; ?></td>
-            <td><?= $data['harga']; ?></td>
+            <td>Rp.<?= number_format($data['harga'], 0, ".", ".") ?>,-</td>
             <!-- <td>Rp.<?= $data['harga']; ?></td> -->
             <td><?= $data['nama_status']; ?></td>
             <td><?= $data['create_date']; ?></td>

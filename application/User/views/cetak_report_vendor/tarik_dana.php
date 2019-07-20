@@ -1,11 +1,12 @@
 <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container-fluid mt-5">
 
   <!-- Page Heading -->
   <!-- <?php var_dump($tarik_dana_id); ?><br><br> -->
   <h4 class="h4 mb-4 text-gray-800 float-left"><?= $title; ?></h4>
 
-  <a href="<?= site_url('CetakReport/tarik_dana_vendor'); ?>" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
+  <a href="javascript:window.print()" class="btn btn-primary text-white btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
+
 
   <div class="table-responsive">
     <table id="table_id" class="display table table-bordered">

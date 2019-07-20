@@ -12,7 +12,7 @@
     <a href="<?= site_url('CetakReport/pesanan_vendor'); ?>" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
   <?php elseif (@$trx_pesanan[0]['id_status_trans'] == 3) : ?>
     <a href="<?= site_url('CetakReport/konfirmasi_pembayaran_vendor'); ?>" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
-  <?php elseif (@$trx_pesanan[0]['id_status_trans'] == 6) : ?>
+  <?php elseif (@$trx_pesanan[0]['id_status_trans'] == 6 || 7) : ?>
     <a href="<?= site_url('CetakReport/konfirmasi_pekerjaan_vendor'); ?>" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
   <?php else : ?>
     <a href="" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>

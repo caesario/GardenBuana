@@ -1,11 +1,11 @@
 <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container-fluid mt-5">
 
   <!-- Page Heading -->
   <!-- <?php var_dump($trx_pesanan); ?><br><br> -->
   <h4 class="h4 mb-4 text-gray-800 float-left"><?= $title; ?></h4>
 
-  <a href="<?= site_url('CetakReport/riwayat_pesanan_pelanggan'); ?>" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
+  <a href="javascript:window.print()" class="btn btn-primary text-white btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
 
   <div class="table-responsive">
     <table id="table_id" class="display table table-bordered">
@@ -17,7 +17,6 @@
           <th>Harga</th>
           <th>Status</th>
           <th>Tanggal Pesanan</th>
-          <th class="gb-aksi-width">Aksi</th>
         </tr>
       </thead><a href=""></a>
       <tbody>
@@ -33,18 +32,6 @@
             <td>Rp.<?= number_format($data['harga'], 0, ".", ".") ?>,-</td>
             <td><?= $data['nama_status']; ?></td>
             <td><?= $data['create_date']; ?></td>
-            <td>
-              <span>
-                <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('user_admin/detail_riwayat_pesanan/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
-                  <i class="fas fa-eye"></i>
-                </a>
-              </span>
-              <span>
-                <a class="btn btn-warning btn-sm py-0 gb-btn-width" href="<?= site_url('user_admin/cetak_riwayat_pesanan/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Cetak">
-                  <i class="fas fa-print"></i>
-                </a>
-              </span>
-            </td>
           </tr>
         <?php endforeach; ?>
       </tbody>
