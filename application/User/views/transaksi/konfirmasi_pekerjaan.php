@@ -19,6 +19,7 @@
             </div>
             <div class="col-6">
               <button class="btn btn-sm btn-primary gb-btn-order float-right rounded-0 ml-1" data-toggle="modal" data-target="#exampleModal">Konfirmasi Pekerjaan</button>
+              <button class="btn btn-sm btn-danger float-right rounded-0 ml-1" data-toggle="modal" data-target="#exampleModal3">Komplain</button>
             </div>
           </div>
 
@@ -86,7 +87,7 @@
       </div>
 
 
-      <!-- Modal -->
+      <!-- Modal Gambar -->
       <div class="modal fade" id="exampleModal2" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content col-12 rounded-0">
@@ -104,7 +105,7 @@
         </div>
       </div>
 
-      <!-- Modal -->
+      <!-- Modal Testimoni -->
       <div class="modal fade" id="exampleModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <form action="<?= site_url('transaksi/update_konfirmasi_pekerjaan'); ?>" method="post">
@@ -134,6 +135,37 @@
                   </select>
                 </div>
                 <p class="mb-0 text-dark gb-font-small font-italic mb-2">*Masukan penilaian dan testimoni</p>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-sm btn-primary rounded-0">Konfirmasi</button>
+                <button type="button" class="btn btn-sm btn-secondary rounded-0" data-dismiss="modal">Batal</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Modal Komplain -->
+      <div class="modal fade" id="exampleModal3" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <form action="<?= site_url('transaksi/update_konfirmasi_pekerjaan'); ?>" method="post">
+            <input type="hidden" name="id_pelanggan" value="<?= $trx_pesanan['id_pelanggan']; ?>">
+            <input type="hidden" name="id_vendor" value="<?= $trx_pesanan['id_vendor']; ?>">
+            <input type="hidden" name="id_pesanan" value="<?= $trx_pesanan['id_pesanan']; ?>">
+            <div class="modal-content col-8 rounded-0">
+              <div class="modal-header">
+                <h6 class="text-center font-weight-bold">Komplain Pekerjaan</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p class="mb-0 text-dark gb-font-small">Keterangan Komplain</p>
+                <div class="col p-0 form-group">
+                  <textarea rows="4" class="form-control form-control-sm mt-1 mb-3 gb-font-small rounded-0" type="text" value="" name="testimoni"></textarea>
+                </div>
+                <input type="file" class="form-control form-control-sm mt-1 mb-3 gb-font-small rounded-0" name="gambarKomplain">
+                <p class="mb-0 text-dark gb-font-small font-italic mb-2">*Upload gambar jika ada</p>
               </div>
               <div class="modal-footer">
                 <button type="submit" class="btn btn-sm btn-primary rounded-0">Konfirmasi</button>
