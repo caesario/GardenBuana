@@ -96,7 +96,6 @@ class Admin_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('trx_pesanan');
-        // $this->db->join('user', 'user.id_user = trx_pesanan.id_user');
         $this->db->join('pelanggan', 'pelanggan.id_pelanggan = trx_pesanan.id_pelanggan');
         $this->db->join('vendor', 'vendor.id_vendor = trx_pesanan.id_vendor');
         $this->db->join('status_transaksi', 'status_transaksi.id_status_trans = trx_pesanan.id_status_trans');
@@ -109,7 +108,6 @@ class Admin_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('trx_pesanan');
-        // $this->db->join('user', 'user.id_user = trx_pesanan.id_user');
         $this->db->join('vendor', 'vendor.id_vendor = trx_pesanan.id_vendor');
         $this->db->join('status_transaksi', 'status_transaksi.id_status_trans = trx_pesanan.id_status_trans');
         $this->db->where('id_pesanan', $id);
@@ -175,7 +173,6 @@ class Admin_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('pelanggan');
-        // $this->db->where('role_id = 2');
         $this->db->join('kota', 'pelanggan.id_kota = kota.id_kota');
         $this->db->join('user', 'pelanggan.id_userfk = user.id_user');
         $result = $this->db->get();
@@ -391,7 +388,6 @@ class Admin_model extends CI_Model
         $this->db->select('*');
         $this->db->from('trx_pesanan');
         $this->db->join('vendor', 'vendor.id_vendor = trx_pesanan.id_vendor');
-        // $this->db->where('id_vendor');
         $result = $this->db->get();
         return $result->result_array();
     }
@@ -399,7 +395,6 @@ class Admin_model extends CI_Model
     public function getAllPendapatanById($id)
     {
         $this->db->select_sum('harga');
-        // $this->db->select('*');
         $this->db->from('trx_pesanan');
         $this->db->join('vendor', 'vendor.id_vendor = trx_pesanan.id_vendor');
         $this->db->where('trx_pesanan.id_vendor', $id);
@@ -433,6 +428,25 @@ class Admin_model extends CI_Model
         return $result->num_rows();
     }
 
+    public function getRowPesananBatal()
+    {
+        $this->db->select('*');
+        $this->db->from('trx_pesanan');
+        $this->db->where('id_status_trans >= 11');
+        $result = $this->db->get();
+        return $result->num_rows();
+    }
+
+    public function getRowPekerjaanSelesai()
+    {
+        $this->db->select('*');
+        $this->db->from('trx_pesanan');
+        $this->db->where('id_status_trans >= 7');
+        $this->db->where('id_status_trans <= 8');
+        $result = $this->db->get();
+        return $result->num_rows();
+    }
+
     // public function getRowHarga()
     // {
     //     $this->db->select('harga, count(*)');
@@ -447,6 +461,7 @@ class Admin_model extends CI_Model
         $this->db->from('rekening_tarik');
         $this->db->join('trx_pesanan', 'trx_pesanan.id_pesanan = rekening_tarik.id_pesanan');
         $this->db->join('vendor', 'vendor.id_vendor = trx_pesanan.id_vendor');
+        $this->db->join('status_transaksi', 'status_transaksi.id_status_trans = trx_pesanan.id_status_trans');
         $this->db->where('trx_pesanan.id_status_tarik = 2');
         $result = $this->db->get();
         return $result->result_array();

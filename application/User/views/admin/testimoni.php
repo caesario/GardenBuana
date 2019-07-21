@@ -66,7 +66,6 @@
     <div class="modal fade" id="exampleModal_<?= $data['id_testimoni']; ?>" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <form action="<?= site_url('Vendor_admin/update_testimoni'); ?>" method="post">
-          <input type="text" id="id_pesanan" name="id_pesanan" velue="<?= $data['id_pesanan']; ?>">
           <div class="modal-content col-8 rounded-0">
             <div class="modal-header">
               <h6 class="text-center font-weight-bold">Tampilkan Testimoni</h6>
@@ -75,9 +74,11 @@
               </button>
             </div>
             <div class="modal-body">
+              <p class="mb-0 text-dark gb-font-small">ID Pesanan</p>
+              <h6><?= $data['id_pesanan']; ?></h6>
               <p class="mb-0 text-dark gb-font-small">Status Testimoni</p>
               <div class="col p-0 form-group">
-                <select class="form-control" id="status" name="status">
+                <select class="form-control rounded-0" id="status" name="status">
                   <option value="1">Tampilkan</option>
                   <option value="2">Sembunyikan</option>
                 </select>

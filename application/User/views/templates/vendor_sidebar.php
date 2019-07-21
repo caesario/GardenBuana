@@ -7,9 +7,9 @@
                 <i class="fas fa-code"></i>
             </div>
             <div class="sidebar-brand-text mx-3">
-                <?php if (@$session['role_id'] == 1) : ?>
+                <?php if (@$_SESSION['role_id'] == 1) : ?>
                     Garden Vendor
-                <?php elseif (@$session['role_id'] == 2) : ?>
+                <?php elseif (@$_SESSION['role_id'] == 2) : ?>
                     Garden Profil
                 <?php else : ?>
                     Garden Admin

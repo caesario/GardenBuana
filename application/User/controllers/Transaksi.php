@@ -251,6 +251,7 @@ class Transaksi extends CI_Controller
       'id_pelanggan' => $this->input->post('id_pelanggan'),
       'id_vendor' => $this->input->post('id_vendor'),
       'testimoni' => $this->input->post('testimoni'),
+      'status_tampil' => 0,
       'create_date' => $dateNow
     );
 
@@ -261,10 +262,6 @@ class Transaksi extends CI_Controller
       'penilaian' => $this->input->post('penilaian'),
       'create_date' => $dateNow
     );
-
-    // var_dump($data_penilaian);
-    // var_dump($data_testimoni);
-    // die();
 
     $queryTestimoni = $this->db->insert('trx_testimoni', $data_testimoni);
     $queryPenilaian = $this->db->insert('penilaian', $data_penilaian);

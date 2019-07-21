@@ -27,15 +27,16 @@
           <th>Rekening</th>
           <th>Nama Rekening</th>
           <th>Bank</th>
-          <th>Nominal</th>
-          <!-- <th class="gb-aksi-width">Aksi</th> -->
+          <th>Nominal Transfer</th>
+          <th>Status</th>
+          <th>Aksi</th>
         </tr>
       </thead>
       <tbody>
         <?php foreach ($tarik_dana as $data) : ?>
           <tr>
             <td>
-              <a href="" data-toggle="modal" data-id="<?= $data['id_pesanan']; ?>" data-target="#exampleModal-<?= $data['id_pesanan'] ?>" class="text-decoration-none">
+              <a href="<?= site_url('admin/riwayat_pengerjaan/'); ?><?= $data['id_pesanan']; ?>" class="text-decoration-none">
                 <?= $data['id_pesanan']; ?>
               </a>
             </td>
@@ -43,7 +44,16 @@
             <td><?= $data['rekening']; ?></td>
             <td><?= $data['pemilik']; ?></td>
             <td><?= $data['bank']; ?></td>
-            <td><?= $data['harga']; ?></td>
+            <?php $nominal_transfer = $data['harga'] * 90 / 100 ?>
+            <td>Rp.<?= number_format($nominal_transfer, 0, ".", ".") ?>,-</td>
+            <td><?= $data['nama_status']; ?></td>
+            <td>
+              <span>
+                <a class="btn btn-success btn-sm py-0 gb-btn-width" data-toggle="modal" data-id="<?= $data['id_pesanan']; ?>" data-target="#exampleModal-<?= $data['id_pesanan'] ?>" href="" data-toggle="tooltip" data-placement="top" title="Transfer">
+                  <i class="fas fa-random"></i>
+                </a>
+              </span>
+            </td>
           </tr>
         <?php endforeach; ?>
       </tbody>
@@ -55,9 +65,6 @@
     <div class="modal fade" id="exampleModal-<?= $data['id_pesanan'] ?>" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <form action="<?= site_url('admin/update_penarikan_dana/'); ?>" method="post">
-          <input class="" type="text" name="id_pesanan" value="<?= $data['id_pesanan']; ?>">
-          <!-- <input class="" type="text" name="id_pesanan" value="<?= $tarik_dana_id['id_pesanan']; ?>">
-                      <input class="" type="text" name="id_vendor" value="<?= $tarik_dana_id['id_vendor']; ?>"> -->
           <div class="modal-content col-8 rounded-0">
             <div class="modal-header">
               <h6 class="text-center font-weight-bold">Konfirmasi Pencairan Dana</h6>
@@ -66,9 +73,11 @@
               </button>
             </div>
             <div class="modal-body">
+              <p class="mb-0 text-dark gb-font-small">ID Pesanan</p>
+              <h6><?= $data['id_pesanan']; ?></h6>
               <p class="mb-0 text-dark gb-font-small">Pencairan Dana</p>
               <div class="col p-0 form-group">
-                <select class="form-control" id="konfirmasi" name="konfirmasi">
+                <select class="form-control rounded-0" id="konfirmasi" name="konfirmasi">
                   <option value="3">Dana Sudah Dikirimkan</option>
                   <option value="4">Tolak Penarikan Dana</option>
                 </select>

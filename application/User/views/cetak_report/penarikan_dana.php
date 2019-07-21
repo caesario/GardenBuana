@@ -29,8 +29,8 @@
           <th>Rekening</th>
           <th>Nama Rekening</th>
           <th>Bank</th>
-          <th>Nominal</th>
-          <!-- <th class="gb-aksi-width">Aksi</th> -->
+          <th>Nominal Transfer</th>
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
@@ -45,7 +45,9 @@
             <td><?= $data['rekening']; ?></td>
             <td><?= $data['pemilik']; ?></td>
             <td><?= $data['bank']; ?></td>
-            <td><?= $data['harga']; ?></td>
+            <?php $nominal_transfer = $data['harga'] * 90 / 100 ?>
+            <td>Rp.<?= number_format($nominal_transfer, 0, ".", ".") ?>,-</td>
+            <td><?= $data['nama_status']; ?></td>
           </tr>
         <?php endforeach; ?>
       </tbody>

@@ -23,6 +23,9 @@ class Admin extends CI_Controller
             $data['t_pengguna'] = $this->Admin_model->getRowPengguna();
             $data['t_pesanan'] = $this->Admin_model->getRowPesanan();
             $data['t_pesanan_aktif'] = $this->Admin_model->getRowPesananAktif();
+            $data['t_pesanan_batal'] = $this->Admin_model->getRowPesananBatal();
+            $data['t_pekerjaan_selesai'] = $this->Admin_model->getRowPekerjaanSelesai();
+            $data['t_vendor'] = $this->Admin_model->getRowVendor();
             // $data['t_harga'] = $this->Admin_model->getRowHarga();
             $data['t_pendapatan'] = $this->Admin_model->getTotalPendapatan();
             $this->load->view('templates/vendor_header', $data);
@@ -340,6 +343,23 @@ class Admin extends CI_Controller
             $this->load->view('templates/vendor_sidebar', $data);
             $this->load->view('templates/vendor_topbar', $data);
             $this->load->view('admin/penarikan_dana', $data);
+            $this->load->view('templates/vendor_footer');
+        } else {
+            redirect("home");
+        }
+    }
+
+    public function riwayat_pengerjaan($id)
+    {
+        if ($this->session->userdata("role_id") == 3) {
+            $data['title'] = 'Penarikan Dana';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['history'] = $this->Admin_model->getAllHistoryPesananById($id);
+
+            $this->load->view('templates/vendor_header', $data);
+            $this->load->view('templates/vendor_sidebar', $data);
+            $this->load->view('templates/vendor_topbar', $data);
+            $this->load->view('admin/riwayat_pengerjaan', $data);
             $this->load->view('templates/vendor_footer');
         } else {
             redirect("home");

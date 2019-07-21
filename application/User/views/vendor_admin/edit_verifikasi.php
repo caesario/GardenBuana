@@ -5,7 +5,7 @@
     <div class="row mt-3">
       <div class="col">
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-          Gambar <strong>Logo</strong> <?= $this->session->flashdata('success'); ?>.
+          <?= $this->session->flashdata('success'); ?>.
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

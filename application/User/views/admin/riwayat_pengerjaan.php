@@ -8,7 +8,7 @@
 
   <div class="row container pr-0">
     <div class="col">
-      <a href="<?= site_url('report/riwayat_pesanan'); ?>" class="btn btn-primary btn-sm rounded-0"><i class="mr-2 fas fa-arrow-left"></i>Kembali</a>
+      <a href="<?= site_url('admin/penarikan_dana'); ?>" class="btn btn-primary btn-sm rounded-0"><i class="mr-2 fas fa-arrow-left"></i>Kembali</a>
     </div>
     <div class="col">
       <a href="<?= site_url('report/cetak_riwayat/'); ?><?= $history['id_pesanan']; ?>" class="btn btn-primary btn-sm float-right ml-1 rounded-0">Cetak Pesanan<i class="ml-2 fas fa-print"></i></a>

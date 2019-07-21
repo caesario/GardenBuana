@@ -102,7 +102,7 @@ class Vendor_admin extends CI_Controller
 
                 $cekVerif = $this->db->get_where('vendor', ['id_userfk' => $_SESSION['id_user']])->row();
                 if (!isset($cekVerif->ktp)) {
-                    redirect('vendor_admin/edit_verifikasi');
+                    redirect('vendor_admin/verifikasi_vendor');
                 } else {
                     redirect('vendor_admin/profil');
                 };
@@ -706,6 +706,7 @@ class Vendor_admin extends CI_Controller
 
             $insertPengerjaan = $this->db->insert('trx_pengerjaan', $dataUpload);
             $query = $this->db->query("UPDATE trx_pesanan SET id_status_trans = 7 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
+            $query = $this->db->query("UPDATE trx_pesanan SET id_status_tarik = 1 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
 
             if ($query || $insertPengerjaan) {
                 $this->session->set_flashdata('success', 'Data Berhasil Diubah');
@@ -762,41 +763,6 @@ class Vendor_admin extends CI_Controller
         move_uploaded_file($tmpName, 'assets/img/' . $namaFileBaru);
         return $namaFileBaru;
     }
-
-    // public function upd_konfirmasi_pembayaran()
-    // {
-    //     if ($this->session->userdata("role_id") == 1) {
-    //         $data = $this->input->post();
-
-    //         $query = $this->db->query("UPDATE trx_pesanan SET id_status_trans = 6 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
-
-    //         if ($query) {
-    //             $this->session->set_flashdata('success', 'Data Berhasil Diubah');
-    //             redirect('vendor_admin/konfirmasi_bukti_bayar');
-    //         }
-    //     } else {
-    //         redirect("home");
-    //     }
-    // }
-
-    // public function detail_pembayaran($id)
-    // {
-    //     if ($this->session->userdata("role_id") == 1) {
-    //         $data['title'] = 'GardenBuana | Konfirmasi Pembayaran';
-    //         $data['trx_pesanan'] = $this->Pesanan_model->getPesananById($id);
-    //         $data['info_web'] = $this->Admin_model->getInfoWeb();
-    //         $data['session'] = $this->session->all_userdata();
-
-    //         // $data['list_nego'] = $this->db->query("select * from list_nego_pesanan where id_pesanan = '$id'")->result_array();
-
-    //         $this->load->view('templates/header', $data);
-    //         $this->load->view('templates/menu');
-    //         $this->load->view('transaksi/konfirmasi_pembayaran', $data);
-    //         $this->load->view('templates/footer', $data);
-    //     } else {
-    //         redirect("home");
-    //     }
-    // }
 
     public function riwayat()
     {
@@ -885,6 +851,7 @@ class Vendor_admin extends CI_Controller
     public function update_tarik_dana()
     {
         $dateNow = date('Y-m-d H:i:s');
+        $idPesanan = $this->input->post('id_pesanan');
         $dataTarik = [
             'id_pesanan' => $this->input->post('id_pesanan'),
             'id_vendor' => $this->input->post('id_vendor'),
@@ -895,8 +862,9 @@ class Vendor_admin extends CI_Controller
         ];
 
         $query = $this->db->query("UPDATE trx_pesanan SET id_status_tarik = 2 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
+
         $queryTarik = $this->db->insert('rekening_tarik', $dataTarik);
-        if ($queryTarik) {
+        if ($dataTarik) {
             $this->session->set_flashdata('success', 'Berhasil Diubah');
             redirect('Vendor_admin/tarik_dana');
         } else {
