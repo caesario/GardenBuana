@@ -75,6 +75,7 @@
             <div class="modal-body">
               <p class="mb-0 text-dark gb-font-small">ID Pesanan</p>
               <h6><?= $data['id_pesanan']; ?></h6>
+              <input type="hidden" name="id_pesanan" value="<?= $data['id_pesanan']; ?>">
               <p class="mb-0 text-dark gb-font-small">Pencairan Dana</p>
               <div class="col p-0 form-group">
                 <select class="form-control rounded-0" id="konfirmasi" name="konfirmasi">

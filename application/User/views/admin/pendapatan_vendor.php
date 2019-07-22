@@ -4,7 +4,7 @@
   <!-- Page Heading -->
   <h4 class="h4 mb-4 text-gray-800 float-left"><?= $title; ?></h4>
 
-  <!-- <?php var_dump($vendorPendapatan); ?> -->
+
 
   <a href="<?= site_url('CetakReport/pendapatan_vendor'); ?>" class="btn btn-primary btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
 
@@ -22,22 +22,23 @@
         </tr>
       </thead>
       <tbody>
+
         <?php $i = 1;
-        $a = 0; ?>
-        <?php foreach ($pendapatan as $data) : ?>
+        $a = 0;
+        foreach ($pendapatan as $data) : ?>
           <tr>
             <td><?= $i; ?></td>
             <td><?= $data['nama_vendor']; ?></td>
-            <!-- <td><?= $vendorTransaksi[$a]; ?></td> -->
+            <!-- <td></td> -->
             <td>Rp. <?= number_format($vendorPendapatan[$a][0]['harga'], 0, ".", "."); ?>,-</td>
-            <?= $total = $vendorPendapatan[$a][0]['harga'] * 10 / 100 ?>
+            <?php $total = $vendorPendapatan[$a][0]['harga'] * 10 / 100 ?>
             <td>Rp. <?= number_format($total, 0, ".", "."); ?>,-</td>
             <!-- <td></td> -->
 
           </tr>
           <?php $i++;
-          $a++ ?>
-        <?php endforeach; ?>
+          $a++;
+        endforeach; ?>
       </tbody>
     </table>
   </div>
