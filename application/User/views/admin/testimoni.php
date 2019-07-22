@@ -30,6 +30,7 @@
           <th>Nama Pelanggan</th>
           <th>Vendor</th>
           <th>Testimoni</th>
+          <th>Status</th>
           <th class="gb-aksi-width">Aksi</th>
         </tr>
       </thead>
@@ -42,6 +43,11 @@
             <td><?= $data['nama_pemesan']; ?></td>
             <td><?= $data['nama_vendor']; ?></td>
             <td><?= $data['testimoni']; ?></td>
+            <?php if ($data['status_tampil'] == 0) : ?>
+              <td>Tidak Ditampilkan</td>
+            <?php else : ?>
+              <td>Ditampilkan</td>
+            <?php endif; ?>
             <td>
               <span>
                 <a class="btn btn-success btn-sm py-0 gb-btn-width" href="<?= site_url('report/testimoni_detail/'); ?><?= $data['id_testimoni']; ?>" data-toggle="tooltip" data-placement="top" title="Lihat Detail">
@@ -65,7 +71,7 @@
   <?php foreach ($testimoni as $data) : ?>
     <div class="modal fade" id="exampleModal_<?= $data['id_testimoni']; ?>" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
-        <form action="<?= site_url('Vendor_admin/update_testimoni'); ?>" method="post">
+        <form action="<?= site_url('report/update_testimoni'); ?>" method="post">
           <div class="modal-content col-8 rounded-0">
             <div class="modal-header">
               <h6 class="text-center font-weight-bold">Tampilkan Testimoni</h6>
@@ -78,9 +84,10 @@
               <h6><?= $data['id_pesanan']; ?></h6>
               <p class="mb-0 text-dark gb-font-small">Status Testimoni</p>
               <div class="col p-0 form-group">
+                <input type="hidden" name="id_pesanan" value="<?= $data['id_pesanan']; ?>">
                 <select class="form-control rounded-0" id="status" name="status">
                   <option value="1">Tampilkan</option>
-                  <option value="2">Sembunyikan</option>
+                  <option value="0">Sembunyikan</option>
                 </select>
               </div>
             </div>

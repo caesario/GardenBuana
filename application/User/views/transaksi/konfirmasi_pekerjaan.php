@@ -18,8 +18,12 @@
               <p class="my-0 gb-font-small"><?= $trx_pesanan['id_pesanan']; ?></p>
             </div>
             <div class="col-6">
-              <button class="btn btn-sm btn-primary gb-btn-order float-right rounded-0 ml-1" data-toggle="modal" data-target="#exampleModal">Konfirmasi Pekerjaan</button>
-              <button class="btn btn-sm btn-danger float-right rounded-0 ml-1" data-toggle="modal" data-target="#exampleModal3">Komplain</button>
+              <?php if ($trx_pesanan['id_status_trans'] == 4) : ?>
+                <button class="btn btn-sm btn-outline-secondary float-right rounded-0 ml-1">Sedang Di Tinjau Oleh Admin</button>
+              <?php else : ?>
+                <button class="btn btn-sm btn-primary gb-btn-order float-right rounded-0 ml-1" data-toggle="modal" data-target="#exampleModal">Konfirmasi Pekerjaan</button>
+                <button class="btn btn-sm btn-danger float-right rounded-0 ml-1" data-toggle="modal" data-target="#exampleModal3">Komplain</button>
+              <?php endif; ?>
             </div>
           </div>
 
@@ -148,7 +152,7 @@
       <!-- Modal Komplain -->
       <div class="modal fade" id="exampleModal3" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-          <form action="<?= site_url('transaksi/update_konfirmasi_pekerjaan'); ?>" method="post">
+          <form action="<?= site_url('transaksi/update_komplain'); ?>" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id_pelanggan" value="<?= $trx_pesanan['id_pelanggan']; ?>">
             <input type="hidden" name="id_vendor" value="<?= $trx_pesanan['id_vendor']; ?>">
             <input type="hidden" name="id_pesanan" value="<?= $trx_pesanan['id_pesanan']; ?>">
@@ -162,7 +166,7 @@
               <div class="modal-body">
                 <p class="mb-0 text-dark gb-font-small">Keterangan Komplain</p>
                 <div class="col p-0 form-group">
-                  <textarea rows="4" class="form-control form-control-sm mt-1 mb-3 gb-font-small rounded-0" type="text" value="" name="testimoni"></textarea>
+                  <textarea rows="4" class="form-control form-control-sm mt-1 mb-3 gb-font-small rounded-0" type="text" value="" name="keterangan"></textarea>
                 </div>
                 <input type="file" class="form-control form-control-sm mt-1 mb-3 gb-font-small rounded-0" name="gambarKomplain">
                 <p class="mb-0 text-dark gb-font-small font-italic mb-2">*Upload gambar jika ada</p>

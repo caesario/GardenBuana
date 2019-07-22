@@ -276,6 +276,82 @@ class Transaksi extends CI_Controller
     }
   }
 
+  public function update_komplain()
+  {
+    $gambar = $this->gambarKomplain();
+    $dateNow = date('Y-m-d H:i:s');
+    $data_komplain = array(
+      'id_pesanan' => $this->input->post('id_pesanan'),
+      'id_pelanggan' => $this->input->post('id_pelanggan'),
+      'id_vendor' => $this->input->post('id_vendor'),
+      'keterangan' => $this->input->post('keterangan'),
+      'gambar_komplain' => $gambar,
+      'status_komplain' => 1,
+      'create_date' => $dateNow
+    );
+
+    // var_dump($data_komplian);
+    // die();
+
+    $insertKomplain = $this->db->insert('komplain', $data_komplain);
+    $query = $this->db->query("UPDATE trx_pesanan SET id_status_trans = 4 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
+
+    if ($insertKomplain) {
+      $this->session->set_flashdata('success', 'Success');
+      redirect('user_admin/pesanan');
+    } else {
+      $this->session->set_flashdata('error', 'Failed');
+      redirect('user_admin/pesanan');
+    }
+  }
+
+  public function gambarKomplain()
+  {
+    $namaFile = $_FILES['gambarKomplain']['name'];
+    $ukuranFile = $_FILES['gambarKomplain']['size'];
+    $error = $_FILES['gambarKomplain']['error'];
+    $tmpName = $_FILES['gambarKomplain']['tmp_name'];
+
+    // Cek upload gambar
+    if ($error === 4) {
+      echo "<script>
+				alert('Tidak Ada Gambar Yang Dipilih!');
+			  </script>";
+      return false;
+    }
+
+    // Cek validasi gambar
+    $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+    $ekstensiGambar = explode('.', $namaFile);
+    $ekstensiGambar = strtolower(end($ekstensiGambar));
+    // echo $namaFile;
+    // die();
+    // Cek ekstensi gambar
+    if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+      echo "<script>
+				alert('File Yang Dimasukkan Bukan Gambar!');
+			  </script>";
+      return false;
+    }
+
+    // Cek size gambar
+    if ($ukuranFile > 5000000) {
+      echo "<script>
+				alert('Ukuran Gambar Melebihi 5 Mb!');
+			  </script>";
+      return false;
+    }
+
+    // Generate nama gambar
+    $namaFileBaru = uniqid();
+    $namaFileBaru .= '.';
+    $namaFileBaru .= $ekstensiGambar;
+
+    // Pindah direktori
+    move_uploaded_file($tmpName, 'assets/img/' . $namaFileBaru);
+    return $namaFileBaru;
+  }
+
   public function detai_riwayat()
   {
     $data['title'] = 'Detail Riwayat';

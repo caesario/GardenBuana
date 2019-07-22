@@ -112,6 +112,48 @@ class Admin extends CI_Controller
         }
     }
 
+    public function komplain()
+    {
+        if ($this->session->userdata("role_id") == 3) {
+            $data['title'] = 'Komplain';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $id = $this->session->userdata("id_user");
+            $data['komplain'] = $this->Admin_model->getAllKomplain();
+
+            $data['session'] = $this->session->all_userdata();
+
+            $this->load->view('templates/vendor_header', $data);
+            $this->load->view('templates/vendor_sidebar', $data);
+            $this->load->view('templates/vendor_topbar', $data);
+            $this->load->view('admin/komplain', $data);
+            $this->load->view('templates/vendor_footer');
+        } else {
+            redirect("home");
+        }
+    }
+
+    public function update_komplain()
+    {
+
+        $statusUpdate = [
+            'id_status_trans' => $this->input->post('komplain')
+        ];
+
+
+
+        $query = $this->db->query("UPDATE komplain SET status_komplain = 0 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
+        $queryUpdate = $this->db->where('trx_pesanan.id_pesanan', $this->input->post('id_pesanan'));
+        $queryUpdate = $this->db->update('trx_pesanan', $statusUpdate);
+
+        if ($queryUpdate) {
+            $this->session->set_flashdata('success', 'Success');
+            redirect('admin/komplain');
+        } else {
+            $this->session->set_flashdata('error', 'Failed');
+            redirect('admin/komplain');
+        }
+    }
+
     public function verif()
     {
         if ($this->session->userdata("role_id") == 3) {

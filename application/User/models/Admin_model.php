@@ -496,4 +496,16 @@ class Admin_model extends CI_Model
         $result = $this->db->get();
         return $result->result_array();
     }
+
+    public function getAllKomplain()
+    {
+        $this->db->select('*');
+        $this->db->from('komplain');
+        $this->db->join('vendor', 'vendor.id_vendor = komplain.id_vendor');
+        $this->db->join('pelanggan', 'pelanggan.id_pelanggan = komplain.id_pelanggan');
+        $this->db->join('user', 'user.id_user = pelanggan.id_userfk');
+        $this->db->where('status_komplain = 1');
+        $result = $this->db->get();
+        return $result->result_array();
+    }
 }

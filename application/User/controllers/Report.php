@@ -100,6 +100,29 @@ class Report extends CI_Controller
         $this->load->view('templates/vendor_footer');
     }
 
+    public function update_testimoni()
+    {
+        $statusUpdate = [
+            'status_tampil' => $this->input->post('status'),
+            // 'id_pesanan' => $this->input->post('id_pesanan')
+        ];
+
+        // var_dump($statusUpdate);
+        // die();
+
+        $queryUpdate = $this->db->where('trx_testimoni.id_pesanan', $this->input->post('id_pesanan'));
+        $queryUpdate = $this->db->update('trx_testimoni', $statusUpdate);
+
+        if ($queryUpdate) {
+            $this->session->set_flashdata('success', 'Success');
+            redirect('report/testimoni');
+        } else {
+            $this->session->set_flashdata('success', 'Success');
+            redirect('report/testimoni');
+            // redirect($redirect . $this->input->post('id_pesanan'));
+        }
+    }
+
     public function testimoni_detail($id)
     {
         $data['title'] = 'Testimoni';
