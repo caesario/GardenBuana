@@ -21,7 +21,7 @@
           <!-- <a href="<?= site_url('vendor/pesan_vendor/'); ?><?= $vendor['id_vendor']; ?>" class="btn btn-sm btn-block btn-primary gb-btn-order">
             Buat Pesanan
           </a> -->
-          <a href="<?= site_url('vendor/hubungi_vendor/'); ?><?= $vendor['id_vendor']; ?>" class="btn btn-sm btn-block btn-primary gb-btn-order rounded-0">
+          <a href="<?= site_url('vendor/hubungi_vendor/'); ?><?= $vendor['id_vendor']; ?>" class="btn btn-sm btn-block btn-new gb-btn-order rounded-0">
             Hubungi Vendor
           </a>
           <a href="<?= base_url('Vendor/detail_vendor/'); ?><?= $vendor['id_vendor']; ?>" class="btn btn-sm btn-block btn-danger rounded-0">
@@ -78,7 +78,7 @@
               </div>
             </div> -->
             <div class="col-sm-7">
-              <button type="submit" class="btn btn-sm float-right btn-primary gb-btn-order rounded-0">Buat Pesanan</button>
+              <button type="submit" class="btn btn-sm float-right btn-new gb-btn-order rounded-0">Buat Pesanan</button>
             </div>
           </form>
         </div>

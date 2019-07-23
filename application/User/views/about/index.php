@@ -1,81 +1,156 @@
-<!--==========================
-      About Us Section
+ <!--==========================
+        About Us Section
+      ============================-->
+ <section id="about">
+   <div class="container">
+
+     <div class="bg-list-1">
+       <img src="<?= base_url('assets/img/bg-1.png'); ?>" class="img-daun" alt="images">
+     </div>
+
+     <header class="section-header wow fadeInUp mt-5 ">
+       <h3>Tentang Kami</h3>
+       <p>Kami selalu berusaha memberikan yang terbaik, jangan ragu untuk menggunakan jasa Vendor kami, karena kepuasan Anda merupakan konsistensi usaha kami</p>
+     </header>
+
+     <div class="row about-container">
+
+       <div class="col-lg-6 content order-lg-1 order-2 wow fadeInUp">
+         <p>
+           Kami memiliki Vendor taman yang trampil dan kreatif. Anda bisa mendiskusikan apa saja kebutuhan Anda yang berhubungan dengan taman yang ingin Anda buat. Mulai dari konsultasi tanaman hias yang ingin Anda gunakan, bahkan sampai dengan hal-hal lain yang lebih detil.
+         </p>
+
+         <div class="icon-box wow fadeInUp">
+           <div class="icon"><i class="fa fa-shopping-bag new-color"></i></div>
+           <h4 class="title"><a href="">Mengapa Kami</a></h4>
+           <p class="description">Terampil, Profesional, Rapih, Tepat waktu dalam pekerjaan yang Vendor kami kerjakan</p>
+         </div>
+
+         <div class="icon-box wow fadeInUp" data-wow-delay="0.2s">
+           <div class="icon"><i class="fa fa-photo new-color"></i></div>
+           <h4 class="title"><a href="">Misi Kami</a></h4>
+           <p class="description">Memberikan Jasa yang berkualitas secara berkesinambungan sesuai dengan kebutuhan anda</p>
+         </div>
+
+         <div class="icon-box wow fadeInUp" data-wow-delay="0.4s">
+           <div class="icon"><i class="fa fa-bar-chart new-color"></i></div>
+           <h4 class="title"><a href="">Visi Kami</a></h4>
+           <p class="description">Kepuasan pelanggan merupakan kunci sukses kami dalam usaha yang kami jalani</p>
+         </div>
+
+       </div>
+
+       <div class="col-lg-6 background order-lg-2 order-1 wow fadeInUp">
+         <img src="<?= base_url('assets/img/12.jpg'); ?>" class="img-fluid" alt="">
+       </div>
+     </div>
+
+     <div class="row about-extra">
+       <div class="col-lg-6 wow fadeInUp">
+         <img src="<?= base_url('assets/img/1.png'); ?>" class="img-fluid width-70" alt="">
+       </div>
+       <div class="col-lg-6 wow fadeInUp pt-5 pt-lg-0">
+         <h4>Bergabunglah bersama kami untuk meningkatkan bisnis anda</h4>
+         <p>
+           Untuk Pertama Kalinya Kami hadir untuk memberi kemudahan untuk anda para pencari Vendor dekor taman hias
+           daftar kan jasa anda untuk meningkatkan peliang bisnis anda. <br><br>
+           Hanya dengan satu aplikasi ada mencari pelanggan, bagaimana memasarkan jasa dan mendapat keuntungan
+           Kami memberikan desain baru dan lengkap untuk transaksi pemesanan hingga pembayaran.
+         </p>
+         <!-- <p>
+           Ad vitae recusandae odit possimus. Quaerat cum ipsum corrupti. Odit qui asperiores ea corporis deserunt veritatis quidem expedita perferendis. Qui rerum eligendi ex doloribus quia sit. Porro rerum eum eum.
+         </p> -->
+       </div>
+     </div>
+
+   </div>
+ </section><!-- #about -->
+
+ <!--==========================
+      Team Section
     ============================-->
-<br><br>
-<section id="about">
-    <div class="container">
+ <section id="team">
+   <div class="container">
+     <div class="section-header">
+       <h3>Team</h3>
+       <p>- Suka bingung kenapa bingung kami tu kaka -</p>
+     </div>
 
-        <header class="section-header">
-            <h3>Tentang Kami</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </header>
+     <div class="row">
 
-        <div class="row about-container">
+       <div class="col-lg-3 col-md-6 wow fadeInUp">
+         <div class="member">
+           <img src="<?= base_url('assets/img/default.png'); ?>" class="img-fluid" alt="">
+           <div class="member-info">
+             <div class="member-info-content">
+               <h4>Caesario Wahyu</h4>
+               <span>Chief Technology Officer</span>
+               <div class="social">
+                 <a href=""><i class="fa fa-twitter"></i></a>
+                 <a href=""><i class="fa fa-facebook"></i></a>
+                 <a href=""><i class="fa fa-google-plus"></i></a>
+                 <a href=""><i class="fa fa-linkedin"></i></a>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
 
-            <div class="col-lg-6 content order-lg-1 order-2 wow fadeInUp">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
+       <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+         <div class="member">
+           <img src="<?= base_url('assets/img/default.png'); ?>" class="img-fluid" alt="">
+           <div class="member-info">
+             <div class="member-info-content">
+               <h4>Ana Velayati</h4>
+               <span>Chief Executive Officer</span>
+               <div class="social">
+                 <a href=""><i class="fa fa-twitter"></i></a>
+                 <a href=""><i class="fa fa-facebook"></i></a>
+                 <a href=""><i class="fa fa-google-plus"></i></a>
+                 <a href=""><i class="fa fa-linkedin"></i></a>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
 
-                <div class="icon-box wow fadeInUp">
-                    <div class="icon"><i class="fa fa-shopping-bag"></i></div>
-                    <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-                    <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
-                </div>
+       <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+         <div class="member">
+           <img src="<?= base_url('assets/img/default.png'); ?>" class="img-fluid" alt="">
+           <div class="member-info">
+             <div class="member-info-content">
+               <h4>Chairul Umam</h4>
+               <span>Product Manager</span>
+               <div class="social">
+                 <a href=""><i class="fa fa-twitter"></i></a>
+                 <a href=""><i class="fa fa-facebook"></i></a>
+                 <a href=""><i class="fa fa-google-plus"></i></a>
+                 <a href=""><i class="fa fa-linkedin"></i></a>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
 
-                <div class="icon-box wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="icon"><i class="fa fa-photo"></i></div>
-                    <h4 class="title"><a href="">Magni Dolores</a></h4>
-                    <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-                </div>
+       <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+         <div class="member">
+           <img src="<?= base_url('assets/img/default.png'); ?>" class="img-fluid" alt="">
+           <div class="member-info">
+             <div class="member-info-content">
+               <h4>Indomie Isi Dua</h4>
+               <span>Food Boster</span>
+               <div class="social">
+                 <a href=""><i class="fa fa-twitter"></i></a>
+                 <a href=""><i class="fa fa-facebook"></i></a>
+                 <a href=""><i class="fa fa-google-plus"></i></a>
+                 <a href=""><i class="fa fa-linkedin"></i></a>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
 
-                <div class="icon-box wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="icon"><i class="fa fa-bar-chart"></i></div>
-                    <h4 class="title"><a href="">Dolor Sitema</a></h4>
-                    <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
-                </div>
+     </div>
 
-            </div>
-
-            <div class="col-lg-6 background order-lg-2 order-1 wow fadeInUp">
-                <img src="<?= base_url('assets/img/about-img.svg'); ?>" class="img-fluid" alt="">
-            </div>
-        </div>
-
-        <div class="row about-extra">
-            <div class="col-lg-6 wow fadeInUp">
-                <img src="<?= base_url('assets/img/about-extra-1.svg'); ?>" class="img-fluid" alt="">
-            </div>
-            <div class="col-lg-6 wow fadeInUp pt-5 pt-lg-0">
-                <h4>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h4>
-                <p>
-                    Ipsum in aspernatur ut possimus sint. Quia omnis est occaecati possimus ea. Quas molestiae perspiciatis occaecati qui rerum. Deleniti quod porro sed quisquam saepe. Numquam mollitia recusandae non ad at et a.
-                </p>
-                <p>
-                    Ad vitae recusandae odit possimus. Quaerat cum ipsum corrupti. Odit qui asperiores ea corporis deserunt veritatis quidem expedita perferendis. Qui rerum eligendi ex doloribus quia sit. Porro rerum eum eum.
-                </p>
-            </div>
-        </div>
-
-        <div class="row about-extra">
-            <div class="col-lg-6 wow fadeInUp order-1 order-lg-2">
-                <img src="<?= base_url('assets/img/about-extra-2.svg'); ?>" class="img-fluid" alt="">
-            </div>
-
-            <div class="col-lg-6 wow fadeInUp pt-4 pt-lg-0 order-2 order-lg-1">
-                <h4>Neque saepe temporibus repellat ea ipsum et. Id vel et quia tempora facere reprehenderit.</h4>
-                <p>
-                    Delectus alias ut incidunt delectus nam placeat in consequatur. Sed cupiditate quia ea quis. Voluptas nemo qui aut distinctio. Cumque fugit earum est quam officiis numquam. Ducimus corporis autem at blanditiis beatae incidunt sunt.
-                </p>
-                <p>
-                    Voluptas saepe natus quidem blanditiis. Non sunt impedit voluptas mollitia beatae. Qui esse molestias. Laudantium libero nisi vitae debitis. Dolorem cupiditate est perferendis iusto.
-                </p>
-                <p>
-                    Eum quia in. Magni quas ipsum a. Quis ex voluptatem inventore sint quia modi. Numquam est aut fuga mollitia exercitationem nam accusantium provident quia.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-</section><!-- #about -->
+   </div>
+ </section><!-- #team -->

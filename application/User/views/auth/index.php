@@ -26,7 +26,7 @@
                     <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
                     <?= form_error('password', ' <small class="text-danger pl-3">', '</small>'); ?>
                   </div>
-                  <button type="submit" class="btn btn-primary btn-user btn-block">
+                  <button type="submit" class="btn btn-new btn-user btn-block">
                     Login
                   </button>
                 </form>
@@ -35,7 +35,7 @@
                   <a class="small" href="forgot-password.html">Lupa Password?</a>
                 </div>
                 <div class="text-center">
-                  <span style="font-size:12.8px;  ">Belum Punya Akun? </span><a class="small" href="<?= base_url('auth/regist') ?>">Daftar Sekarang!</a>
+                  <span style="font-size:12.8px;">Belum Punya Akun? </span><a class="small" href="<?= base_url('auth/regist') ?>">Daftar Sekarang!</a>
                 </div>
               </div>
             </div>

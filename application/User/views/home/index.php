@@ -200,9 +200,9 @@
             Hanya dengan satu aplikasi ada mencari pelanggan, bagaimana memasarkan jasa dan mendapat keuntungan
             Kami memberikan desain baru dan lengkap untuk transaksi pemesanan hingga pembayaran.
           </p>
-          <p>
+          <!-- <p>
             Ad vitae recusandae odit possimus. Quaerat cum ipsum corrupti. Odit qui asperiores ea corporis deserunt veritatis quidem expedita perferendis. Qui rerum eligendi ex doloribus quia sit. Porro rerum eum eum.
-          </p>
+          </p> -->
         </div>
       </div>
 

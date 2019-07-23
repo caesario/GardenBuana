@@ -10,12 +10,12 @@
 }
 
 .gb-hover-btn {
-	background-color: #2655C0;
+	background-color: #80b435;
 	border: none;
 }
 
 .gb-hover-regist:hover .gb-hover-btn {
-	color: #2655C0;
+	color: #80b435;
 	background-color: white;
 }
 
@@ -36,8 +36,8 @@
 }
 
 .gb-btn-order {
-	background-color: #2655C0;
-	border-color: #2655C0;
+	background-color: #80b435;
+	border-color: #80b435;
 }
 
 .gb-img-size {
@@ -112,7 +112,7 @@ a.gb-btn-width {
 	width: 100%;
 	opacity: 0;
 	transition: 0.3s ease;
-	background-color: #007bff;
+	background-color: #80b435;
 }
 
 .bg-container:hover .bg-overlay {
