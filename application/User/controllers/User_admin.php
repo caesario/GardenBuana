@@ -142,7 +142,7 @@ class User_admin extends CI_Controller
     public function cetak_riwayat_pesanan($id)
     {
         if ($this->session->userdata("role_id") == 2) {
-            $data['title'] = 'GardenBuana | Pesanan';
+            $data['title'] = 'Riwayat Pesanan';
             $data['riwayat'] = $this->User_model->getRiwayatById($id);
             $data['data_pengerjaan'] = $this->User_model->getPengerjaanById($id);
             $data['info_web'] = $this->Admin_model->getInfoWeb();

@@ -374,7 +374,7 @@ class CetakReport extends CI_Controller
   public function riwayat_pesanan_pelanggan()
   {
     if ($this->session->userdata("role_id") == 2) {
-      $data['title'] = 'Report Pesanan';
+      $data['title'] = 'Report Riwayat Pesanan';
       $id = $this->db->get_where('pelanggan', ['id_userfk' => $this->session->userdata('id_user')])->row('id_pelanggan');
       $data['trx_pesanan'] = $this->User_model->getAllPesananRiwayat($id);
 
