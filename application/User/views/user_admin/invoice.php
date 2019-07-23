@@ -16,6 +16,7 @@
             line-height: 24px;
             font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
             color: #555;
+            margin-top: 20px;
         }
 
         .invoice-box table {
@@ -97,11 +98,20 @@
         .rtl table tr td:nth-child(2) {
             text-align: left;
         }
+
+        .print {
+            text-decoration: none;
+            /* color: black; */
+            border: 1px solid;
+            padding: 3px;
+        }
     </style>
 </head>
 
 <body>
     <!-- <?php var_dump($invoice); ?> -->
+
+    <a href="javascript:window.print()" class="btn btn-outline-secondary btn-sm float-right print">Invoice Cetak</a>
     <div class="invoice-box">
         <table cellpadding="0" cellspacing="0">
             <tr class="top">

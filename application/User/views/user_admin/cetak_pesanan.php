@@ -11,6 +11,8 @@
 
     <div class="container wow fadeInUp">
       <section class="bg-white px-5  rounded-0">
+
+        <a href="javascript:window.print()" class="btn btn-outline-secondary btn-sm float-right">Cetak Report</a>
         <div class="section-header">
           <h5 class="text-center font-weight-bold">Detail Pesanan</h5>
         </div>

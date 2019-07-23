@@ -15,7 +15,7 @@
   <div class="row">
     <?php foreach ($portfolio as $data) : ?>
       <div class="col-3">
-        <img class="card-img-top p-3 gb-img-port mb-4 border rounded-0" data-toggle="modal" data-target="#exampleModal2" src="<?= base_url('assets/img/'); ?><?= $data['gambar']; ?>" alt="Card image cap">
+        <img class="card-img-top p-3 gb-img-port mb-4 border rounded-0" data-toggle="modal" data-target="#exampleModal2-<?= $data['id_portfolio']; ?>" src="<?= base_url('assets/img/'); ?><?= $data['gambar']; ?>" alt="Card image cap">
       </div>
     <?php endforeach; ?>
   </div>
@@ -54,26 +54,30 @@
   </div>
 
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal2" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content col rounded-0">
-        <div class="modal-header">
-          <button type="button" class="btn btn-sm btn-danger rounded-0" data-dismiss="modal">Hapus</button>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+  <?php foreach ($portfolio as $data) : ?>
+    <div class="modal fade" id="exampleModal2-<?= $data['id_portfolio']; ?>" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content col rounded-0">
+          <div class="modal-header">
+            <form action="<?= site_url('Vendor_admin/hapus_gambar_portfolio/'); ?><?= $data['id_portfolio']; ?>" method="post">
+              <button type="submit" class="btn btn-sm btn-danger rounded-0" data-dismiss="modal">Hapus</button>
+            </form>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <img src="<?= base_url('assets/img/'); ?><?= $data['gambar']; ?>" style="width: 445px;" alt="">
+          </div>
+          <p class="ml-3"><?= $data['keterangan']; ?></p>
         </div>
-        <div class="modal-body">
-          <img src="<?= base_url('assets/img/'); ?><?= $data['gambar']; ?>" style="width: 445px;" alt="">
-        </div>
-        <p class="ml-3"><?= $data['keterangan']; ?></p>
       </div>
     </div>
-  </div>
+  <?php endforeach; ?>
 
 </div>
 <!-- /.container-fluid -->
 
 
-
+</div>
 <!-- End of Main Content -->

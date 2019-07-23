@@ -508,4 +508,10 @@ class Admin_model extends CI_Model
         $result = $this->db->get();
         return $result->result_array();
     }
+
+    public function hapusGambarPortfolio($id)
+    {
+        $this->db->where('id_portfolio', $id);
+        $this->db->delete('portfolio');
+    }
 }

@@ -73,14 +73,17 @@
                 </div>
 
                 <div class="col-6">
-                    <h6 class="mb-3 text-dark font-weight-bold">Dokumentasi Pekerjaan</h6>
-                    <div class="row card-deck" id="demo">
-                        <div class="row">
-                            <div class="col-6">
-                                <img class="card-img-top p-3 gb-img-port mb-4 border rounded-0" src="<?= base_url('assets/img/'); ?><?= $data_pengerjaan['gambar_pengerjaan']; ?>" alt="Card image cap">
+                    <?php if ($riwayat['id_status_trans'] == 11) : ?>
+                    <?php else : ?>
+                        <h6 class="mb-3 text-dark font-weight-bold">Dokumentasi Pekerjaan</h6>
+                        <div class="row card-deck" id="demo">
+                            <div class="row">
+                                <div class="col-6">
+                                    <img class="card-img-top p-3 gb-img-port mb-4 border rounded-0" src="<?= base_url('assets/img/'); ?><?= $data_pengerjaan['gambar_pengerjaan']; ?>" alt="Card image cap">
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
 

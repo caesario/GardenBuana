@@ -468,6 +468,16 @@ class Vendor_admin extends CI_Controller
         return $namaFileBaru;
     }
 
+    public function hapus_gambar_portfolio($id)
+    {
+        $this->Admin_model->hapusGambarPortfolio($id);
+
+        var_dump($id);
+        die();
+
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect('vendor_admin/portfolio');
+    }
 
     public function pesanan()
     {

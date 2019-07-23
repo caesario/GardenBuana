@@ -6,6 +6,7 @@
     <div class="container wow fadeInUp">
         <section class="bg-white px-5 rounded-0">
             <div class="section-header">
+                <a href="javascript:window.print()" class="btn btn-outline-secondary btn-sm float-right">Cetak Report</a>
                 <h5 class="text-center font-weight-bold">Riwayat Pesanan Anda</h5>
             </div>
 

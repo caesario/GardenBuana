@@ -90,6 +90,7 @@ class Vendor_model extends CI_model
         $this->db->select('SUM(harga) as total');
         $this->db->from('trx_pesanan');
         $this->db->where('id_vendor', $idVendor);
+        $this->db->where('trx_pesanan.id_status_trans = 7');
         $result = $this->db->get();
         return $result->row()->total;
     }

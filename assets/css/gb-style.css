@@ -99,7 +99,7 @@ a.gb-btn-width {
 	width: 100%;
 	opacity: 0;
 	transition: 0.1s ease;
-	background-color: #007bff;
+	background-color: #80b435;
 }
 
 .bg-overlay-2 {
@@ -155,4 +155,62 @@ a.gb-btn-width {
 
 .gb-img-ktp {
 	width: 300px;
+}
+
+.btn-new {
+	background-color: #80b435;
+	color: white;
+	font-family: "Montserrat", sans-serif;
+}
+
+.btn-new:hover {
+	background-color: #fff;
+	border: 1px solid #80b435;
+	color: #80b435;
+}
+
+i.new-color {
+	color: #80b435 !important;
+}
+
+.new-color {
+	color: #80b435 !important;
+}
+
+.icon-box:hover i {
+	color: #fff !important;
+}
+
+.container .bg-list-2 {
+	position: absolute;
+	margin-top: -140px;
+	right: 0px;
+}
+
+.bg-list-1 {
+	position: absolute;
+	margin-top: -130px;
+	left: 0px;
+}
+
+.img-daun {
+	width: 250px;
+}
+
+.bg-hr {
+	width: 35%;
+	margin-top: 45px;
+	margin-bottom: 0px;
+	background-color: #80b435;
+	font-size: 10px;
+	height: 1px;
+}
+
+#why-us .card:hover .bg-hr {
+	background-color: #fff;
+}
+
+.width-70 {
+	width: 70% !important;
+	text-align: center;
 }
