@@ -929,7 +929,7 @@ h6 {
 }
 
 #testimonials .owl-dot.active {
-	background-color: #007bff;
+	background-color: #80b435;
 }
 
 /* Team Section
@@ -1028,9 +1028,9 @@ h6 {
 }
 
 #clients .clients-wrap {
-	border-top: 1px solid #d6eaff;
-	border-left: 1px solid #d6eaff;
-	margin-bottom: 30px;
+	/* border-top: 1px solid #80b435; */
+	/* border-left: 1px solid #80b435; */
+	margin-bottom: 70px;
 }
 
 #clients .client-logo {
@@ -1047,8 +1047,8 @@ h6 {
 	-webkit-align-items: center;
 	-ms-flex-align: center;
 	align-items: center;
-	border-right: 1px solid #d6eaff;
-	border-bottom: 1px solid #d6eaff;
+	/* border-right: 1px solid #80b435; */
+	/* border-bottom: 1px solid #80b435; */
 	overflow: hidden;
 	background: #fff;
 	height: 160px;
@@ -1197,14 +1197,14 @@ h6 {
 --------------------------------------------------------------*/
 
 #footer {
-	background: #00428a;
+	background: #13181A;
 	padding: 0 0 30px 0;
 	color: #eee;
 	font-size: 14px;
 }
 
 #footer .footer-top {
-	background: #004a99;
+	background: #171D20;
 	padding: 60px 0 30px 0;
 }
 
@@ -1235,7 +1235,7 @@ h6 {
 #footer .footer-top .social-links a {
 	font-size: 18px;
 	display: inline-block;
-	background: #007bff;
+	background: #80b435;
 	color: #fff;
 	line-height: 1;
 	padding: 8px 0;
@@ -1248,8 +1248,8 @@ h6 {
 }
 
 #footer .footer-top .social-links a:hover {
-	background: #0067d5;
-	color: #fff;
+	background: #fff;
+	color: #80b435;
 }
 
 #footer .footer-top h4 {
@@ -1306,7 +1306,7 @@ h6 {
 }
 
 #footer .footer-top .footer-newsletter input[type="submit"] {
-	background: #007bff;
+	background: #80b435;
 	border: 0;
 	width: 35%;
 	padding: 6px 0;
@@ -1317,7 +1317,7 @@ h6 {
 }
 
 #footer .footer-top .footer-newsletter input[type="submit"]:hover {
-	background: #0062cc;
+	background: #80b435;
 }
 
 #footer .copyright {
@@ -1332,7 +1332,7 @@ h6 {
 }
 
 #footer .credits a {
-	color: #bfddfe;
+	color: #80b435;
 }
 
 #footer .credits a:hover {
