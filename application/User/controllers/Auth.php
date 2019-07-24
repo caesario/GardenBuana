@@ -198,38 +198,38 @@ class Auth extends CI_Controller
     redirect('');
   }
 
-  public function changepassword()
-  {
+  // public function changepassword()
+  // {
 
-    $this->form_validation->set_rules('katasandi', 'Kata Sandi', 'trim|required|min_length[3]|matches[konfirmasikatasandi]');
-    $this->form_validation->set_rules('konfirmasikatasandi', 'Konfirmasi Kata Sandi', 'trim|required|min_length[3]|matches[katasandi]');
-    if ($this->form_validation->run() == false) {
-      $this->data['page_title'] = 'Form Ubah Kata Sandi';
-      $this->load->view('Vendor_admin/edit_password', $this->data);
-    } else {
+  //   $this->form_validation->set_rules('katasandi', 'Kata Sandi', 'trim|required|min_length[3]|matches[konfirmasikatasandi]');
+  //   $this->form_validation->set_rules('konfirmasikatasandi', 'Konfirmasi Kata Sandi', 'trim|required|min_length[3]|matches[katasandi]');
+  //   if ($this->form_validation->run() == false) {
+  //     $this->data['page_title'] = 'Form Ubah Kata Sandi';
+  //     $this->load->view('Vendor_admin/edit_password', $this->data);
+  //   } else {
 
-      $passLama = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+  //     $passLama = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 
 
-      if ($this->input->post('password') == ) {
-      
+  //     if ($this->input->post('password') == ) {
 
-      } else {
-      $password = password_hash($this->input->post('katasandi'), PASSWORD_DEFAULT);
-      $email = $this->session->userdata('email');
-      $datapassword = array(
-        'password' => $password
-      );
-      $hasil = $this->user->updatepassword($datapassword, $email);
-      if ($hasil) {
-        $this->session->unset_userdata('reset_email');
-        $this->session->set_flashdata('success', 'Reset kata sandi berhasil!');
-        redirect('login', 'refreh');
-      } else {
-        $this->session->set_flashdata('error', 'Reset kata sandi gagal!');
-        redirect('login', 'refreh');
-      }
-      }
-    }
-  }
+
+  //     } else {
+  //     $password = password_hash($this->input->post('katasandi'), PASSWORD_DEFAULT);
+  //     $email = $this->session->userdata('email');
+  //     $datapassword = array(
+  //       'password' => $password
+  //     );
+  //     $hasil = $this->user->updatepassword($datapassword, $email);
+  //     if ($hasil) {
+  //       $this->session->unset_userdata('reset_email');
+  //       $this->session->set_flashdata('success', 'Reset kata sandi berhasil!');
+  //       redirect('login', 'refreh');
+  //     } else {
+  //       $this->session->set_flashdata('error', 'Reset kata sandi gagal!');
+  //       redirect('login', 'refreh');
+  //     }
+  //     }
+  //   }
+  // }
 }
