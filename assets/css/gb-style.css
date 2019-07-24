@@ -2,11 +2,15 @@
 	margin-top: 200px;
 }
 
+.gb-mb-100 {
+	margin-bottom: 200px;
+}
+
 .gb-hover-regist:hover {
 	box-shadow: 10 10 11px white;
 	background-color: transparent;
-	color: white;
-	border-color: white;
+	color: #80b435;
+	border-color: #fff;
 }
 
 .gb-hover-btn {

@@ -38,7 +38,7 @@
             <li class="active"><a href="<?= site_url(); ?>">Home</a></li>
             <li><a href="<?= base_url('vendor'); ?>">List Vendor</a></li>
             <!-- <li><a href="<?= site_url('Testimoni'); ?>">Testimoni</a></li>
-                                    <li><a href="<?= site_url('About'); ?>">Tentang Kami</a></li> -->
+                                        <li><a href="<?= site_url('About'); ?>">Tentang Kami</a></li> -->
             <li class="drop-down"><a href="#">Profil</a>
               <ul>
                 <li><a href="<?= site_url('vendor_admin'); ?>">Edit Profil</a></li>
@@ -54,11 +54,11 @@
 
         <nav class="main-nav float-right d-none d-lg-block">
           <ul>
-            <li class="active"><a href="<?= site_url(); ?>">Home</a></li>
+            <li><a href="<?= site_url(); ?>">Home</a></li>
             <li><a href="<?= base_url('vendor'); ?>">List Vendor</a></li>
             <li><a href="<?= site_url('Testimoni'); ?>">Testimoni</a></li>
             <li><a href="<?= site_url('About'); ?>">Tentang Kami</a></li>
-            <li><a href="<?= base_url('Auth'); ?>">Login</a></li>
+            <li class="active"><a href="<?= base_url('Auth'); ?>">Login</a></li>
           </ul>
         </nav><!-- .main-nav -->
 

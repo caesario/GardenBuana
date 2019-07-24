@@ -306,13 +306,13 @@ h6 {
 .main-nav .drop-down ul a {
 	padding: 10px 20px;
 	font-size: 13px;
-	color: #004289;
+	color: #40423c;
 }
 
 .main-nav .drop-down ul a:hover,
 .main-nav .drop-down ul .active>a,
 .main-nav .drop-down ul li:hover>a {
-	color: #007bff;
+	color: #80b435;
 }
 
 .main-nav .drop-down>a:after {

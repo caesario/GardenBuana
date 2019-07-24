@@ -153,7 +153,7 @@
 
       <header class="section-header">
         <h3>Tentang Kami</h3>
-        <p>Kami selalu berusaha memberikan yang terbaik, jangan ragu untuk menggunakan jasa Vendor kami, karena kepuasan Anda merupakan konsistensi usaha kami</p>
+        <p class="position-relative">Kami selalu berusaha memberikan yang terbaik, jangan ragu untuk menggunakan jasa Vendor kami, karena kepuasan Anda merupakan konsistensi usaha kami</p>
       </header>
 
       <div class="row about-container">
