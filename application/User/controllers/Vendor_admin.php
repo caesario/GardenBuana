@@ -474,9 +474,6 @@ class Vendor_admin extends CI_Controller
     {
         $this->Admin_model->hapusGambarPortfolio($id);
 
-        var_dump($id);
-        die();
-
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('vendor_admin/portfolio');
     }

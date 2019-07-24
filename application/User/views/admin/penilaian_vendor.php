@@ -29,13 +29,14 @@
             <td><?= $i; ?></td>
             <td><?= $data['nama_vendor']; ?></td>
             <td><?= $vendorTransaksi[$a]; ?></td>
-            <?php @$total = $vendorPenilaian[$a][0]['penilaian'] / $vendorTransaksi[$a]; ?>
-            <td><?php if ($total != NAN) : ?>
-                <?= $total; ?>
-              <?php else : ?>
-                0
-              <?php endif; ?>
-            </td>
+            <?php if ($vendorTransaksi[$a] == 0) : ?>
+              <td>0</td>
+            <?php else : ?>
+              <td><?php $total = $vendorPenilaian[$a][0]['penilaian'] / $vendorTransaksi[$a]; ?>
+                <?= number_format("$total", 2) . "<br>"; ?>
+              </td>
+            <?php endif; ?>
+
             <!-- <td><?= $data['keterangan']; ?></td> -->
             </td>
           </tr>

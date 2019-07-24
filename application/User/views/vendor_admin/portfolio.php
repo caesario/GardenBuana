@@ -60,7 +60,7 @@
         <div class="modal-content col rounded-0">
           <div class="modal-header">
             <form action="<?= site_url('Vendor_admin/hapus_gambar_portfolio/'); ?><?= $data['id_portfolio']; ?>" method="post">
-              <button type="submit" class="btn btn-sm btn-danger rounded-0" data-dismiss="modal">Hapus</button>
+              <button type="submit" class="btn btn-sm btn-danger rounded-0">Hapus</button>
             </form>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>

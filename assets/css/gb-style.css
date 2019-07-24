@@ -223,3 +223,27 @@ i.new-color {
 	width: 70% !important;
 	text-align: center;
 }
+
+.card-footer {
+	transition: ease all 0.4s;
+}
+
+.card-footer h6.new-color {
+	transition: ease all 0.4s;
+}
+
+.card-footer p {
+	transition: ease all 0.4s;
+}
+
+.card:hover .card-footer {
+	background-color: #80b435;
+}
+
+.card:hover .card-footer h6.new-color {
+	color: #fff !important;
+}
+
+.card:hover .card-footer p {
+	color: #fff !important;
+}
