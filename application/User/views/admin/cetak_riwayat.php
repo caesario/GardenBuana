@@ -11,6 +11,7 @@
     ============================-->
   <section id="clients" class="section-bg">
 
+    <a href="javascript:window.print()" class="btn btn-primary text-white btn-sm float-right">Cetak Report<i class="ml-2 fas fa-print"></i></a>
     <div class="container wow fadeInUp mt-3">
       <section class="bg-white px-5 py-4 rounded-0">
         <div class="section-header">

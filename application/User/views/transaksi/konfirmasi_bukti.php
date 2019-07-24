@@ -16,30 +16,30 @@
               <p class="my-0 gb-font-small"><?= $trx_pesanan['id_pesanan']; ?></p>
             </div>
             <div class="col-6">
-              <button class="btn btn-sm btn-primary gb-btn-order float-right rounded-0 ml-1">Rp <?= number_format($trx_pesanan['harga'], 0, ".", ".") ?></button>
+              <button class="btn btn-sm btn-new gb-btn-order float-right rounded-0 ml-1">Rp <?= number_format($trx_pesanan['harga'], 0, ".", ".") ?></button>
             </div>
           </div>
 
         </div>
         <div class="card-body">
           <div class="row text-center">
-            <div class="col-4 mt-5">
+            <div class="col-12 col-md-4 mt-5">
               <h6 class="font-weight-bold my-0">Nama Pesanan</h6>
               <p class="my-0 gb-font-small"><?= $trx_pesanan['nama_pemesan']; ?></p>
             </div>
-            <div class="col-4 mt-5">
+            <div class="col-12 col-md-4 mt-5">
               <h6 class="font-weight-bold my-0">Tanggal Pesanan</h6>
               <p class="my-0 gb-font-small"><?= $trx_pesanan['tanggal_pengerjaan']; ?></p>
             </div>
-            <div class="col-4 mt-5">
+            <div class="col-12 col-md-4 mt-5">
               <h6 class="font-weight-bold my-0">Nomor Telpon</h6>
               <p class="my-0 gb-font-small"><?= $trx_pesanan['telpon']; ?></p>
             </div>
-            <div class="col-4 mt-5">
+            <div class="col-12 col-md-4 mt-5">
               <h6 class="font-weight-bold my-0">Email</h6>
               <p class="my-0 gb-font-small"><?= $trx_pesanan['email']; ?></p>
             </div>
-            <div class="col-4 mt-5">
+            <div class="col-12 col-md-4 mt-5">
               <h6 class="font-weight-bold my-0">Alamat</h6>
               <p class="my-0 gb-font-small"><?= $trx_pesanan['alamat']; ?></p>
             </div>
@@ -72,7 +72,7 @@
           <p class="gb-font-small mb-2">Keterangan</p>
           <textarea name="keterangan" id="" cols="40" rows="3" class="gb-font-small mb-1"></textarea>
           <br>
-          <button class="btn btn-sm btn-primary gb-btn-order rounded-0">Kirim Bukti</button>
+          <button class="btn btn-sm btn-new gb-btn-order rounded-0">Kirim Bukti</button>
         </div>
       </form>
 

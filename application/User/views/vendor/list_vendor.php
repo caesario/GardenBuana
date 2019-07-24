@@ -64,7 +64,7 @@
       <div class="clearfix wow fadeInUp">
         <div class="row card-deck" id="demo">
           <?php foreach ($vendor as $data) : ?>
-            <div class="col-3 p-0">
+            <div class="col-12 col-md-6 col-lg-3 p-0">
               <a href="<?= site_url('Vendor/detail_vendor/'); ?><?= $data['id_vendor']; ?>">
                 <div class="card rounded-0 mb-4">
                   <img class="card-img-top p-3 pb-0 gb-img-size" src="<?= base_url('assets/img/'); ?><?= $data['logo']; ?>" alt="Card image cap">

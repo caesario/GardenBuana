@@ -18,7 +18,7 @@
               <p class="my-0 gb-font-small"><?= $trx_pesanan['id_pesanan']; ?></p>
             </div>
             <div class="col-6">
-              <button class="btn btn-sm btn-primary gb-btn-order float-right rounded-0 ml-1" data-toggle="modal" data-target="#exampleModal">Konfirmasi Selesai</button>
+              <button class="btn btn-sm btn-new gb-btn-order float-right rounded-0 ml-1" data-toggle="modal" data-target="#exampleModal">Konfirmasi Selesai</button>
             </div>
           </div>
 
@@ -72,7 +72,7 @@
           <p class="gb-font-small mb-2 mt-3">Keterangan Pekerjaan</p>
           <textarea name="keterangan" id="" cols="40" rows="3" class="gb-font-small mb-3"></textarea>
           <br>
-          <button class="btn btn-sm btn-primary gb-btn-order rounded-0">Konfirmasi Selesai</button>
+          <button class="btn btn-sm btn-new gb-btn-order rounded-0">Konfirmasi Selesai</button>
         </div>
       </form>
   </div>

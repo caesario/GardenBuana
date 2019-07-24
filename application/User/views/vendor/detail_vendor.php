@@ -12,7 +12,7 @@
 
     <section class="bg-white p-5 rounded-0">
       <div class="row">
-        <div class="col-3">
+        <div class="col-12 col-lg-3">
           <img class="card-img-top p-3 gb-img-size mb-3 border rounded-0" src="<?= base_url('assets/img/'); ?><?= $vendor['logo']; ?>" alt="Card image cap">
           <h5 class="mb-0"><?= $vendor['nama_vendor']; ?></h5>
           <!-- <hr class="my-1"> -->
@@ -29,12 +29,12 @@
           </a>
 
         </div>
-        <div class="col-9 pl-5">
-          <h4 class="mb-0">Portfolio Vendor</h4>
+        <div class="col-12 col-lg-9 pl-5">
+          <h4 class="mb-0 mt-4">Portfolio Vendor</h4>
           <hr>
           <div class="row">
             <?php foreach ($portfolio as $data) : ?>
-              <div class="col-4 bg-container">
+              <div class="col-12 col-md-4 bg-container">
                 <img class="card-img-top gb-img-port mb-4 border rounded-0" data-toggle="modal" data-target="#exampleModal-<?= $data['id_portfolio']; ?>" src="<?= base_url('assets/img/'); ?><?= $data['gambar']; ?>">
               </div>
             <?php endforeach; ?>

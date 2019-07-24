@@ -20,7 +20,9 @@ class Vendor_admin extends CI_Controller
             $data['session'] = $this->session->all_userdata();
             $datauser = $this->Vendor_model->getUserProfilById($this->session->userdata('id_user'));
             $idVendor = $datauser['id_vendor'];
-            $data['pendapatan'] = $this->Vendor_model->getPendapatanByVendorId($idVendor);
+            $status7 = $this->Vendor_model->getPendapatanByVendorId($idVendor);
+            $status8 = $this->Vendor_model->getPendapatanByVendorId8($idVendor);
+            $data['pendapatan'] = $status7 + $status8;
             $data['pesanan'] = $this->Vendor_model->getPesananByVendorId($idVendor);
             $data['aktif'] = $this->Vendor_model->getPesananAktifByVendorId($idVendor);
 
@@ -663,7 +665,7 @@ class Vendor_admin extends CI_Controller
             $id = $this->session->userdata("id_user");
             $getVendor = $this->db->query('select * from vendor where id_userfk = ' . $id)->row();
             $getVendorId = $getVendor->id_vendor;
-            $data['trx_pesanan'] = $this->db->query("select * from list_pesanan_vendor where id_vendor = " . $getVendorId . " AND id_status_trans = 6 OR id_status_trans = 7")->result_array();
+            $data['trx_pesanan'] = $this->db->query("select * from list_pesanan_vendor where id_vendor = " . $getVendorId . " AND id_status_trans = 6 OR id_status_trans = 7 OR id_status_trans = 4")->result_array();
 
             $data['session'] = $this->session->all_userdata();
 

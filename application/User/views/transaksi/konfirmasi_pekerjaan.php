@@ -21,7 +21,7 @@
               <?php if ($trx_pesanan['id_status_trans'] == 4) : ?>
                 <button class="btn btn-sm btn-outline-secondary float-right rounded-0 ml-1">Sedang Di Tinjau Oleh Admin</button>
               <?php else : ?>
-                <button class="btn btn-sm btn-primary gb-btn-order float-right rounded-0 ml-1" data-toggle="modal" data-target="#exampleModal">Konfirmasi Pekerjaan</button>
+                <button class="btn btn-sm btn-new gb-btn-order float-right rounded-0 ml-1" data-toggle="modal" data-target="#exampleModal">Konfirmasi Pekerjaan</button>
                 <button class="btn btn-sm btn-danger float-right rounded-0 ml-1" data-toggle="modal" data-target="#exampleModal3">Komplain</button>
               <?php endif; ?>
             </div>
@@ -83,7 +83,7 @@
           <div class="row card-deck" id="demo">
             <div class="row">
               <div class="col-3">
-                <img class="card-img-top p-3 gb-img-port mb-4 border rounded-0" data-toggle="modal" data-target="#exampleModal2" src="<?= base_url('assets/img/'); ?><?= $data_pengerjaan['gambar_pengerjaan']; ?>" alt="Card image cap">
+                <img class="card-img-top p-3 gb-img-new mb-4 border rounded-0" data-toggle="modal" data-target="#exampleModal2" src="<?= base_url('assets/img/'); ?><?= $data_pengerjaan['gambar_pengerjaan']; ?>" alt="Card image cap">
               </div>
             </div>
           </div>

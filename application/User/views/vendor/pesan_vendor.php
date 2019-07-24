@@ -12,7 +12,7 @@
 
     <section class="bg-white p-5">
       <div class="row">
-        <div class="col-3">
+        <div class="col-12 col-md-3">
           <img class="card-img-top p-3 gb-img-size mb-3 border" src="<?= base_url('assets/img/'); ?><?= $vendor['logo']; ?>" alt="Card image cap">
           <h5 class="mb-0"><?= $vendor['nama_vendor']; ?></h5>
           <!-- <hr class="my-1"> -->

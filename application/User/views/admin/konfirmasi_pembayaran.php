@@ -36,27 +36,27 @@
         </div>
         <div class="card-body">
           <div class="row text-center">
-            <div class="col-4 mt-5">
+            <div class="col-12 col-md-4 mt-5">
               <h6 class="font-weight-bold my-0">Nama Pesanan</h6>
               <p class="my-0 gb-font-small"><?= $trx_pesanan['nama_pemesan']; ?></p>
             </div>
-            <div class="col-4 mt-5">
+            <div class="col-12 col-md-4 mt-5">
               <h6 class="font-weight-bold my-0">Tanggal Pengerjaan</h6>
               <p class="my-0 gb-font-small"><?= $trx_pesanan['tanggal_pengerjaan']; ?></p>
             </div>
-            <div class="col-4 mt-5">
+            <div class="col-12 col-md-4 mt-5">
               <h6 class="font-weight-bold my-0">Nomor Telpon</h6>
               <p class="my-0 gb-font-small"><?= $trx_pesanan['telpon']; ?></p>
             </div>
-            <div class="col-4 mt-5">
+            <div class="col-12 col-md-4 mt-5">
               <h6 class="font-weight-bold my-0">Email</h6>
               <p class="my-0 gb-font-small"><?= $trx_pesanan['email']; ?></p>
             </div>
-            <div class="col-4 mt-5">
+            <div class="col-12 col-md-4 mt-5">
               <h6 class="font-weight-bold my-0">Alamat</h6>
               <p class="my-0 gb-font-small"><?= $trx_pesanan['alamat']; ?></p>
             </div>
-            <div class="col-4 mt-5">
+            <div class="col-12 col-md-4 mt-5">
               <h6 class="font-weight-bold my-0">Harga</h6>
               <p class="my-0 gb-font-small">Rp. <?= number_format($trx_pesanan['harga'], 0, ".", ".") ?>,-</p>
             </div>

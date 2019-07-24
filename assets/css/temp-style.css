@@ -274,7 +274,7 @@ h6 {
 .main-nav a:hover,
 .main-nav .active>a,
 .main-nav li:hover>a {
-	color: #232323;
+	color: #80b435;
 	text-decoration: none;
 }
 
@@ -1284,7 +1284,7 @@ h6 {
 }
 
 #footer .footer-top .footer-links ul a:hover {
-	color: #74b5fc;
+	color: #80b435;
 }
 
 #footer .footer-top .footer-contact {
