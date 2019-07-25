@@ -137,8 +137,8 @@
            <img src="<?= base_url('assets/img/default.png'); ?>" class="img-fluid" alt="">
            <div class="member-info">
              <div class="member-info-content">
-               <h4>Indomie Isi Dua</h4>
-               <span>Food Boster</span>
+               <h4>Handrie Noprission, ST., M.Kom</h4>
+               <span>Pembimbing</span>
                <div class="social">
                  <a href=""><i class="fa fa-twitter"></i></a>
                  <a href=""><i class="fa fa-facebook"></i></a>

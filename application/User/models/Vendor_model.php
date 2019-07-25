@@ -19,6 +19,7 @@ class Vendor_model extends CI_model
         $this->db->join('kota', 'kota.id_kota =  vendor.id_kota');
         $this->db->join('data_verif', 'data_verif.id_vendor = vendor.id_vendor');
         $this->db->where('id_status_verif = 3');
+        $this->db->order_by('id_vendor', 'RANDOM');
         $result = $this->db->get();
         return $result->result_array();
     }

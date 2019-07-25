@@ -50,25 +50,25 @@
             <div class="form-group row">
               <label for="telponPesanan" class="col-sm-3 col-form-label">Telpon</label>
               <div class="col-sm-4">
-                <input type="text" class="form-control form-control-sm" id="telponPesanan" name="telponPesanan" placeholder="" value="<?= $dataPelanggan['telpon'] ?>">
+                <input type="text" class="form-control form-control-sm" id="telponPesanan" name="telponPesanan" placeholder="" value="<?= $dataPelanggan['telpon'] ?>" required>
               </div>
             </div>
             <div class="form-group row">
               <label for="tanggalPengerjaan" class="col-sm-3 col-form-label">Tanggal Pengerjaan</label>
               <div class="col-sm-4">
-                <input type="date" class="form-control form-control-sm" id="tanggalPengerjaan" name="tanggalPengerjaan" placeholder="">
+                <input type="date" class="form-control form-control-sm" id="tanggalPengerjaan" name="tanggalPengerjaan" placeholder="" required>
               </div>
             </div>
             <div class="form-group row">
               <label for="alamatPesanan" class="col-sm-3 col-form-label">Alamat</label>
               <div class="col-sm-4">
-                <textarea rows="3" type="textarea" class="form-control form-control-sm" id="alamatPesanan" name="alamatPesanan" placeholder=""><?= $dataPelanggan['alamat'] ?></textarea>
+                <textarea rows="3" type="textarea" class="form-control form-control-sm" id="alamatPesanan" name="alamatPesanan" placeholder="" required><?= $dataPelanggan['alamat'] ?></textarea>
               </div>
             </div>
             <div class="form-group row">
               <label for="keteranganPesanan" class="col-sm-3 col-form-label">Keterangan</label>
               <div class="col-sm-4">
-                <textarea rows="5" type="textarea" class="form-control form-control-sm" id="keteranganPesanan" name="keteranganPesanan" placeholder=""></textarea>
+                <textarea rows="5" type="textarea" class="form-control form-control-sm" id="keteranganPesanan" name="keteranganPesanan" placeholder="" required></textarea>
               </div>
             </div>
             <!-- <div class="form-group row">

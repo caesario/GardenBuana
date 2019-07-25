@@ -137,7 +137,7 @@
             <div class="modal-body">
               <p class="mb-0 text-dark gb-font-small">Masukan Harga</p>
               <div class="col p-0 form-group">
-                <input class="form-control form-control-sm mt-1 mb-3 gb-font-small rounded-0" type="text" value="" id="rupiah" name="harga">
+                <input class="form-control form-control-sm mt-1 mb-3 gb-font-small rounded-0" type="text" value="" id="rupiah" name="harga" required>
                 <input class="form-control form-control-sm mt-1 mb-3 gb-font-small rounded-0" type="hidden" value="<?= $trx_pesanan['id_pesanan']; ?>" name="id_pesanan">
               </div>
             </div>

@@ -11,7 +11,7 @@
       </div>
 
       <div class="intro-info">
-        <h2>Kami menyediakan<br><span>Solusi untuk</span><br>taman anda!</h2>
+        <h2>Kami menyediakan<br><span>Solusi untuk</span><br>taman Anda!</h2>
         <div>
           <?php if (@$session['role_id'] == 2) : ?>
             <a href="<?= site_url('vendor'); ?>" class="btn-services scrollto">Cari Vendor</a>
@@ -172,7 +172,7 @@
           <div class="icon-box wow fadeInUp" data-wow-delay="0.2s">
             <div class="icon"><i class="fa fa-photo new-color"></i></div>
             <h4 class="title"><a href="">Misi Kami</a></h4>
-            <p class="description">Memberikan Jasa yang berkualitas secara berkesinambungan sesuai dengan kebutuhan anda</p>
+            <p class="description">Memberikan jasa yang berkualitas secara berkesinambungan sesuai dengan kebutuhan anda</p>
           </div>
 
           <div class="icon-box wow fadeInUp" data-wow-delay="0.4s">
@@ -195,8 +195,8 @@
         <div class="col-lg-6 wow fadeInUp pt-5 pt-lg-0">
           <h4>Bergabunglah bersama kami untuk meningkatkan bisnis anda</h4>
           <p>
-            Untuk Pertama Kalinya Kami hadir untuk memberi kemudahan untuk anda para pencari Vendor dekor taman hias
-            daftar kan jasa anda untuk meningkatkan peliang bisnis anda. <br><br>
+            Untuk pertama kalinya kami hadir untuk memberi kemudahan untuk anda para pencari Vendor dekor taman hias
+            daftar kan jasa anda untuk meningkatkan peluang bisnis anda. <br><br>
             Hanya dengan satu aplikasi ada mencari pelanggan, bagaimana memasarkan jasa dan mendapat keuntungan
             Kami memberikan desain baru dan lengkap untuk transaksi pemesanan hingga pembayaran.
           </p>
