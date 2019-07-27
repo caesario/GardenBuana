@@ -58,9 +58,9 @@
       <form action="<?= site_url('admin/upd_konfirmasi_pembayaran'); ?>" method="post">
         <div class="mt-4">
           <h6 class="font-weight-bold mb-2">Bukti Pembayaran</h6>
-          <img class="card-img-top col-3 p-3 gb-img-size mb-3 border rounded-0" src="<?= base_url('assets/img/'); ?><?= $bukti_bayar['upload']; ?>" alt="Card image cap">
+          <img class="card-img-top col-3 p-3 gb-img-size mb-3 border rounded-0" src="<?= base_url('assets/img/'); ?><?= $bukti_bayar['upload']; ?>" alt="Card image cap" required>
           <p class="gb-font-small col-6 p-0 mb-3"><?= $bukti_bayar['keterangan_bayar']; ?></p>
-          <input type="hidden" name="id_pesanan" value="<?= $trx_pesanan['id_pesanan']; ?>">
+          <input type="hidden" name="id_pesanan" value="<?= $trx_pesanan['id_pesanan']; ?>" required>
           <button class="btn btn-sm btn-primary gb-btn-order rounded-0" type="submit">Konfirmasi Pembayaran</button>
         </div>
       </form>

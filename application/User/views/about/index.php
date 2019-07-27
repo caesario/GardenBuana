@@ -73,14 +73,14 @@
    <div class="container">
      <div class="section-header">
        <h3>Team</h3>
-       <p>- Suka bingung kenapa bingung kami tu kaka -</p>
+       <p>Kami adalah team akademisi Mercu Buana yang sangat bersemangat dalam membantu Anda menyelesaikan masalah Anda.</p>
      </div>
 
      <div class="row">
 
        <div class="col-lg-3 col-md-6 wow fadeInUp">
          <div class="member">
-           <img src="<?= base_url('assets/img/default.png'); ?>" class="img-fluid" alt="">
+           <img src="<?= base_url('assets/img/picture1.jpg'); ?>" class="img-fluid" alt="">
            <div class="member-info">
              <div class="member-info-content">
                <h4>Caesario Wahyu</h4>
@@ -98,7 +98,7 @@
 
        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
          <div class="member">
-           <img src="<?= base_url('assets/img/default.png'); ?>" class="img-fluid" alt="">
+           <img src="<?= base_url('assets/img/picture2.png'); ?>" class="img-fluid" alt="">
            <div class="member-info">
              <div class="member-info-content">
                <h4>Ana Velayati</h4>
@@ -116,7 +116,7 @@
 
        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
          <div class="member">
-           <img src="<?= base_url('assets/img/default.png'); ?>" class="img-fluid" alt="">
+           <img src="<?= base_url('assets/img/picture3.jpg'); ?>" class="img-fluid" alt="">
            <div class="member-info">
              <div class="member-info-content">
                <h4>Chairul Umam</h4>
@@ -134,7 +134,7 @@
 
        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
          <div class="member">
-           <img src="<?= base_url('assets/img/default.png'); ?>" class="img-fluid" alt="">
+           <img src="<?= base_url('assets/img/picture4.jpeg'); ?>" class="img-fluid" alt="">
            <div class="member-info">
              <div class="member-info-content">
                <h4>Handrie Noprission, ST., M.Kom</h4>

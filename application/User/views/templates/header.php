@@ -30,13 +30,7 @@
   <link href="<?= base_url('assets/css/bundle-style.css'); ?>" rel="stylesheet">
   <link href="<?= base_url('assets/css/my-style.css'); ?>" rel="stylesheet">
   <link href="<?= base_url('assets/css/gb-style.css'); ?>" rel="stylesheet">
-
-  <!-- =======================================================
-    Theme Name: NewBiz
-    Theme URL: https://bootstrapmade.com/newbiz-bootstrap-business-template/
-    Author: BootstrapMade.com
-    License: https://bootstrapmade.com/license/
-  ======================================================= -->
+  
 </head>
 
 <body>

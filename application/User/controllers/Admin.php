@@ -14,8 +14,6 @@ class Admin extends CI_Controller
     public function index()
     {
 
-        // echo"<pre>";print_r($this->session->userdata("role_id"));exit();
-        // echo'<pre>';print_r($this->session->userdata("role_id"));exit;
 
         if ($this->session->userdata("role_id") == 3) {
             $data['title'] = 'Dasboard';
