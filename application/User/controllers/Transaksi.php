@@ -111,28 +111,33 @@ class Transaksi extends CI_Controller
 
   public function update_bukti_bayar()
   {
-
-    $data = $this->input->post();
     $buktiBayar = $this->uploadGambar();
-    // echo "<pre>";print_r($data);exit();Untuk pembayaran jasa Delima Garden atas nama Natalia
+    if (!$buktiBayar) {
+      redirect('transaksi/konfirmasi_bukti/' . $this->input->post('id_pesanan'), 'refresh');
+      return false;
+    } else {
+      $data = $this->input->post();
+
+      // echo "<pre>";print_r($data);exit();Untuk pembayaran jasa Delima Garden atas nama Natalia
 
 
-    $queryInsert = $this->db->query("INSERT INTO trx_bukti_bayar (id_pesanan,id_pelanggan,id_vendor,upload,keterangan_bayar,id_status_trans, create_date_bayar) values 
+      $queryInsert = $this->db->query("INSERT INTO trx_bukti_bayar (id_pesanan,id_pelanggan,id_vendor,upload,keterangan_bayar,id_status_trans, create_date_bayar) values 
             ('" . $this->input->post('id_pesanan') . "', '" . $this->input->post('id_pelanggan') . "', '" . $this->input->post('id_vendor') . "', '" . $buktiBayar . "', '" . $this->input->post('keterangan') . "',
             '3', '" . date('Y-m-d H:i:s') . "')
             ");
-    // var_dump($query);
-    // die();
-    if ($queryInsert) {
-      $query = $this->db->query("UPDATE trx_pesanan SET id_status_trans = 3 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
+      // var_dump($query);
+      // die();
+      if ($queryInsert) {
+        $query = $this->db->query("UPDATE trx_pesanan SET id_status_trans = 3 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
 
-      if ($query) {
-        $this->session->set_flashdata('success', 'Success');
-        redirect('user_admin/pesanan');
+        if ($query) {
+          $this->session->set_flashdata('success', 'Success');
+          redirect('user_admin/pesanan');
+        }
+      } else {
+        $this->session->set_flashdata('error', 'Failed');
+        redirect('home');
       }
-    } else {
-      $this->session->set_flashdata('error', 'Failed');
-      redirect('home');
     }
   }
 

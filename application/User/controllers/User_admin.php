@@ -71,9 +71,13 @@ class User_admin extends CI_Controller
 
     public function hapus_pesanan($id)
     {
-        $this->User_model->hapusDataPesanan($id);
-        $this->session->set_flashdata('flash', 'Dihapus');
-        redirect('user_admin/pesanan');
+        if ($this->User_model->hapusDataPesanan($id) == true) {
+            $this->session->set_flashdata('berhasil', 'Dihapus');
+            redirect('user_admin/pesanan');
+        } else {
+            $this->session->set_flashdata('gagal', 'Gagal');
+            redirect('user_admin/pesanan');
+        }
     }
 
     public function cetak_pesanan($id)

@@ -70,7 +70,7 @@
           <input type="hidden" name="id_pelanggan" value="<?= $trx_pesanan['id_pelanggan']; ?>">
           <input type="hidden" name="id_vendor" value="<?= $trx_pesanan['id_vendor']; ?>">
           <p class="gb-font-small mb-2">Keterangan</p>
-          <textarea name="keterangan" id="" cols="40" rows="3" class="gb-font-small mb-1"></textarea>
+          <textarea name="keterangan" id="" cols="40" rows="3" class="gb-font-small mb-1" required></textarea>
           <br>
           <button class="btn btn-sm btn-new gb-btn-order rounded-0">Kirim Bukti</button>
         </div>

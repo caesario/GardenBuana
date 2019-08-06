@@ -276,6 +276,32 @@ class Admin_model extends CI_Model
         return $result->result_array();
     }
 
+    public function getAllWilayahKotaPengguna($id)
+    {
+        $this->db->select('*');
+        $this->db->from('pelanggan');
+        $this->db->where('id_kota', $id);
+        $result = $this->db->get();
+        return $result->num_rows();
+    }
+
+    public function getAllWilayahKotaVendor($id)
+    {
+        $this->db->select('*');
+        $this->db->from('vendor');
+        $this->db->where('id_kota', $id);
+        $result = $this->db->get();
+        return $result->num_rows();
+    }
+
+    public function getTotalAllWilayah()
+    {
+        $this->db->select('*');
+        $this->db->from('kota');
+        $result = $this->db->get();
+        return $result->num_rows();
+    }
+
     public function getJumlahPengguna($id)
     {
         $this->db->select('*');
@@ -447,6 +473,15 @@ class Admin_model extends CI_Model
         return $result->num_rows();
     }
 
+    public function getRowTarikDanaVendor()
+    {
+        $this->db->select('*');
+        $this->db->from('trx_pesanan');
+        $this->db->where('id_status_tarik = 3');
+        $result = $this->db->get();
+        return $result->num_rows();
+    }
+
     // public function getRowHarga()
     // {
     //     $this->db->select('harga, count(*)');
@@ -471,6 +506,16 @@ class Admin_model extends CI_Model
     {
         $this->db->select('SUM(harga) as total');
         $this->db->from('trx_pesanan');
+        $this->db->where('id_status_trans >= 6');
+        $result = $this->db->get();
+        return $result->row()->total;
+    }
+
+    public function getTotalPendapatanBulanan($bulan)
+    {
+        $this->db->select('SUM(harga) as total');
+        $this->db->from('trx_pesanan');
+        $this->db->where('month(create_date)', $bulan);
         $this->db->where('id_status_trans >= 6');
         $result = $this->db->get();
         return $result->row()->total;

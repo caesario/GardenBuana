@@ -68,9 +68,9 @@
           <input type="file" class="form-control-file btn-sm gb-font-small mb-3" id="gambarPengerjaan" name="gambarPengerjaan" value="HARDCODE">
           <input type="hidden" name="id_pesanan" value="<?= $trx_pesanan['id_pesanan']; ?>">
           <p class="gb-font-small mb-2">Tanggal Pekerjaan</p>
-          <input type="date" name="tanggal" value="">
+          <input type="date" name="tanggal" value="" required>
           <p class="gb-font-small mb-2 mt-3">Keterangan Pekerjaan</p>
-          <textarea name="keterangan" id="" cols="40" rows="3" class="gb-font-small mb-3"></textarea>
+          <textarea name="keterangan" id="" cols="40" rows="3" class="gb-font-small mb-3" required></textarea>
           <br>
           <button class="btn btn-sm btn-new gb-btn-order rounded-0">Konfirmasi Selesai</button>
         </div>

@@ -698,28 +698,30 @@ class Vendor_admin extends CI_Controller
     public function upd_konfirmasi_pengerjaan()
     {
         if ($this->session->userdata("role_id") == 1) {
-            $data = $this->input->post();
             $pengerjaan = $this->uploadPengerjaan();
-            $dateNow = date('Y-m-d H:i:s');
+            if (!$pengerjaan) {
+                redirect('vendor_admin/detail_konfirmasi_pengerjaan/' . $this->input->post('id_pesanan'), 'refresh');
+                return false;
+            } else {
+                $data = $this->input->post();
+                $dateNow = date('Y-m-d H:i:s');
 
-            $dataUpload = array(
-                'id_pesanan' => $this->input->post('id_pesanan'),
-                'gambar_pengerjaan' => $pengerjaan,
-                'tanggal_pengerjaan' => $this->input->post('tanggal'),
-                'keterangan' => $this->input->post('keterangan'),
-                'created_date' => $dateNow
-            );
+                $dataUpload = array(
+                    'id_pesanan' => $this->input->post('id_pesanan'),
+                    'gambar_pengerjaan' => $pengerjaan,
+                    'tanggal_pengerjaan' => $this->input->post('tanggal'),
+                    'keterangan' => $this->input->post('keterangan'),
+                    'created_date' => $dateNow
+                );
 
-            // var_dump($dataUpload);
-            // die();
+                $insertPengerjaan = $this->db->insert('trx_pengerjaan', $dataUpload);
+                $query = $this->db->query("UPDATE trx_pesanan SET id_status_trans = 7 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
+                $query = $this->db->query("UPDATE trx_pesanan SET id_status_tarik = 1 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
 
-            $insertPengerjaan = $this->db->insert('trx_pengerjaan', $dataUpload);
-            $query = $this->db->query("UPDATE trx_pesanan SET id_status_trans = 7 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
-            $query = $this->db->query("UPDATE trx_pesanan SET id_status_tarik = 1 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
-
-            if ($query || $insertPengerjaan) {
-                $this->session->set_flashdata('success', 'Data Berhasil Diubah');
-                redirect('vendor_admin/konfirmasi_pekerjaan');
+                if ($query || $insertPengerjaan) {
+                    $this->session->set_flashdata('success', 'Data Berhasil Diubah');
+                    redirect('vendor_admin/konfirmasi_pekerjaan');
+                }
             }
         } else {
             redirect("vendor_admin/konfirmasi_pekerjaan");

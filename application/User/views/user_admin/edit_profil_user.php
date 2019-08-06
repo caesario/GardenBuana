@@ -30,7 +30,7 @@
 
         <h6 class="mb-0 text-dark font-weight-bold">Nomor Telpon</h6>
         <div class="col-5 p-0 form-group">
-          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" name="noTelp" type="text" value="<?= $pengguna['telpon']; ?>">
+          <input class="form-control form-control-sm mt-1 mb-3 rounded-0" name="noTelp" type="text" value="<?= $pengguna['telpon']; ?>" required>
         </div>
 
         <h6 class="mb-0 text-dark font-weight-bold">Kota</h6>
@@ -45,7 +45,7 @@
 
         <h6 class="mb-0 text-dark font-weight-bold">Alamat</h6>
         <div class="col-5 p-0 form-group">
-          <textarea name="alamat" id="alamat" rows="3" class="form-control form-control-sm rounded-0"><?= $pengguna['alamat']; ?></textarea>
+          <textarea name="alamat" id="alamat" rows="3" class="form-control form-control-sm rounded-0" required><?= $pengguna['alamat']; ?></textarea>
         </div>
 
         <h6 class="mb-0 text-dark font-weight-bold">Status Akun</h6>

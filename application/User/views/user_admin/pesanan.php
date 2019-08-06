@@ -1,6 +1,19 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
+  <?php if ($this->session->flashdata('berhasil')) : ?>
+    <div class="row mt-3">
+      <div class="col">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <?= $this->session->flashdata('berhasil'); ?>.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  <?php endif; ?>
+
   <!-- Page Heading -->
   <!-- <?php var_dump($trx_pesanan); ?><br><br> -->
   <h4 class="h4 mb-4 text-gray-800 float-left"><?= $title; ?></h4>
@@ -64,7 +77,7 @@
               </span>
               <span>
                 <?php if ($data['id_status_trans'] < 3 || $data['id_status_trans'] >= 11) : ?>
-                  <a class="btn btn-danger btn-sm py-0 gb-btn-width" href="<?= site_url('user_admin/hapus_pesanan/'); ?><?= $data['id_pesanan']; ?>" data-toggle="tooltip" data-placement="top" title="Hapus">
+                  <a class="btn btn-danger btn-sm py-0 gb-btn-width" href="<?= site_url('user_admin/hapus_pesanan/'); ?><?= $data['id_pesanan']; ?>" data-toggle="modal" data-target="#deleteModal" data-placement="top" title="Hapus">
                     <i class="fas fa-trash"></i>
                   </a>
                 <?php else : ?>
@@ -82,8 +95,27 @@
     </table>
   </div>
 
-</div>
-<!-- /.container-fluid -->
+  <!-- Logout Delete-->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Apakah Anda Yakin Akan Menghapus?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Pilih "Keluar" jika anda ingin menggapus pesanan ini.</div>
+        <div class="modal-footer">
+          <button class="btn btn-new" type="button" data-dismiss="modal">Batal</button>
+          <a class="btn btn-danger" href="<?= site_url('user_admin/hapus_pesanan/'); ?><?= $data['id_pesanan']; ?>">Hapus</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- </div> -->
+  <!-- /.container-fluid -->
 
 </div>
 <!-- End of Main Content -->

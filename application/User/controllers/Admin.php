@@ -13,8 +13,6 @@ class Admin extends CI_Controller
 
     public function index()
     {
-
-
         if ($this->session->userdata("role_id") == 3) {
             $data['title'] = 'Dasboard';
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -26,6 +24,26 @@ class Admin extends CI_Controller
             $data['t_vendor'] = $this->Admin_model->getRowVendor();
             // $data['t_harga'] = $this->Admin_model->getRowHarga();
             $data['t_pendapatan'] = $this->Admin_model->getTotalPendapatan();
+            $data['data_grafik'] = $this->dataPenggunaPerwilayah();
+            $data['data_grafik_vendor'] = $this->dataVendorPerwilayah();
+            $data['tarik_dana'] = $this->Admin_model->getRowTarikDanaVendor();
+            $data['pendapatan_bulanan'] = $this->dataBulan();
+
+            // var_dump($data['pendapatan_bulanan']);
+            // die();
+
+            $pesanan_aktif = $data['t_pesanan_aktif'] / $data['t_pesanan'] * 100;
+            $data['grafik_chart1'] = ceil($pesanan_aktif);
+
+            $pesanan_selesai = $data['t_pekerjaan_selesai'] / $data['t_pesanan'] * 100;
+            $data['grafik_chart2'] = ceil($pesanan_selesai);
+
+            $pesanan_batal = $data['t_pesanan_batal'] / $data['t_pesanan'] * 100;
+            $data['grafik_chart3'] = ceil($pesanan_batal);
+
+            $tarik_dana = $data['tarik_dana'] / $data['t_pesanan'] * 100;
+            $data['grafik_chart4'] = ceil($tarik_dana);
+
             $this->load->view('templates/vendor_header', $data);
             $this->load->view('templates/vendor_sidebar', $data);
             $this->load->view('templates/vendor_topbar', $data);
@@ -34,6 +52,59 @@ class Admin extends CI_Controller
         } else {
             redirect("home");
         }
+    }
+
+    public function dataBulan()
+    {
+        $data = [];
+        for ($bulan = 1; $bulan <= 12; $bulan++) {
+            $totalbulan = $this->Admin_model->getTotalPendapatanBulanan($bulan);
+            array_push($data, $totalbulan);
+        }
+        return $data;
+    }
+
+    public function dataPerwilayahGrafik()
+    {
+        $result = array('data' => array());
+
+        $data = $this->Admin_model->getAllWilayah();
+        $no = 1;
+        foreach ($data as $key => $value) {
+
+            $jumlahpengguna = $this->Admin_model->getJumlahPengguna($value['id_kota']);
+            $jumlahvendor = $this->Admin_model->getJumlahVendor($value['id_kota']);
+            $result['data'][$key] = array(
+                $jumlahpengguna
+            );
+            $no++;
+        } // /foreach
+
+        return $result;
+    }
+
+
+
+    public function dataPenggunaPerwilayah()
+    {
+        $data = [];
+        $datawilayah = $this->Admin_model->getTotalAllWilayah();
+        for ($idkota = 1; $idkota <= $datawilayah; $idkota++) {
+            $totalperkota = $this->Admin_model->getAllWilayahKotaPengguna($idkota);
+            array_push($data, $totalperkota);
+        }
+        return $data;
+    }
+
+    public function dataVendorPerwilayah()
+    {
+        $data = [];
+        $datawilayah = $this->Admin_model->getTotalAllWilayah();
+        for ($idkota = 1; $idkota <= $datawilayah; $idkota++) {
+            $totalperkota = $this->Admin_model->getAllWilayahKotaVendor($idkota);
+            array_push($data, $totalperkota);
+        }
+        return $data;
     }
 
     public function konfirmasi_bukti_bayar()
