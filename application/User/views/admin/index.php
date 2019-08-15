@@ -48,7 +48,7 @@
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Pendapatan</div>
+              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Transaksi</div>
               <div class="row no-gutters align-items-center">
                 <div class="col-auto">
                   <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= number_format($t_pendapatan, 0, ".", ".") ?>,-</div>
@@ -70,7 +70,7 @@
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Pendapatan</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($t_pendapatan, 0, ".", ".") ?>,-</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($t_pendapatan * 10 / 100, 0, ".", ".") ?>,-</div>
             </div>
             <div class="col-auto">
               <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -152,12 +152,12 @@
           </div>
           <div class="mt-4 text-center small">
             <span class="mr-2">
-              <i class="fas fa-circle text-primary"></i> Jakarta Utara
+              <i class="fas fa-circle text-primary"></i> Meruya
             </span>
             <span class="mr-2">
-              <i class="fas fa-circle text-success"></i> Jakarta Pusat
+              <i class="fas fa-circle text-success"></i> Joglo
             </span>
-            <span class="mr-2">
+            <!-- <span class="mr-2">
               <i class="fas fa-circle text-info"></i> Jakarta Barat
             </span>
             <span class="mr-2">
@@ -165,7 +165,7 @@
             </span>
             <span class="mr-2">
               <i class="fas fa-circle text-danger"></i> Jakarta Selatan
-            </span>
+            </span> -->
           </div>
         </div>
       </div>
@@ -185,12 +185,12 @@
           </div>
           <div class="mt-4 text-center small">
             <span class="mr-2">
-              <i class="fas fa-circle text-primary"></i> Jakarta Utara
+              <i class="fas fa-circle text-primary"></i> Meruya
             </span>
             <span class="mr-2">
-              <i class="fas fa-circle text-success"></i> Jakarta Pusat
+              <i class="fas fa-circle text-success"></i> Joglo
             </span>
-            <span class="mr-2">
+            <!-- <span class="mr-2">
               <i class="fas fa-circle text-info"></i> Jakarta Barat
             </span>
             <span class="mr-2">
@@ -198,7 +198,7 @@
             </span>
             <span class="mr-2">
               <i class="fas fa-circle text-danger"></i> Jakarta Selatan
-            </span>
+            </span> -->
           </div>
         </div>
       </div>
@@ -345,7 +345,7 @@
     var myPieChart = new Chart(ctx, {
       type: 'doughnut',
       data: {
-        labels: ["Jakarta Utara", "Jakarta Pusat", "Jakarta Barat", "Jakarta Timur", "Jakarta Selatan"],
+        labels: ["Meruya", "Joglo", "Jakarta Barat", "Jakarta Timur", "Jakarta Selatan"],
         datasets: [{
           data: ['<?= implode("', '", $data_grafik) ?>'],
           backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#F6C23E', '#E74A3B'],
@@ -383,7 +383,7 @@
     var myPieChart = new Chart(ctx, {
       type: 'doughnut',
       data: {
-        labels: ["Jakarta Utara", "Jakarta Pusat", "Jakarta Barat", "Jakarta Timur", "Jakarta Selatan"],
+        labels: ["Meruya", "Joglo", "Jakarta Barat", "Jakarta Timur", "Jakarta Selatan"],
         datasets: [{
           data: ['<?= implode("', '", $data_grafik_vendor) ?>'],
           backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#F6C23E', '#E74A3B'],

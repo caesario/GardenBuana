@@ -38,7 +38,8 @@
             <!-- <td><?= $data['telpon']; ?></td> -->
             <td><?= $data['alamat']; ?></td>
             <td><?= $data['tanggal_pengerjaan']; ?></td>
-            <td>Rp.<?= number_format($data['harga'], 0, ".", ".") ?>,-</td>
+            <?php $total = $data['harga'] * 10 / 100 ?>
+            <td>Rp.<?= number_format($data['harga'] - $total, 0, ".", ".") ?>,-</td>
             <td><?= $data['nama_status']; ?></td>
             <td><?= $data['create_date']; ?></td>
           </tr>
@@ -50,7 +51,7 @@
 
   <div class="modal fade" id="exampleModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <form action="<?= site_url('vendor_admin/update_tarik_dana'); ?>" method="post">
+      <form action="<?= site_url('vendor_admin/update_tarik_dana'); ?>" method="post" enctype="multipart/form-data">
         <input class="" type="hidden" name="id_pesanan" value="<?= $tarik_dana_id['id_pesanan']; ?>">
         <input class="" type="hidden" name="id_vendor" value="<?= $tarik_dana_id['id_vendor']; ?>">
         <div class="modal-content col-8 rounded-0">
@@ -74,6 +75,11 @@
             <p class="mb-0 text-dark gb-font-small">Pemilik Rekening</p>
             <div class="col p-0 form-group">
               <input class="form-control form-control-sm mt-1 mb-3 gb-font-small rounded-0" type="text" value="" name="pemilik">
+            </div>
+
+            <p class="mb-0 text-dark gb-font-small">Upload Buku Rekening</p>
+            <div class="col p-0 form-group">
+              <input class="form-control-file mt-1 mb-3 gb-font-small rounded-0" type="file" value="" name="buku">
             </div>
 
           </div>

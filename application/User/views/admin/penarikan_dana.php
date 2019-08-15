@@ -28,7 +28,8 @@
           <th>Nama Rekening</th>
           <th>Bank</th>
           <th>Nominal Transfer</th>
-          <th>Status</th>
+          <th>Foto Rekening</th>
+          <!-- <th>Status</th> -->
           <th>Aksi</th>
         </tr>
       </thead>
@@ -46,7 +47,8 @@
             <td><?= $data['bank']; ?></td>
             <?php $nominal_transfer = $data['harga'] * 90 / 100 ?>
             <td>Rp.<?= number_format($nominal_transfer, 0, ".", ".") ?>,-</td>
-            <td><?= $data['nama_status']; ?></td>
+            <td><img src="<?= base_url('assets/img/'); ?><?= $data['bukuRekening']; ?>" style="width:100px;" alt="" data-toggle="modal" data-target="#exampleModal2-<?= $data['id_pesanan']; ?>"></td>
+            <!-- <td><?= $data['nama_status']; ?></td> -->
             <td>
               <span>
                 <a class="btn btn-success btn-sm py-0 gb-btn-width" data-toggle="modal" data-id="<?= $data['id_pesanan']; ?>" data-target="#exampleModal-<?= $data['id_pesanan'] ?>" href="" data-toggle="tooltip" data-placement="top" title="Transfer">
@@ -95,6 +97,25 @@
     </div>
 
   <?php endforeach; ?>
+
+  <!-- Modal -->
+  <?php foreach ($tarik_dana as $data) : ?>
+    <div class="modal fade" id="exampleModal2-<?= $data['id_pesanan']; ?>" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content col-8 rounded-0">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <img src="<?= base_url('assets/img/'); ?><?= $data['bukuRekening']; ?>" style="width: 100%;" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  <?php endforeach; ?>
+
 
 </div>
 <!-- /.container-fluid -->

@@ -25,6 +25,31 @@ class Vendor_admin extends CI_Controller
             $data['pendapatan'] = $status7 + $status8;
             $data['pesanan'] = $this->Vendor_model->getPesananByVendorId($idVendor);
             $data['aktif'] = $this->Vendor_model->getPesananAktifByVendorId($idVendor);
+            $data['pendapatan_bulanan'] = $this->dataBulan();
+
+            $data['t_pesanan'] = $this->Admin_model->getRowPesananById($idVendor);
+            $data['t_pesanan_aktif'] = $this->Admin_model->getRowPesananAktifById($idVendor);
+            $data['t_pesanan_batal'] = $this->Admin_model->getRowPesananBatalById($idVendor);
+            $data['t_pekerjaan_selesai'] = $this->Admin_model->getRowPekerjaanSelesaiById($idVendor);
+            $data['tarik_dana'] = $this->Admin_model->getRowTarikDanaVendorById($idVendor);
+
+
+
+            $pesanan_aktif = $data['t_pesanan_aktif'] / $data['t_pesanan'] * 100;
+            $data['grafik_chart1'] = ceil($pesanan_aktif);
+
+            $pesanan_selesai = $data['t_pekerjaan_selesai'] / $data['t_pesanan'] * 100;
+            $data['grafik_chart2'] = ceil($pesanan_selesai);
+
+            $pesanan_batal = $data['t_pesanan_batal'] / $data['t_pesanan'] * 100;
+            $data['grafik_chart3'] = ceil($pesanan_batal);
+
+            $tarik_dana = $data['tarik_dana'] / $data['t_pesanan'] * 100;
+            $data['grafik_chart4'] = ceil($tarik_dana);
+
+            // var_dump($data['t_pesanan_aktif']);
+            // var_dump($pesanan_aktif);
+            // die();
 
             $this->load->view('templates/vendor_header', $data);
             $this->load->view('templates/vendor_sidebar', $data);
@@ -34,6 +59,18 @@ class Vendor_admin extends CI_Controller
         } else {
             redirect("home");
         }
+    }
+
+    public function dataBulan()
+    {
+        $datauser = $this->Vendor_model->getUserProfilById($this->session->userdata('id_user'));
+        $idVendor = $datauser['id_vendor'];
+        $data = [];
+        for ($bulan = 1; $bulan <= 12; $bulan++) {
+            $totalbulan = $this->Admin_model->getTotalPendapatanBulananVendor($bulan, $idVendor);
+            array_push($data, $totalbulan);
+        }
+        return $data;
     }
 
     public function profil()
@@ -862,26 +899,83 @@ class Vendor_admin extends CI_Controller
     public function update_tarik_dana()
     {
         $dateNow = date('Y-m-d H:i:s');
-        $idPesanan = $this->input->post('id_pesanan');
-        $dataTarik = [
-            'id_pesanan' => $this->input->post('id_pesanan'),
-            'id_vendor' => $this->input->post('id_vendor'),
-            'rekening' => $this->input->post('rekening'),
-            'bank' => $this->input->post('bank'),
-            'pemilik' => $this->input->post('pemilik'),
-            'create_date' => $dateNow
-        ];
-
-        $query = $this->db->query("UPDATE trx_pesanan SET id_status_tarik = 2 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
-
-        $queryTarik = $this->db->insert('rekening_tarik', $dataTarik);
-        if ($dataTarik) {
-            $this->session->set_flashdata('success', 'Berhasil Diubah');
-            redirect('Vendor_admin/tarik_dana');
+        $bukuRekening = $this->uploadBukuRekening();
+        if (!$bukuRekening) {
+            redirect('vendor_admin/tarik_dana');
+            return false;
         } else {
-            $this->session->set_flashdata('gagal', 'Data Berhasil Diubah');
-            redirect('Vendor_admin/tarik_dana');
+            $idPesanan = $this->input->post('id_pesanan');
+            $dataTarik = [
+                'id_pesanan' => $this->input->post('id_pesanan'),
+                'id_vendor' => $this->input->post('id_vendor'),
+                'rekening' => $this->input->post('rekening'),
+                'bank' => $this->input->post('bank'),
+                'pemilik' => $this->input->post('pemilik'),
+                'bukuRekening' => $bukuRekening,
+                'create_date' => $dateNow
+            ];
+
+            // var_dump($dataTarik);
+            // die();
+
+            $query = $this->db->query("UPDATE trx_pesanan SET id_status_tarik = 2 where id_pesanan = '" . $this->input->post('id_pesanan') . "' ");
+
+            $queryTarik = $this->db->insert('rekening_tarik', $dataTarik);
+            if ($dataTarik) {
+                $this->session->set_flashdata('success', 'Berhasil Diubah');
+                redirect('Vendor_admin/tarik_dana');
+            } else {
+                $this->session->set_flashdata('gagal', 'Data Berhasil Diubah');
+                redirect('Vendor_admin/tarik_dana');
+            }
         }
+    }
+
+    public function uploadBukuRekening()
+    {
+        $namaFile = $_FILES['buku']['name'];
+        $ukuranFile = $_FILES['buku']['size'];
+        $error = $_FILES['buku']['error'];
+        $tmpName = $_FILES['buku']['tmp_name'];
+
+        // Cek upload gambar
+        if ($error === 4) {
+            echo "<script>
+				alert('Tidak Ada Gambar Yang Dipilih!');
+			  </script>";
+            return false;
+        }
+
+        // Cek validasi gambar
+        $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+        $ekstensiGambar = explode('.', $namaFile);
+        $ekstensiGambar = strtolower(end($ekstensiGambar));
+        // echo $namaFile;
+        // die();
+        // Cek ekstensi gambar
+        if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+            echo "<script>
+				alert('File Yang Dimasukkan Bukan Gambar!');
+			  </script>";
+            return false;
+        }
+
+        // Cek size gambar
+        if ($ukuranFile > 5000000) {
+            echo "<script>
+				alert('Ukuran Gambar Melebihi 5 Mb!');
+			  </script>";
+            return false;
+        }
+
+        // Generate nama gambar
+        $namaFileBaru = uniqid();
+        $namaFileBaru .= '.';
+        $namaFileBaru .= $ekstensiGambar;
+
+        // Pindah direktori
+        move_uploaded_file($tmpName, 'assets/img/' . $namaFileBaru);
+        return $namaFileBaru;
     }
 
     public function update_testimoni()

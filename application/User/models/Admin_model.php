@@ -375,6 +375,24 @@ class Admin_model extends CI_Model
         return $result->result_array();
     }
 
+    public function getPenilaianById($id)
+    {
+        $this->db->select('SUM(penilaian) as total');
+        $this->db->from('penilaian');
+        $this->db->where('id_vendor', $id);
+        $result = $this->db->get();
+        return $result->row()->total;
+    }
+
+    public function getRowPenilaianById($id)
+    {
+        $this->db->select('*');
+        $this->db->from('penilaian');
+        $this->db->where('id_vendor', $id);
+        $result = $this->db->get();
+        return $result->num_rows();
+    }
+
     public function getLoopVendor()
     {
         $this->db->select('*');
@@ -490,13 +508,64 @@ class Admin_model extends CI_Model
     //     return $result->result();
     // }
 
-    public function getAllTarikDana()
+    public function getRowPesananById($idVendor)
+    {
+        $this->db->select('*');
+        $this->db->from('trx_pesanan');
+        $this->db->where('id_vendor', $idVendor);
+        $result = $this->db->get();
+        return $result->num_rows();
+    }
+
+    public function getRowPesananAktifById($idVendor)
+    {
+        $this->db->select('*');
+        $this->db->from('trx_pesanan');
+        $this->db->where('id_vendor', $idVendor);
+        $this->db->where('id_status_trans <= 7');
+        $result = $this->db->get();
+        return $result->num_rows();
+    }
+
+    public function getRowPesananBatalById($idVendor)
+    {
+        $this->db->select('*');
+        $this->db->from('trx_pesanan');
+        $this->db->where('id_vendor', $idVendor);
+        $this->db->where('id_status_trans >= 11');
+        $result = $this->db->get();
+        return $result->num_rows();
+    }
+
+    public function getRowPekerjaanSelesaiById($idVendor)
+    {
+        $this->db->select('*');
+        $this->db->from('trx_pesanan');
+        $this->db->where('id_vendor', $idVendor);
+        $this->db->where('id_status_trans >= 7');
+        $this->db->where('id_status_trans <= 8');
+        $result = $this->db->get();
+        return $result->num_rows();
+    }
+
+    public function getRowTarikDanaVendorById($idVendor)
+    {
+        $this->db->select('*');
+        $this->db->from('trx_pesanan');
+        $this->db->where('id_vendor', $idVendor);
+        $this->db->where('id_status_tarik = 3');
+        $result = $this->db->get();
+        return $result->num_rows();
+    }
+
+    public function getAllTarikDanaById($idVendor)
     {
         $this->db->select('*');
         $this->db->from('rekening_tarik');
         $this->db->join('trx_pesanan', 'trx_pesanan.id_pesanan = rekening_tarik.id_pesanan');
         $this->db->join('vendor', 'vendor.id_vendor = trx_pesanan.id_vendor');
         $this->db->join('status_transaksi', 'status_transaksi.id_status_trans = trx_pesanan.id_status_trans');
+        $this->db->where('id_vendor', $idVendor);
         $this->db->where('trx_pesanan.id_status_tarik = 2');
         $result = $this->db->get();
         return $result->result_array();
@@ -516,6 +585,17 @@ class Admin_model extends CI_Model
         $this->db->select('SUM(harga) as total');
         $this->db->from('trx_pesanan');
         $this->db->where('month(create_date)', $bulan);
+        $this->db->where('id_status_trans >= 6');
+        $result = $this->db->get();
+        return $result->row()->total;
+    }
+
+    public function getTotalPendapatanBulananVendor($bulan, $idVendor)
+    {
+        $this->db->select('SUM(harga) as total');
+        $this->db->from('trx_pesanan');
+        $this->db->where('month(create_date)', $bulan);
+        $this->db->where('id_vendor', $idVendor);
         $this->db->where('id_status_trans >= 6');
         $result = $this->db->get();
         return $result->row()->total;

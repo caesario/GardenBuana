@@ -15,8 +15,8 @@
           <th class="gb-no-width">No</th>
           <th>Nama Vendor</th>
           <!-- <th>Jumlah Transaksi</th> -->
-          <th>Pendapatan Vendor</th>
           <th>Biaya Dikenakan</th>
+          <th>Pemasukan Vendor</th>
           <!-- <th>Keterangan</th> -->
 
         </tr>
@@ -30,9 +30,9 @@
             <td><?= $i; ?></td>
             <td><?= $data['nama_vendor']; ?></td>
             <!-- <td></td> -->
-            <td>Rp. <?= number_format($vendorPendapatan[$a][0]['harga'], 0, ".", "."); ?>,-</td>
             <?php $total = $vendorPendapatan[$a][0]['harga'] * 10 / 100 ?>
             <td>Rp. <?= number_format($total, 0, ".", "."); ?>,-</td>
+            <td>Rp. <?= number_format($vendorPendapatan[$a][0]['harga'] - $total, 0, ".", "."); ?>,-</td>
             <!-- <td></td> -->
 
           </tr>

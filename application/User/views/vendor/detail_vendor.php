@@ -31,6 +31,17 @@
         </div>
         <div class="col-12 col-lg-9 pl-5">
           <h4 class="mb-0 mt-4">Portfolio Vendor</h4>
+          <?php @$hasil_rating = $rating / $row; ?>
+          <?php if ($row == 0) : ?>
+            <span class="gb-p-detail mr-1"> 0.00 / 5.00</span><span class="gb-p-detail mb-3 mr-1">( <?= $row; ?> Transaksi Pekerjaan )</span>
+          <?php else : ?>
+            <span class="gb-p-detail mr-1">Rating Vendor : <?= number_format($hasil_rating, 2) ?> / 5.00 |</span><span class="gb-p-detail mb-3 mr-1">( <?= $row; ?> Transaksi Pekerjaan )</span>
+          <?php endif; ?>
+          <i class="fa fa-star new-color float-right"></i>
+          <i class="fa fa-star new-color float-right"></i>
+          <i class="fa fa-star new-color float-right"></i>
+          <i class="fa fa-star new-color float-right"></i>
+          <i class="fa fa-star new-color float-right"></i>
           <hr>
           <div class="row">
             <?php foreach ($portfolio as $data) : ?>

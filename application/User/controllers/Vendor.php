@@ -50,6 +50,14 @@ class Vendor extends CI_Controller
     $data['session'] = $this->session->all_userdata();
     $data['info_web'] = $this->Admin_model->getInfoWeb();
     $data['portfolio'] = $this->Vendor_model->getPortfolioById($id);
+    $data['rating'] = $this->Admin_model->getPenilaianById($id);
+    $data['row'] = $this->Admin_model->getRowPenilaianById($id);
+
+    // $data['hasil_rating'] = $data['rating'] / $data['row'];
+
+    // var_dump();
+    // die();
+
     $this->load->view('templates/header', $data);
     $this->load->view('templates/menu');
     $this->load->view('vendor/detail_vendor', $data);
